@@ -1,56 +1,61 @@
-# Millénaire Reborn
+# 🌾 Millénaire Reborn
 
-**Millénaire Reborn** is an actively maintained, community-driven revival of the beloved Minecraft mod **[Millénaire](https://www.curseforge.com/minecraft/mc-mods/millenaire)**. 
-This project builds upon the final version of the original mod, now fully open source, cleaned up, and ready for new development.
+**Millénaire Reborn** is the actively maintained, community-driven revival of the beloved Minecraft mod [**Millénaire**](https://www.curseforge.com/minecraft/mc-mods/millenaire).
 
-> *"Populate your world with lively NPC villages from 1000 AD cultures — and shape their growth with your actions."*
+Based on the final official release (1.12.2 – 8.1.1), this version is now open source, cleaned up, and ready for a new generation of development and players.
 
----
-
-## ✨ Key Differences from Original
-
-- ✅ **Fully Open Source Code** — Easier for developers to understand and improve  
-- 🔧 **Community-Driven** — Open to pull requests, feature suggestions, and contributions  
-- 🔄 **Actively Maintained** — Fixes, improvements, and new features planned  
-- 🛠️ **Same Base Content** — Everything from the last official Millénaire release is here  
+> *"Populate your Minecraft world with thriving NPC villages from real 1000 AD cultures — and shape their evolution through your actions."*
 
 ---
 
-## 🤝 Contributing
+## ✨ What's New?
 
-We welcome all developers to help shape the future of Millénaire Reborn!
+- ✅ **Fully Open Source** — Clean, transparent code that’s easy to read and contribute to  
+- 🔧 **Community-Driven** — Open to pull requests, ideas, and collaborative improvements  
+- 🔄 **Actively Maintained** — Ongoing fixes, optimizations, and feature expansions  
+- 🛠️ **Faithful to the Original** — All content from the last official release is included  
 
-- Fork this repo  
-- Create a feature branch  
-- Submit a pull request  
-- Discuss changes via Issues  
+---
+
+## 🤝 How to Contribute
+
+We welcome all contributors — whether you're fixing bugs, adding features, or improving documentation!
+
+**Getting started:**
+
+1. Fork the repository  
+2. Create a feature branch  
+3. Submit a pull request  
+4. Discuss changes via Issues  
 
 ---
 
 ## 📚 Credits
 
-This project is based on the original **Millénaire** mod created by **Kinniken**.  
-Original CurseForge page: [Millénaire on CurseForge](https://www.curseforge.com/minecraft/mc-mods/millenaire)
+This project builds upon the original **Millénaire** mod, created by **Kinniken**.  
+Original page: [Millénaire on CurseForge](https://www.curseforge.com/minecraft/mc-mods/millenaire)
 
-All rights to the original assets, concepts, and code belong to their respective creators. This project operates under fair use for modding, educational, and preservation purposes.
+All original assets, concepts, and code belong to their respective creators.  
+This project is maintained under fair use for modding, educational, and preservation purposes.
 
 ---
 
-## 🚧 Roadmap
+## 🗺️ Roadmap
 
-- [x] Open source original codebase  
-- [ ] Refactor for better maintainability  
+- [x] Open source the original codebase  
+- [ ] Refactor for maintainability and modernization  
 - [ ] Add support for newer Minecraft versions (1.12+ → 1.16 → 1.20+)  
-- [ ] ...
+- [ ] Expand content and features with community input  
 
 ---
 
 ## ❤️ Support the Revival
 
-If you're a fan of Millénaire and want to see it thrive again, feel free to:  
-- ⭐ Star this repo  
-- 📢 Share the project  
-- 🧠 Submit ideas and feedback  
-- 🛠️ Contribute code or testing  
+If you're a fan of Millénaire and want to see it thrive again, here’s how you can help:
 
-Let’s bring villages back to Minecraft together!
+- ⭐ Star the repository  
+- 📢 Share the project  
+- 💡 Submit feedback and ideas  
+- 🛠️ Contribute code, testing, or documentation  
+
+> Let's bring immersive villages back to Minecraft — together!
