@@ -582,7 +582,7 @@ public class PanelManager {
       lines.add(createFullLine("ui.panelmarvelres1", stackFromItem(Item.getItemFromBlock((Block)Blocks.CHEST)), stackFromItem(Item.getItemFromBlock((Block)Blocks.CHEST))));
       lines.add(createFullLine("ui.panelmarvelres2", (ItemStack)null, (ItemStack)null));
       lines.add(createEmptyLine());
-      lines.add(createFullLine(new String[] { "ui.panelmarvelrescount", String.format("%,d", new Object[] { Integer.valueOf(totalCostSum - remainingNeedsSum) }), String.format("%,d", new Object[] { Integer.valueOf(totalCostSum) }) }(ItemStack)null, (ItemStack)null));
+      lines.add(createFullLine(new String[] { "ui.panelmarvelrescount", String.format("%,d", new Object[] { Integer.valueOf(totalCostSum - remainingNeedsSum) }), String.format("%,d", new Object[] { Integer.valueOf(totalCostSum) }) }, (ItemStack)null, (ItemStack)null));
       sign.untranslatedLines = lines;
       sign.buildingPos = this.building.getPos();
       sign.panelType = 3;
