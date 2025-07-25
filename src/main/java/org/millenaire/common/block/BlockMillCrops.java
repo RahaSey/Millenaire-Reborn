@@ -56,11 +56,10 @@ public class BlockMillCrops extends BlockBush implements IGrowable {
     setHardness(0.0F);
     setSoundType(SoundType.PLANT);
     this.seed = seed;
-    setTranslationKey("millenaire." + cropName);
+    setUnlocalizedName("millenaire." + cropName);
     setRegistryName(cropName);
     setDefaultState(this.blockState.getBaseState().withProperty((IProperty)AGE, Integer.valueOf(0)));
   }
-  
   public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
     IBlockState soil = worldIn.getBlockState(pos.down());
     return ((worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && soil.getBlock().canSustainPlant(soil, (IBlockAccess)worldIn, pos.down(), EnumFacing.UP, (IPlantable)this));

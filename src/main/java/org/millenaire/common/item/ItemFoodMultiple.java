@@ -48,7 +48,7 @@ public class ItemFoodMultiple extends ItemFood {
     if (healthAmount > 0)
       setAlwaysEdible(); 
     setCreativeTab(MillBlocks.tabMillenaire);
-    setTranslationKey("millenaire." + foodName);
+    setUnlocalizedName("millenaire." + foodName);
     setRegistryName(foodName);
     setMaxStackSize(1);
   }

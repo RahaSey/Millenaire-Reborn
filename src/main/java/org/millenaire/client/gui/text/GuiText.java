@@ -1,3 +1,4 @@
+
 package org.millenaire.client.gui.text;
 
 import java.io.IOException;
@@ -494,7 +495,7 @@ public abstract class GuiText extends GuiScreen {
       list = par1ItemStack.getTooltip((EntityPlayer)this.mc.player, this.mc.gameSettings.advancedItemTooltips ? (ITooltipFlag)ITooltipFlag.TooltipFlags.ADVANCED : (ITooltipFlag)ITooltipFlag.TooltipFlags.NORMAL);
       for (int k = 0; k < list.size(); k++) {
         if (k == 0) {
-          list.set(k, (par1ItemStack.getRarity()).color + (String)list.get(k));
+          list.set(k, (par1ItemStack.getRarity()).rarityColor + (String)list.get(k));
         } else {
           list.set(k, TextFormatting.GRAY + (String)list.get(k));
         } 
@@ -647,7 +648,7 @@ public abstract class GuiText extends GuiScreen {
             if (refButton.x < mouseX && refButton.y < mouseY && refButton.x + refButton.width > mouseX && refButton.y + refButton.height > mouseY)
               hoverReferenceButton = refButton; 
           } 
-        } 
+        }
         GlStateManager.disableLighting();
         customDrawScreen(mouseX, mouseY, f);
       } 

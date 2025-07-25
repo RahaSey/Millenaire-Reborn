@@ -40,12 +40,12 @@ public class RenderWallDecoration extends Render<EntityWallDecoration> {
     GlStateManager.translate(x, y, z);
     GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
     GlStateManager.enableRescaleNormal();
-    bindEntityTexture((Entity)entity);
+    bindEntityTexture(entity);
     EntityWallDecoration.EnumWallDecoration enumart = entity.millArt;
     GlStateManager.scale(0.0625F, 0.0625F, 0.0625F);
     if (this.renderOutlines) {
       GlStateManager.enableColorMaterial();
-      GlStateManager.enableOutlineMode(getTeamColor((Entity)entity));
+      GlStateManager.enableOutlineMode(getTeamColor(entity));
     } 
     renderPainting(entity, enumart.sizeX, enumart.sizeY, enumart.offsetX, enumart.offsetY);
     if (this.renderOutlines) {
@@ -54,7 +54,7 @@ public class RenderWallDecoration extends Render<EntityWallDecoration> {
     } 
     GlStateManager.disableRescaleNormal();
     GlStateManager.popMatrix();
-    super.doRender((Entity)entity, x, y, z, entityYaw, partialTicks);
+    super.doRender(entity, x, y, z, entityYaw, partialTicks);
   }
   
   protected ResourceLocation getEntityTexture(EntityWallDecoration entity) {

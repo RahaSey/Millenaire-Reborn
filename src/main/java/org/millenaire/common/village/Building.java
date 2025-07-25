@@ -2084,7 +2084,7 @@ public class Building {
       tz = Math.min(tz, this.winfo.width / 2 + 50);
       tz = Math.max(tz, this.winfo.width / 2 - 50);
       if (this.winfo.canBuild[tx][tz]) {
-        Chunk chunk = this.world.getChunk(new BlockPos(this.winfo.mapStartX + tx, 0, this.winfo.mapStartZ + tz));
+        Chunk chunk = this.world.getChunkFromBlockCoords(new BlockPos(this.winfo.mapStartX + tx, 0, this.winfo.mapStartZ + tz));
         if (chunk.isLoaded())
           return new Point((this.winfo.mapStartX + tx), (WorldUtilities.findTopSoilBlock(this.world, this.winfo.mapStartX + tx, this.winfo.mapStartZ + tz) + 1), (this.winfo.mapStartZ + tz)); 
       } 
@@ -2602,13 +2602,13 @@ public class Building {
   public Set<TradeGood> getBuyingGoods(EntityPlayer player) {
     if (!this.shopBuys.containsKey(player.getName()))
       return null; 
-    return ((LinkedHashMap)this.shopBuys.get(player.getName())).keySet();
+    return this.shopBuys.get(player.getName()).keySet();
   }
   
   public int getBuyingPrice(TradeGood g, EntityPlayer player) {
     if (!this.shopBuys.containsKey(player.getName()) || this.shopBuys.get(player.getName()) == null)
       return 0; 
-    return ((Integer)((LinkedHashMap)this.shopBuys.get(player.getName())).get(g)).intValue();
+    return this.shopBuys.get(player.getName()).get(g).intValue();
   }
   
   public ConstructionIP getConstructionIPforBuilder(MillVillager builder) {
@@ -2659,12 +2659,12 @@ public class Building {
         this.pathsToBuild = null;
         return null;
       } 
-      if (this.pathsToBuildPathIndex >= ((List)this.pathsToBuild.get(this.pathsToBuildIndex)).size()) {
+      if (this.pathsToBuildPathIndex >= this.pathsToBuild.get(this.pathsToBuildIndex).size()) {
         this.pathsToBuildIndex++;
         this.pathsToBuildPathIndex = 0;
         continue;
       } 
-      BuildingBlock b = ((List<BuildingBlock>)this.pathsToBuild.get(this.pathsToBuildIndex)).get(this.pathsToBuildPathIndex);
+      BuildingBlock b = this.pathsToBuild.get(this.pathsToBuildIndex).get(this.pathsToBuildPathIndex);
       IBlockState blockState = b.p.getBlockActualState(this.world);
       if (PathUtilities.canPathBeBuiltHere(blockState) && blockState != b.getBlockstate())
         return b; 
@@ -2712,7 +2712,7 @@ public class Building {
       return this.neededGoodsCached; 
     this.neededGoodsCached = new HashMap<>();
     for (Point vp : this.mw.villagesList.pos) {
-      Chunk chunk = this.world.getChunk(new BlockPos(vp.getiX(), 0, vp.getiZ()));
+      Chunk chunk = this.world.getChunkFromBlockCoords(new BlockPos(vp.getiX(), 0, vp.getiZ()));
       if (chunk.isLoaded()) {
         Building townHall = this.mw.getBuilding(vp);
         if (townHall != null && getTownHall() != null && townHall.villageType != (getTownHall()).villageType && townHall.culture == (getTownHall()).culture && 
@@ -2749,7 +2749,7 @@ public class Building {
       return count;
     } 
     if (this.inventoryCache.containsKey(invItem))
-      return ((Integer)this.inventoryCache.get(invItem)).intValue(); 
+      return this.inventoryCache.get(invItem).intValue(); 
     return 0;
   }
   
@@ -2901,13 +2901,13 @@ public class Building {
       MillLog.error(this, "No selling data from player " + player.getName() + ", only has data for " + this.shopSells.keySet().toArray().toString());
       return null;
     } 
-    return ((LinkedHashMap)this.shopSells.get(player.getName())).keySet();
+    return this.shopSells.get(player.getName()).keySet();
   }
   
   public int getSellingPrice(TradeGood g, EntityPlayer player) {
     if (player == null || !this.shopSells.containsKey(player.getName()))
       return 0; 
-    return ((Integer)((LinkedHashMap)this.shopSells.get(player.getName())).get(g)).intValue();
+    return this.shopSells.get(player.getName()).get(g).intValue();
   }
   
   public List<Building> getShops() {
@@ -3084,30 +3084,36 @@ public class Building {
         WorldUtilities.setBlockstate(world, new Point((x + 1), y, (z + 1)), saplingBlockState, true, false);
       } 
     } else {
-      WorldGenSavannaTree worldGenSavannaTree;
+      WorldGenSavannaTree worldGenSavannaTree = null;
       WorldGenerator treeGenerator = null;
       if (saplingType == BlockPlanks.EnumType.OAK) {
-        WorldGenTrees worldGenTrees = new WorldGenTrees(true);
+        treeGenerator = new WorldGenTrees(true);
       } else if (saplingType == BlockPlanks.EnumType.SPRUCE) {
-        WorldGenTaiga2 worldGenTaiga2 = new WorldGenTaiga2(true);
+        treeGenerator = new WorldGenTaiga2(true);
       } else if (saplingType == BlockPlanks.EnumType.BIRCH) {
-        WorldGenBirchTree worldGenBirchTree = new WorldGenBirchTree(true, false);
+        treeGenerator = new WorldGenBirchTree(true, false);
       } else if (saplingType == BlockPlanks.EnumType.JUNGLE) {
         IBlockState iblockstate = Blocks.LOG.getDefaultState().withProperty((IProperty)BlockOldLog.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE);
         IBlockState iblockstate1 = Blocks.LEAVES.getDefaultState().withProperty((IProperty)BlockOldLeaf.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE).withProperty((IProperty)BlockLeaves.CHECK_DECAY, 
             Boolean.valueOf(false));
-        WorldGenTrees worldGenTrees = new WorldGenTrees(true, 4, iblockstate, iblockstate1, false);
+        treeGenerator = new WorldGenTrees(true, 4, iblockstate, iblockstate1, false);
       } else if (saplingType == BlockPlanks.EnumType.ACACIA) {
         worldGenSavannaTree = new WorldGenSavannaTree(true);
       } else {
         MillLog.error(this, "Tried forcing a sapling to grow but its type is not recognised: " + saplingType);
+        return;
       } 
       if (worldGenSavannaTree != null) {
         WorldUtilities.setBlockAndMetadata(world, x, y, z, Blocks.AIR, 0, true, false);
         boolean success = worldGenSavannaTree.generate(world, random, bp);
         if (!success)
           WorldUtilities.setBlockstate(world, new Point(x, y, z), saplingBlockState, true, false); 
-      } 
+      } else if (treeGenerator != null) {
+        WorldUtilities.setBlockAndMetadata(world, x, y, z, Blocks.AIR, 0, true, false);
+        boolean success = treeGenerator.generate(world, random, bp);
+        if (!success)
+          WorldUtilities.setBlockstate(world, new Point(x, y, z), saplingBlockState, true, false);
+      }
     } 
   }
   
@@ -3266,12 +3272,12 @@ public class Building {
         if (b.containsTags("nopaths"))
           return true; 
         if (b.resManager.soils != null)
-          for (List<Point> vpoints : (Iterable<List<Point>>)b.resManager.soils) {
+          for (List<Point> vpoints : b.resManager.soils) {
             if (vpoints.contains(p) || vpoints.contains(above) || vpoints.contains(below))
               return true; 
           }  
         if (b.resManager.sources != null)
-          for (List<Point> vpoints : (Iterable<List<Point>>)b.resManager.sources) {
+          for (List<Point> vpoints : b.resManager.sources) {
             if (vpoints.contains(p) || vpoints.contains(above) || vpoints.contains(below))
               return true; 
           }  
@@ -4168,7 +4174,7 @@ public class Building {
         for (InvItem iv : vr.inventory.keySet())
           villager.inventory.put(iv, vr.inventory.get(iv)); 
       } 
-      if (!vr.isTextureValid(vr.texture.getPath()))
+      if (!vr.isTextureValid(vr.texture.getResourcePath()))
         vr.texture = vr.getType().getNewTexture(); 
       vr.killed = false;
       if (villager.getHouse() != null) {
@@ -4355,18 +4361,18 @@ public class Building {
     StreamReadWrite.writeNullablePoint(getPos(), data);
     if (this.shopSells.containsKey(player.getName())) {
       data.writeInt(((LinkedHashMap)this.shopSells.get(player.getName())).size());
-      for (TradeGood g : ((LinkedHashMap)this.shopSells.get(player.getName())).keySet()) {
+      for (TradeGood g : this.shopSells.get(player.getName()).keySet()) {
         StreamReadWrite.writeNullableGoods(g, data);
-        data.writeInt(((Integer)((LinkedHashMap)this.shopSells.get(player.getName())).get(g)).intValue());
+        data.writeInt(this.shopSells.get(player.getName()).get(g).intValue());
       } 
     } else {
       data.writeInt(0);
     } 
     if (this.shopBuys.containsKey(player.getName())) {
       data.writeInt(((LinkedHashMap)this.shopBuys.get(player.getName())).size());
-      for (TradeGood g : ((LinkedHashMap)this.shopBuys.get(player.getName())).keySet()) {
+      for (TradeGood g : this.shopBuys.get(player.getName()).keySet()) {
         StreamReadWrite.writeNullableGoods(g, data);
-        data.writeInt(((Integer)((LinkedHashMap)this.shopBuys.get(player.getName())).get(g)).intValue());
+        data.writeInt(this.shopBuys.get(player.getName()).get(g).intValue());
       } 
     } else {
       data.writeInt(0);
@@ -5017,7 +5023,7 @@ public class Building {
   private void updatePens(boolean completeRespawn) {
     if ((completeRespawn || !this.world.isDaytime()) && (getVillagerRecords().size() > 0 || (this.location.getMaleResidents().isEmpty() && this.location.getFemaleResidents().isEmpty())) && !this.world.isRemote) {
       int nbMaxRespawn = 0;
-      for (List<Point> spawnPoints : (Iterable<List<Point>>)this.resManager.spawns)
+      for (List<Point> spawnPoints : this.resManager.spawns)
         nbMaxRespawn += spawnPoints.size(); 
       if (this.nbAnimalsRespawned <= nbMaxRespawn) {
         int sheep = 0, cow = 0, pig = 0, chicken = 0, squid = 0, wolves = 0;
@@ -5064,10 +5070,10 @@ public class Building {
           int multipliyer = 1;
           if (((ResourceLocation)this.resManager.spawnTypes.get(i)).equals(Mill.ENTITY_SQUID))
             multipliyer = 2; 
-          for (int j = 0; j < ((CopyOnWriteArrayList)this.resManager.spawns.get(i)).size() * multipliyer - nb; j++) {
+          for (int j = 0; j < this.resManager.spawns.get(i).size() * multipliyer - nb; j++) {
             if (completeRespawn || MillCommonUtilities.chanceOn(100)) {
               EntityLiving animal = (EntityLiving)EntityList.createEntityByIDFromName(this.resManager.spawnTypes.get(i), this.world);
-              Point pen = ((CopyOnWriteArrayList<Point>)this.resManager.spawns.get(i)).get(MillCommonUtilities.randomInt(((CopyOnWriteArrayList)this.resManager.spawns.get(i)).size()));
+              Point pen = this.resManager.spawns.get(i).get(MillCommonUtilities.randomInt(this.resManager.spawns.get(i).size()));
               animal.setPosition(pen.getiX() + 0.5D, pen.getiY(), pen.getiZ() + 0.5D);
               this.world.spawnEntity((Entity)animal);
               this.nbAnimalsRespawned++;

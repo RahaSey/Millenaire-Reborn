@@ -36,7 +36,7 @@ public class BlockRosette extends BlockPane {
   
   public BlockRosette(String blockName, Material material, SoundType soundType) {
     super(material, true);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setSoundType(soundType);

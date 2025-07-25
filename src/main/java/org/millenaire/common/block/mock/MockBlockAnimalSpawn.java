@@ -78,7 +78,7 @@ public class MockBlockAnimalSpawn extends Block implements IMetaBlockName {
   public MockBlockAnimalSpawn(String blockName) {
     super(Material.ROCK);
     disableStats();
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setBlockUnbreakable();
     setCreativeTab(MillBlocks.tabMillenaireContentCreator);
@@ -97,7 +97,7 @@ public class MockBlockAnimalSpawn extends Block implements IMetaBlockName {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getPath() + "." + ((Creature)getStateFromMeta(stack.getMetadata()).getValue((IProperty)CREATURE)).getName();
+    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((Creature)getStateFromMeta(stack.getMetadata()).getValue((IProperty)CREATURE)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {

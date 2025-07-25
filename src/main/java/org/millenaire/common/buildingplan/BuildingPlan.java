@@ -2216,12 +2216,13 @@ public class BuildingPlan implements IBuildingPlan, MillCommonUtilities.Weighted
         if (!foundNearbyBuilding)
           return new LocationReturn(8, testPosHorizontal); 
       }  
+    int orientation;
     if (porientation == -1) {
       orientation = computeOrientation(new Point((x + winfo.mapStartX), 0.0D, (z + winfo.mapStartZ)), centre);
     } else {
       orientation = porientation;
     } 
-    int orientation = (orientation + this.buildingOrientation) % 4;
+    orientation = (orientation + this.buildingOrientation) % 4;
     if (orientation == 0 || orientation == 2) {
       xwidth = this.length + this.areaToClearLengthBefore + this.areaToClearLengthAfter + 2;
       zwidth = this.width + this.areaToClearWidthBefore + this.areaToClearWidthAfter + 2;

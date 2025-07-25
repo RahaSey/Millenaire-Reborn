@@ -329,7 +329,7 @@ public class GuiActions {
       return EnumActionResult.FAIL;
     } 
     if (block == Blocks.STANDING_SIGN) {
-      if (!Mill.proxy.isTrueServer() || player.server.getPlayerList().canSendCommands(player.getGameProfile())) {
+      if (!Mill.proxy.isTrueServer() || player.getServer().getPlayerList().canSendCommands(player.getGameProfile())) {
         BuildingImportExport.summoningWandImportBuildingRequest((EntityPlayer)player, ((MillWorldData)Mill.serverWorlds.get(0)).world, pos);
       } else {
         ServerSender.sendTranslatedSentence((EntityPlayer)player, '4', "ui.serverimportforbidden", new String[0]);
@@ -367,7 +367,7 @@ public class GuiActions {
     profile.setTag("cropplanting_" + value);
     MillCommonUtilities.changeMoney((IInventory)player.inventory, -512, player);
     Item crop = Item.getByNameOrId("millenaire:" + value);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.croplearned", new String[] { chief.getName(), "ui.crop." + crop.getRegistryName().getPath() });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.croplearned", new String[] { chief.getName(), "ui.crop." + crop.getRegistryName().getResourcePath() });
   }
   
   public static void villageChiefPerformCultureControl(EntityPlayer player, MillVillager chief) {
@@ -399,7 +399,7 @@ public class GuiActions {
     profile.setTag("huntingdrop_" + value);
     MillCommonUtilities.changeMoney((IInventory)player.inventory, -512, player);
     Item drop = Item.getByNameOrId("millenaire:" + value);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.huntingdroplearned", new String[] { chief.getName(), "ui.huntingdrop." + drop.getRegistryName().getPath() });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.huntingdroplearned", new String[] { chief.getName(), "ui.huntingdrop." + drop.getRegistryName().getResourcePath() });
   }
   
   public static void villageChiefPerformVillageScroll(EntityPlayer player, MillVillager chief) {

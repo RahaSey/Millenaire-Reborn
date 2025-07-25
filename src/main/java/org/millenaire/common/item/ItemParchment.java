@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
@@ -83,7 +84,7 @@ public class ItemParchment extends ItemMill {
       ServerSender.sendTranslatedSentence(player, '6', "panels.invalidid", new String[0]);
       return;
     } 
-    Chunk chunk = player.world.getChunk(p.getChunkX(), p.getChunkZ());
+    Chunk chunk = player.world.getChunkFromBlockCoords(new BlockPos(p.getiX(), 0, p.getiZ()));
     if (!chunk.isLoaded()) {
       ServerSender.sendTranslatedSentence(player, '6', "panels.toofar", new String[0]);
       return;

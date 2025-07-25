@@ -89,7 +89,7 @@ public class BlockExtendedMudBrick extends BlockSlab implements IMetaBlockName {
   
   public BlockExtendedMudBrick(String blockName) {
     super(Material.ROCK);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("pickaxe", 0);
@@ -138,6 +138,10 @@ public class BlockExtendedMudBrick extends BlockSlab implements IMetaBlockName {
   
   public String getTranslationKey(int meta) {
     return "tile.millenaire." + ((EnumType)getStateFromMeta(meta).getValue((IProperty)VARIANT)).getName();
+  }
+  
+  public String getUnlocalizedName(int meta) {
+    return getTranslationKey(meta);
   }
   
   public IProperty<?> getVariantProperty() {

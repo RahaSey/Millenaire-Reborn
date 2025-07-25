@@ -30,7 +30,7 @@ public class ItemPurse extends ItemMill {
   @SideOnly(Side.CLIENT)
   public String getItemStackDisplayName(ItemStack purse) {
     if (purse.getTagCompound() == null)
-      return I18n.format(MillItems.PURSE.getTranslationKey() + ".name", new Object[0]); 
+      return I18n.format(MillItems.PURSE.getUnlocalizedName() + ".name", new Object[0]); 
     int DENIERs = purse.getTagCompound().getInteger("ml_Purse_DENIER");
     int DENIERargent = purse.getTagCompound().getInteger("ml_Purse_DENIERargent");
     int DENIERor = purse.getTagCompound().getInteger("ml_Purse_DENIERor");
@@ -42,7 +42,7 @@ public class ItemPurse extends ItemMill {
     if (DENIERs != 0 || label.length() == 0)
       label = label + "§6" + DENIERs + "d"; 
     label = label.trim();
-    return "§f" + I18n.format(MillItems.PURSE.getTranslationKey() + ".name", new Object[0]) + ": " + label;
+    return "§f" + I18n.format(MillItems.PURSE.getUnlocalizedName() + ".name", new Object[0]) + ": " + label;
   }
   
   public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {

@@ -558,7 +558,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       } 
     } 
     entityarrow.setDamage(entityarrow.getDamage() + damageBonus);
-    entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (14 - this.world.getDifficulty().getId() * 4) * speedFactor);
+    entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (14 - this.world.getDifficulty().ordinal() * 4) * speedFactor);
     playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
     this.world.spawnEntity((Entity)entityarrow);
   }
@@ -2126,9 +2126,9 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     this.gender = nbttagcompound.getInteger("gender");
     if (nbttagcompound.hasKey("villager_lid"))
       setVillagerId(Math.abs(nbttagcompound.getLong("villager_lid"))); 
-    if (!isTextureValid(this.texture.getPath())) {
+    if (!isTextureValid(this.texture.toString())) {
       ResourceLocation newTexture = this.vtype.getNewTexture();
-      MillLog.major(this, "Texture " + this.texture.getPath() + " cannot be found, replacing it with " + newTexture.getPath());
+      MillLog.major(this, "Texture " + this.texture.toString() + " cannot be found, replacing it with " + newTexture.toString());
       this.texture = newTexture;
     } 
     NBTTagList nbttaglist = nbttagcompound.getTagList("inventoryNew", 10);
@@ -2846,13 +2846,19 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
           teleportToEntity((Entity)entityplayer);
         } else if (dist > 4) {
           boolean rebuildPath = false;
-          if (getNavigator().getPath() == null) {
+          Path currentPath = getNavigator().getPath();
+          if (currentPath == null) {
             rebuildPath = true;
           } else {
-            Point currentTargetPoint = new Point(getNavigator().getPath().getFinalPathPoint());
-            if (currentTargetPoint.distanceTo((Entity)entityplayer) > 2.0D)
-              rebuildPath = true; 
-          } 
+            PathPoint finalPoint = currentPath.getFinalPathPoint();
+            if (finalPoint != null) {
+              Point currentTargetPoint = new Point(finalPoint.x, finalPoint.y, finalPoint.z);
+              if (currentTargetPoint.distanceTo((Entity)entityplayer) > 2.0D)
+                rebuildPath = true;
+            } else {
+              rebuildPath = true;
+            }
+          }
           if (rebuildPath) {
             Path newPathEntity = getNavigator().getPathToEntityLiving((Entity)entityPlayer);
             if (newPathEntity != null)
@@ -2918,7 +2924,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       super.writeEntityToNBT(nbttagcompound);
       nbttagcompound.setString("vtype", this.vtype.key);
       nbttagcompound.setString("culture", (getCulture()).key);
-      nbttagcompound.setString("texture", this.texture.getPath());
+      nbttagcompound.setString("texture", this.texture.toString());
       if (this.housePoint != null)
         this.housePoint.write(nbttagcompound, "housePos"); 
       if (this.townHallPoint != null)

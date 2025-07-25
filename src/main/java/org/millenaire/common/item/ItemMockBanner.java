@@ -53,7 +53,7 @@ public class ItemMockBanner extends ItemBlock {
   
   public static ItemStack makeBanner(Item banner, EnumDyeColor color, @Nullable NBTTagCompound patterns) {
     ItemStack itemstack = new ItemStack(banner, 1, color.getDyeDamage());
-    if (patterns != null && !patterns.isEmpty())
+    if (patterns != null && !patterns.hasNoTags())
       itemstack.getOrCreateSubCompound("BlockEntityTag").setTag("Patterns", (NBTBase)patterns.copy().getTagList("Patterns", 10)); 
     return itemstack;
   }

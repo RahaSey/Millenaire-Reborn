@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockCustomSnow extends BlockSnowBlock {
   public BlockCustomSnow(String blockName) {
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("shovel", 0);

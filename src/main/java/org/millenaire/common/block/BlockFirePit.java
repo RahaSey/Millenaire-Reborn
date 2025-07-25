@@ -88,9 +88,9 @@ public class BlockFirePit extends BlockContainer {
     super(Material.WOOD);
     setSoundType(SoundType.WOOD);
     setHardness(0.2F);
-    setDefaultState(getDefaultState().withProperty((IProperty)LIT, Boolean.valueOf(false)));
+    setDefaultState(getDefaultState().withProperty(LIT, Boolean.valueOf(false)));
     setRegistryName(name);
-    setTranslationKey("millenaire." + name);
+    setUnlocalizedName("millenaire." + name);
     setCreativeTab(MillBlocks.tabMillenaire);
   }
   
@@ -103,7 +103,7 @@ public class BlockFirePit extends BlockContainer {
   
   @Nonnull
   protected BlockStateContainer createBlockState() {
-    return new BlockStateContainer((Block)this, new IProperty[] { (IProperty)LIT, (IProperty)ALIGNMENT });
+    return new BlockStateContainer((Block)this, new IProperty[] { LIT, ALIGNMENT });
   }
   
   @Nullable
@@ -133,11 +133,11 @@ public class BlockFirePit extends BlockContainer {
   }
   
   public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-    return ((Boolean)state.getValue((IProperty)LIT)).booleanValue() ? 15 : 0;
+    return state.getValue(LIT).booleanValue() ? 15 : 0;
   }
   
   public int getMetaFromState(IBlockState state) {
-    return (((Boolean)state.getValue((IProperty)LIT)).booleanValue() ? 1 : 0) | ((EnumAlignment)state.getValue((IProperty)ALIGNMENT)).meta << 1;
+    return (state.getValue(LIT).booleanValue() ? 1 : 0) | state.getValue(ALIGNMENT).meta << 1;
   }
   
   public String getName() {
@@ -154,14 +154,14 @@ public class BlockFirePit extends BlockContainer {
   
   @Nonnull
   public IBlockState getStateForPlacement(@Nonnull World world, @Nonnull BlockPos pos, @Nonnull EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-    return getDefaultState().withProperty((IProperty)ALIGNMENT, EnumAlignment.fromAxis(placer.getHorizontalFacing().getAxis()));
+    return getDefaultState().withProperty(ALIGNMENT, EnumAlignment.fromAxis(placer.getHorizontalFacing().getAxis()));
   }
   
   @Nonnull
   public IBlockState getStateFromMeta(int meta) {
     boolean lit = ((meta & 0x1) != 0);
     EnumAlignment alignment = EnumAlignment.fromMeta(meta & 0x2);
-    return getDefaultState().withProperty((IProperty)LIT, Boolean.valueOf(lit)).withProperty((IProperty)ALIGNMENT, alignment);
+    return getDefaultState().withProperty(LIT, Boolean.valueOf(lit)).withProperty(ALIGNMENT, alignment);
   }
   
   @SideOnly(Side.CLIENT)
@@ -185,7 +185,7 @@ public class BlockFirePit extends BlockContainer {
   
   @SideOnly(Side.CLIENT)
   public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-    if (((Boolean)stateIn.getValue((IProperty)LIT)).booleanValue()) {
+    if (stateIn.getValue(LIT).booleanValue()) {
       worldIn.playSound(pos.getX() + 0.5D, pos.getY() + (getBoundingBox(stateIn, (IBlockAccess)worldIn, pos)).minY, pos.getZ() + 0.5D, SoundEvents.BLOCK_FIRE_AMBIENT, SoundCategory.BLOCKS, 1.0F + rand.nextFloat(), rand
           .nextFloat() * 0.7F + 0.3F, false);
       if (rand.nextInt(24) == 0)

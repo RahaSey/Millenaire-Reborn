@@ -295,7 +295,7 @@ public class VillageMapInfo implements Cloneable {
         } 
       } 
     } 
-    Chunk chunk = this.world.getChunk(new BlockPos(startX + this.mapStartX, 0, startZ + this.mapStartZ));
+    Chunk chunk = this.world.getChunkProvider().getLoadedChunk((startX + this.mapStartX) >> 4, (startZ + this.mapStartZ) >> 4);
     if (MillConfigValues.LogWorldInfo >= 3)
       MillLog.debug(this, "Updating chunk: " + startX + "/" + startZ + "/" + this.yBaseline + "/" + chunk.x + "/" + chunk.z); 
     int i;
@@ -317,6 +317,7 @@ public class VillageMapInfo implements Cloneable {
           y = (short)(y - 1);
           tblock = chunk.getBlockState(i, y, j).getBlock();
         } 
+        Block block;
         if (y <= maxy && y > 1) {
           block = chunk.getBlockState(i, y, j).getBlock();
         } else {
@@ -349,7 +350,7 @@ public class VillageMapInfo implements Cloneable {
         this.topGround[mx][mz] = y;
         this.spaceAbove[mx][mz] = 0;
         Block soilBlock = chunk.getBlockState(i, y - 1, j).getBlock();
-        Block block = chunk.getBlockState(i, y, j).getBlock();
+        block = chunk.getBlockState(i, y, j).getBlock();
         if (BlockItemUtilities.isBlockWater(block))
           this.water[mx][mz] = true; 
         if (soilBlock instanceof net.minecraft.block.BlockLog) {

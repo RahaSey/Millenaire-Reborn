@@ -101,8 +101,8 @@ public class WorldGenCherry extends WorldGenAbstractTree {
             for (int i = 0; i < branchMaxY; i++) {
               int i2 = position.getY() + i;
               if (i >= branchMinY && horizontalOffset > 0) {
-                xPos += enumfacing.getXOffset();
-                zPos += enumfacing.getZOffset();
+                xPos += enumfacing.getFrontOffsetX();
+                zPos += enumfacing.getFrontOffsetZ();
                 horizontalOffset--;
               } 
               BlockPos blockpos = new BlockPos(xPos, i2, zPos);

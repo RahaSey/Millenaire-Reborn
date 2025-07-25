@@ -33,7 +33,7 @@ public class BlockMillBed extends BlockBed {
     this.bedHeight = height;
     this.BED_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, height / 16.0D, 1.0D);
     setCreativeTab(MillBlocks.tabMillenaire);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
   }
   

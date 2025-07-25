@@ -69,7 +69,7 @@ public class BlockMillWall extends Block {
     super(baseBlock.getMaterial(null));
     this.baseBlock = baseBlock;
     setCreativeTab(MillBlocks.tabMillenaire);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setDefaultState(this.blockState.getBaseState().withProperty((IProperty)UP, Boolean.valueOf(false)).withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false))
         .withProperty((IProperty)SOUTH, Boolean.valueOf(false)).withProperty((IProperty)WEST, Boolean.valueOf(false)));

@@ -9,7 +9,7 @@ public class ItemBlockMeta extends ItemBlock {
     super(block);
     if (!(block instanceof IMetaBlockName))
       throw new IllegalArgumentException(String.format("The given Block %s is not an instance of IMetaBlockName!", new Object[] { block
-              .getTranslationKey() })); 
+              .getUnlocalizedName() })); 
     setMaxDamage(0);
     setHasSubtypes(true);
   }

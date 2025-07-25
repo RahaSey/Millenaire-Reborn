@@ -54,7 +54,7 @@ public class ItemHalfSlab extends ItemBlock {
   }
   
   public String getTranslationKey(ItemStack stack) {
-    return this.singleSlab.getTranslationKey();
+    return this.singleSlab.getUnlocalizedName();
   }
   
   public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {

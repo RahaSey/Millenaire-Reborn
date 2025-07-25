@@ -68,7 +68,7 @@ public abstract class BlockOrientedSlab extends BlockSlab implements IMetaBlockN
     setHarvestLevel("pickaxe", 0);
     setHardness(1.5F);
     setResistance(10.0F);
-    setTranslationKey("millenaire." + slabName);
+    setUnlocalizedName("millenaire." + slabName);
     setRegistryName(slabName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }
@@ -106,10 +106,10 @@ public abstract class BlockOrientedSlab extends BlockSlab implements IMetaBlockN
     return i;
   }
   
-  public String getSpecialName(ItemStack stack) {
-    return getTranslationKey();
+    public String getSpecialName(ItemStack stack) {
+    return getUnlocalizedName();
   }
-  
+
   public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
     IBlockState iblockstate = getStateFromMeta(meta);
     if (facing.getAxis() == EnumFacing.Axis.Y) {
@@ -140,10 +140,10 @@ public abstract class BlockOrientedSlab extends BlockSlab implements IMetaBlockN
     return Variant.DEFAULT;
   }
   
-  public String getTranslationKey(int meta) {
-    return getTranslationKey();
+    public String getUnlocalizedName(int meta) {
+    return getUnlocalizedName();
   }
-  
+
   public IProperty<?> getVariantProperty() {
     return (IProperty<?>)VARIANT;
   }

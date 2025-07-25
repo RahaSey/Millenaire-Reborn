@@ -23,7 +23,7 @@ public class BlockOrientedBrick extends BlockRotatedPillar {
     setHarvestLevel("pickaxe", 0);
     setHardness(1.5F);
     setResistance(10.0F);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
   }
   

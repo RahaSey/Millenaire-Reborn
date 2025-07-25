@@ -82,7 +82,7 @@ public class MockBlockTreeSpawn extends Block implements IMetaBlockName {
   public MockBlockTreeSpawn(String blockName) {
     super(Material.PLANTS);
     disableStats();
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setBlockUnbreakable();
     setCreativeTab(MillBlocks.tabMillenaireContentCreator);
@@ -101,7 +101,7 @@ public class MockBlockTreeSpawn extends Block implements IMetaBlockName {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getPath() + "." + ((TreeType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)TREETYPE)).getName();
+    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((TreeType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)TREETYPE)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {

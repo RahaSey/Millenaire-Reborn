@@ -476,14 +476,15 @@ public class BuildingLocation implements Cloneable {
   
   private void initialiseRandomBrickColoursFromPlan(BuildingPlan plan) {
     for (EnumDyeColor color : plan.randomBrickColours.keySet()) {
+      Map<EnumDyeColor, Integer> colorMap = (Map<EnumDyeColor, Integer>) plan.randomBrickColours.get(color);
       int totalWeight = 0;
-      for (EnumDyeColor possibleColor : ((Map)plan.randomBrickColours.get(color)).keySet())
-        totalWeight += ((Integer)((Map)plan.randomBrickColours.get(color)).get(possibleColor)).intValue(); 
+      for (EnumDyeColor possibleColor : colorMap.keySet())
+        totalWeight += colorMap.get(possibleColor).intValue(); 
       int pickedValue = MillCommonUtilities.randomInt(totalWeight);
       EnumDyeColor pickedColor = null;
       int currentWeightTotal = 0;
-      for (EnumDyeColor possibleColor : ((Map)plan.randomBrickColours.get(color)).keySet()) {
-        currentWeightTotal += ((Integer)((Map)plan.randomBrickColours.get(color)).get(possibleColor)).intValue();
+      for (EnumDyeColor possibleColor : colorMap.keySet()) {
+        currentWeightTotal += colorMap.get(possibleColor).intValue();
         if (pickedColor == null && pickedValue < currentWeightTotal)
           pickedColor = possibleColor; 
       } 

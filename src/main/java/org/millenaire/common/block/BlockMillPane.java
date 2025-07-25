@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockMillPane extends BlockPane {
   public BlockMillPane(String blockName, Material material, SoundType soundType) {
     super(material, true);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setHarvestLevel("axe", 0);
     setHardness(0.1F);

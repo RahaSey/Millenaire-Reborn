@@ -72,7 +72,7 @@ public class BlockSnailSoil extends Block implements IMetaBlockName {
   
   public BlockSnailSoil(String blockName) {
     super(Material.GROUND);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setTickRandomly(true);

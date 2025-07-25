@@ -60,7 +60,7 @@ public class PathUtilities {
     } 
     for (ip = 0; ip < path.size(); ip++) {
       if (pathShouldBuild[ip]) {
-        BlockPathSlab blockPathSlab;
+        Block blockPathSlab;
         AStarNode node = path.get(ip);
         AStarNode lastNode = null, nextNode = null;
         if (ip > 0)
@@ -90,9 +90,12 @@ public class PathUtilities {
         } 
         Point p = (new Point(node)).getBelow();
         Block nodePathBlock = pathBlock;
-        if (BlockItemUtilities.isPath(nodePathBlock) && halfSlab)
-          blockPathSlab = ((IBlockPath)nodePathBlock).getSingleSlab(); 
-        attemptPathBuild(th, th.world, pathPoints, p, (Block)blockPathSlab, pathMeta);
+        if (BlockItemUtilities.isPath(nodePathBlock) && halfSlab) {
+          blockPathSlab = ((IBlockPath)nodePathBlock).getSingleSlab();
+        } else {
+          blockPathSlab = nodePathBlock;
+        }
+        attemptPathBuild(th, th.world, pathPoints, p, blockPathSlab, pathMeta);
         if (lastNode != null) {
           int dx = p.getiX() - lastNode.x;
           int dz = p.getiZ() - lastNode.z;
@@ -118,12 +121,12 @@ public class PathUtilities {
               secondPointAlternate = p.getRelative(0.0D, 0.0D, (dz * direction));
             } 
             if (secondPoint != null) {
-              boolean success = attemptPathBuild(th, th.world, pathPoints, secondPoint, (Block)blockPathSlab, pathMeta);
+              boolean success = attemptPathBuild(th, th.world, pathPoints, secondPoint, blockPathSlab, pathMeta);
               if (!success && secondPointAlternate != null)
-                attemptPathBuild(th, th.world, pathPoints, secondPointAlternate, (Block)blockPathSlab, pathMeta); 
+                attemptPathBuild(th, th.world, pathPoints, secondPointAlternate, blockPathSlab, pathMeta); 
             } 
             if (thirdPoint != null)
-              attemptPathBuild(th, th.world, pathPoints, thirdPoint, (Block)blockPathSlab, pathMeta); 
+              attemptPathBuild(th, th.world, pathPoints, thirdPoint, blockPathSlab, pathMeta); 
           } 
         } 
         lastNodeHalfSlab = halfSlab;

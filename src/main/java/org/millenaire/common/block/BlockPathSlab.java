@@ -41,7 +41,7 @@ public class BlockPathSlab extends Block implements IMetaBlockName, IBlockPath {
     setSoundType(soundType);
     this.singleSlabBlockName = blockName + "_slab";
     this.doubleSlabName = blockName;
-    setTranslationKey("millenaire." + this.doubleSlabName);
+    setUnlocalizedName("millenaire." + this.doubleSlabName);
     setRegistryName(this.singleSlabBlockName);
     this.useNeighborBrightness = true;
     IBlockState iblockstate = this.blockState.getBaseState();
@@ -109,7 +109,7 @@ public class BlockPathSlab extends Block implements IMetaBlockName, IBlockPath {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return getTranslationKey();
+    return getUnlocalizedName();
   }
   
   public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {

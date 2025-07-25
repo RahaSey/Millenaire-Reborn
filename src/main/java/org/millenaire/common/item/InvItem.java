@@ -268,7 +268,7 @@ public final class InvItem implements Comparable<InvItem> {
       return this.special - ii.special; 
     if (this.item == null || ii.item == null)
       return this.special - ii.special; 
-    return this.item.getTranslationKey().compareTo(ii.item.getTranslationKey()) + this.meta - ii.meta;
+    return this.item.getUnlocalizedName().compareTo(ii.item.getUnlocalizedName()) + this.meta - ii.meta;
   }
   
   public boolean equals(Object obj) {

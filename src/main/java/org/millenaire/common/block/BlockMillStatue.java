@@ -38,7 +38,7 @@ public class BlockMillStatue extends BlockDirectional {
     setHardness(0.5F);
     setResistance(2.0F);
     setSoundType(sound);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setLightOpacity(0);
   }
@@ -61,11 +61,15 @@ public class BlockMillStatue extends BlockDirectional {
   @Nullable
   public static EnumFacing getFacing(int meta) {
     int i = meta & 0x7;
-    return (i > 5) ? null : EnumFacing.byIndex(i);
+    return (i > 5) ? null : EnumFacing.getFront(i);
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    return getDefaultState().withProperty((IProperty)FACING, (Comparable)getFacing(meta));
+    EnumFacing facing = getFacing(meta);
+    if (facing == null) {
+      facing = EnumFacing.NORTH;
+    }
+    return getDefaultState().withProperty((IProperty)FACING, (Comparable)facing);
   }
   
   public int getMetaFromState(IBlockState state) {

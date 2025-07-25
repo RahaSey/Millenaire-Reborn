@@ -37,7 +37,7 @@ public class ItemMillBed extends ItemBlock {
   }
   
   public String getTranslationKey(ItemStack stack) {
-    return getTranslationKey();
+    return getUnlocalizedName();
   }
   
   public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -51,7 +51,7 @@ public class ItemMillBed extends ItemBlock {
     if (!flag)
       pos = pos.up(); 
     int i = MathHelper.floor((player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3;
-    EnumFacing enumfacing = EnumFacing.byHorizontalIndex(i);
+    EnumFacing enumfacing = EnumFacing.getFront(i);
     BlockPos blockpos = pos.offset(enumfacing);
     ItemStack itemstack = player.getHeldItem(hand);
     if (player.canPlayerEdit(pos, facing, itemstack) && player.canPlayerEdit(blockpos, facing, itemstack)) {

@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockBars extends BlockPane {
   protected BlockBars(String blockName) {
     super(Material.WOOD, true);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setHardness(5.0F);
     setResistance(10.0F);

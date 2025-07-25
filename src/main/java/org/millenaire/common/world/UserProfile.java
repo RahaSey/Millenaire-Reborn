@@ -1006,11 +1006,11 @@ public class UserProfile {
       } 
       for (Quest q : Quest.quests.values()) {
         QuestInstance qi = q.testQuest(this.mw, this);
-        j = change | ((qi != null) ? 1 : 0);
+        change = change || (qi != null);
         if (qi != null)
           sendQuestInstancePacket(qi); 
       } 
-      if (j != 0)
+      if (change)
         saveQuestInstances(); 
     } 
   }

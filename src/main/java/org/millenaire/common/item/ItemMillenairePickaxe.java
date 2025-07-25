@@ -11,7 +11,7 @@ import org.millenaire.common.block.MillBlocks;
 public class ItemMillenairePickaxe extends ItemPickaxe {
   public ItemMillenairePickaxe(String itemName, Item.ToolMaterial material) {
     super(material);
-    setTranslationKey("millenaire." + itemName);
+    setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

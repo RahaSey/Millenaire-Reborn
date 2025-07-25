@@ -78,7 +78,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
       GlStateManager.translate(x, y, z);
       GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
       GlStateManager.rotate(-viewerYaw, 0.0F, 1.0F, 0.0F);
-      GlStateManager.rotate((isThirdPersonFrontal ? -1 : true) * viewerPitch, 1.0F, 0.0F, 0.0F);
+      GlStateManager.rotate((isThirdPersonFrontal ? -1 : 1) * viewerPitch, 1.0F, 0.0F, 0.0F);
       GlStateManager.translate(0.25F - iconPos * 0.5F, 0.0F, -7.5F);
       GlStateManager.scale(-0.025F, -0.025F, 0.05F);
       GlStateManager.disableLighting();
@@ -101,7 +101,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
     GlStateManager.translate(x, y, z);
     GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
     GlStateManager.rotate(-viewerYaw, 0.0F, 1.0F, 0.0F);
-    GlStateManager.rotate((isThirdPersonFrontal ? -1 : true) * viewerPitch, 1.0F, 0.0F, 0.0F);
+    GlStateManager.rotate((isThirdPersonFrontal ? -1 : 1) * viewerPitch, 1.0F, 0.0F, 0.0F);
     GlStateManager.scale(-0.025F, -0.025F, 0.025F);
     GlStateManager.disableLighting();
     GlStateManager.depthMask(false);
@@ -154,7 +154,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
         GL11.glTranslatef(0.5F, 0.0F, 0.5F);
       } 
       GL11.glRotatef(orientation, 0.0F, 1.0F, 0.0F);
-      GL11.glRotatef(getDeathMaxRotation((EntityLivingBase)v), 0.0F, 0.0F, 1.0F);
+      GL11.glRotatef(getDeathMaxRotation(v), 0.0F, 0.0F, 1.0F);
       GL11.glRotatef(270.0F, 0.0F, 1.0F, 0.0F);
       Block block = v.getPos().getBlock(v.world);
       if (block instanceof BlockMillBed) {
@@ -164,7 +164,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
         GL11.glTranslatef(0.0F, 0.0F, 0.1F);
       } 
     } else {
-      super.applyRotations((EntityLivingBase)v, par2, rotationYaw, partialTicks);
+      super.applyRotations(v, par2, rotationYaw, partialTicks);
     } 
   }
   
@@ -191,7 +191,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
   
   public void doRender(MillVillager entity, double x, double y, double z, float entityYaw, float partialTicks) {
     MillVillager villager = entity;
-    super.doRender((EntityLiving)entity, x, y, z, entityYaw, partialTicks);
+    super.doRender(entity, x, y, z, entityYaw, partialTicks);
     doRenderVillagerName(villager, x, y, z);
   }
   

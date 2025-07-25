@@ -45,7 +45,7 @@ public class BlockPanel extends BlockContainer {
   public BlockPanel(String blockName) {
     super(Material.WOOD);
     setDefaultState(this.blockState.getBaseState().withProperty((IProperty)FACING, (Comparable)EnumFacing.NORTH));
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setHardness(1.0F);
   }
@@ -106,7 +106,7 @@ public class BlockPanel extends BlockContainer {
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    EnumFacing enumfacing = EnumFacing.byIndex(meta);
+    EnumFacing enumfacing = EnumFacing.getFront(meta);
     if (enumfacing.getAxis() == EnumFacing.Axis.Y)
       enumfacing = EnumFacing.NORTH; 
     return getDefaultState().withProperty((IProperty)FACING, (Comparable)enumfacing);

@@ -66,7 +66,7 @@ public class BlockDecorativeEarth extends Block implements IMetaBlockName {
   
   public BlockDecorativeEarth(String blockName) {
     super(Material.GROUND);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("shovel", 0);

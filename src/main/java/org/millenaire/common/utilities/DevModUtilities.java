@@ -25,6 +25,7 @@ import org.millenaire.common.pathing.atomicstryker.AStarNode;
 import org.millenaire.common.pathing.atomicstryker.AStarPathPlannerJPS;
 import org.millenaire.common.pathing.atomicstryker.IAStarPathedEntity;
 import org.millenaire.common.quest.QuestInstance;
+import org.millenaire.common.utilities.ThreadSafeUtilities;
 
 public class DevModUtilities {
   private static class DevPathedEntity implements IAStarPathedEntity {
@@ -165,7 +166,7 @@ public class DevModUtilities {
       AStarPathPlannerJPS jpsPathPlanner = new AStarPathPlannerJPS(player.world, pathedEntity, true);
       try {
         jpsPathPlanner.getPath(start.getiX(), start.getiY(), start.getiZ(), end.getiX(), end.getiY(), end.getiZ(), jpsConfig);
-      } catch (ChunkAccessException e) {
+      } catch (ThreadSafeUtilities.ChunkAccessException e) {
         MillLog.printException(e);
       } 
     } else {

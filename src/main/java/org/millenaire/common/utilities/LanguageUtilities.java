@@ -21,6 +21,7 @@ import org.millenaire.common.culture.Culture;
 import org.millenaire.common.forge.Mill;
 import org.millenaire.common.item.InvItem;
 import org.millenaire.common.item.MillItems;
+import org.millenaire.common.utilities.MillLog.MillenaireException;
 
 public class LanguageUtilities {
   public static final char BLACK = '0';

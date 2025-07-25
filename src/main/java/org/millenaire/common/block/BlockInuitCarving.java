@@ -30,7 +30,7 @@ public class BlockInuitCarving extends BlockRotatedPillar {
     setHarvestLevel("pickaxe", 0);
     setHardness(0.5F);
     setResistance(2.0F);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
   }
   

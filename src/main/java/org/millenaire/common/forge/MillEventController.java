@@ -102,7 +102,7 @@ public class MillEventController {
   private void inuitDropsSeaFood(LivingDropsEvent event) {
     EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
     UserProfile profile = Mill.getMillWorld((event.getEntity()).world).getProfile(player);
-    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.SEAFOOD_RAW.getRegistryName().getPath())) {
+    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.SEAFOOD_RAW.getRegistryName().getResourcePath())) {
       int quantity = 0;
       if (event.getEntityLiving() instanceof net.minecraft.entity.passive.EntitySquid) {
         if (MillCommonUtilities.chanceOn(10))
@@ -122,7 +122,7 @@ public class MillEventController {
   private void inuitDropsWolfMeat(LivingDropsEvent event) {
     EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
     UserProfile profile = Mill.getMillWorld((event.getEntity()).world).getProfile(player);
-    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.WOLFMEAT_RAW.getRegistryName().getPath())) {
+    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.WOLFMEAT_RAW.getRegistryName().getResourcePath())) {
       int quantity = MillCommonUtilities.randomInt(3);
       if (quantity > 0) {
         event.getDrops().add(new EntityItem((event.getEntityLiving()).world, (event.getEntityLiving()).posX, (event.getEntityLiving()).posY, (event.getEntityLiving()).posZ, new ItemStack((Item)MillItems.WOLFMEAT_RAW, quantity)));

@@ -97,6 +97,10 @@ public class BlockSlabStone extends BlockSlab implements IMetaBlockName {
     return "tile.millenaire.slabs_" + ((BlockDecorativeStone.EnumType)getStateFromMeta(meta).getValue((IProperty)VARIANT)).getName();
   }
   
+  public String getUnlocalizedName(int meta) {
+    return getUnlocalizedName();
+  }
+  
   public IProperty<?> getVariantProperty() {
     return (IProperty<?>)VARIANT;
   }

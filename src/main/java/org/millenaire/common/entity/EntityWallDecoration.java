@@ -284,7 +284,7 @@ public class EntityWallDecoration extends EntityHanging implements IEntityAdditi
     Point p = StreamReadWrite.readNullablePoint(data);
     setPosition(p.x, p.y, p.z);
     int facingId = data.readInt();
-    updateFacingWithBoundingBox(EnumFacing.byIndex(facingId));
+    updateFacingWithBoundingBox(EnumFacing.getFront(facingId));
   }
   
   public void setLocationAndAngles(double x, double y, double z, float yaw, float pitch) {

@@ -28,7 +28,7 @@ public class ItemMillenaireSword extends ItemSword implements InvItem.IItemIniti
     super(material);
     this.knockback = knockback;
     this.enchantability = enchantability;
-    setTranslationKey("millenaire." + itemName);
+    setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

@@ -19,7 +19,7 @@ public class BlockPaintedSlab extends BlockHalfSlab implements IPaintedBlock {
     super(baseBlock);
     this.blockType = blockType;
     this.colour = colour;
-    setTranslationKey("millenaire." + blockType + "_" + colour.getName());
+    setUnlocalizedName("millenaire." + blockType + "_" + colour.getName());
     setRegistryName(blockType + "_" + colour.getName());
     setHarvestLevel("pickaxe", 0);
     setHardness(1.5F);

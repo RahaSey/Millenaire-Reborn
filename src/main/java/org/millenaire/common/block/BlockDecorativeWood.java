@@ -91,7 +91,7 @@ public class BlockDecorativeWood extends BlockSlab implements IMetaBlockName {
   
   public BlockDecorativeWood(String blockName) {
     super(Material.WOOD);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("axe", 0);
@@ -141,6 +141,10 @@ public class BlockDecorativeWood extends BlockSlab implements IMetaBlockName {
   
   public String getTranslationKey(int meta) {
     return "tile.millenaire." + ((EnumType)getStateFromMeta(meta).getValue((IProperty)VARIANT)).getName();
+  }
+  
+  public String getUnlocalizedName(int meta) {
+    return getTranslationKey(meta);
   }
   
   public IProperty<?> getVariantProperty() {

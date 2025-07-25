@@ -23,8 +23,7 @@ public class ItemBannerPattern extends ItemMill {
   }
   
   public String getTranslationKey(ItemStack stack) {
-    int i = stack.getMetadata();
-    return getTranslationKey() + "." + Mill.BANNER_SHORTNAMES[i];
+    return getUnlocalizedName();
   }
   
   @SideOnly(Side.CLIENT)

@@ -11,7 +11,7 @@ import org.millenaire.common.block.MillBlocks;
 public class ItemMillenaireShovel extends ItemSpade {
   public ItemMillenaireShovel(String itemName, Item.ToolMaterial material) {
     super(material);
-    setTranslationKey("millenaire." + itemName);
+    setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

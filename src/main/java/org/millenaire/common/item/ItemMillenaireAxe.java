@@ -11,7 +11,7 @@ import org.millenaire.common.block.MillBlocks;
 public class ItemMillenaireAxe extends ItemAxe {
   public ItemMillenaireAxe(String itemName, Item.ToolMaterial material, float damage, float speed) {
     super(material, damage, speed);
-    setTranslationKey("millenaire." + itemName);
+    setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

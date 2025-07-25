@@ -25,7 +25,7 @@ public class BlockSod extends Block implements IMetaBlockName {
   public BlockSod(String blockName) {
     super(Material.WOOD);
     setDefaultState(this.blockState.getBaseState().withProperty((IProperty)VARIANT, (Comparable)BlockPlanks.EnumType.OAK));
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("axe", 0);
@@ -51,7 +51,7 @@ public class BlockSod extends Block implements IMetaBlockName {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getPath() + "_" + ((BlockPlanks.EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + getRegistryName().getResourcePath() + "_" + ((BlockPlanks.EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {

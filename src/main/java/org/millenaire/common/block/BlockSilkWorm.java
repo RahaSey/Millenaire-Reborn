@@ -76,7 +76,7 @@ public class BlockSilkWorm extends Block implements IMetaBlockName {
   
   public BlockSilkWorm(String blockName) {
     super(Material.WOOD);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setTickRandomly(true);

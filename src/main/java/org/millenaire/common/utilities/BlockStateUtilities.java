@@ -40,7 +40,8 @@ public class BlockStateUtilities {
     return null;
   }
   
-  private static <T extends Comparable<T>> IBlockState getBlockStateWithProperty(IBlockState blockState, IProperty<T> property, Comparable<?> value) {
+  @SuppressWarnings({"unchecked", "rawtypes"})
+  private static IBlockState getBlockStateWithProperty(IBlockState blockState, IProperty property, Comparable value) {
     return blockState.withProperty(property, value);
   }
   
@@ -49,8 +50,11 @@ public class BlockStateUtilities {
     if (properties == null) {
       MillLog.error(null, "Could not parse values line of " + values + " for block " + blockState.getBlock());
     } else {
-      for (Map.Entry<IProperty<?>, Comparable<?>> entry : properties.entrySet())
-        blockState = getBlockStateWithProperty(blockState, (IProperty<Comparable>)entry.getKey(), entry.getValue()); 
+      for (Map.Entry<IProperty<?>, Comparable<?>> entry : properties.entrySet()) {
+        IProperty property = entry.getKey();
+        Comparable value = entry.getValue();
+        blockState = getBlockStateWithProperty(blockState, property, value);
+      }
     } 
     return blockState;
   }

@@ -50,7 +50,7 @@ public class ItemPathSlab extends ItemBlock {
     return (iblockstate1.getBlock() == this.singleSlab) ? true : super.canPlaceBlockOnSide(worldIn, blockpos, side, player, stack);
   }
   
-  protected <T extends Comparable<T>> IBlockState makeDoubleState(IProperty<T> p_185055_1_, Comparable<?> p_185055_2_) {
+  protected <T extends Comparable<T>> IBlockState makeDoubleState(IProperty<T> p_185055_1_, T p_185055_2_) {
     return this.doubleSlab.getDefaultState().withProperty(p_185055_1_, p_185055_2_);
   }
   

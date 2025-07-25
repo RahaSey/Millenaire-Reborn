@@ -9,7 +9,7 @@ import org.millenaire.common.block.MillBlocks;
 
 public class ItemMill extends Item {
   public ItemMill(String itemName) {
-    setTranslationKey("millenaire." + itemName);
+    setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

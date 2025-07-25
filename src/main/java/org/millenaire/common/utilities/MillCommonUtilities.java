@@ -746,12 +746,12 @@ public class MillCommonUtilities {
     for (InvItem key : inventory.keySet()) {
       if (key.getItem() != null) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-        nbttagcompound1.setString("item", key.getItem().getRegistryName().getPath());
-        nbttagcompound1.setString("itemmod", key.getItem().getRegistryName().getNamespace());
+        String[] registryParts = key.getItem().getRegistryName().toString().split(":");
+        nbttagcompound1.setString("itemmod", registryParts[0]);
+        nbttagcompound1.setString("item", registryParts[1]);
         nbttagcompound1.setInteger("meta", key.meta);
         nbttagcompound1.setInteger("amount", ((Integer)inventory.get(key)).intValue());
         nbttaglist.appendTag((NBTBase)nbttagcompound1);
-        continue;
       } 
       MillLog.error(null, "Key with null item when saving inventory: " + key);
     } 

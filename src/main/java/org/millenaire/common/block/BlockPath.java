@@ -37,7 +37,7 @@ public class BlockPath extends Block implements IBlockPath {
     setSoundType(soundType);
     this.singleSlabBlockName = blockName + "_slab";
     this.doubleSlabName = blockName;
-    setTranslationKey("millenaire." + this.doubleSlabName);
+    setUnlocalizedName("millenaire." + this.doubleSlabName);
     setRegistryName(this.doubleSlabName);
     this.useNeighborBrightness = true;
     IBlockState iblockstate = this.blockState.getBaseState();

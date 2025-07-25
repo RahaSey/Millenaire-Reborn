@@ -46,7 +46,7 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
     this.type = type;
     this.fruitRL = fruitRL;
     this.saplingRL = saplingRL;
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     Mill.proxy.setGraphicsLevel(this, true);

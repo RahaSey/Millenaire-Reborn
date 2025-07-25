@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockMillStairs extends BlockStairs {
   public BlockMillStairs(String blockName, IBlockState baseBlock) {
     super(baseBlock);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     this.useNeighborBrightness = true;

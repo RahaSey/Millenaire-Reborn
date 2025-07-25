@@ -188,10 +188,10 @@ public abstract class ValueIO {
         for (EnumDyeColor inputColour : theme.colours.keySet()) {
           line = line + ";" + inputColour.getName() + ":";
           String values = "";
-          for (EnumDyeColor outputColour : ((Map)theme.colours.get(inputColour)).keySet()) {
+          for (EnumDyeColor outputColour : theme.colours.get(inputColour).keySet()) {
             if (values.length() > 0)
               values = values + ","; 
-            values = values + outputColour.getName() + ":" + ((Map)theme.colours.get(inputColour)).get(outputColour);
+            values = values + outputColour.getName() + ":" + theme.colours.get(inputColour).get(outputColour);
           } 
           line = line + values;
         } 
@@ -577,7 +577,7 @@ public abstract class ValueIO {
       for (EnumDyeColor mainColour : coloursMap.keySet()) {
         String line = mainColour.getName() + ":";
         String values = "";
-        for (EnumDyeColor colour : ((Map)coloursMap.get(mainColour)).keySet()) {
+        for (EnumDyeColor colour : coloursMap.get(mainColour).keySet()) {
           if (values.length() > 0)
             values = values + ","; 
           values = values + colour.getName() + ":" + ((Map)coloursMap.get(mainColour)).get(colour);

@@ -21,7 +21,7 @@ public class BlockAlchemistExplosive extends Block {
     setHarvestLevel("pickaxe", 0);
     setHardness(1.5F);
     setResistance(10.0F);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

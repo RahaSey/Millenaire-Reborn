@@ -76,7 +76,7 @@ public class MockBlockSource extends Block implements IMetaBlockName {
   public MockBlockSource(String blockName) {
     super(Material.ROCK);
     disableStats();
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setBlockUnbreakable();
     setCreativeTab(MillBlocks.tabMillenaireContentCreator);
@@ -99,7 +99,7 @@ public class MockBlockSource extends Block implements IMetaBlockName {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getPath() + "." + ((Resource)getStateFromMeta(stack.getMetadata()).getValue((IProperty)RESOURCE)).getName();
+    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((Resource)getStateFromMeta(stack.getMetadata()).getValue((IProperty)RESOURCE)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {

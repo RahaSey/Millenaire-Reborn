@@ -47,7 +47,7 @@ public class BlockPaintedBricks extends Block implements IPaintedBlock {
   }
   
   public static String getColorName(EnumDyeColor colour) {
-    String colourName = colour.getTranslationKey();
+    String colourName = colour.getName();
     if (colourName.equalsIgnoreCase("lightBlue"))
       colourName = "light_blue"; 
     return colourName;
@@ -65,7 +65,7 @@ public class BlockPaintedBricks extends Block implements IPaintedBlock {
     String colourName = getColorName(colour);
     this.blockName = baseBlockName + "_" + colourName;
     this.colour = colour;
-    setTranslationKey("millenaire." + this.blockName);
+    setUnlocalizedName("millenaire." + this.blockName);
     setRegistryName(this.blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("pickaxe", 0);

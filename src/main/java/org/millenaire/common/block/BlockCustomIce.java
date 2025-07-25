@@ -15,7 +15,7 @@ public class BlockCustomIce extends Block {
   public BlockCustomIce(String blockName) {
     super(Material.ICE);
     this.slipperiness = 0.98F;
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("pickaxe", 0);

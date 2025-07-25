@@ -531,36 +531,38 @@ public class BuildingBlock {
   
   private boolean buildTreeSpawn(World world, boolean worldGeneration) {
     if (worldGeneration) {
-      WorldGenSakura worldGenSakura;
       WorldGenerator wg = null;
       if (this.special == OAKSPAWN) {
-        WorldGenTrees worldGenTrees = new WorldGenTrees(false);
+        wg = new WorldGenTrees(false);
       } else if (this.special == PINESPAWN) {
-        WorldGenTaiga2 worldGenTaiga2 = new WorldGenTaiga2(false);
+        wg = new WorldGenTaiga2(false);
       } else if (this.special == BIRCHSPAWN) {
-        WorldGenBirchTree worldGenBirchTree = new WorldGenBirchTree(false, true);
+        wg = new WorldGenBirchTree(false, true);
       } else if (this.special == JUNGLESPAWN) {
         IBlockState iblockstate = Blocks.LOG.getDefaultState().withProperty((IProperty)BlockOldLog.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE);
         IBlockState iblockstate1 = Blocks.LEAVES.getDefaultState().withProperty((IProperty)BlockOldLeaf.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE).withProperty((IProperty)BlockLeaves.CHECK_DECAY, 
             Boolean.valueOf(false));
-        WorldGenTrees worldGenTrees = new WorldGenTrees(true, 4 + MillCommonUtilities.random.nextInt(7), iblockstate, iblockstate1, false);
+        wg = new WorldGenTrees(true, 4 + MillCommonUtilities.random.nextInt(7), iblockstate, iblockstate1, false);
       } else if (this.special == ACACIASPAWN) {
-        WorldGenSavannaTree worldGenSavannaTree = new WorldGenSavannaTree(false);
+        wg = new WorldGenSavannaTree(false);
       } else if (this.special == DARKOAKSPAWN) {
-        WorldGenCanopyTree worldGenCanopyTree = new WorldGenCanopyTree(true);
+        wg = new WorldGenCanopyTree(true);
       } else if (this.special == APPLETREESPAWN) {
-        WorldGenAppleTree worldGenAppleTree = new WorldGenAppleTree(true);
+        wg = new WorldGenAppleTree(true);
       } else if (this.special == OLIVETREESPAWN) {
-        WorldGenOliveTree worldGenOliveTree = new WorldGenOliveTree(true);
+        wg = new WorldGenOliveTree(true);
       } else if (this.special == PISTACHIOTREESPAWN) {
-        WorldGenPistachio worldGenPistachio = new WorldGenPistachio(true);
+        wg = new WorldGenPistachio(true);
       } else if (this.special == CHERRYTREESPAWN) {
-        WorldGenCherry worldGenCherry = new WorldGenCherry(true);
+        wg = new WorldGenCherry(true);
       } else if (this.special == SAKURATREESPAWN) {
-        worldGenSakura = new WorldGenSakura(true);
+        wg = new WorldGenSakura(true);
       } 
-      worldGenSakura.generate(world, MillCommonUtilities.random, this.p.getBlockPos());
-      return true;
+      
+      if (wg != null) {
+        wg.generate(world, MillCommonUtilities.random, this.p.getBlockPos());
+        return true;
+      }
     } 
     return false;
   }

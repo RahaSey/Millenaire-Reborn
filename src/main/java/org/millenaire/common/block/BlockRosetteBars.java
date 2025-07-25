@@ -115,7 +115,7 @@ public class BlockRosetteBars extends BlockBars {
     IBlockState iblockstate = getDefaultState();
     if ((meta & 0x4) == 4)
       iblockstate = iblockstate.withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM); 
-    EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta & 0x3);
+    EnumFacing enumfacing = EnumFacing.getHorizontal(meta & 0x3);
     if (enumfacing.getAxis() == EnumFacing.Axis.Y)
       enumfacing = EnumFacing.NORTH; 
     iblockstate = iblockstate.withProperty((IProperty)FACING, (Comparable)enumfacing);
@@ -134,9 +134,9 @@ public class BlockRosetteBars extends BlockBars {
   
   public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
     switch (mirrorIn) {
-      case CLOCKWISE_180:
+      case LEFT_RIGHT:
         return state.withProperty((IProperty)NORTH, state.getValue((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)NORTH));
-      case COUNTERCLOCKWISE_90:
+      case FRONT_BACK:
         return state.withProperty((IProperty)EAST, state.getValue((IProperty)WEST)).withProperty((IProperty)WEST, state.getValue((IProperty)EAST));
     } 
     return super.withMirror(state, mirrorIn);

@@ -247,7 +247,7 @@ public class GuiVillageHead extends GuiText {
       text.add(new TextLine());
       for (String crop : (this.chief.getCulture()).knownCrops) {
         Item itemCrop = Item.getByNameOrId("millenaire:" + crop);
-        String localizedName = I18n.format(itemCrop.getTranslationKey() + ".name", new Object[0]);
+        String localizedName = I18n.format(itemCrop.getUnlocalizedName() + ".name", new Object[0]);
         if (profile.isTagSet("cropplanting_" + crop)) {
           text.add(new TextLine(LanguageUtilities.string("ui.cropknown", new String[] { localizedName })));
           continue;
@@ -274,7 +274,7 @@ public class GuiVillageHead extends GuiText {
       text.add(new TextLine());
       for (String crop : (this.chief.getCulture()).knownHuntingDrops) {
         Item itemCrop = Item.getByNameOrId("millenaire:" + crop);
-        String localizedName = I18n.format(itemCrop.getTranslationKey() + ".name", new Object[0]);
+        String localizedName = I18n.format(itemCrop.getUnlocalizedName() + ".name", new Object[0]);
         if (profile.isTagSet("huntingdrop_" + crop)) {
           text.add(new TextLine(LanguageUtilities.string("ui.huntingdropknown", new String[] { localizedName })));
           continue;

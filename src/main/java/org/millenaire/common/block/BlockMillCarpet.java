@@ -21,7 +21,7 @@ public class BlockMillCarpet extends Block {
   
   public BlockMillCarpet(String blockName) {
     super(Material.CARPET);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("pickaxe", 0);

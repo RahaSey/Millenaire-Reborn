@@ -32,11 +32,11 @@ import org.millenaire.common.world.WorldGenSakura;
 
 public class BlockMillSapling extends BlockBush implements IGrowable {
   public enum EnumMillWoodType {
-    APPLETREE((String)MapColor.WOOD),
-    OLIVETREE((String)MapColor.WOOD),
-    PISTACHIO((String)MapColor.WOOD),
-    CHERRY((String)MapColor.WOOD),
-    SAKURA((String)MapColor.WOOD);
+    APPLETREE(MapColor.WOOD),
+    OLIVETREE(MapColor.WOOD),
+    PISTACHIO(MapColor.WOOD),
+    CHERRY(MapColor.WOOD),
+    SAKURA(MapColor.WOOD);
     
     private final MapColor mapColor;
     
@@ -56,9 +56,9 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   private final EnumMillWoodType type;
   
   protected BlockMillSapling(String blockName, EnumMillWoodType type) {
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)STAGE, Integer.valueOf(0)));
+    setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
     this.type = type;
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHardness(0.0F);
@@ -75,7 +75,7 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   }
   
   protected BlockStateContainer createBlockState() {
-    return new BlockStateContainer((Block)this, new IProperty[] { (IProperty)STAGE });
+    return new BlockStateContainer((Block)this, new IProperty[] { STAGE });
   }
   
   public int damageDropped(IBlockState state) {
@@ -83,38 +83,38 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   }
   
   public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    WorldGenAppleTree worldGenAppleTree;
-    WorldGenOliveTree worldGenOliveTree;
-    WorldGenPistachio worldGenPistachio;
-    WorldGenCherry worldGenCherry;
-    WorldGenSakura worldGenSakura;
     if (!TerrainGen.saplingGrowTree(worldIn, rand, pos))
       return; 
-    WorldGenerator worldgenerator = (rand.nextInt(10) == 0) ? (WorldGenerator)new WorldGenBigTree(true) : (WorldGenerator)new WorldGenTrees(true);
-    int i = 0;
-    int j = 0;
-    boolean flag = false;
+    
+    WorldGenerator generator = null;
+    
     switch (this.type) {
       case APPLETREE:
-        worldGenAppleTree = new WorldGenAppleTree(true);
+        generator = new WorldGenAppleTree(true);
         break;
       case OLIVETREE:
-        worldGenOliveTree = new WorldGenOliveTree(true);
+        generator = new WorldGenOliveTree(true);
         break;
       case PISTACHIO:
-        worldGenPistachio = new WorldGenPistachio(true);
+        generator = new WorldGenPistachio(true);
         break;
       case CHERRY:
-        worldGenCherry = new WorldGenCherry(true);
+        generator = new WorldGenCherry(true);
         break;
       case SAKURA:
-        worldGenSakura = new WorldGenSakura(true);
+        generator = new WorldGenSakura(true);
         break;
-    } 
+      default:
+        generator = (rand.nextInt(10) == 0) ? new WorldGenBigTree(true) : new WorldGenTrees(true);
+        break;
+    }
+    
     IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
     worldIn.setBlockState(pos, iblockstate2, 4);
-    if (!worldGenSakura.generate(worldIn, rand, pos.add(0, 0, 0)))
-      worldIn.setBlockState(pos, state, 4); 
+    
+    if (!generator.generate(worldIn, rand, pos.add(0, 0, 0))) {
+      worldIn.setBlockState(pos, state, 4);
+    }
   }
   
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -123,17 +123,17 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    i |= ((Integer)state.getValue((IProperty)STAGE)).intValue();
+    i |= ((Integer)state.getValue(STAGE)).intValue();
     return i;
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    return getDefaultState().withProperty((IProperty)STAGE, Integer.valueOf(meta & 0x8));
+    return getDefaultState().withProperty(STAGE, Integer.valueOf(meta & 0x8));
   }
   
   public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    if (((Integer)state.getValue((IProperty)STAGE)).intValue() == 0) {
-      worldIn.setBlockState(pos, state.cycleProperty((IProperty)STAGE), 4);
+    if (((Integer)state.getValue(STAGE)).intValue() == 0) {
+      worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
     } else {
       generateTree(worldIn, pos, state, rand);
     } 

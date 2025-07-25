@@ -12,7 +12,7 @@ import org.millenaire.common.block.MillBlocks;
 public class ItemMillenaireArmour extends ItemArmor {
   public ItemMillenaireArmour(String itemName, ItemArmor.ArmorMaterial material, EntityEquipmentSlot type) {
     super(material, -1, type);
-    setTranslationKey("millenaire." + itemName);
+    setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

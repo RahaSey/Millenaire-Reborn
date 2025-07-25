@@ -19,7 +19,7 @@ public class ItemMillenaireBow extends ItemBow {
     this.speedFactor = speedFactor;
     this.damageBonus = damageBonus;
     this.enchantability = enchantability;
-    setTranslationKey("millenaire." + itemName);
+    setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
     setCreativeTab(MillBlocks.tabMillenaire);
   }

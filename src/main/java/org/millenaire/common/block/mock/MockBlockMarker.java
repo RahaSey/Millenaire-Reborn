@@ -94,7 +94,7 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   public MockBlockMarker(String blockName) {
     super(Material.ROCK);
     disableStats();
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setBlockUnbreakable();
     setCreativeTab(MillBlocks.tabMillenaireContentCreator);
@@ -109,9 +109,7 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
     EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
     switch (plantType) {
-      case PRESERVE_GROUND:
-        return (state.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND);
-      case SLEEPING_POS:
+      case Crop:
         return (state.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND);
     } 
     return false;
@@ -161,7 +159,7 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getPath() + "." + ((Type)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((Type)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {

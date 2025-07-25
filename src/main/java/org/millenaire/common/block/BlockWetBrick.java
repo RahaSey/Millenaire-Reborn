@@ -72,7 +72,7 @@ public class BlockWetBrick extends Block implements IMetaBlockName {
   
   public BlockWetBrick(String blockName) {
     super(Material.GROUND);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setTickRandomly(true);

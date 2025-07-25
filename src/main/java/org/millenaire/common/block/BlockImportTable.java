@@ -21,7 +21,7 @@ import org.millenaire.common.entity.TileEntityImportTable;
 public class BlockImportTable extends Block implements ITileEntityProvider {
   public BlockImportTable(String blockName) {
     super(Material.WOOD);
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setHardness(1.0F);
     setCreativeTab(MillBlocks.tabMillenaireContentCreator);

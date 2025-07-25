@@ -97,6 +97,10 @@ public class BlockSlabWood extends BlockSlab implements IMetaBlockName {
     return "tile.millenaire.slabs_" + BlockDecorativeWood.EnumType.byMetadata(meta).getUnlocalizedName();
   }
   
+  public String getUnlocalizedName(int meta) {
+    return getTranslationKey(meta);
+  }
+  
   public IProperty<?> getVariantProperty() {
     return (IProperty<?>)VARIANT;
   }

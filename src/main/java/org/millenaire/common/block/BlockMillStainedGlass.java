@@ -82,7 +82,7 @@ public class BlockMillStainedGlass extends BlockPane implements IMetaBlockName {
   public BlockMillStainedGlass(String blockName) {
     super(Material.GLASS, true);
     this.blockName = blockName;
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setSoundType(SoundType.GLASS);
@@ -142,9 +142,9 @@ public class BlockMillStainedGlass extends BlockPane implements IMetaBlockName {
   
   public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
     switch (mirrorIn) {
-      case CLOCKWISE_180:
+      case LEFT_RIGHT:
         return state.withProperty((IProperty)NORTH, state.getValue((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)NORTH));
-      case COUNTERCLOCKWISE_90:
+      case FRONT_BACK:
         return state.withProperty((IProperty)EAST, state.getValue((IProperty)WEST)).withProperty((IProperty)WEST, state.getValue((IProperty)EAST));
     } 
     return super.withMirror(state, mirrorIn);

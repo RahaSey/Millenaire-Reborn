@@ -90,7 +90,7 @@ public abstract class BlockHalfSlab extends Block {
   }
   
   public String getUnlocalizedName(int meta) {
-    return getTranslationKey();
+    return super.getUnlocalizedName();
   }
   
   @SideOnly(Side.CLIENT)

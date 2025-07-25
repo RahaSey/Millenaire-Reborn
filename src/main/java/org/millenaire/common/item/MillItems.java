@@ -844,168 +844,168 @@ public class MillItems {
   }
   
   public static void registerItems(RegistryEvent.Register<Item> event) {
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemSummoningWand("summoningwand")).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemNegationWand("negationwand")).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMill("denier")).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMill("denierargent")).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMill("denieror")).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemPurse("purse")).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillSeeds((Block)MillBlocks.CROP_RICE, "rice"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillSeeds((Block)MillBlocks.CROP_TURMERIC, "turmeric"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillSeeds((Block)MillBlocks.CROP_MAIZE, "maize"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillSeeds((Block)MillBlocks.CROP_VINE, "grapes"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillSeeds((Block)MillBlocks.CROP_COTTON, "cotton"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenairePickaxe("normanpickaxe", TOOLS_norman));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireAxe("normanaxe", TOOLS_norman, 8.0F, -3.0F));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireShovel("normanshovel", TOOLS_norman));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireHoe("normanhoe", TOOLS_norman));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenairePickaxe("mayanpickaxe", TOOLS_obsidian));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireAxe("mayanaxe", TOOLS_obsidian, 8.0F, -3.0F));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireShovel("mayanshovel", TOOLS_obsidian));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireHoe("mayanhoe", TOOLS_obsidian));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenairePickaxe("byzantinepickaxe", TOOLS_byzantine));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireAxe("byzantineaxe", TOOLS_byzantine, 8.0F, -3.0F));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireShovel("byzantineshovel", TOOLS_byzantine));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireHoe("byzantinehoe", TOOLS_byzantine));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireSword("normanbroadsword", TOOLS_norman, -1, false)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireSword("mayanmace", Item.ToolMaterial.IRON, -1, false)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireSword("tachisword", TOOLS_obsidian, -1, false)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireSword("byzantinemace", Item.ToolMaterial.IRON, -1, true)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireSword("inuittrident", Item.ToolMaterial.IRON, 20, false)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireSword("seljukscimitar", better_steel, -1, false)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireBow("yumibow", 2.0F, 0.5F, 1)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireBow("inuitbow", 1.0F, 0.0F, 20)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemMillenaireBow("seljukbow", 1.5F, 1.5F, 20)).setFull3D());
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("normanhelmet", ARMOUR_norman, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("normanplate", ARMOUR_norman, EntityEquipmentSlot.CHEST));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("normanlegs", ARMOUR_norman, EntityEquipmentSlot.LEGS));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("normanboots", ARMOUR_norman, EntityEquipmentSlot.FEET));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japanesebluehelmet", ARMOUR_japanese_blue, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseblueplate", ARMOUR_japanese_blue, EntityEquipmentSlot.CHEST));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japanesebluelegs", ARMOUR_japanese_blue, EntityEquipmentSlot.LEGS));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseblueboots", ARMOUR_japanese_blue, EntityEquipmentSlot.FEET));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseredhelmet", ARMOUR_japanese_red, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseredplate", ARMOUR_japanese_red, EntityEquipmentSlot.CHEST));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseredlegs", ARMOUR_japanese_red, EntityEquipmentSlot.LEGS));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseredboots", ARMOUR_japanese_red, EntityEquipmentSlot.FEET));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseguardhelmet", ARMOUR_japaneseGuard, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseguardplate", ARMOUR_japaneseGuard, EntityEquipmentSlot.CHEST));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseguardlegs", ARMOUR_japaneseGuard, EntityEquipmentSlot.LEGS));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("japaneseguardboots", ARMOUR_japaneseGuard, EntityEquipmentSlot.FEET));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("byzantinehelmet", ARMOUR_byzantine, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("byzantineplate", ARMOUR_byzantine, EntityEquipmentSlot.CHEST));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("byzantinelegs", ARMOUR_byzantine, EntityEquipmentSlot.LEGS));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("byzantineboots", ARMOUR_byzantine, EntityEquipmentSlot.FEET));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("furhelmet", ARMOUR_fur, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("furplate", ARMOUR_fur, EntityEquipmentSlot.CHEST));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("furlegs", ARMOUR_fur, EntityEquipmentSlot.LEGS));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("furboots", ARMOUR_fur, EntityEquipmentSlot.FEET));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("seljukhelmet", ARMOUR_SELJUK, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("seljukturban", ARMOUR_SELJUK_WOOL, EntityEquipmentSlot.HEAD));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("seljukplate", ARMOUR_SELJUK, EntityEquipmentSlot.CHEST));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("seljuklegs", ARMOUR_SELJUK, EntityEquipmentSlot.LEGS));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMillenaireArmour("seljukboots", ARMOUR_SELJUK, EntityEquipmentSlot.FEET));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("ciderapple", 0, 0, 1, 0.05F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("olives", 0, 0, 1, 0.05F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("oliveoil", 0, 0, 0, 0.0F, true, 0)).setClearEffects(true).setMaxStackSize(16));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("cider", 4, 15, 0, 0.0F, true, 5)).setAlwaysEdible().setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("calva", 8, 30, 0, 0.0F, true, 10)).setAlwaysEdible().setMaxDamage(1024));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("boudin", 0, 0, 8, 1.0F, false, 0)).setAlwaysEdible().setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("tripes", 0, 0, 10, 1.0F, false, 0)).setAlwaysEdible().setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("vegcurry", 0, 0, 6, 0.6F, false, 0)).setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("chickencurry", 0, 0, 8, 0.8F, false, 0)).setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("rasgulla", 2, 30, 0, 0.0F, false, 0))
+    event.getRegistry().register((new ItemSummoningWand("summoningwand")).setFull3D());
+    event.getRegistry().register((new ItemNegationWand("negationwand")).setFull3D());
+    event.getRegistry().register((new ItemMill("denier")).setFull3D());
+    event.getRegistry().register((new ItemMill("denierargent")).setFull3D());
+    event.getRegistry().register((new ItemMill("denieror")).setFull3D());
+    event.getRegistry().register((new ItemPurse("purse")).setFull3D());
+    event.getRegistry().register(new ItemMillSeeds((Block)MillBlocks.CROP_RICE, "rice"));
+    event.getRegistry().register(new ItemMillSeeds((Block)MillBlocks.CROP_TURMERIC, "turmeric"));
+    event.getRegistry().register(new ItemMillSeeds((Block)MillBlocks.CROP_MAIZE, "maize"));
+    event.getRegistry().register(new ItemMillSeeds((Block)MillBlocks.CROP_VINE, "grapes"));
+    event.getRegistry().register(new ItemMillSeeds((Block)MillBlocks.CROP_COTTON, "cotton"));
+    event.getRegistry().register(new ItemMillenairePickaxe("normanpickaxe", TOOLS_norman));
+    event.getRegistry().register(new ItemMillenaireAxe("normanaxe", TOOLS_norman, 8.0F, -3.0F));
+    event.getRegistry().register(new ItemMillenaireShovel("normanshovel", TOOLS_norman));
+    event.getRegistry().register(new ItemMillenaireHoe("normanhoe", TOOLS_norman));
+    event.getRegistry().register(new ItemMillenairePickaxe("mayanpickaxe", TOOLS_obsidian));
+    event.getRegistry().register(new ItemMillenaireAxe("mayanaxe", TOOLS_obsidian, 8.0F, -3.0F));
+    event.getRegistry().register(new ItemMillenaireShovel("mayanshovel", TOOLS_obsidian));
+    event.getRegistry().register(new ItemMillenaireHoe("mayanhoe", TOOLS_obsidian));
+    event.getRegistry().register(new ItemMillenairePickaxe("byzantinepickaxe", TOOLS_byzantine));
+    event.getRegistry().register(new ItemMillenaireAxe("byzantineaxe", TOOLS_byzantine, 8.0F, -3.0F));
+    event.getRegistry().register(new ItemMillenaireShovel("byzantineshovel", TOOLS_byzantine));
+    event.getRegistry().register(new ItemMillenaireHoe("byzantinehoe", TOOLS_byzantine));
+    event.getRegistry().register((new ItemMillenaireSword("normanbroadsword", TOOLS_norman, -1, false)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireSword("mayanmace", Item.ToolMaterial.IRON, -1, false)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireSword("tachisword", TOOLS_obsidian, -1, false)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireSword("byzantinemace", Item.ToolMaterial.IRON, -1, true)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireSword("inuittrident", Item.ToolMaterial.IRON, 20, false)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireSword("seljukscimitar", better_steel, -1, false)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireBow("yumibow", 2.0F, 0.5F, 1)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireBow("inuitbow", 1.0F, 0.0F, 20)).setFull3D());
+    event.getRegistry().register((new ItemMillenaireBow("seljukbow", 1.5F, 1.5F, 20)).setFull3D());
+    event.getRegistry().register(new ItemMillenaireArmour("normanhelmet", ARMOUR_norman, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("normanplate", ARMOUR_norman, EntityEquipmentSlot.CHEST));
+    event.getRegistry().register(new ItemMillenaireArmour("normanlegs", ARMOUR_norman, EntityEquipmentSlot.LEGS));
+    event.getRegistry().register(new ItemMillenaireArmour("normanboots", ARMOUR_norman, EntityEquipmentSlot.FEET));
+    event.getRegistry().register(new ItemMillenaireArmour("japanesebluehelmet", ARMOUR_japanese_blue, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseblueplate", ARMOUR_japanese_blue, EntityEquipmentSlot.CHEST));
+    event.getRegistry().register(new ItemMillenaireArmour("japanesebluelegs", ARMOUR_japanese_blue, EntityEquipmentSlot.LEGS));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseblueboots", ARMOUR_japanese_blue, EntityEquipmentSlot.FEET));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseredhelmet", ARMOUR_japanese_red, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseredplate", ARMOUR_japanese_red, EntityEquipmentSlot.CHEST));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseredlegs", ARMOUR_japanese_red, EntityEquipmentSlot.LEGS));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseredboots", ARMOUR_japanese_red, EntityEquipmentSlot.FEET));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseguardhelmet", ARMOUR_japaneseGuard, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseguardplate", ARMOUR_japaneseGuard, EntityEquipmentSlot.CHEST));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseguardlegs", ARMOUR_japaneseGuard, EntityEquipmentSlot.LEGS));
+    event.getRegistry().register(new ItemMillenaireArmour("japaneseguardboots", ARMOUR_japaneseGuard, EntityEquipmentSlot.FEET));
+    event.getRegistry().register(new ItemMillenaireArmour("byzantinehelmet", ARMOUR_byzantine, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("byzantineplate", ARMOUR_byzantine, EntityEquipmentSlot.CHEST));
+    event.getRegistry().register(new ItemMillenaireArmour("byzantinelegs", ARMOUR_byzantine, EntityEquipmentSlot.LEGS));
+    event.getRegistry().register(new ItemMillenaireArmour("byzantineboots", ARMOUR_byzantine, EntityEquipmentSlot.FEET));
+    event.getRegistry().register(new ItemMillenaireArmour("furhelmet", ARMOUR_fur, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("furplate", ARMOUR_fur, EntityEquipmentSlot.CHEST));
+    event.getRegistry().register(new ItemMillenaireArmour("furlegs", ARMOUR_fur, EntityEquipmentSlot.LEGS));
+    event.getRegistry().register(new ItemMillenaireArmour("furboots", ARMOUR_fur, EntityEquipmentSlot.FEET));
+    event.getRegistry().register(new ItemMillenaireArmour("seljukhelmet", ARMOUR_SELJUK, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("seljukturban", ARMOUR_SELJUK_WOOL, EntityEquipmentSlot.HEAD));
+    event.getRegistry().register(new ItemMillenaireArmour("seljukplate", ARMOUR_SELJUK, EntityEquipmentSlot.CHEST));
+    event.getRegistry().register(new ItemMillenaireArmour("seljuklegs", ARMOUR_SELJUK, EntityEquipmentSlot.LEGS));
+    event.getRegistry().register(new ItemMillenaireArmour("seljukboots", ARMOUR_SELJUK, EntityEquipmentSlot.FEET));
+    event.getRegistry().register((new ItemFoodMultiple("ciderapple", 0, 0, 1, 0.05F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register((new ItemFoodMultiple("olives", 0, 0, 1, 0.05F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register((new ItemFoodMultiple("oliveoil", 0, 0, 0, 0.0F, true, 0)).setClearEffects(true).setMaxStackSize(16));
+    event.getRegistry().register((new ItemFoodMultiple("cider", 4, 15, 0, 0.0F, true, 5)).setAlwaysEdible().setMaxDamage(384));
+    event.getRegistry().register((new ItemFoodMultiple("calva", 8, 30, 0, 0.0F, true, 10)).setAlwaysEdible().setMaxDamage(1024));
+    event.getRegistry().register((new ItemFoodMultiple("boudin", 0, 0, 8, 1.0F, false, 0)).setAlwaysEdible().setMaxDamage(384));
+    event.getRegistry().register((new ItemFoodMultiple("tripes", 0, 0, 10, 1.0F, false, 0)).setAlwaysEdible().setMaxDamage(512));
+    event.getRegistry().register((new ItemFoodMultiple("vegcurry", 0, 0, 6, 0.6F, false, 0)).setMaxDamage(384));
+    event.getRegistry().register((new ItemFoodMultiple("chickencurry", 0, 0, 8, 0.8F, false, 0)).setMaxDamage(512));
+    event.getRegistry().register((new ItemFoodMultiple("rasgulla", 2, 30, 0, 0.0F, false, 0))
         .setPotionEffect(new PotionEffect(MobEffects.SPEED, 9600, 1), 1.0F).setAlwaysEdible().setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("masa", 0, 0, 6, 0.6F, false, 0)).setMaxDamage(256));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("wah", 0, 0, 10, 1.0F, false, 0)).setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("balche", 6, 20, 0, 0.0F, true, 7)).setPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 9600, 1), 1.0F).setAlwaysEdible()
+    event.getRegistry().register((new ItemFoodMultiple("masa", 0, 0, 6, 0.6F, false, 0)).setMaxDamage(256));
+    event.getRegistry().register((new ItemFoodMultiple("wah", 0, 0, 10, 1.0F, false, 0)).setMaxDamage(384));
+    event.getRegistry().register((new ItemFoodMultiple("balche", 6, 20, 0, 0.0F, true, 7)).setPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 9600, 1), 1.0F).setAlwaysEdible()
         .setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("sikilpah", 0, 0, 7, 0.7F, false, 0)).setMaxDamage(448));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("cacauhaa", 6, 30, 0, 0.0F, true, 0)).setPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 9600, 1), 1.0F)
+    event.getRegistry().register((new ItemFoodMultiple("sikilpah", 0, 0, 7, 0.7F, false, 0)).setMaxDamage(448));
+    event.getRegistry().register((new ItemFoodMultiple("cacauhaa", 6, 30, 0, 0.0F, true, 0)).setPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 9600, 1), 1.0F)
         .setAlwaysEdible().setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("udon", 0, 0, 8, 0.8F, false, 0)).setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("sake", 8, 30, 0, 0.0F, true, 10)).setPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 9600, 1), 1.0F).setAlwaysEdible()
+    event.getRegistry().register((new ItemFoodMultiple("udon", 0, 0, 8, 0.8F, false, 0)).setMaxDamage(384));
+    event.getRegistry().register((new ItemFoodMultiple("sake", 8, 30, 0, 0.0F, true, 10)).setPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 9600, 1), 1.0F).setAlwaysEdible()
         .setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("ikayaki", 0, 0, 10, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 9600, 2), 1.0F)
+    event.getRegistry().register((new ItemFoodMultiple("ikayaki", 0, 0, 10, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 9600, 2), 1.0F)
         .setAlwaysEdible().setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("feta", 2, 15, 0, 0.0F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("souvlaki", 0, 0, 10, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.INSTANT_HEALTH, 1, 2), 1.0F).setAlwaysEdible()
+    event.getRegistry().register((new ItemFoodMultiple("feta", 2, 15, 0, 0.0F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register((new ItemFoodMultiple("souvlaki", 0, 0, 10, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.INSTANT_HEALTH, 1, 2), 1.0F).setAlwaysEdible()
         .setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("winebasic", 3, 15, 0, 0.0F, true, 5)).setAlwaysEdible().setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("winefancy", 8, 30, 0, 0.0F, true, 5)).setPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 9600, 2), 1.0F)
+    event.getRegistry().register((new ItemFoodMultiple("winebasic", 3, 15, 0, 0.0F, true, 5)).setAlwaysEdible().setMaxDamage(384));
+    event.getRegistry().register((new ItemFoodMultiple("winefancy", 8, 30, 0, 0.0F, true, 5)).setPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 9600, 2), 1.0F)
         .setAlwaysEdible().setMaxDamage(1024));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("bearmeat_raw", 0, 0, 4, 0.5F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 4800, 1), 1.0F)
+    event.getRegistry().register((new ItemFoodMultiple("bearmeat_raw", 0, 0, 4, 0.5F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 4800, 1), 1.0F)
         .setAlwaysEdible().setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("bearmeat_cooked", 0, 0, 10, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 9600, 2), 1.0F)
+    event.getRegistry().register((new ItemFoodMultiple("bearmeat_cooked", 0, 0, 10, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 9600, 2), 1.0F)
         .setAlwaysEdible().setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("wolfmeat_raw", 0, 0, 3, 0.3F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("wolfmeat_cooked", 0, 0, 5, 0.6F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 1200, 1), 1.0F)
+    event.getRegistry().register((new ItemFoodMultiple("wolfmeat_raw", 0, 0, 3, 0.3F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register((new ItemFoodMultiple("wolfmeat_cooked", 0, 0, 5, 0.6F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 1200, 1), 1.0F)
         .setAlwaysEdible().setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("seafood_raw", 0, 0, 2, 0.2F, false, 0)).setAlwaysEdible());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("seafood_cooked", 0, 0, 2, 0.25F, false, 0))
+    event.getRegistry().register((new ItemFoodMultiple("seafood_raw", 0, 0, 2, 0.2F, false, 0)).setAlwaysEdible());
+    event.getRegistry().register((new ItemFoodMultiple("seafood_cooked", 0, 0, 2, 0.25F, false, 0))
         .setPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 1200, 1), 1.0F).setAlwaysEdible());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("inuitpotatostew", 0, 0, 6, 0.6F, false, 0)).setMaxDamage(384));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("inuitmeatystew", 0, 0, 8, 0.8F, false, 0)).setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("inuitbearstew", 0, 0, 8, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 9600, 3), 1.0F)
+    event.getRegistry().register((new ItemFoodMultiple("inuitpotatostew", 0, 0, 6, 0.6F, false, 0)).setMaxDamage(384));
+    event.getRegistry().register((new ItemFoodMultiple("inuitmeatystew", 0, 0, 8, 0.8F, false, 0)).setMaxDamage(512));
+    event.getRegistry().register((new ItemFoodMultiple("inuitbearstew", 0, 0, 8, 1.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.STRENGTH, 9600, 3), 1.0F)
         .setAlwaysEdible().setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("ayran", 3, 15, 0, 0.2F, true, 2)).setAlwaysEdible().setMaxDamage(6));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("yogurt", 0, 15, 0, 0.4F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("pide", 0, 0, 8, 1.0F, false, 0)).setMaxDamage(8));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("lokum", 0, 0, 3, 0.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.SPEED, 2400, 1), 0.2F).setAlwaysEdible());
+    event.getRegistry().register((new ItemFoodMultiple("ayran", 3, 15, 0, 0.2F, true, 2)).setAlwaysEdible().setMaxDamage(6));
+    event.getRegistry().register((new ItemFoodMultiple("yogurt", 0, 15, 0, 0.4F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register((new ItemFoodMultiple("pide", 0, 0, 8, 1.0F, false, 0)).setMaxDamage(8));
+    event.getRegistry().register((new ItemFoodMultiple("lokum", 0, 0, 3, 0.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.SPEED, 2400, 1), 0.2F).setAlwaysEdible());
     event.getRegistry()
-      .register((IForgeRegistryEntry)(new ItemFoodMultiple("helva", 0, 0, 5, 0.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 2400, 1), 0.2F).setAlwaysEdible());
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("pistachios", 0, 0, 1, 0.1F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("cherries", 0, 0, 1, 0.1F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemFoodMultiple("cherry_blossom", 0, 0, 1, 0.1F, false, 0)).setMaxStackSize(64));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("tapestry", 1));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("indianstatue", 2));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("mayanstatue", 3));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("byzantineiconsmall", 4));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("byzantineiconmedium", 5));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("byzantineiconlarge", 6));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("hidehanging", 7));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("wallcarpetsmall", 8));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("wallcarpetmedium", 9));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemWallDecoration("wallcarpetlarge", 10));
+      .register((new ItemFoodMultiple("helva", 0, 0, 5, 0.0F, false, 0)).setPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 2400, 1), 0.2F).setAlwaysEdible());
+    event.getRegistry().register((new ItemFoodMultiple("pistachios", 0, 0, 1, 0.1F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register((new ItemFoodMultiple("cherries", 0, 0, 1, 0.1F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register((new ItemFoodMultiple("cherry_blossom", 0, 0, 1, 0.1F, false, 0)).setMaxStackSize(64));
+    event.getRegistry().register(new ItemWallDecoration("tapestry", 1));
+    event.getRegistry().register(new ItemWallDecoration("indianstatue", 2));
+    event.getRegistry().register(new ItemWallDecoration("mayanstatue", 3));
+    event.getRegistry().register(new ItemWallDecoration("byzantineiconsmall", 4));
+    event.getRegistry().register(new ItemWallDecoration("byzantineiconmedium", 5));
+    event.getRegistry().register(new ItemWallDecoration("byzantineiconlarge", 6));
+    event.getRegistry().register(new ItemWallDecoration("hidehanging", 7));
+    event.getRegistry().register(new ItemWallDecoration("wallcarpetsmall", 8));
+    event.getRegistry().register(new ItemWallDecoration("wallcarpetmedium", 9));
+    event.getRegistry().register(new ItemWallDecoration("wallcarpetlarge", 10));
     for (EnumDyeColor colour : EnumDyeColor.values()) {
       ItemPaintBucket bucket = (ItemPaintBucket)(new ItemPaintBucket("paint_bucket", colour)).setMaxStackSize(1).setMaxDamage(2048);
-      event.getRegistry().register((IForgeRegistryEntry)bucket);
+      event.getRegistry().register(bucket);
       PAINT_BUCKETS.put(colour, bucket);
     } 
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_normanvillagers", 1, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_normanbuildings", 2, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_normanitems", 3, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_normanfull", new int[] { 1, 2, 3 }, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_indianvillagers", 5, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_indianbuildings", 6, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_indianitems", 7, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_indianfull", new int[] { 5, 6, 7 }, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_mayanvillagers", 9, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_mayanbuildings", 10, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_mayanitems", 11, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_mayanfull", new int[] { 9, 10, 11 }, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_japanesevillagers", 16, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_japanesebuildings", 17, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_japaneseitems", 18, true));
+    event.getRegistry().register(new ItemParchment("parchment_normanvillagers", 1, true));
+    event.getRegistry().register(new ItemParchment("parchment_normanbuildings", 2, true));
+    event.getRegistry().register(new ItemParchment("parchment_normanitems", 3, true));
+    event.getRegistry().register(new ItemParchment("parchment_normanfull", new int[] { 1, 2, 3 }, true));
+    event.getRegistry().register(new ItemParchment("parchment_indianvillagers", 5, true));
+    event.getRegistry().register(new ItemParchment("parchment_indianbuildings", 6, true));
+    event.getRegistry().register(new ItemParchment("parchment_indianitems", 7, true));
+    event.getRegistry().register(new ItemParchment("parchment_indianfull", new int[] { 5, 6, 7 }, true));
+    event.getRegistry().register(new ItemParchment("parchment_mayanvillagers", 9, true));
+    event.getRegistry().register(new ItemParchment("parchment_mayanbuildings", 10, true));
+    event.getRegistry().register(new ItemParchment("parchment_mayanitems", 11, true));
+    event.getRegistry().register(new ItemParchment("parchment_mayanfull", new int[] { 9, 10, 11 }, true));
+    event.getRegistry().register(new ItemParchment("parchment_japanesevillagers", 16, true));
+    event.getRegistry().register(new ItemParchment("parchment_japanesebuildings", 17, true));
+    event.getRegistry().register(new ItemParchment("parchment_japaneseitems", 18, true));
     event.getRegistry()
-      .register((IForgeRegistryEntry)new ItemParchment("parchment_japanesefull", new int[] { 16, 17, 18 }, true));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_villagescroll", 4, false));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemBrickMould("brickmould")).setFull3D().setMaxStackSize(1).setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMill("obsidianflake"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMill("silk"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemClothes("clothes_byz_wool", 1));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemClothes("clothes_byz_silk", 2));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemClothes("clothes_seljuk_wool", 1));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemClothes("clothes_seljuk_cotton", 2));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemAmuletVishnu("vishnu_amulet")).setMaxStackSize(1));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemAmuletAlchemist("alchemist_amulet")).setMaxStackSize(1));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemAmuletYggdrasil("yggdrasil_amulet")).setMaxStackSize(1));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemAmuletSkollHati("skoll_hati_amulet")).setMaxStackSize(1));
-    event.getRegistry().register((IForgeRegistryEntry)(new ItemUlu("ulu")).setFull3D().setMaxStackSize(1).setMaxDamage(512));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMill("tannedhide"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemBannerPattern("bannerpattern"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemParchment("parchment_sadhu", 15, false));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMill("unknownpowder"));
-    event.getRegistry().register((IForgeRegistryEntry)new ItemMayanQuestCrown("mayanquestcrown", EntityEquipmentSlot.HEAD));
+      .register(new ItemParchment("parchment_japanesefull", new int[] { 16, 17, 18 }, true));
+    event.getRegistry().register(new ItemParchment("parchment_villagescroll", 4, false));
+    event.getRegistry().register((new ItemBrickMould("brickmould")).setFull3D().setMaxStackSize(1).setMaxDamage(512));
+    event.getRegistry().register(new ItemMill("obsidianflake"));
+    event.getRegistry().register(new ItemMill("silk"));
+    event.getRegistry().register(new ItemClothes("clothes_byz_wool", 1));
+    event.getRegistry().register(new ItemClothes("clothes_byz_silk", 2));
+    event.getRegistry().register(new ItemClothes("clothes_seljuk_wool", 1));
+    event.getRegistry().register(new ItemClothes("clothes_seljuk_cotton", 2));
+    event.getRegistry().register((new ItemAmuletVishnu("vishnu_amulet")).setMaxStackSize(1));
+    event.getRegistry().register((new ItemAmuletAlchemist("alchemist_amulet")).setMaxStackSize(1));
+    event.getRegistry().register((new ItemAmuletYggdrasil("yggdrasil_amulet")).setMaxStackSize(1));
+    event.getRegistry().register((new ItemAmuletSkollHati("skoll_hati_amulet")).setMaxStackSize(1));
+    event.getRegistry().register((new ItemUlu("ulu")).setFull3D().setMaxStackSize(1).setMaxDamage(512));
+    event.getRegistry().register(new ItemMill("tannedhide"));
+    event.getRegistry().register(new ItemBannerPattern("bannerpattern"));
+    event.getRegistry().register(new ItemParchment("parchment_sadhu", 15, false));
+    event.getRegistry().register(new ItemMill("unknownpowder"));
+    event.getRegistry().register(new ItemMayanQuestCrown("mayanquestcrown", EntityEquipmentSlot.HEAD));
   }
 }

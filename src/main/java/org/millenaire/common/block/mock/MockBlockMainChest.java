@@ -26,7 +26,7 @@ public class MockBlockMainChest extends Block {
   public MockBlockMainChest(String blockName) {
     super(Material.WOOD);
     disableStats();
-    setTranslationKey("millenaire." + blockName);
+    setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setBlockUnbreakable();
     setCreativeTab(MillBlocks.tabMillenaireContentCreator);
@@ -41,7 +41,7 @@ public class MockBlockMainChest extends Block {
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    EnumFacing enumfacing = EnumFacing.byIndex(meta);
+    EnumFacing enumfacing = EnumFacing.getFront(meta);
     if (enumfacing.getAxis() == EnumFacing.Axis.Y)
       enumfacing = EnumFacing.NORTH; 
     return getDefaultState().withProperty((IProperty)FACING, (Comparable)enumfacing);
@@ -53,7 +53,7 @@ public class MockBlockMainChest extends Block {
   }
   
   public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-    EnumFacing enumfacing = EnumFacing.byHorizontalIndex(MathHelper.floor((placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3).getOpposite();
+    EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor((placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3).getOpposite();
     state = state.withProperty((IProperty)FACING, (Comparable)enumfacing);
     worldIn.setBlockState(pos, state, 3);
   }

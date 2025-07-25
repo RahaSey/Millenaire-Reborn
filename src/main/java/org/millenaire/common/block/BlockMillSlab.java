@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 public class BlockMillSlab extends BlockHalfSlab {
   public BlockMillSlab(String name, Block baseBlock) {
     super(baseBlock);
-    setTranslationKey("millenaire." + name);
+    setUnlocalizedName("millenaire." + name);
     setRegistryName(name);
     setHarvestLevel("pickaxe", 0);
     setHardness(1.5F);

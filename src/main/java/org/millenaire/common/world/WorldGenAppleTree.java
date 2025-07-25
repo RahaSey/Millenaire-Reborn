@@ -83,12 +83,12 @@ public class WorldGenAppleTree extends WorldGenAbstractTree {
           for (int hPos = 0; hPos < horizontalSize; hPos++) {
             if (k < position.getY() + treeHeight && Math.random() < 0.7D)
               k++; 
-            if (enumfacing.getXOffset() != 0) {
-              xPos += enumfacing.getXOffset();
+            if (enumfacing.getFrontOffsetX() != 0) {
+              xPos += enumfacing.getFrontOffsetX();
               if (Math.random() < 0.15D)
                 zPos += curve; 
             } else {
-              zPos += enumfacing.getZOffset();
+              zPos += enumfacing.getFrontOffsetZ();
               if (Math.random() < 0.15D)
                 xPos += curve; 
             } 
