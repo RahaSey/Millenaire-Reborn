@@ -30,6 +30,15 @@ We welcome all contributors — whether you're fixing bugs, adding features, or 
 
 ---
 
+## 🗺️ Roadmap
+
+- [x] Open source the original codebase  
+- [ ] Refactor for maintainability and modernization  
+- [ ] Add support for newer Minecraft versions (1.12+ → 1.16 → 1.20+)  
+- [ ] Expand content and features with community input  
+
+---
+
 ## 📚 Credits
 
 This project builds upon the original **Millénaire** mod, created by **Kinniken**.  
@@ -37,15 +46,6 @@ Original page: [Millénaire on CurseForge](https://www.curseforge.com/minecraft/
 
 All original assets, concepts, and code belong to their respective creators.  
 This project is maintained under fair use for modding, educational, and preservation purposes.
-
----
-
-## 🗺️ Roadmap
-
-- [x] Open source the original codebase  
-- [ ] Refactor for maintainability and modernization  
-- [ ] Add support for newer Minecraft versions (1.12+ → 1.16 → 1.20+)  
-- [ ] Expand content and features with community input  
 
 ---
 
