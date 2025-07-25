@@ -196,7 +196,7 @@ public class ClientProxy extends CommonProxy {
           public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {
             return (worldIn != null && pos != null) ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
           }
-        }new Block[] { (Block)MillBlocks.LEAVES_PISTACHIO });
+        }, new Block[] { (Block)MillBlocks.LEAVES_PISTACHIO });
     Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
           public int colorMultiplier(ItemStack stack, int tintIndex) {
             return ColorizerFoliage.getFoliageColorBasic();
