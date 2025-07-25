@@ -82,6 +82,10 @@ public class BlockMillWallItem extends Block {
     return (!flag && state.getBlockFaceShape(world, pos, facing) == BlockFaceShape.SOLID && !state.isOpaqueCube());
   }
   
+  private boolean canBeAttachedTo(Block block) {
+    return block == this || block instanceof BlockMillWallItem;
+  }
+  
   @Override
   public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing,
       float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
