@@ -20,3 +20,4 @@ output=inuitmeatystew,1
 //s'il y a plus d'objets dans le centre du village que a, arrter le but
 //if more than that number of item is present in townhall, stop goal
 buildinglimit=inuitmeatystew,24
+villagelimit=inuitmeatystew,32

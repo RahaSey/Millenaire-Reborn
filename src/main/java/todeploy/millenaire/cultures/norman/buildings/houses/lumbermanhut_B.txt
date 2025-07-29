@@ -8,7 +8,7 @@ building.icon=normanaxe
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Hutte de bûcheron
+initial.nativename=Caumine du Buchaeux
 initial.priority=1000
 initial.male=lumberman
 initial.female=wife

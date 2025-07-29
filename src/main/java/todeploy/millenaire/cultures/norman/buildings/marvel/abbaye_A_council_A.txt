@@ -10,7 +10,7 @@ building.icon=carpet_blue
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Chambre du conseil
+initial.nativename=Chàmbre du Conseil
 initial.priority=100
 initial.parenttag=203
 initial.requiredparenttags=level_6

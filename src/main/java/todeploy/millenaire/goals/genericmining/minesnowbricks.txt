@@ -13,7 +13,7 @@ townhalllimit=snowbrick,1024
 
 sourceblockstate=minecraft:snow_layer
 
-loot=snowbrick,1
+loot=snowbrick,2
 
 sentencekey=mining
 

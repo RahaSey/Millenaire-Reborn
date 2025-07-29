@@ -40,7 +40,7 @@ public class GoalHarvestCacao extends Goal {
     Point cropPoint = villager.getGoalDestPoint();
     if (cropPoint.getBlock(villager.world) == Blocks.COCOA) {
       IBlockState bs = cropPoint.getBlockActualState(villager.world);
-      if (((Integer)bs.getValue((IProperty)BlockCocoa.AGE)).intValue() >= 2) {
+      if (((Integer)bs.get((IProperty)BlockCocoa.AGE)).intValue() >= 2) {
         villager.setBlockAndMetadata(cropPoint, Blocks.AIR, 0);
         int nbcrop = 2;
         float irrigation = villager.getTownHall().getVillageIrrigation();

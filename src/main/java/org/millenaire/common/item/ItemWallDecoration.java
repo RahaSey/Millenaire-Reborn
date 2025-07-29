@@ -26,7 +26,7 @@ public class ItemWallDecoration extends ItemMill {
       if (entityhanging != null && entityhanging.onValidSurface()) {
         if (!worldIn.isRemote) {
           entityhanging.playPlaceSound();
-          worldIn.spawnEntity((Entity)entityhanging);
+          worldIn.addEntity0((Entity)entityhanging);
         } 
         itemstack.shrink(1);
       } 

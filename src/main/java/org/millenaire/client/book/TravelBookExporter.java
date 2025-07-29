@@ -262,9 +262,9 @@ public class TravelBookExporter {
   }
   
   private static void exportItemStack(ItemStack stack) throws IOException {
-    int width = (Minecraft.getMinecraft().getFramebuffer()).framebufferTextureWidth;
-    int height = (Minecraft.getMinecraft().getFramebuffer()).framebufferTextureHeight;
-    Framebuffer fbo = Minecraft.getMinecraft().getFramebuffer();
+    int width = (Minecraft.getInstance().getFramebuffer()).framebufferTextureWidth;
+    int height = (Minecraft.getInstance().getFramebuffer()).framebufferTextureHeight;
+    Framebuffer fbo = Minecraft.getInstance().getFramebuffer();
     Framebuffer framebuffer = new Framebuffer(width, height, true);
     framebuffer.bindFramebuffer(true);
     GlStateManager.clearColor(0.0F, 0.0F, 0.0F, 0.0F);
@@ -274,9 +274,9 @@ public class TravelBookExporter {
     GlStateManager.enableRescaleNormal();
     GlStateManager.enableColorMaterial();
     GlStateManager.enableLighting();
-    (Minecraft.getMinecraft().getRenderItem()).zLevel = 100.0F;
+    (Minecraft.getInstance().getItemRenderer()).zLevel = 100.0F;
     GL11.glEnable(2929);
-    Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(stack, 0, 0);
+    Minecraft.getInstance().getItemRenderer().renderItemAndEffectIntoGUI(stack, 0, 0);
     IntBuffer pixels = BufferUtils.createIntBuffer(width * height);
     GlStateManager.bindTexture(framebuffer.framebufferTexture);
     GlStateManager.glGetTexImage(3553, 0, 32993, 33639, pixels);
@@ -290,7 +290,7 @@ public class TravelBookExporter {
       fbo.bindFramebuffer(true);
     } else {
       GL30.glBindFramebuffer(36160, 0);
-      GL11.glViewport(0, 0, (Minecraft.getMinecraft()).displayWidth, (Minecraft.getMinecraft()).displayHeight);
+      GL11.glViewport(0, 0, (Minecraft.getInstance()).displayWidth, (Minecraft.getInstance()).displayHeight);
     } 
     try {
       BufferedImage rightSizeImage = new BufferedImage(32, 32, 6);
@@ -342,16 +342,16 @@ public class TravelBookExporter {
   
   public static void exportVillagerPicture(VillagerType villagerType, boolean mainPageExport) throws IOException {
     MillCommonUtilities.initRandom(villagerType.key.hashCode());
-    VillagerRecord villagerRecord = VillagerRecord.createVillagerRecord(villagerType.culture, villagerType.key, Mill.getMillWorld((World)(Minecraft.getMinecraft()).world), null, null, null, null, -1L, true);
-    MillVillager mockVillager = MillVillager.createMockVillager(villagerRecord, (World)(Minecraft.getMinecraft()).world);
+    VillagerRecord villagerRecord = VillagerRecord.createVillagerRecord(villagerType.culture, villagerType.key, Mill.getMillWorld((World)(Minecraft.getInstance()).world), null, null, null, null, -1L, true);
+    MillVillager mockVillager = MillVillager.createMockVillager(villagerRecord, (World)(Minecraft.getInstance()).world);
     if (!mainPageExport) {
       mockVillager.heldItem = villagerType.getTravelBookHeldItem();
       mockVillager.heldItemOffHand = villagerType.getTravelBookHeldItemOffHand();
       mockVillager.travelBookMockVillager = true;
     } 
-    int width = (Minecraft.getMinecraft().getFramebuffer()).framebufferTextureWidth;
-    int height = (Minecraft.getMinecraft().getFramebuffer()).framebufferTextureHeight;
-    Framebuffer fbo = Minecraft.getMinecraft().getFramebuffer();
+    int width = (Minecraft.getInstance().getFramebuffer()).framebufferTextureWidth;
+    int height = (Minecraft.getInstance().getFramebuffer()).framebufferTextureHeight;
+    Framebuffer fbo = Minecraft.getInstance().getFramebuffer();
     Framebuffer framebuffer = new Framebuffer(width, height, true);
     framebuffer.bindFramebuffer(true);
     GlStateManager.clearColor(0.0F, 0.0F, 0.0F, 0.0F);
@@ -387,7 +387,7 @@ public class TravelBookExporter {
       fbo.bindFramebuffer(true);
     } else {
       GL30.glBindFramebuffer(36160, 0);
-      GL11.glViewport(0, 0, (Minecraft.getMinecraft()).displayWidth, (Minecraft.getMinecraft()).displayHeight);
+      GL11.glViewport(0, 0, (Minecraft.getInstance()).displayWidth, (Minecraft.getInstance()).displayHeight);
     } 
   }
   
@@ -418,8 +418,8 @@ public class TravelBookExporter {
     String key;
     if (stack == null)
       return ""; 
-    if (stack.getItemDamage() > 0) {
-      key = stack.getItem().getRegistryName().toString().replaceAll(":", "_") + "_" + stack.getItemDamage();
+    if (stack.getDamage() > 0) {
+      key = stack.getItem().getRegistryName().toString().replaceAll(":", "_") + "_" + stack.getDamage();
     } else {
       key = stack.getItem().getRegistryName().toString().replaceAll(":", "_");
     } 

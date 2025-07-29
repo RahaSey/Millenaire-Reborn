@@ -65,12 +65,12 @@ public class GoalGoChat extends Goal {
           } 
           villager.dialogueKey = dialog.key;
           villager.dialogueRole = role;
-          villager.dialogueStart = villager.world.getWorldTime();
+          villager.dialogueStart = villager.world.getDayTime();
           villager.dialogueColour = col;
           villager.dialogueChat = dialogueChat;
           target.dialogueKey = dialog.key;
           target.dialogueRole = 3 - role;
-          target.dialogueStart = villager.world.getWorldTime();
+          target.dialogueStart = villager.world.getDayTime();
           target.dialogueColour = col;
           target.dialogueChat = dialogueChat;
         } 

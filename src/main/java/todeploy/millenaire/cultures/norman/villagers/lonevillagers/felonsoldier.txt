@@ -1,4 +1,4 @@
-native_name=Soldat félon
+native_name=Soudard des Bandits
 gender=male
 familyNameList=family_names
 firstNameList=men_names

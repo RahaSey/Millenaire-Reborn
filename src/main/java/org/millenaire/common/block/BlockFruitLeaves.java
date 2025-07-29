@@ -50,7 +50,7 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     Mill.proxy.setGraphicsLevel(this, true);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)AGE, Integer.valueOf(0)).withProperty((IProperty)CHECK_DECAY, Boolean.valueOf(true)).withProperty((IProperty)DECAYABLE, Boolean.valueOf(true)));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)AGE, Integer.valueOf(0)).withProperty((IProperty)CHECK_DECAY, Boolean.valueOf(true)).withProperty((IProperty)DECAYABLE, Boolean.valueOf(true)));
   }
   
   public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
@@ -70,7 +70,7 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
   }
   
   protected int getAge(IBlockState state) {
-    return ((Integer)state.getValue((IProperty)getAgeProperty())).intValue();
+    return ((Integer)state.get((IProperty)getAgeProperty())).intValue();
   }
   
   protected PropertyInteger getAgeProperty() {
@@ -87,10 +87,10 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    i |= ((Integer)state.getValue((IProperty)AGE)).intValue();
-    if (!((Boolean)state.getValue((IProperty)DECAYABLE)).booleanValue())
+    i |= ((Integer)state.get((IProperty)AGE)).intValue();
+    if (!((Boolean)state.get((IProperty)DECAYABLE)).booleanValue())
       i |= 0x4; 
-    if (((Boolean)state.getValue((IProperty)CHECK_DECAY)).booleanValue())
+    if (((Boolean)state.get((IProperty)CHECK_DECAY)).booleanValue())
       i |= 0x8; 
     return i;
   }
@@ -125,7 +125,7 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
   }
   
   public boolean isMaxAge(IBlockState state) {
-    return (((Integer)state.getValue((IProperty)getAgeProperty())).intValue() >= getMaxAge());
+    return (((Integer)state.get((IProperty)getAgeProperty())).intValue() >= getMaxAge());
   }
   
   public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -144,7 +144,7 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
   
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
     super.updateTick(worldIn, pos, state, rand);
-    long worldTime = worldIn.getWorldTime() % 24000L;
+    long worldTime = worldIn.getDayTime() % 24000L;
     int targetAge = 0;
     if (worldTime > 3000L && worldTime < 5000L) {
       targetAge = 1;
@@ -156,7 +156,7 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
     int validCurrentAge = targetAge - 1;
     if (validCurrentAge < 0)
       validCurrentAge = getMaxAge(); 
-    int currentAge = ((Integer)state.getValue((IProperty)AGE)).intValue();
+    int currentAge = ((Integer)state.get((IProperty)AGE)).intValue();
     if (currentAge == validCurrentAge) {
       List<Point> pointsToTest = new ArrayList<>();
       pointsToTest.add(new Point(pos));
@@ -164,7 +164,7 @@ public class BlockFruitLeaves extends BlockLeaves implements IGrowable {
       while (!pointsToTest.isEmpty() && count < 10000) {
         Point p = pointsToTest.get(pointsToTest.size() - 1);
         IBlockState bs = p.getBlockActualState(worldIn);
-        if (bs.getBlock() == this && ((Integer)bs.getValue((IProperty)AGE)).intValue() == validCurrentAge) {
+        if (bs.getBlock() == this && ((Integer)bs.get((IProperty)AGE)).intValue() == validCurrentAge) {
           p.setBlockState(worldIn, bs.withProperty((IProperty)AGE, Integer.valueOf(targetAge)));
           for (int dx = -1; dx < 2; dx++) {
             for (int dy = -1; dy < 2; dy++) {

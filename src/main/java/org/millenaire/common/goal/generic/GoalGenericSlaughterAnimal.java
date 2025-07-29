@@ -55,7 +55,7 @@ public class GoalGenericSlaughterAnimal extends GoalGeneric {
       if (isDestPossible(villager, dest)) {
         List<Entity> animals = WorldUtilities.getEntitiesWithinAABB(villager.world, EntityList.getClass(this.animalKey), dest.getPos(), 15, 10);
         for (Entity ent : animals) {
-          if (!ent.isDead && !isEntityChild(ent) && (
+          if (!ent.removed && !isEntityChild(ent) && (
             closest == null || pos.distanceTo(ent) < bestDist)) {
             closest = ent;
             destBuilding = dest;
@@ -90,7 +90,7 @@ public class GoalGenericSlaughterAnimal extends GoalGeneric {
       return false; 
     int nbanimals = 0;
     for (Entity ent : animals) {
-      if (!ent.isDead && !isEntityChild(ent))
+      if (!ent.removed && !isEntityChild(ent))
         nbanimals++; 
     } 
     int targetAnimals = 0;
@@ -107,7 +107,7 @@ public class GoalGenericSlaughterAnimal extends GoalGeneric {
     if (!(ent instanceof EntityAgeable))
       return false; 
     EntityAgeable animal = (EntityAgeable)ent;
-    return animal.isChild();
+    return animal.func_70631_g_();
   }
   
   public boolean isFightingGoal() {
@@ -124,7 +124,7 @@ public class GoalGenericSlaughterAnimal extends GoalGeneric {
       return true; 
     List<Entity> animals = WorldUtilities.getEntitiesWithinAABB(villager.world, EntityList.getClass(this.animalKey), villager.getPos(), 1, 5);
     for (Entity ent : animals) {
-      if (!ent.isDead && ent instanceof EntityLivingBase && 
+      if (!ent.removed && ent instanceof EntityLivingBase && 
         !isEntityChild(ent) && 
         villager.canEntityBeSeen(ent)) {
         EntityLivingBase entLiving = (EntityLivingBase)ent;
@@ -140,7 +140,7 @@ public class GoalGenericSlaughterAnimal extends GoalGeneric {
     } 
     animals = WorldUtilities.getEntitiesWithinAABB(villager.world, EntityList.getClass(this.animalKey), villager.getPos(), 2, 5);
     for (Entity ent : animals) {
-      if (!ent.isDead && ent instanceof EntityLivingBase && 
+      if (!ent.removed && ent instanceof EntityLivingBase && 
         !isEntityChild(ent) && 
         villager.canEntityBeSeen(ent)) {
         EntityLivingBase entLiving = (EntityLivingBase)ent;

@@ -1,4 +1,4 @@
-native_name=Marchand viking
+native_name=Viking Marchànd
 gender=male
 familyNameList=merchant_viking_family_names
 firstNameList=merchant_viking_first_names

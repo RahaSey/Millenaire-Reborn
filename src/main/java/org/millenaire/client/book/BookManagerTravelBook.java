@@ -1067,8 +1067,8 @@ public class BookManagerTravelBook extends BookManager {
     } 
     List<String> validBiomes = new ArrayList<>();
     for (String biomeName : villageType.biomes) {
-      for (ResourceLocation rl : Biome.REGISTRY.getKeys()) {
-        if (((Biome)Biome.REGISTRY.getObject(rl)).getBiomeName().equalsIgnoreCase(biomeName))
+      for (ResourceLocation rl : Biome.REGISTRY.keySet()) {
+        if (((Biome)Biome.REGISTRY.getOrDefault(rl)).getBiomeName().equalsIgnoreCase(biomeName))
           validBiomes.add(biomeName); 
       } 
     } 

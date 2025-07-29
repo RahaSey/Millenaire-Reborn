@@ -7,6 +7,6 @@ building.icon=bed_red
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Marché isolée
+initial.nativename=Isolaïe Étâle
 initial.tag=market
 initial.priority=5000

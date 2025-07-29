@@ -11,5 +11,5 @@ initial.nativename=Napaaqtuq
 initial.translatedname=name_en,grove
 initial.priority=1000
 initial.tag=grove
-
+initial.tag=nopaths
 //Parameters for specific upgrades

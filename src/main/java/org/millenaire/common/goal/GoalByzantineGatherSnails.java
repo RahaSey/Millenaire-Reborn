@@ -69,7 +69,7 @@ public class GoalByzantineGatherSnails extends Goal {
     if (!villager.lastGoalTime.containsKey(this)) {
       delayOver = true;
     } else {
-      delayOver = (villager.world.getWorldTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
+      delayOver = (villager.world.getDayTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
     } 
     for (Building kiln : villager.getTownHall().getBuildingsWithTag("snailsfarm")) {
       int nb = kiln.getResManager().getNbSnailSoilHarvestLocation();
@@ -87,7 +87,7 @@ public class GoalByzantineGatherSnails extends Goal {
   
   public boolean performAction(MillVillager villager) {
     if (WorldUtilities.getBlock(villager.world, villager.getGoalDestPoint()) == MillBlocks.SNAIL_SOIL && 
-      WorldUtilities.getBlockState(villager.world, villager.getGoalDestPoint()).getValue((IProperty)BlockSnailSoil.PROGRESS) == BlockSnailSoil.EnumType.SNAIL_SOIL_FULL) {
+      WorldUtilities.getBlockState(villager.world, villager.getGoalDestPoint()).get((IProperty)BlockSnailSoil.PROGRESS) == BlockSnailSoil.EnumType.SNAIL_SOIL_FULL) {
       villager.addToInv(Items.DYE, EnumDyeColor.PURPLE.getDyeDamage(), 1);
       villager.setBlockAndMetadata(villager.getGoalDestPoint(), (Block)MillBlocks.SNAIL_SOIL, 0);
       villager.swingArm(EnumHand.MAIN_HAND);

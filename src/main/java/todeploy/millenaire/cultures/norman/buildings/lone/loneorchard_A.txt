@@ -4,7 +4,7 @@ building.max=0
 building.icon=sapling_appletree
 
 initial.startlevel=-1
-initial.nativename=Verger Isolé
+initial.nativename=Isolaï Gardin
 initial.pathwidth=1
 initial.priority=100
 initial.tag=lumbermanorchard

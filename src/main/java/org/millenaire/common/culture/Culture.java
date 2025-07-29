@@ -114,7 +114,7 @@ public class Culture {
       CultureLanguage fallback = new CultureLanguage(culture, MillConfigValues.fallback_language, true);
       culture.mainLanguageServer = main;
       culture.fallbackLanguageServer = fallback;
-      String playerName = Mill.proxy.getTheSinglePlayer().getName();
+      String playerName = Mill.proxy.getTheSinglePlayer().func_70005_c_();
       CultureLanguage[] langs = { main, fallback };
       for (CultureLanguage lang : langs) {
         HashMap<String, String> strings = StreamReadWrite.readStringStringMap(data);
@@ -958,7 +958,7 @@ public class Culture {
       String bannerJSON = this.cultureBanner.replace("blockentitytag", "BlockEntityTag").replace("base", "Base").replace("pattern", "Pattern").replace("color", "Color");
       this.cultureBannerItemStack = new ItemStack(Items.BANNER, 1);
       try {
-        this.cultureBannerItemStack.setTagCompound(JsonToNBT.getTagFromJson(bannerJSON));
+        this.cultureBannerItemStack.setTag(JsonToNBT.getTagFromJson(bannerJSON));
         return;
       } catch (NBTException nbtException) {
         MillLog.error(this, "Bad culture banner JSON " + bannerJSON + " due to error " + nbtException.getMessage());

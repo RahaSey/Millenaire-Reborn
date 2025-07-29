@@ -9,7 +9,7 @@ building.icon=bed_red
 
 //Parameters for initial construction
 initial.startlevel=-3
-initial.nativename=Auberge
+initial.nativename=Hotael
 initial.male=host
 initial.female=hostess
 initial.tag=autospawnvillagers

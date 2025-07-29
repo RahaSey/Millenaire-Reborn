@@ -36,31 +36,31 @@ public class BuildingLocation implements Cloneable {
   }
   
   public static BuildingLocation read(NBTTagCompound nbttagcompound, String label, String debug, Building building) {
-    if (!nbttagcompound.hasKey(label + "_key"))
+    if (!nbttagcompound.contains(label + "_key"))
       return null; 
     BuildingLocation bl = new BuildingLocation();
     bl.pos = Point.read(nbttagcompound, label + "_pos");
-    if (nbttagcompound.hasKey(label + "_isCustomBuilding"))
+    if (nbttagcompound.contains(label + "_isCustomBuilding"))
       bl.isCustomBuilding = nbttagcompound.getBoolean(label + "_isCustomBuilding"); 
     Culture culture = Culture.getCultureByName(nbttagcompound.getString(label + "_culture"));
     bl.culture = culture;
-    bl.orientation = nbttagcompound.getInteger(label + "_orientation");
-    bl.length = nbttagcompound.getInteger(label + "_length");
-    bl.width = nbttagcompound.getInteger(label + "_width");
-    bl.minx = nbttagcompound.getInteger(label + "_minx");
-    bl.miny = nbttagcompound.getInteger(label + "_miny");
-    bl.minz = nbttagcompound.getInteger(label + "_minz");
-    bl.maxx = nbttagcompound.getInteger(label + "_maxx");
-    bl.maxy = nbttagcompound.getInteger(label + "_maxy");
-    bl.maxz = nbttagcompound.getInteger(label + "_maxz");
-    bl.level = nbttagcompound.getInteger(label + "_level");
+    bl.orientation = nbttagcompound.getInt(label + "_orientation");
+    bl.length = nbttagcompound.getInt(label + "_length");
+    bl.width = nbttagcompound.getInt(label + "_width");
+    bl.minx = nbttagcompound.getInt(label + "_minx");
+    bl.miny = nbttagcompound.getInt(label + "_miny");
+    bl.minz = nbttagcompound.getInt(label + "_minz");
+    bl.maxx = nbttagcompound.getInt(label + "_maxx");
+    bl.maxy = nbttagcompound.getInt(label + "_maxy");
+    bl.maxz = nbttagcompound.getInt(label + "_maxz");
+    bl.level = nbttagcompound.getInt(label + "_level");
     bl.planKey = nbttagcompound.getString(label + "_key");
     bl.shop = nbttagcompound.getString(label + "_shop");
-    bl.setVariation(nbttagcompound.getInteger(label + "_variation"));
-    bl.reputation = nbttagcompound.getInteger(label + "_reputation");
-    bl.priorityMoveIn = nbttagcompound.getInteger(label + "_priorityMoveIn");
-    bl.price = nbttagcompound.getInteger(label + "_price");
-    bl.version = nbttagcompound.getInteger(label + "_version");
+    bl.setVariation(nbttagcompound.getInt(label + "_variation"));
+    bl.reputation = nbttagcompound.getInt(label + "_reputation");
+    bl.priorityMoveIn = nbttagcompound.getInt(label + "_priorityMoveIn");
+    bl.price = nbttagcompound.getInt(label + "_price");
+    bl.version = nbttagcompound.getInt(label + "_version");
     if (bl.pos == null)
       MillLog.error(null, "Null point loaded for: " + label + "_pos"); 
     bl.sleepingPos = Point.read(nbttagcompound, label + "_standingPos");
@@ -71,9 +71,9 @@ public class BuildingLocation implements Cloneable {
     bl.chestPos = Point.read(nbttagcompound, label + "_chestPos");
     if (building != null) {
       List<String> tags = new ArrayList<>();
-      NBTTagList nBTTagList = nbttagcompound.getTagList(label + "_tags", 10);
+      NBTTagList nBTTagList = nbttagcompound.getList(label + "_tags", 10);
       for (int j = 0; j < nBTTagList.tagCount(); j++) {
-        NBTTagCompound nbttagcompound1 = nBTTagList.getCompoundTagAt(j);
+        NBTTagCompound nbttagcompound1 = nBTTagList.getCompound(j);
         String value = nbttagcompound1.getString("value");
         tags.add(value);
         if (MillConfigValues.LogTags >= 2)
@@ -84,25 +84,25 @@ public class BuildingLocation implements Cloneable {
         MillLog.major(bl, "Tags loaded from location NBT: " + MillCommonUtilities.flattenStrings(building.getTags())); 
     } 
     CopyOnWriteArrayList<String> subb = new CopyOnWriteArrayList<>();
-    NBTTagList nbttaglist = nbttagcompound.getTagList("subBuildings", 10);
+    NBTTagList nbttaglist = nbttagcompound.getList("subBuildings", 10);
     int i;
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       subb.add(nbttagcompound1.getString("value"));
     } 
-    nbttaglist = nbttagcompound.getTagList(label + "_subBuildings", 10);
+    nbttaglist = nbttagcompound.getList(label + "_subBuildings", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       subb.add(nbttagcompound1.getString("value"));
     } 
     bl.subBuildings = subb;
     bl.showTownHallSigns = nbttagcompound.getBoolean(label + "_showTownHallSigns");
-    if (nbttagcompound.hasKey(label + "_upgradesAllowed"))
+    if (nbttagcompound.contains(label + "_upgradesAllowed"))
       bl.upgradesAllowed = nbttagcompound.getBoolean(label + "_upgradesAllowed"); 
     bl.isSubBuildingLocation = nbttagcompound.getBoolean(label + "_isSubBuildingLocation");
-    nbttaglist = nbttagcompound.getTagList(label + "_paintedBricksColour_keys", 10);
+    nbttaglist = nbttagcompound.getList(label + "_paintedBricksColour_keys", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       EnumDyeColor color = getColourByName(nbttagcompound1.getString("value"));
       bl.paintedBricksColour.put(color, getColourByName(nbttagcompound.getString(label + "_paintedBricksColour_" + color.getName())));
     } 
@@ -476,15 +476,14 @@ public class BuildingLocation implements Cloneable {
   
   private void initialiseRandomBrickColoursFromPlan(BuildingPlan plan) {
     for (EnumDyeColor color : plan.randomBrickColours.keySet()) {
-      Map<EnumDyeColor, Integer> colorMap = (Map<EnumDyeColor, Integer>) plan.randomBrickColours.get(color);
       int totalWeight = 0;
-      for (EnumDyeColor possibleColor : colorMap.keySet())
-        totalWeight += colorMap.get(possibleColor).intValue(); 
+      for (EnumDyeColor possibleColor : ((Map)plan.randomBrickColours.get(color)).keySet())
+        totalWeight += ((Integer)((Map)plan.randomBrickColours.get(color)).get(possibleColor)).intValue(); 
       int pickedValue = MillCommonUtilities.randomInt(totalWeight);
       EnumDyeColor pickedColor = null;
       int currentWeightTotal = 0;
-      for (EnumDyeColor possibleColor : colorMap.keySet()) {
-        currentWeightTotal += colorMap.get(possibleColor).intValue();
+      for (EnumDyeColor possibleColor : ((Map)plan.randomBrickColours.get(color)).keySet()) {
+        currentWeightTotal += ((Integer)((Map)plan.randomBrickColours.get(color)).get(possibleColor)).intValue();
         if (pickedColor == null && pickedValue < currentWeightTotal)
           pickedColor = possibleColor; 
       } 
@@ -540,30 +539,30 @@ public class BuildingLocation implements Cloneable {
   
   public void writeToNBT(NBTTagCompound nbttagcompound, String label, String debug) {
     this.pos.write(nbttagcompound, label + "_pos");
-    nbttagcompound.setBoolean(label + "_isCustomBuilding", this.isCustomBuilding);
-    nbttagcompound.setString(label + "_culture", this.culture.key);
-    nbttagcompound.setInteger(label + "_orientation", this.orientation);
-    nbttagcompound.setInteger(label + "_minx", this.minx);
-    nbttagcompound.setInteger(label + "_miny", this.miny);
-    nbttagcompound.setInteger(label + "_minz", this.minz);
-    nbttagcompound.setInteger(label + "_maxx", this.maxx);
-    nbttagcompound.setInteger(label + "_maxy", this.maxy);
-    nbttagcompound.setInteger(label + "_maxz", this.maxz);
-    nbttagcompound.setInteger(label + "_length", this.length);
-    nbttagcompound.setInteger(label + "_width", this.width);
-    nbttagcompound.setInteger(label + "_level", this.level);
-    nbttagcompound.setString(label + "_key", this.planKey);
-    nbttagcompound.setInteger(label + "_variation", getVariation());
-    nbttagcompound.setInteger(label + "_reputation", this.reputation);
-    nbttagcompound.setInteger(label + "_price", this.price);
-    nbttagcompound.setInteger(label + "_version", this.version);
-    nbttagcompound.setInteger(label + "_priorityMoveIn", this.priorityMoveIn);
+    nbttagcompound.putBoolean(label + "_isCustomBuilding", this.isCustomBuilding);
+    nbttagcompound.putString(label + "_culture", this.culture.key);
+    nbttagcompound.putInt(label + "_orientation", this.orientation);
+    nbttagcompound.putInt(label + "_minx", this.minx);
+    nbttagcompound.putInt(label + "_miny", this.miny);
+    nbttagcompound.putInt(label + "_minz", this.minz);
+    nbttagcompound.putInt(label + "_maxx", this.maxx);
+    nbttagcompound.putInt(label + "_maxy", this.maxy);
+    nbttagcompound.putInt(label + "_maxz", this.maxz);
+    nbttagcompound.putInt(label + "_length", this.length);
+    nbttagcompound.putInt(label + "_width", this.width);
+    nbttagcompound.putInt(label + "_level", this.level);
+    nbttagcompound.putString(label + "_key", this.planKey);
+    nbttagcompound.putInt(label + "_variation", getVariation());
+    nbttagcompound.putInt(label + "_reputation", this.reputation);
+    nbttagcompound.putInt(label + "_price", this.price);
+    nbttagcompound.putInt(label + "_version", this.version);
+    nbttagcompound.putInt(label + "_priorityMoveIn", this.priorityMoveIn);
     if (this.shop != null && this.shop.length() > 0)
-      nbttagcompound.setString(label + "_shop", this.shop); 
+      nbttagcompound.putString(label + "_shop", this.shop); 
     NBTTagList nbttaglist = new NBTTagList();
     for (String subb : this.subBuildings) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("value", subb);
+      nbttagcompound1.putString("value", subb);
       nbttaglist.appendTag((NBTBase)nbttagcompound1);
     } 
     nbttagcompound.setTag(label + "_subBuildings", (NBTBase)nbttaglist);
@@ -579,18 +578,18 @@ public class BuildingLocation implements Cloneable {
       this.shelterPos.write(nbttagcompound, label + "_shelterPos"); 
     if (this.chestPos != null)
       this.chestPos.write(nbttagcompound, label + "_chestPos"); 
-    nbttagcompound.setBoolean(label + "_showTownHallSigns", this.showTownHallSigns);
-    nbttagcompound.setBoolean(label + "_upgradesAllowed", this.upgradesAllowed);
-    nbttagcompound.setBoolean(label + "_isSubBuildingLocation", this.isSubBuildingLocation);
+    nbttagcompound.putBoolean(label + "_showTownHallSigns", this.showTownHallSigns);
+    nbttagcompound.putBoolean(label + "_upgradesAllowed", this.upgradesAllowed);
+    nbttagcompound.putBoolean(label + "_isSubBuildingLocation", this.isSubBuildingLocation);
     nbttaglist = new NBTTagList();
     for (EnumDyeColor color : this.paintedBricksColour.keySet()) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("value", color.getName());
+      nbttagcompound1.putString("value", color.getName());
       nbttaglist.appendTag((NBTBase)nbttagcompound1);
     } 
     nbttagcompound.setTag(label + "_paintedBricksColour_keys", (NBTBase)nbttaglist);
     for (EnumDyeColor color : this.paintedBricksColour.keySet())
-      nbttagcompound.setString(label + "_paintedBricksColour_" + color.getName(), ((EnumDyeColor)this.paintedBricksColour.get(color)).getName()); 
+      nbttagcompound.putString(label + "_paintedBricksColour_" + color.getName(), ((EnumDyeColor)this.paintedBricksColour.get(color)).getName()); 
   }
   
   public BuildingLocation() {}

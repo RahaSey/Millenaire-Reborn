@@ -1,7 +1,7 @@
 //Parameters for the building as a whole
 building.length=9
 building.width=8
-building.buildingorientation=3
+building.buildingorientation=0
 building.max=0
 building.reputation=64
 building.price=8
@@ -12,4 +12,5 @@ building.icon=denier
 initial.startlevel=-1
 initial.nativename=Iglu
 initial.translatedname=name_en,iglu
+initial.priority=3000
 

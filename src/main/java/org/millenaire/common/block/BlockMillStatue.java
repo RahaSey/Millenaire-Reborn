@@ -4,11 +4,9 @@ import java.util.List;
 import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -26,14 +24,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockMillStatue extends BlockDirectional {
-  public static final PropertyDirection FACING = BlockHorizontal.FACING;
-  
   private static final AxisAlignedBB CARVING_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D);
   
   public BlockMillStatue(String blockName, SoundType sound, Material material) {
     super(material);
     setCreativeTab(MillBlocks.tabMillenaire);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)FACING, (Comparable)EnumFacing.NORTH));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)FACING, (Comparable)EnumFacing.DOWN));
     setHarvestLevel("pickaxe", 0);
     setHardness(0.5F);
     setResistance(2.0F);
@@ -55,26 +51,22 @@ public class BlockMillStatue extends BlockDirectional {
     EnumFacing f = EnumFacing.getDirectionFromEntityLiving(pos, placer);
     if (f != EnumFacing.DOWN && f != EnumFacing.UP)
       return getDefaultState().withProperty((IProperty)FACING, (Comparable)f); 
-    return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.NORTH);
+    return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.SOUTH);
   }
   
   @Nullable
   public static EnumFacing getFacing(int meta) {
     int i = meta & 0x7;
-    return (i > 5) ? null : EnumFacing.getFront(i);
+    return (i > 5) ? null : EnumFacing.byIndex(i);
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    EnumFacing facing = getFacing(meta);
-    if (facing == null) {
-      facing = EnumFacing.NORTH;
-    }
-    return getDefaultState().withProperty((IProperty)FACING, (Comparable)facing);
+    return getDefaultState().withProperty((IProperty)FACING, (Comparable)getFacing(meta));
   }
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    i |= ((EnumFacing)state.getValue((IProperty)FACING)).getIndex();
+    i |= ((EnumFacing)state.get((IProperty)FACING)).getIndex();
     return i;
   }
   
@@ -84,7 +76,7 @@ public class BlockMillStatue extends BlockDirectional {
   
   @SideOnly(Side.CLIENT)
   public void initModel() {
-    ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block)this), 0, new ModelResourceLocation(getRegistryName(), "facing=up"));
+    ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock((Block)this), 0, new ModelResourceLocation(getRegistryName(), "facing=down"));
   }
   
   public boolean isFullCube(IBlockState state) {

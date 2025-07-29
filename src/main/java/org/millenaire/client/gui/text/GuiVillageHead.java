@@ -156,9 +156,9 @@ public class GuiVillageHead extends GuiText {
   private TextBook getData() {
     List<TextLine> text = new ArrayList<>();
     String game = "";
-    if (this.chief.getGameOccupationName(this.player.getName()).length() > 0)
-      game = " (" + this.chief.getGameOccupationName(this.player.getName()) + ")"; 
-    text.add(new TextLine(this.chief.getName() + ", " + this.chief.getNativeOccupationName() + game, "§1", new GuiText.GuiButtonReference(this.chief.vtype)));
+    if (this.chief.getGameOccupationName(this.player.func_70005_c_()).length() > 0)
+      game = " (" + this.chief.getGameOccupationName(this.player.func_70005_c_()) + ")"; 
+    text.add(new TextLine(this.chief.func_70005_c_() + ", " + this.chief.getNativeOccupationName() + game, "§1", new GuiText.GuiButtonReference(this.chief.vtype)));
     text.add(new TextLine(LanguageUtilities.string("ui.villagechief", new String[] { this.chief.getTownHall().getVillageQualifiedName() })));
     text.add(new TextLine());
     String col = "";
@@ -172,7 +172,7 @@ public class GuiVillageHead extends GuiText {
       col = "§c";
     } 
     text.add(new TextLine(LanguageUtilities.string("ui.yourstatus") + ": " + this.chief.getTownHall().getReputationLevelLabel(this.player), col));
-    text.add(new TextLine(this.chief.getTownHall().getReputationLevelDesc(this.player).replaceAll("\\$name", this.player.getName()), col));
+    text.add(new TextLine(this.chief.getTownHall().getReputationLevelDesc(this.player).replaceAll("\\$name", this.player.func_70005_c_()), col));
     text.add(new TextLine());
     text.add(new TextLine(LanguageUtilities.string("ui.possiblehousing") + ":", "§1"));
     text.add(new TextLine());
@@ -247,7 +247,7 @@ public class GuiVillageHead extends GuiText {
       text.add(new TextLine());
       for (String crop : (this.chief.getCulture()).knownCrops) {
         Item itemCrop = Item.getByNameOrId("millenaire:" + crop);
-        String localizedName = I18n.format(itemCrop.getUnlocalizedName() + ".name", new Object[0]);
+        String localizedName = I18n.format(itemCrop.getTranslationKey() + ".name", new Object[0]);
         if (profile.isTagSet("cropplanting_" + crop)) {
           text.add(new TextLine(LanguageUtilities.string("ui.cropknown", new String[] { localizedName })));
           continue;
@@ -274,7 +274,7 @@ public class GuiVillageHead extends GuiText {
       text.add(new TextLine());
       for (String crop : (this.chief.getCulture()).knownHuntingDrops) {
         Item itemCrop = Item.getByNameOrId("millenaire:" + crop);
-        String localizedName = I18n.format(itemCrop.getUnlocalizedName() + ".name", new Object[0]);
+        String localizedName = I18n.format(itemCrop.getTranslationKey() + ".name", new Object[0]);
         if (profile.isTagSet("huntingdrop_" + crop)) {
           text.add(new TextLine(LanguageUtilities.string("ui.huntingdropknown", new String[] { localizedName })));
           continue;

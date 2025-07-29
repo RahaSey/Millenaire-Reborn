@@ -9,7 +9,7 @@ buildingTag=inuitmining
 maxsimultaneousinbuilding=2
 
 
-townhalllimit=pathsnow,256
+townhalllimit=pathsnow,128
 
 sourceblockstate=minecraft:snow_layer
 

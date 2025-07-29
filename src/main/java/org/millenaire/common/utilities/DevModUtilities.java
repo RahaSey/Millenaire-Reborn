@@ -25,7 +25,6 @@ import org.millenaire.common.pathing.atomicstryker.AStarNode;
 import org.millenaire.common.pathing.atomicstryker.AStarPathPlannerJPS;
 import org.millenaire.common.pathing.atomicstryker.IAStarPathedEntity;
 import org.millenaire.common.quest.QuestInstance;
-import org.millenaire.common.utilities.ThreadSafeUtilities;
 
 public class DevModUtilities {
   private static class DevPathedEntity implements IAStarPathedEntity {
@@ -166,7 +165,7 @@ public class DevModUtilities {
       AStarPathPlannerJPS jpsPathPlanner = new AStarPathPlannerJPS(player.world, pathedEntity, true);
       try {
         jpsPathPlanner.getPath(start.getiX(), start.getiY(), start.getiZ(), end.getiX(), end.getiY(), end.getiZ(), jpsConfig);
-      } catch (ThreadSafeUtilities.ChunkAccessException e) {
+      } catch (ChunkAccessException e) {
         MillLog.printException(e);
       } 
     } else {
@@ -209,25 +208,25 @@ public class DevModUtilities {
   }
   
   public static void villagerInteractDev(EntityPlayer entityplayer, MillVillager villager) {
-    if (villager.isChild()) {
+    if (villager.func_70631_g_()) {
       villager.growSize();
-      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.getName() + ": Size: " + villager.getSize() + " gender: " + villager.gender);
+      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.func_70005_c_() + ": Size: " + villager.getSize() + " gender: " + villager.gender);
       if (entityplayer.inventory.getCurrentItem() != null && entityplayer.inventory.getCurrentItem().getItem() == MillItems.SUMMONING_WAND) {
         (villager.getRecord()).size = 20;
         villager.growSize();
       } 
     } 
     if (entityplayer.inventory.getCurrentItem() == ItemStack.EMPTY || entityplayer.inventory.getCurrentItem().getItem() == Items.AIR) {
-      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.getName() + ": Current goal: " + villager.getGoalLabel(villager.goalKey) + " Current pos: " + villager.getPos());
-      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.getName() + ": House: " + villager.housePoint + " Town Hall: " + villager.townHallPoint);
-      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.getName() + ": ID: " + villager.getVillagerId());
+      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.func_70005_c_() + ": Current goal: " + villager.getGoalLabel(villager.goalKey) + " Current pos: " + villager.getPos());
+      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.func_70005_c_() + ": House: " + villager.housePoint + " Town Hall: " + villager.townHallPoint);
+      ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.func_70005_c_() + ": ID: " + villager.getVillagerId());
       if (villager.getRecord() != null)
-        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.getName() + ": Spouse: " + (villager.getRecord()).spousesName); 
+        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.func_70005_c_() + ": Spouse: " + (villager.getRecord()).spousesName); 
       if (villager.getPathDestPoint() != null && villager.pathEntity != null && villager.pathEntity.getCurrentPathLength() > 1) {
-        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.getName() + ": Dest: " + villager.getPathDestPoint() + " distance: " + villager
+        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.func_70005_c_() + ": Dest: " + villager.getPathDestPoint() + " distance: " + villager
             .getPathDestPoint().distanceTo((Entity)villager) + " stuck: " + villager.longDistanceStuck + " jump:" + villager.pathEntity.getNextTargetPathPoint());
       } else {
-        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.getName() + ": No dest point.");
+        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, villager.func_70005_c_() + ": No dest point.");
       } 
       String s = "";
       if (villager.getRecord() != null)
@@ -248,8 +247,8 @@ public class DevModUtilities {
         ServerSender.sendChat(entityplayer, TextFormatting.GREEN, "Inv: " + s); 
     } else if (entityplayer.inventory.getCurrentItem() != ItemStack.EMPTY && entityplayer.inventory.getCurrentItem().getItem() == Item.getItemFromBlock((Block)Blocks.SAND)) {
       if (villager.hiredBy == null) {
-        villager.hiredBy = entityplayer.getName();
-        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, "Hired: " + entityplayer.getName());
+        villager.hiredBy = entityplayer.func_70005_c_();
+        ServerSender.sendChat(entityplayer, TextFormatting.GREEN, "Hired: " + entityplayer.func_70005_c_());
       } else {
         villager.hiredBy = null;
         ServerSender.sendChat(entityplayer, TextFormatting.GREEN, "No longer hired");

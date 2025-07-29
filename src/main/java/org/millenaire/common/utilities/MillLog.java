@@ -162,7 +162,7 @@ public class MillLog {
       FMLLog.info(Mill.proxy.logPrefix() + LanguageUtilities.removeAccent(s), new Object[0]); 
     if (writer != null)
       try {
-        writer.write("8.1.1 " + now() + " " + s + MillConfigValues.NEOL);
+        writer.write("8.1.2 " + now() + " " + s + MillConfigValues.NEOL);
         writer.flush();
       } catch (IOException e) {
         System.out.println("Failed to write line to log file.");

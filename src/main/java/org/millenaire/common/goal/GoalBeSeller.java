@@ -53,13 +53,13 @@ public class GoalBeSeller extends Goal {
   public void onAccept(MillVillager villager) {
     EntityPlayer player = villager.world.getClosestPlayer((villager.getTownHall()).sellingPlace.getiX(), (villager.getTownHall()).sellingPlace.getiY(), 
         (villager.getTownHall()).sellingPlace.getiZ(), 7.0D, false);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.sellercoming", new String[] { villager.getName() });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.sellercoming", new String[] { villager.func_70005_c_() });
   }
   
   public void onComplete(MillVillager villager) {
     EntityPlayer player = villager.world.getClosestPlayer(villager.getTownHall().getResManager().getSellingPos().getiX(), villager.getTownHall().getResManager().getSellingPos().getiY(), villager
         .getTownHall().getResManager().getSellingPos().getiZ(), 17.0D, false);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.tradecomplete", new String[] { villager.getName() });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.tradecomplete", new String[] { villager.func_70005_c_() });
     (villager.getTownHall()).seller = null;
     (villager.getTownHall()).sellingPlace = null;
   }

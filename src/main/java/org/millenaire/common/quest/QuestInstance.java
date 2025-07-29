@@ -163,7 +163,7 @@ public class QuestInstance {
   }
   
   public boolean checkStatus(World world) {
-    if (this.currentStepStart + ((getCurrentStep()).duration * 1000) <= world.getWorldTime()) {
+    if (this.currentStepStart + ((getCurrentStep()).duration * 1000) <= world.getDayTime()) {
       for (QuestInstanceVillager qiv : this.villagers.values()) {
         if (qiv.getVillagerRecord(world) == null) {
           MillLog.temp(this, "Dropping quest as villager " + qiv + " does not have a record.");
@@ -255,7 +255,7 @@ public class QuestInstance {
         MillAdvancements.WQ_MAYAN.grant(player); 
       destroyQuest();
     } else {
-      this.currentStepStart = villager.world.getWorldTime();
+      this.currentStepStart = villager.world.getDayTime();
       this.profile.sendQuestInstancePacket(this);
       this.profile.saveQuestInstances();
     } 

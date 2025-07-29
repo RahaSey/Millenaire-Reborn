@@ -10,7 +10,7 @@ building.icon=chiseledstonebrick
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Tour sud
+initial.nativename=Touor du sud
 initial.priority=650
 initial.tag=patrol
 initial.tag=scaffoldings

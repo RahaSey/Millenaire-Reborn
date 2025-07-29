@@ -24,7 +24,7 @@ public class BlockSod extends Block implements IMetaBlockName {
   
   public BlockSod(String blockName) {
     super(Material.WOOD);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)VARIANT, (Comparable)BlockPlanks.EnumType.OAK));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)VARIANT, (Comparable)BlockPlanks.EnumType.OAK));
     setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
@@ -39,19 +39,19 @@ public class BlockSod extends Block implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((BlockPlanks.EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((BlockPlanks.EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT_MIPPED;
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((BlockPlanks.EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((BlockPlanks.EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getResourcePath() + "_" + ((BlockPlanks.EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + getRegistryName().getPath() + "_" + ((BlockPlanks.EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)VARIANT)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -59,7 +59,7 @@ public class BlockSod extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (BlockPlanks.EnumType enumtype : BlockPlanks.EnumType.values())
       items.add(new ItemStack(this, 1, enumtype.getMetadata())); 
   }

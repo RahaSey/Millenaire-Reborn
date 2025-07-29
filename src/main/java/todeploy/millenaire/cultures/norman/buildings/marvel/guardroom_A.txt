@@ -9,7 +9,7 @@ building.travelbook_display=false
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Salle de guarde
+initial.nativename=Endret d'Garde
 initial.priority=10000
 initial.male=guard
 initial.male=guard

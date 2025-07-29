@@ -241,9 +241,9 @@ public class Building {
       try {
         if (temp.createConnectionsTable(this.winfo, Building.this.resManager.getSleepingPos())) {
           Building.this.regionMapper = temp;
-          Building.this.lastPathingUpdate = Building.this.world.getWorldTime();
+          Building.this.lastPathingUpdate = Building.this.world.getDayTime();
         } else {
-          Building.this.lastPathingUpdate = Building.this.world.getWorldTime();
+          Building.this.lastPathingUpdate = Building.this.world.getDayTime();
           Building.this.regionMapper = null;
         } 
       } catch (org.millenaire.common.utilities.MillLog.MillenaireException e) {
@@ -300,7 +300,7 @@ public class Building {
         } 
         if (MillConfigValues.LogHybernation >= 1)
           MillLog.major(Building.this, "Saved " + Building.this.buildings.size() + " buildings in " + (System.currentTimeMillis() - startTime) + " ms due to " + this.reason + " (" + Building.this.saveReason + ")."); 
-        Building.this.lastSaved = Building.this.world.getWorldTime();
+        Building.this.lastSaved = Building.this.world.getDayTime();
         Building.this.saveNeeded = false;
         Building.this.saveReason = null;
         Building.this.saveWorker = null;
@@ -740,7 +740,7 @@ public class Building {
       return;
     } 
     if (MillConfigValues.LogWorldGeneration >= 1)
-      MillLog.major(this, "Creating " + type + " with child " + child.getName() + "/" + child.getVillagerId()); 
+      MillLog.major(this, "Creating " + type + " with child " + child.func_70005_c_() + "/" + child.getVillagerId()); 
     this.mw.removeVillagerRecord(child.getVillagerId());
     VillagerRecord adultRecord = VillagerRecord.createVillagerRecord(this.culture, type, this.mw, getPos(), getTownHallPos(), child.firstName, child.familyName, child.getVillagerId(), false);
     VillagerRecord childRecord = child.getRecord();
@@ -767,11 +767,11 @@ public class Building {
             spouse.familyName = vr.familyName; 
         } 
         adultRecord.spousesName = vr.getName();
-        vr.spousesName = adult.getName();
+        vr.spousesName = adult.func_70005_c_();
       } 
     } 
     child.despawnVillager();
-    this.world.spawnEntity((Entity)adult);
+    this.world.addEntity0((Entity)adult);
     if (this.isInn) {
       merchantCreated(adultRecord);
     } else {
@@ -998,7 +998,7 @@ public class Building {
     for (Point p : this.resManager.chests) {
       TileEntityLockedChest chest = p.getMillChest(this.world);
       if (chest != null)
-        for (int i = 0; i < chest.getSizeInventory(); i++) {
+        for (int i = 0; i < chest.func_70302_i_(); i++) {
           ItemStack stack = chest.getStackInSlot(i);
           if (!stack.isEmpty()) {
             InvItem invItem = InvItem.createInvItem(stack);
@@ -1062,7 +1062,7 @@ public class Building {
             int y = dy + basey;
             IBlockState blockState = WorldUtilities.getBlockState(this.world, x, y, z);
             if (BlockItemUtilities.isPath(blockState.getBlock()))
-              if (!((Boolean)blockState.getValue((IProperty)IBlockPath.STABLE)).booleanValue()) {
+              if (!((Boolean)blockState.get((IProperty)IBlockPath.STABLE)).booleanValue()) {
                 Point p = new Point(x, y, z);
                 if (!newPathPoints.contains(p))
                   oldPathPointsToClearNew.add(p); 
@@ -1394,7 +1394,7 @@ public class Building {
     if (this.closestPlayer != null && this.seller == null && getReputation(this.closestPlayer) >= -1024 && this.chestLocked) {
       this.sellingPlace = null;
       if (MillConfigValues.LogSelling >= 2)
-        MillLog.minor(this, "A seller is required for " + this.closestPlayer.getName()); 
+        MillLog.minor(this, "A seller is required for " + this.closestPlayer.func_70005_c_()); 
       for (BuildingLocation l : getLocations()) {
         if (l.level >= 0 && l.chestPos != null && l.shop != null && l.shop.length() > 0) {
           if (l.getSellingPos() != null && l.getSellingPos().distanceTo((Entity)this.closestPlayer) < 3.0D) {
@@ -1434,7 +1434,7 @@ public class Building {
         if (((cip.getBuilder()).goalKey != null && !Goal.getResourcesForBuild.key.equals((cip.getBuilder()).goalKey) && !Goal.construction.key.equals((cip.getBuilder()).goalKey)) || cip
           .getId() != (cip.getBuilder()).constructionJobId) {
           if (MillConfigValues.LogBuildingPlan >= 1)
-            MillLog.major(this, cip.getBuilder().getName() + " is no longer building."); 
+            MillLog.major(this, cip.getBuilder().func_70005_c_() + " is no longer building."); 
           cip.setBuilder(null);
         }  
     } 
@@ -1559,7 +1559,7 @@ public class Building {
         if (g.getBasicSellingPrice(this) > 0)
           shopSellsPlayer.put(g, Integer.valueOf(g.getBasicSellingPrice(this))); 
       } 
-      this.shopSells.put(player.getName(), shopSellsPlayer);
+      this.shopSells.put(player.func_70005_c_(), shopSellsPlayer);
     } 
     List<TradeGood> buyingGoods = calculateBuyingGoods((IInventory)player.inventory);
     if (buyingGoods != null) {
@@ -1568,7 +1568,7 @@ public class Building {
         if (g.getBasicBuyingPrice(this) > 0)
           shopBuysPlayer.put(g, Integer.valueOf(g.getBasicBuyingPrice(this))); 
       } 
-      this.shopBuys.put(player.getName(), shopBuysPlayer);
+      this.shopBuys.put(player.func_70005_c_(), shopBuysPlayer);
     } 
   }
   
@@ -1658,8 +1658,8 @@ public class Building {
       if (child == null)
         throw new MillLog.MillenaireException("Child not instancied in createVillager"); 
       vr.fathersName = fathersName;
-      vr.mothersName = mother.getName();
-      this.world.spawnEntity((Entity)child);
+      vr.mothersName = mother.func_70005_c_();
+      this.world.addEntity0((Entity)child);
       return child;
     } catch (Exception e) {
       Mill.proxy.sendChatAdmin("Error in createChild(). Check millenaire.log.");
@@ -1672,7 +1672,7 @@ public class Building {
   public MillVillager createNewVillager(String type) throws MillLog.MillenaireException {
     VillagerRecord vr = VillagerRecord.createVillagerRecord(this.culture, type, this.mw, getPos(), getTownHallPos(), null, null, -1L, false);
     MillVillager villager = MillVillager.createVillager(vr, this.world, this.resManager.getSleepingPos(), false);
-    this.world.spawnEntity((Entity)villager);
+    this.world.addEntity0((Entity)villager);
     if (villager.vtype.isChild) {
       vr.size = 20;
       villager.growSize();
@@ -1701,13 +1701,13 @@ public class Building {
       husbandRecord = VillagerRecord.createVillagerRecord(this.culture, husbandType, this.mw, getPos(), getTownHallPos(), null, null, -1L, false);
       MillVillager husband = MillVillager.createVillager(husbandRecord, this.world, this.resManager.getSleepingPos(), false);
       familyName = husband.familyName;
-      this.world.spawnEntity((Entity)husband);
+      this.world.addEntity0((Entity)husband);
     } 
     if (wifeType != null) {
       wifeRecord = VillagerRecord.createVillagerRecord(this.culture, wifeType, this.mw, getPos(), getTownHallPos(), null, familyName, -1L, false);
       MillVillager wife = MillVillager.createVillager(wifeRecord, this.world, this.resManager.getSleepingPos(), false);
       wifeRecord = new VillagerRecord(this.mw, wife);
-      this.world.spawnEntity((Entity)wife);
+      this.world.addEntity0((Entity)wife);
     } 
     if (MillConfigValues.LogWorldGeneration >= 1)
       MillLog.major(this, "Records: " + wifeRecord + "/" + husbandRecord); 
@@ -1771,7 +1771,7 @@ public class Building {
       return; 
     int nbAdults = 0, nbGrownChild = 0;
     for (MillVillager villager : getKnownVillagers()) {
-      if (!villager.isChild()) {
+      if (!villager.func_70631_g_()) {
         nbAdults++;
         continue;
       } 
@@ -1845,7 +1845,7 @@ public class Building {
         continue;
       } 
       ServerSender.sendChat(player, TextFormatting.GREEN, villager
-          .getClass().getSimpleName() + ": " + villager.getPos() + (villager.isEntityAlive() ? "" : " DEAD") + " " + villager.getGoalLabel(villager.goalKey));
+          .getClass().getSimpleName() + ": " + villager.getPos() + (villager.isAlive() ? "" : " DEAD") + " " + villager.getGoalLabel(villager.goalKey));
     } 
     String s = "LKey: " + this.location.planKey + " Shop: " + this.location.shop + " special: ";
     if (this.isTownhall)
@@ -2040,7 +2040,7 @@ public class Building {
     for (Point p : this.resManager.chests) {
       TileEntityLockedChest chest = p.getMillChest(this.world);
       if (chest != null)
-        for (int i = 0; i < chest.getSizeInventory(); i++)
+        for (int i = 0; i < chest.func_70302_i_(); i++)
           chest.setInventorySlotContents(i, ItemStack.EMPTY);  
     } 
     for (BuildingPlan.StartingGood sg : (this.location.getPlan()).startingGoods) {
@@ -2084,7 +2084,7 @@ public class Building {
       tz = Math.min(tz, this.winfo.width / 2 + 50);
       tz = Math.max(tz, this.winfo.width / 2 - 50);
       if (this.winfo.canBuild[tx][tz]) {
-        Chunk chunk = this.world.getChunkFromBlockCoords(new BlockPos(this.winfo.mapStartX + tx, 0, this.winfo.mapStartZ + tz));
+        Chunk chunk = this.world.getChunkAt(new BlockPos(this.winfo.mapStartX + tx, 0, this.winfo.mapStartZ + tz));
         if (chunk.isLoaded())
           return new Point((this.winfo.mapStartX + tx), (WorldUtilities.findTopSoilBlock(this.world, this.winfo.mapStartX + tx, this.winfo.mapStartZ + tz) + 1), (this.winfo.mapStartZ + tz)); 
       } 
@@ -2313,7 +2313,7 @@ public class Building {
   private boolean findBuildingProject() {
     if (this.buildingGoal != null && this.buildingGoal.length() > 0)
       return false; 
-    if (this.noProjectsLeft && (this.world.getWorldTime() + hashCode()) % 600L != 3L)
+    if (this.noProjectsLeft && (this.world.getDayTime() + hashCode()) % 600L != 3L)
       return false; 
     this.buildingGoal = null;
     this.buildingGoalLocation = null;
@@ -2426,7 +2426,7 @@ public class Building {
       String bannerJSON = ((String)this.villageType.banner_JSONs.get(MillCommonUtilities.randomInt(this.villageType.banner_JSONs.size()))).replace("blockentitytag", "BlockEntityTag").replace("base", "Base").replace("pattern", "Pattern").replace("color", "Color");
       this.bannerStack = new ItemStack(Items.BANNER, 1);
       try {
-        this.bannerStack.setTagCompound(JsonToNBT.getTagFromJson(bannerJSON));
+        this.bannerStack.setTag(JsonToNBT.getTagFromJson(bannerJSON));
         return;
       } catch (NBTException nbtException) {
         this.bannerStack = null;
@@ -2454,8 +2454,8 @@ public class Building {
       String patterns = this.villageType.banner_Patterns.get(MillCommonUtilities.randomInt(this.villageType.banner_Patterns.size()));
       for (String pattern : patterns.split(",")) {
         NBTTagCompound patternNBT = new NBTTagCompound();
-        patternNBT.setString("Pattern", pattern);
-        patternNBT.setInteger("Color", patternColorDamage);
+        patternNBT.putString("Pattern", pattern);
+        patternNBT.putInt("Color", patternColorDamage);
         patternList.appendTag((NBTBase)patternNBT);
       } 
     } 
@@ -2471,8 +2471,8 @@ public class Building {
       String chargePatterns = this.villageType.banner_chargePatterns.get(MillCommonUtilities.randomInt(this.villageType.banner_chargePatterns.size()));
       for (String chargePattern : chargePatterns.split(",")) {
         NBTTagCompound chargeNBT = new NBTTagCompound();
-        chargeNBT.setString("Pattern", chargePattern);
-        chargeNBT.setInteger("Color", chargeColorDamage);
+        chargeNBT.putString("Pattern", chargePattern);
+        chargeNBT.putInt("Color", chargeColorDamage);
         patternList.appendTag((NBTBase)chargeNBT);
       } 
     } 
@@ -2600,15 +2600,15 @@ public class Building {
   }
   
   public Set<TradeGood> getBuyingGoods(EntityPlayer player) {
-    if (!this.shopBuys.containsKey(player.getName()))
+    if (!this.shopBuys.containsKey(player.func_70005_c_()))
       return null; 
-    return this.shopBuys.get(player.getName()).keySet();
+    return ((LinkedHashMap)this.shopBuys.get(player.func_70005_c_())).keySet();
   }
   
   public int getBuyingPrice(TradeGood g, EntityPlayer player) {
-    if (!this.shopBuys.containsKey(player.getName()) || this.shopBuys.get(player.getName()) == null)
+    if (!this.shopBuys.containsKey(player.func_70005_c_()) || this.shopBuys.get(player.func_70005_c_()) == null)
       return 0; 
-    return this.shopBuys.get(player.getName()).get(g).intValue();
+    return ((Integer)((LinkedHashMap)this.shopBuys.get(player.func_70005_c_())).get(g)).intValue();
   }
   
   public ConstructionIP getConstructionIPforBuilder(MillVillager builder) {
@@ -2659,12 +2659,12 @@ public class Building {
         this.pathsToBuild = null;
         return null;
       } 
-      if (this.pathsToBuildPathIndex >= this.pathsToBuild.get(this.pathsToBuildIndex).size()) {
+      if (this.pathsToBuildPathIndex >= ((List)this.pathsToBuild.get(this.pathsToBuildIndex)).size()) {
         this.pathsToBuildIndex++;
         this.pathsToBuildPathIndex = 0;
         continue;
       } 
-      BuildingBlock b = this.pathsToBuild.get(this.pathsToBuildIndex).get(this.pathsToBuildPathIndex);
+      BuildingBlock b = ((List<BuildingBlock>)this.pathsToBuild.get(this.pathsToBuildIndex)).get(this.pathsToBuildPathIndex);
       IBlockState blockState = b.p.getBlockActualState(this.world);
       if (PathUtilities.canPathBeBuiltHere(blockState) && blockState != b.getBlockstate())
         return b; 
@@ -2712,7 +2712,7 @@ public class Building {
       return this.neededGoodsCached; 
     this.neededGoodsCached = new HashMap<>();
     for (Point vp : this.mw.villagesList.pos) {
-      Chunk chunk = this.world.getChunkFromBlockCoords(new BlockPos(vp.getiX(), 0, vp.getiZ()));
+      Chunk chunk = this.world.getChunkAt(new BlockPos(vp.getiX(), 0, vp.getiZ()));
       if (chunk.isLoaded()) {
         Building townHall = this.mw.getBuilding(vp);
         if (townHall != null && getTownHall() != null && townHall.villageType != (getTownHall()).villageType && townHall.culture == (getTownHall()).culture && 
@@ -2749,7 +2749,7 @@ public class Building {
       return count;
     } 
     if (this.inventoryCache.containsKey(invItem))
-      return this.inventoryCache.get(invItem).intValue(); 
+      return ((Integer)this.inventoryCache.get(invItem)).intValue(); 
     return 0;
   }
   
@@ -2897,17 +2897,17 @@ public class Building {
   }
   
   public Set<TradeGood> getSellingGoods(EntityPlayer player) {
-    if (!this.shopSells.containsKey(player.getName())) {
-      MillLog.error(this, "No selling data from player " + player.getName() + ", only has data for " + this.shopSells.keySet().toArray().toString());
+    if (!this.shopSells.containsKey(player.func_70005_c_())) {
+      MillLog.error(this, "No selling data from player " + player.func_70005_c_() + ", only has data for " + this.shopSells.keySet().toArray().toString());
       return null;
     } 
-    return this.shopSells.get(player.getName()).keySet();
+    return ((LinkedHashMap)this.shopSells.get(player.func_70005_c_())).keySet();
   }
   
   public int getSellingPrice(TradeGood g, EntityPlayer player) {
-    if (player == null || !this.shopSells.containsKey(player.getName()))
+    if (player == null || !this.shopSells.containsKey(player.func_70005_c_()))
       return 0; 
-    return this.shopSells.get(player.getName()).get(g).intValue();
+    return ((Integer)((LinkedHashMap)this.shopSells.get(player.func_70005_c_())).get(g)).intValue();
   }
   
   public List<Building> getShops() {
@@ -3063,7 +3063,7 @@ public class Building {
     IBlockState saplingBlockState = WorldUtilities.getBlockState(world, x, y, z);
     if (saplingBlockState.getBlock() != Blocks.SAPLING)
       return; 
-    BlockPlanks.EnumType saplingType = (BlockPlanks.EnumType)saplingBlockState.getValue((IProperty)BlockSapling.TYPE);
+    BlockPlanks.EnumType saplingType = (BlockPlanks.EnumType)saplingBlockState.get((IProperty)BlockSapling.TYPE);
     if (saplingType == BlockPlanks.EnumType.DARK_OAK) {
       if (!MillCommonUtilities.chanceOn(5))
         return; 
@@ -3084,36 +3084,30 @@ public class Building {
         WorldUtilities.setBlockstate(world, new Point((x + 1), y, (z + 1)), saplingBlockState, true, false);
       } 
     } else {
-      WorldGenSavannaTree worldGenSavannaTree = null;
+      WorldGenSavannaTree worldGenSavannaTree;
       WorldGenerator treeGenerator = null;
       if (saplingType == BlockPlanks.EnumType.OAK) {
-        treeGenerator = new WorldGenTrees(true);
+        WorldGenTrees worldGenTrees = new WorldGenTrees(true);
       } else if (saplingType == BlockPlanks.EnumType.SPRUCE) {
-        treeGenerator = new WorldGenTaiga2(true);
+        WorldGenTaiga2 worldGenTaiga2 = new WorldGenTaiga2(true);
       } else if (saplingType == BlockPlanks.EnumType.BIRCH) {
-        treeGenerator = new WorldGenBirchTree(true, false);
+        WorldGenBirchTree worldGenBirchTree = new WorldGenBirchTree(true, false);
       } else if (saplingType == BlockPlanks.EnumType.JUNGLE) {
         IBlockState iblockstate = Blocks.LOG.getDefaultState().withProperty((IProperty)BlockOldLog.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE);
         IBlockState iblockstate1 = Blocks.LEAVES.getDefaultState().withProperty((IProperty)BlockOldLeaf.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE).withProperty((IProperty)BlockLeaves.CHECK_DECAY, 
             Boolean.valueOf(false));
-        treeGenerator = new WorldGenTrees(true, 4, iblockstate, iblockstate1, false);
+        WorldGenTrees worldGenTrees = new WorldGenTrees(true, 4, iblockstate, iblockstate1, false);
       } else if (saplingType == BlockPlanks.EnumType.ACACIA) {
         worldGenSavannaTree = new WorldGenSavannaTree(true);
       } else {
         MillLog.error(this, "Tried forcing a sapling to grow but its type is not recognised: " + saplingType);
-        return;
       } 
       if (worldGenSavannaTree != null) {
         WorldUtilities.setBlockAndMetadata(world, x, y, z, Blocks.AIR, 0, true, false);
         boolean success = worldGenSavannaTree.generate(world, random, bp);
         if (!success)
           WorldUtilities.setBlockstate(world, new Point(x, y, z), saplingBlockState, true, false); 
-      } else if (treeGenerator != null) {
-        WorldUtilities.setBlockAndMetadata(world, x, y, z, Blocks.AIR, 0, true, false);
-        boolean success = treeGenerator.generate(world, random, bp);
-        if (!success)
-          WorldUtilities.setBlockstate(world, new Point(x, y, z), saplingBlockState, true, false);
-      }
+      } 
     } 
   }
   
@@ -3272,12 +3266,12 @@ public class Building {
         if (b.containsTags("nopaths"))
           return true; 
         if (b.resManager.soils != null)
-          for (List<Point> vpoints : b.resManager.soils) {
+          for (List<Point> vpoints : (Iterable<List<Point>>)b.resManager.soils) {
             if (vpoints.contains(p) || vpoints.contains(above) || vpoints.contains(below))
               return true; 
           }  
         if (b.resManager.sources != null)
-          for (List<Point> vpoints : b.resManager.sources) {
+          for (List<Point> vpoints : (Iterable<List<Point>>)b.resManager.sources) {
             if (vpoints.contains(p) || vpoints.contains(above) || vpoints.contains(below))
               return true; 
           }  
@@ -3345,27 +3339,27 @@ public class Building {
     if (containsTags("despawnallmobs")) {
       List<Entity> mobs = WorldUtilities.getEntitiesWithinAABB(this.world, EntityMob.class, start, end);
       for (Entity ent : mobs) {
-        if (!ent.isDead) {
+        if (!ent.removed) {
           if (MillConfigValues.LogTileEntityBuilding >= 3)
             MillLog.debug(this, "Killing mob " + ent + " at " + ent.posX + "/" + ent.posY + "/" + ent.posZ); 
-          ent.setDead();
+          ent.remove();
         } 
       } 
     } else {
       List<Entity> creepers = WorldUtilities.getEntitiesWithinAABB(this.world, EntityCreeper.class, start, end);
       for (Entity ent : creepers) {
-        if (!ent.isDead) {
+        if (!ent.removed) {
           if (MillConfigValues.LogTileEntityBuilding >= 3)
             MillLog.debug(this, "Killing creeper " + ent + " at " + ent.posX + "/" + ent.posY + "/" + ent.posZ); 
-          ent.setDead();
+          ent.remove();
         } 
       } 
       List<Entity> endermen = WorldUtilities.getEntitiesWithinAABB(this.world, EntityEnderman.class, start, end);
       for (Entity ent : endermen) {
-        if (!ent.isDead) {
+        if (!ent.removed) {
           if (MillConfigValues.LogTileEntityBuilding >= 3)
             MillLog.debug(this, "Killing enderman " + ent + " at " + ent.posX + "/" + ent.posY + "/" + ent.posZ); 
-          ent.setDead();
+          ent.remove();
         } 
       } 
     } 
@@ -3541,7 +3535,7 @@ public class Building {
   }
   
   public void planRaid(Building target) {
-    this.raidPlanningStart = this.world.getWorldTime();
+    this.raidPlanningStart = this.world.getDayTime();
     this.raidStart = 0L;
     this.raidTarget = target.getPos();
     if (MillConfigValues.LogDiplomacy >= 1)
@@ -3563,9 +3557,9 @@ public class Building {
         this.pos = Point.read(nbttagcompound, "pos"); 
       this.chestLocked = nbttagcompound.getBoolean("chestLocked");
       List<String> tags = new ArrayList<>();
-      NBTTagList nbttaglist = nbttagcompound.getTagList("tags", 10);
+      NBTTagList nbttaglist = nbttagcompound.getList("tags", 10);
       for (int i = 0; i < nbttaglist.tagCount(); i++) {
-        NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+        NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
         String value = nbttagcompound1.getString("value");
         tags.add(value);
         if (MillConfigValues.LogTags >= 2)
@@ -3589,7 +3583,7 @@ public class Building {
         MillLog.error(this, "Could not load culture: " + nbttagcompound.getString("culture") + ", skipping building.");
         return false;
       } 
-      if (nbttagcompound.hasKey("isTownhall")) {
+      if (nbttagcompound.contains("isTownhall")) {
         this.isTownhall = nbttagcompound.getBoolean("isTownhall");
       } else {
         this.isTownhall = this.location.planKey.equals("townHall");
@@ -3597,12 +3591,12 @@ public class Building {
       this.townHallPos = Point.read(nbttagcompound, "townHallPos");
       this.nightActionPerformed = nbttagcompound.getBoolean("nightActionPerformed");
       this.nightBackgroundActionPerformed = nbttagcompound.getBoolean("nightBackgroundActionPerformed");
-      this.nbAnimalsRespawned = nbttagcompound.getInteger("nbAnimalsRespawned");
-      if (nbttagcompound.hasKey("villagersrecords")) {
-        nbttaglist = nbttagcompound.getTagList("villagersrecords", 10);
+      this.nbAnimalsRespawned = nbttagcompound.getInt("nbAnimalsRespawned");
+      if (nbttagcompound.contains("villagersrecords")) {
+        nbttaglist = nbttagcompound.getList("villagersrecords", 10);
         MillLog.major(this, "Loading " + nbttaglist.tagCount() + " villagers from building list.");
         for (int k = 0; k < nbttaglist.tagCount(); k++) {
-          NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(k);
+          NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(k);
           VillagerRecord vr = VillagerRecord.read(this.mw, nbttagcompound1, "vr");
           if (vr == null) {
             MillLog.error(this, "Couldn't load VR record.");
@@ -3614,21 +3608,21 @@ public class Building {
         } 
         MillLog.major(this, "Finished loading villagers from building list.");
       } 
-      nbttaglist = nbttagcompound.getTagList("visitorsList", 10);
+      nbttaglist = nbttagcompound.getList("visitorsList", 10);
       int j;
       for (j = 0; j < nbttaglist.tagCount(); j++) {
-        NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(j);
+        NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(j);
         this.visitorsList.add(nbttagcompound1.getString("visitor"));
       } 
-      nbttaglist = nbttagcompound.getTagList("subBuildings", 10);
+      nbttaglist = nbttagcompound.getList("subBuildings", 10);
       for (j = 0; j < nbttaglist.tagCount(); j++) {
-        NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(j);
+        NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(j);
         Point p = Point.read(nbttagcompound1, "pos");
         if (p != null)
           this.subBuildings.add(p); 
       } 
       if (containsTags("pujas") || containsTags("sacrifices")) {
-        this.pujas = new PujaSacrifice(this, nbttagcompound.getCompoundTag("pujas"));
+        this.pujas = new PujaSacrifice(this, nbttagcompound.getCompound("pujas"));
         if (MillConfigValues.LogPujas >= 2)
           MillLog.minor(this, "read pujas object"); 
       } 
@@ -3675,22 +3669,22 @@ public class Building {
   }
   
   public void readInn(NBTTagCompound nbttagcompound) throws MillLog.MillenaireException {
-    NBTTagList nbttaglist = nbttagcompound.getTagList("importedGoods", 10);
+    NBTTagList nbttaglist = nbttagcompound.getList("importedGoods", 10);
     int i;
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound tag = nbttaglist.getCompoundTagAt(i);
-      InvItem good = InvItem.createInvItem(Item.getItemById(tag.getInteger("itemid")), tag.getInteger("itemmeta"));
-      this.imported.put(good, Integer.valueOf(tag.getInteger("quantity")));
+      NBTTagCompound tag = nbttaglist.getCompound(i);
+      InvItem good = InvItem.createInvItem(Item.getItemById(tag.getInt("itemid")), tag.getInt("itemmeta"));
+      this.imported.put(good, Integer.valueOf(tag.getInt("quantity")));
     } 
-    nbttaglist = nbttagcompound.getTagList("exportedGoods", 10);
+    nbttaglist = nbttagcompound.getList("exportedGoods", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound tag = nbttaglist.getCompoundTagAt(i);
-      InvItem good = InvItem.createInvItem(Item.getItemById(tag.getInteger("itemid")), tag.getInteger("itemmeta"));
-      this.exported.put(good, Integer.valueOf(tag.getInteger("quantity")));
+      NBTTagCompound tag = nbttaglist.getCompound(i);
+      InvItem good = InvItem.createInvItem(Item.getItemById(tag.getInt("itemid")), tag.getInt("itemmeta"));
+      this.exported.put(good, Integer.valueOf(tag.getInt("quantity")));
     } 
-    nbttaglist = nbttagcompound.getTagList("importedGoodsNew", 10);
+    nbttaglist = nbttagcompound.getList("importedGoodsNew", 10);
     MillCommonUtilities.readInventory(nbttaglist, this.imported);
-    nbttaglist = nbttagcompound.getTagList("exportedGoodsNew", 10);
+    nbttaglist = nbttagcompound.getList("exportedGoodsNew", 10);
     MillCommonUtilities.readInventory(nbttaglist, this.exported);
   }
   
@@ -3749,7 +3743,7 @@ public class Building {
     } 
     if (nbttagcompound.getString("controlledBy").length() > 0) {
       String controlledByName = nbttagcompound.getString("controlledBy");
-      GameProfile profile = this.world.getMinecraftServer().getPlayerProfileCache().getGameProfileForUsername(controlledByName);
+      GameProfile profile = this.world.getServer().getPlayerProfileCache().getGameProfileForUsername(controlledByName);
       if (profile != null) {
         this.controlledBy = profile.getId();
         MillLog.major(this, "Converted controlledBy from name '" + controlledByName + "' to UUID " + this.controlledBy);
@@ -3759,14 +3753,14 @@ public class Building {
     } 
     if (!nbttagcompound.getUniqueId("controlledByUUID").equals(new UUID(0L, 0L))) {
       this.controlledBy = nbttagcompound.getUniqueId("controlledByUUID");
-      GameProfile profile = this.mw.world.getMinecraftServer().getPlayerProfileCache().getProfileByUUID(this.controlledBy);
+      GameProfile profile = this.mw.world.getServer().getPlayerProfileCache().getProfileByUUID(this.controlledBy);
       if (profile != null)
         this.controlledByName = profile.getName(); 
     } 
-    NBTTagList nbttaglist = nbttagcompound.getTagList("buildings", 10);
+    NBTTagList nbttaglist = nbttagcompound.getList("buildings", 10);
     int i;
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         if (this.buildings.contains(p)) {
@@ -3776,9 +3770,9 @@ public class Building {
         }  
     } 
     initialiseBuildingProjects();
-    nbttaglist = nbttagcompound.getTagList("locations", 10);
+    nbttaglist = nbttagcompound.getList("locations", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       BuildingLocation location = BuildingLocation.read(nbttagcompound1, "location", "locations", null);
       if (location == null) {
         MillLog.error(this, "Could not load building location. Skipping.");
@@ -3815,8 +3809,8 @@ public class Building {
       if (MillConfigValues.LogHybernation >= 1)
         MillLog.major(this, "No goal found: " + this.buildingGoal); 
     } else {
-      this.buildingGoalLevel = nbttagcompound.getInteger("buildingGoalLevel");
-      this.buildingGoalVariation = nbttagcompound.getInteger("buildingGoalVariation");
+      this.buildingGoalLevel = nbttagcompound.getInt("buildingGoalLevel");
+      this.buildingGoalVariation = nbttagcompound.getInt("buildingGoalVariation");
       if (MillConfigValues.LogHybernation >= 1)
         MillLog.major(this, "Reading building goal: " + this.buildingGoal); 
     } 
@@ -3840,7 +3834,7 @@ public class Building {
           this.buildingGoalLocation = null;
         }  
     } 
-    int nbConstructions = nbttagcompound.getInteger("nbConstructions");
+    int nbConstructions = nbttagcompound.getInt("nbConstructions");
     int j;
     for (j = 0; j < nbConstructions; j++) {
       ConstructionIP cip = new ConstructionIP(this, j, nbttagcompound.getBoolean("buildingLocationIP_" + j + "_isWall"));
@@ -3855,20 +3849,20 @@ public class Building {
             cip.clearBuildingLocation(); 
         } 
         cip.readBblocks();
-        cip.setBblockPos(nbttagcompound.getInteger("bblocksPos_" + j));
+        cip.setBblockPos(nbttagcompound.getInt("bblocksPos_" + j));
       } 
     } 
-    nbttaglist = nbttagcompound.getTagList("buildingsBought", 10);
+    nbttaglist = nbttagcompound.getList("buildingsBought", 10);
     for (j = 0; j < nbttaglist.tagCount(); j++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(j);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(j);
       this.buildingsBought.add(nbttagcompound1.getString("key"));
     } 
     this.parentVillage = Point.read(nbttagcompound, "parentVillage");
-    if (nbttagcompound.hasKey("relations")) {
-      nbttaglist = nbttagcompound.getTagList("relations", 10);
+    if (nbttagcompound.contains("relations")) {
+      nbttaglist = nbttagcompound.getList("relations", 10);
       for (j = 0; j < nbttaglist.tagCount(); j++) {
-        NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(j);
-        this.relations.put(Point.read(nbttagcompound1, "pos"), Integer.valueOf(nbttagcompound1.getInteger("value")));
+        NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(j);
+        this.relations.put(Point.read(nbttagcompound1, "pos"), Integer.valueOf(nbttagcompound1.getInt("value")));
       } 
     } 
     this.updateRaidPerformed = nbttagcompound.getBoolean("updateRaidPerformed");
@@ -3877,19 +3871,19 @@ public class Building {
     this.raidPlanningStart = nbttagcompound.getLong("raidPlanningStart");
     this.raidStart = nbttagcompound.getLong("raidStart");
     this.underAttack = nbttagcompound.getBoolean("underAttack");
-    nbttaglist = nbttagcompound.getTagList("raidsPerformed", 10);
+    nbttaglist = nbttagcompound.getList("raidsPerformed", 10);
     for (j = 0; j < nbttaglist.tagCount(); j++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(j);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(j);
       this.raidsPerformed.add(nbttagcompound1.getString("raid"));
     } 
-    nbttaglist = nbttagcompound.getTagList("raidsTaken", 10);
+    nbttaglist = nbttagcompound.getList("raidsTaken", 10);
     for (j = 0; j < nbttaglist.tagCount(); j++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(j);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(j);
       this.raidsSuffered.add(nbttagcompound1.getString("raid"));
     } 
-    this.pathsToBuildIndex = nbttagcompound.getInteger("pathsToBuildIndex");
-    this.pathsToBuildPathIndex = nbttagcompound.getInteger("pathsToBuildPathIndex");
-    this.oldPathPointsToClearIndex = nbttagcompound.getInteger("oldPathPointsToClearIndex");
+    this.pathsToBuildIndex = nbttagcompound.getInt("pathsToBuildIndex");
+    this.pathsToBuildPathIndex = nbttagcompound.getInt("pathsToBuildPathIndex");
+    this.oldPathPointsToClearIndex = nbttagcompound.getInt("oldPathPointsToClearIndex");
     String brickThemeKey = nbttagcompound.getString("brickColourTheme");
     if (this.villageType != null && brickThemeKey != null && brickThemeKey.length() > 0) {
       for (VillageType.BrickColourTheme theme : this.villageType.brickColourThemes) {
@@ -3903,8 +3897,8 @@ public class Building {
       } 
     } 
     readPaths();
-    if (nbttagcompound.hasKey("bannerStack")) {
-      this.bannerStack = new ItemStack(nbttagcompound.getCompoundTag("bannerStack"));
+    if (nbttagcompound.contains("bannerStack")) {
+      this.bannerStack = new ItemStack(nbttagcompound.getCompound("bannerStack"));
     } else {
       generateBannerPattern();
     } 
@@ -3916,11 +3910,11 @@ public class Building {
       RegionMapper temp = new RegionMapper();
       if (temp.createConnectionsTable(this.winfo, this.resManager.getSleepingPos())) {
         this.regionMapper = temp;
-        this.lastPathingUpdate = this.world.getWorldTime();
+        this.lastPathingUpdate = this.world.getDayTime();
         return true;
       } 
       this.regionMapper = null;
-      this.lastPathingUpdate = this.world.getWorldTime();
+      this.lastPathingUpdate = this.world.getDayTime();
       return false;
     } 
     if (!this.rebuildingRegionMapper) {
@@ -4030,9 +4024,9 @@ public class Building {
       } else {
         interval = 100L;
       } 
-      if (this.lastGoodsRefresh + interval * 24000L < this.world.getWorldTime() && this.chestLocked) {
+      if (this.lastGoodsRefresh + interval * 24000L < this.world.getDayTime() && this.chestLocked) {
         fillStartingGoods();
-        this.lastGoodsRefresh = this.world.getWorldTime();
+        this.lastGoodsRefresh = this.world.getDayTime();
       } 
       this.refreshGoodsNightActionPerformed = true;
     } 
@@ -4174,21 +4168,21 @@ public class Building {
         for (InvItem iv : vr.inventory.keySet())
           villager.inventory.put(iv, vr.inventory.get(iv)); 
       } 
-      if (!vr.isTextureValid(vr.texture.getResourcePath()))
+      if (!vr.isTextureValid(vr.texture.getPath()))
         vr.texture = vr.getType().getNewTexture(); 
       vr.killed = false;
       if (villager.getHouse() != null) {
         villager.setTexture(vr.texture);
         villager.isRaider = vr.raidingVillage;
-        if (villager.isChild())
+        if (villager.func_70631_g_())
           villager.computeChildScale(); 
-        this.world.spawnEntity((Entity)villager);
+        this.world.addEntity0((Entity)villager);
       } 
     } 
   }
   
   private void respawnVillagersIfNeeded() throws MillLog.MillenaireException {
-    int time = (int)(this.world.getWorldTime() % 24000L);
+    int time = (int)(this.world.getDayTime() % 24000L);
     boolean resurect = (time >= 13000 && time < 13100);
     for (VillagerRecord vr : getVillagerRecords().values()) {
       MillVillager foundVillager = this.mw.getVillagerById(vr.getVillagerId());
@@ -4196,7 +4190,7 @@ public class Building {
         boolean respawn = false;
         if (!vr.flawedRecord)
           if (vr.raidingVillage) {
-            if (!vr.killed && this.world.getWorldTime() > vr.raiderSpawn + 500L)
+            if (!vr.killed && this.world.getDayTime() > vr.raiderSpawn + 500L)
               respawn = true; 
           } else if (!vr.awayraiding && !vr.awayhired && !(vr.getType()).noResurrect) {
             if (!vr.killed || resurect)
@@ -4324,7 +4318,7 @@ public class Building {
     } catch (IOException e) {
       MillLog.printException(this + ": Error in sendUpdatePacket", e);
     } 
-    (this.mw.getProfile(player)).buildingsSent.put(this.pos, Long.valueOf(this.mw.world.getWorldTime()));
+    (this.mw.getProfile(player)).buildingsSent.put(this.pos, Long.valueOf(this.mw.world.getDayTime()));
     ServerSender.sendPacketToPlayer(data, player);
   }
   
@@ -4359,20 +4353,20 @@ public class Building {
     PacketBuffer data = ServerSender.getPacketBuffer();
     data.writeInt(11);
     StreamReadWrite.writeNullablePoint(getPos(), data);
-    if (this.shopSells.containsKey(player.getName())) {
-      data.writeInt(((LinkedHashMap)this.shopSells.get(player.getName())).size());
-      for (TradeGood g : this.shopSells.get(player.getName()).keySet()) {
+    if (this.shopSells.containsKey(player.func_70005_c_())) {
+      data.writeInt(((LinkedHashMap)this.shopSells.get(player.func_70005_c_())).size());
+      for (TradeGood g : ((LinkedHashMap)this.shopSells.get(player.func_70005_c_())).keySet()) {
         StreamReadWrite.writeNullableGoods(g, data);
-        data.writeInt(this.shopSells.get(player.getName()).get(g).intValue());
+        data.writeInt(((Integer)((LinkedHashMap)this.shopSells.get(player.func_70005_c_())).get(g)).intValue());
       } 
     } else {
       data.writeInt(0);
     } 
-    if (this.shopBuys.containsKey(player.getName())) {
-      data.writeInt(((LinkedHashMap)this.shopBuys.get(player.getName())).size());
-      for (TradeGood g : this.shopBuys.get(player.getName()).keySet()) {
+    if (this.shopBuys.containsKey(player.func_70005_c_())) {
+      data.writeInt(((LinkedHashMap)this.shopBuys.get(player.func_70005_c_())).size());
+      for (TradeGood g : ((LinkedHashMap)this.shopBuys.get(player.func_70005_c_())).keySet()) {
         StreamReadWrite.writeNullableGoods(g, data);
-        data.writeInt(this.shopBuys.get(player.getName()).get(g).intValue());
+        data.writeInt(((Integer)((LinkedHashMap)this.shopBuys.get(player.func_70005_c_())).get(g)).intValue());
       } 
     } else {
       data.writeInt(0);
@@ -4413,7 +4407,7 @@ public class Building {
     if (this.relations.get(this.raidTarget) != null && ((Integer)this.relations.get(this.raidTarget)).intValue() > -90)
       cancelRaid(); 
     if (distantVillage != null) {
-      this.raidStart = this.world.getWorldTime();
+      this.raidStart = this.world.getDayTime();
       int nbRaider = 0;
       Collection<VillagerRecord> vrecordsCopy = new ArrayList<>(getVillagerRecords().values());
       for (VillagerRecord vr : vrecordsCopy) {
@@ -4474,7 +4468,7 @@ public class Building {
     for (Point p : this.resManager.chests) {
       TileEntityLockedChest chest = p.getMillChest(this.world);
       if (chest != null)
-        for (int i = 0; i < chest.getSizeInventory(); i++) {
+        for (int i = 0; i < chest.func_70302_i_(); i++) {
           ItemStack stack = chest.getStackInSlot(i);
           if (stack.isEmpty()) {
             chest.setInventorySlotContents(i, is);
@@ -4639,7 +4633,7 @@ public class Building {
         storeGoods(Blocks.LOG, 1, 1024);
         storeGoods(Blocks.LOG, 2, 1024);
         storeGoods(Blocks.BONE_BLOCK, 256);
-        storeGoods((Block)MillBlocks.INUIT_CARVING, 4, 64);
+        storeGoods((Block)MillBlocks.INUIT_CARVING, 0, 64);
       } else {
         storeGoods(Blocks.GLASS, 512);
         storeGoods(Blocks.COBBLESTONE, 2048);
@@ -4810,10 +4804,10 @@ public class Building {
         } 
         this.nightBackgroundActionPerformed = true;
       }  
-    if (this.world.getWorldTime() % 24000L > 23500L && this.raidTarget != null) {
+    if (this.world.getDayTime() % 24000L > 23500L && this.raidTarget != null) {
       if (!this.updateRaidPerformed) {
         if (MillConfigValues.LogDiplomacy >= 3)
-          MillLog.debug(this, "Calling updateRaid for raid: " + this.raidPlanningStart + "/" + this.raidStart + "/" + this.world.getWorldTime()); 
+          MillLog.debug(this, "Calling updateRaid for raid: " + this.raidPlanningStart + "/" + this.raidStart + "/" + this.world.getDayTime()); 
         updateRaid();
         this.updateRaidPerformed = true;
       } 
@@ -4828,8 +4822,8 @@ public class Building {
     for (Point p : this.resManager.banners) {
       TileEntity te = this.mw.world.getTileEntity(p.getBlockPos());
       if (te instanceof TileEntityBanner) {
-        NBTTagCompound bannerCompound = (getTownHall()).bannerStack.getSubCompound("BlockEntityTag");
-        boolean getBaseColorFromNBT = (bannerCompound != null) ? bannerCompound.hasKey("Base") : false;
+        NBTTagCompound bannerCompound = (getTownHall()).bannerStack.getChildTag("BlockEntityTag");
+        boolean getBaseColorFromNBT = (bannerCompound != null) ? bannerCompound.contains("Base") : false;
         ((TileEntityBanner)te).setItemValues((getTownHall()).bannerStack, getBaseColorFromNBT);
         this.mw.world.notifyBlockUpdate(te.getPos(), this.mw.world.getBlockState(te.getPos()), this.mw.world.getBlockState(te.getPos()), 3);
       } 
@@ -4844,9 +4838,9 @@ public class Building {
   }
   
   public void updateBuildingClient() {
-    if ((this.world.getWorldTime() + hashCode()) % 20L == 8L)
+    if ((this.world.getDayTime() + hashCode()) % 20L == 8L)
       rebuildVillagerList(); 
-    if (this.isActive && this.isTownhall && (this.world.getWorldTime() + hashCode()) % 100L == 48L)
+    if (this.isActive && this.isTownhall && (this.world.getDayTime() + hashCode()) % 100L == 48L)
       triggerCompletionAdvancements(); 
   }
   
@@ -4857,9 +4851,9 @@ public class Building {
       MillLog.error(this, "Other building registered in my place: " + this.mw.getBuilding(this.pos)); 
     if (this.location == null)
       return; 
-    if (this.isActive && (this.world.getWorldTime() + hashCode()) % 40L == 15L)
+    if (this.isActive && (this.world.getDayTime() + hashCode()) % 40L == 15L)
       rebuildVillagerList(); 
-    if (this.isActive && (this.world.getWorldTime() + hashCode()) % 100L == 48L)
+    if (this.isActive && (this.world.getDayTime() + hashCode()) % 100L == 48L)
       triggerCompletionAdvancements(); 
     EntityPlayer player = this.world.getClosestPlayer(this.pos.getiX(), this.pos.getiY(), this.pos.getiZ(), MillConfigValues.KeepActiveRadius, false);
     if (this.isTownhall) {
@@ -4915,13 +4909,13 @@ public class Building {
         getVisitorManager().update(false); 
       if (this.hasAutoSpawn)
         updateAutoSpawn(); 
-      if (Math.abs(this.world.getWorldTime() + hashCode()) % 20L == 4L)
+      if (Math.abs(this.world.getDayTime() + hashCode()) % 20L == 4L)
         unlockForNearbyPlayers(); 
       getPanelManager().updateSigns();
       if (this.isTownhall)
         if (this.saveNeeded) {
           saveTownHall("Save needed");
-        } else if (this.world.getWorldTime() - this.lastSaved > 1000L) {
+        } else if (this.world.getDayTime() - this.lastSaved > 1000L) {
           saveTownHall("Delay up");
         }  
       if (player != null && this.location.getPlan() != null && (this.location.getPlan()).exploreTag != null)
@@ -4969,7 +4963,7 @@ public class Building {
   }
   
   private void updateHealingSpots() {
-    if (this.world.getWorldTime() % 100L == 0L)
+    if (this.world.getDayTime() % 100L == 0L)
       for (Point p : this.resManager.healingspots) {
         EntityPlayer player = this.world.getClosestPlayer(p.getiX(), p.getiY(), p.getiZ(), 4.0D, false);
         if (player != null && player.getHealth() < player.getMaxHealth()) {
@@ -4997,7 +4991,7 @@ public class Building {
       for (int j = 0; j < ((CopyOnWriteArrayList)this.resManager.mobSpawners.get(i)).size(); j++) {
         if (MillCommonUtilities.chanceOn(180)) {
           Block block = WorldUtilities.getBlock(this.world, ((CopyOnWriteArrayList<Point>)this.resManager.mobSpawners.get(i)).get(j));
-          if (block == Blocks.MOB_SPAWNER) {
+          if (block == Blocks.SPAWNER) {
             Class<? extends Entity> targetClass = EntityList.getClass(this.resManager.mobSpawnerTypes.get(i));
             List<Entity> mobs = WorldUtilities.getEntitiesWithinAABB(this.world, targetClass, ((CopyOnWriteArrayList<Point>)this.resManager.mobSpawners.get(i)).get(j), 10, 5);
             int nbmob = mobs.size();
@@ -5023,7 +5017,7 @@ public class Building {
   private void updatePens(boolean completeRespawn) {
     if ((completeRespawn || !this.world.isDaytime()) && (getVillagerRecords().size() > 0 || (this.location.getMaleResidents().isEmpty() && this.location.getFemaleResidents().isEmpty())) && !this.world.isRemote) {
       int nbMaxRespawn = 0;
-      for (List<Point> spawnPoints : this.resManager.spawns)
+      for (List<Point> spawnPoints : (Iterable<List<Point>>)this.resManager.spawns)
         nbMaxRespawn += spawnPoints.size(); 
       if (this.nbAnimalsRespawned <= nbMaxRespawn) {
         int sheep = 0, cow = 0, pig = 0, chicken = 0, squid = 0, wolves = 0;
@@ -5070,12 +5064,12 @@ public class Building {
           int multipliyer = 1;
           if (((ResourceLocation)this.resManager.spawnTypes.get(i)).equals(Mill.ENTITY_SQUID))
             multipliyer = 2; 
-          for (int j = 0; j < this.resManager.spawns.get(i).size() * multipliyer - nb; j++) {
+          for (int j = 0; j < ((CopyOnWriteArrayList)this.resManager.spawns.get(i)).size() * multipliyer - nb; j++) {
             if (completeRespawn || MillCommonUtilities.chanceOn(100)) {
               EntityLiving animal = (EntityLiving)EntityList.createEntityByIDFromName(this.resManager.spawnTypes.get(i), this.world);
-              Point pen = this.resManager.spawns.get(i).get(MillCommonUtilities.randomInt(this.resManager.spawns.get(i).size()));
+              Point pen = ((CopyOnWriteArrayList<Point>)this.resManager.spawns.get(i)).get(MillCommonUtilities.randomInt(((CopyOnWriteArrayList)this.resManager.spawns.get(i)).size()));
               animal.setPosition(pen.getiX() + 0.5D, pen.getiY(), pen.getiZ() + 0.5D);
-              this.world.spawnEntity((Entity)animal);
+              this.world.addEntity0((Entity)animal);
               this.nbAnimalsRespawned++;
             } 
           } 
@@ -5087,11 +5081,11 @@ public class Building {
   }
   
   private void updateRaid() {
-    if (this.world.getWorldTime() > this.raidPlanningStart + 24000L && this.raidStart == 0L) {
+    if (this.world.getDayTime() > this.raidPlanningStart + 24000L && this.raidStart == 0L) {
       if (MillConfigValues.LogDiplomacy >= 2)
         MillLog.minor(this, "Starting raid on " + this.mw.getBuilding(this.raidTarget)); 
       startRaid();
-    } else if (this.raidStart > 0L && this.world.getWorldTime() > this.raidStart + 23000L) {
+    } else if (this.raidStart > 0L && this.world.getDayTime() > this.raidStart + 23000L) {
       Building distantVillage = this.mw.getBuilding(this.raidTarget);
       if (distantVillage != null) {
         if (!distantVillage.isActive)
@@ -5111,19 +5105,19 @@ public class Building {
       this.controlledBy == null || !this.controlledBy.equals(Mill.proxy.getTheSinglePlayer().getUniqueID()))) {
       UUID oldControlledBy = this.controlledBy;
       this.controlledBy = Mill.proxy.getTheSinglePlayer().getUniqueID();
-      this.controlledByName = Mill.proxy.getTheSinglePlayer().getName();
+      this.controlledByName = Mill.proxy.getTheSinglePlayer().func_70005_c_();
       MillLog.major(this, "Switched controller from " + oldControlledBy + " to " + this.controlledBy + " (" + this.controlledByName + "), the new single player.");
     } 
     this.closestPlayer = this.world.getClosestPlayer(this.pos.getiX(), this.pos.getiY(), this.pos.getiZ(), 100.0D, false);
     for (ConstructionIP cip : getConstructionsInProgress())
       completeConstruction(cip); 
-    if ((this.world.getWorldTime() + hashCode()) % 20L == 3L)
+    if ((this.world.getDayTime() + hashCode()) % 20L == 3L)
       updateConstructionQueue(false); 
     checkSeller();
     checkWorkers();
-    if ((this.world.getWorldTime() + hashCode()) % 10L == 0L)
+    if ((this.world.getDayTime() + hashCode()) % 10L == 0L)
       checkBattleStatus(); 
-    if ((this.world.getWorldTime() + hashCode()) % 10L == 5L)
+    if ((this.world.getDayTime() + hashCode()) % 10L == 5L)
       killMobs(); 
     if (!this.declaredPos && this.world != null) {
       if (this.villageType.lonebuilding) {
@@ -5134,10 +5128,10 @@ public class Building {
       this.declaredPos = true;
     } 
     if (this.lastVillagerRecordsRepair == 0L) {
-      this.lastVillagerRecordsRepair = this.world.getWorldTime();
-    } else if (this.world.getWorldTime() - this.lastVillagerRecordsRepair >= 100L) {
+      this.lastVillagerRecordsRepair = this.world.getDayTime();
+    } else if (this.world.getDayTime() - this.lastVillagerRecordsRepair >= 100L) {
       respawnVillagersIfNeeded();
-      this.lastVillagerRecordsRepair = this.world.getWorldTime();
+      this.lastVillagerRecordsRepair = this.world.getDayTime();
     } 
     if (this.world.isDaytime()) {
       this.nightActionPerformed = false;
@@ -5183,21 +5177,21 @@ public class Building {
       } 
       this.nightActionPerformed = true;
     } 
-    if (this.world.getWorldTime() % 1000L == 0L && (
+    if (this.world.getDayTime() % 1000L == 0L && (
       this.villageType.playerControlled || MillConfigValues.DEV) && countGoods((Item)MillItems.PARCHMENT_VILLAGE_SCROLL, 0) == 0)
       for (int i = 0; i < this.mw.villagesList.pos.size(); i++) {
         Point p = this.mw.villagesList.pos.get(i);
         if (getPos().sameBlock(p))
           storeItemStack(ItemParchment.createParchmentForVillage(this)); 
       }  
-    if (this.villageType.playerControlled && this.world.getWorldTime() % 1000L == 0L && countGoods((Item)MillItems.NEGATION_WAND) == 0)
+    if (this.villageType.playerControlled && this.world.getDayTime() % 1000L == 0L && countGoods((Item)MillItems.NEGATION_WAND) == 0)
       storeGoods((Item)MillItems.NEGATION_WAND, 1); 
     if (this.controlledBy != null && this.controlledByName == null) {
-      GameProfile profile = this.world.getMinecraftServer().getPlayerProfileCache().getProfileByUUID(this.controlledBy);
+      GameProfile profile = this.world.getServer().getPlayerProfileCache().getProfileByUUID(this.controlledBy);
       if (profile != null)
         this.controlledByName = profile.getName(); 
     } 
-    if (this.world.getWorldTime() % 200L == 0L)
+    if (this.world.getDayTime() % 200L == 0L)
       updateAchievements(); 
     handlePathingResult();
     if (this.autobuildPaths) {
@@ -5322,25 +5316,25 @@ public class Building {
       MillLog.error(this, "Null location. Skipping write.");
       return;
     } 
-    nbttagcompound.setString("versionCompatibility", "1.0");
+    nbttagcompound.putString("versionCompatibility", "1.0");
     try {
       this.pos.write(nbttagcompound, "pos");
       this.location.writeToNBT(nbttagcompound, "buildingLocation", "self");
-      nbttagcompound.setBoolean("chestLocked", this.chestLocked);
+      nbttagcompound.putBoolean("chestLocked", this.chestLocked);
       if (this.name != null && this.name.length() > 0)
-        nbttagcompound.setString("name", this.name); 
-      nbttagcompound.setString("qualifier", getQualifier());
-      nbttagcompound.setBoolean("isTownhall", this.isTownhall);
-      nbttagcompound.setString("culture", this.culture.key);
+        nbttagcompound.putString("name", this.name); 
+      nbttagcompound.putString("qualifier", getQualifier());
+      nbttagcompound.putBoolean("isTownhall", this.isTownhall);
+      nbttagcompound.putString("culture", this.culture.key);
       if (this.villageType != null)
-        nbttagcompound.setString("villageType", this.villageType.key); 
+        nbttagcompound.putString("villageType", this.villageType.key); 
       if (this.controlledBy != null)
-        nbttagcompound.setUniqueId("controlledByUUID", this.controlledBy); 
+        nbttagcompound.putUniqueId("controlledByUUID", this.controlledBy); 
       if (getTownHallPos() != null)
         getTownHallPos().write(nbttagcompound, "townHallPos"); 
-      nbttagcompound.setBoolean("nightActionPerformed", this.nightActionPerformed);
-      nbttagcompound.setBoolean("nightBackgroundActionPerformed", this.nightBackgroundActionPerformed);
-      nbttagcompound.setInteger("nbAnimalsRespawned", this.nbAnimalsRespawned);
+      nbttagcompound.putBoolean("nightActionPerformed", this.nightActionPerformed);
+      nbttagcompound.putBoolean("nightBackgroundActionPerformed", this.nightBackgroundActionPerformed);
+      nbttagcompound.putInt("nbAnimalsRespawned", this.nbAnimalsRespawned);
       NBTTagList nbttaglist = new NBTTagList();
       for (Point p : this.buildings) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
@@ -5349,7 +5343,7 @@ public class Building {
       } 
       nbttagcompound.setTag("buildings", (NBTBase)nbttaglist);
       for (ConstructionIP cip : getConstructionsInProgress()) {
-        nbttagcompound.setInteger("bblocksPos_" + cip.getId(), cip.getBblocksPos());
+        nbttagcompound.putInt("bblocksPos_" + cip.getId(), cip.getBblocksPos());
         if (cip.isBblocksChanged()) {
           cip.writeBblocks();
           if (MillConfigValues.LogHybernation >= 1)
@@ -5382,22 +5376,22 @@ public class Building {
       } 
       nbttagcompound.setTag("locations", (NBTBase)nbttaglist);
       if (this.buildingGoal != null) {
-        nbttagcompound.setString("buildingGoal", this.buildingGoal);
+        nbttagcompound.putString("buildingGoal", this.buildingGoal);
         if (MillConfigValues.LogHybernation >= 1)
           MillLog.major(this, "Writing building goal: " + this.buildingGoal); 
       } 
-      nbttagcompound.setInteger("buildingGoalLevel", this.buildingGoalLevel);
-      nbttagcompound.setInteger("buildingGoalVariation", this.buildingGoalVariation);
+      nbttagcompound.putInt("buildingGoalLevel", this.buildingGoalLevel);
+      nbttagcompound.putInt("buildingGoalVariation", this.buildingGoalVariation);
       if (this.buildingGoalIssue != null)
-        nbttagcompound.setString("buildingGoalIssue", this.buildingGoalIssue); 
+        nbttagcompound.putString("buildingGoalIssue", this.buildingGoalIssue); 
       if (this.buildingGoalLocation != null) {
         this.buildingGoalLocation.writeToNBT(nbttagcompound, "buildingGoalLocation", "buildingGoalLocation");
         if (MillConfigValues.LogHybernation >= 1)
           MillLog.major(this, "Writing buildingGoalLocation: " + this.buildingGoalLocation); 
       } 
-      nbttagcompound.setInteger("nbConstructions", getConstructionsInProgress().size());
+      nbttagcompound.putInt("nbConstructions", getConstructionsInProgress().size());
       for (ConstructionIP cip : getConstructionsInProgress()) {
-        nbttagcompound.setBoolean("buildingLocationIP_" + cip.getId() + "_isWall", cip.isWallConstruction());
+        nbttagcompound.putBoolean("buildingLocationIP_" + cip.getId() + "_isWall", cip.isWallConstruction());
         if (cip.getBuildingLocation() != null) {
           cip.getBuildingLocation().writeToNBT(nbttagcompound, "buildingLocationIP_" + cip.getId(), "buildingLocationIP_" + cip.getId());
           if (MillConfigValues.LogHybernation >= 1)
@@ -5407,37 +5401,37 @@ public class Building {
       nbttaglist = new NBTTagList();
       for (String s : this.visitorsList) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-        nbttagcompound1.setString("visitor", s);
+        nbttagcompound1.putString("visitor", s);
         nbttaglist.appendTag((NBTBase)nbttagcompound1);
       } 
       nbttagcompound.setTag("visitorsList", (NBTBase)nbttaglist);
       nbttaglist = new NBTTagList();
       for (String s : this.buildingsBought) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-        nbttagcompound1.setString("key", s);
+        nbttagcompound1.putString("key", s);
         nbttaglist.appendTag((NBTBase)nbttagcompound1);
       } 
       nbttagcompound.setTag("buildingsBought", (NBTBase)nbttaglist);
-      nbttagcompound.setBoolean("updateRaidPerformed", this.updateRaidPerformed);
-      nbttagcompound.setBoolean("nightBackgroundActionPerformed", this.nightBackgroundActionPerformed);
-      nbttagcompound.setBoolean("nightActionPerformed", this.nightActionPerformed);
-      nbttagcompound.setBoolean("underAttack", this.underAttack);
+      nbttagcompound.putBoolean("updateRaidPerformed", this.updateRaidPerformed);
+      nbttagcompound.putBoolean("nightBackgroundActionPerformed", this.nightBackgroundActionPerformed);
+      nbttagcompound.putBoolean("nightActionPerformed", this.nightActionPerformed);
+      nbttagcompound.putBoolean("underAttack", this.underAttack);
       if (this.raidTarget != null) {
         this.raidTarget.write(nbttagcompound, "raidTarget");
-        nbttagcompound.setLong("raidPlanningStart", this.raidPlanningStart);
-        nbttagcompound.setLong("raidStart", this.raidStart);
+        nbttagcompound.putLong("raidPlanningStart", this.raidPlanningStart);
+        nbttagcompound.putLong("raidStart", this.raidStart);
       } 
       nbttaglist = new NBTTagList();
       for (String s : this.raidsPerformed) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-        nbttagcompound1.setString("raid", s);
+        nbttagcompound1.putString("raid", s);
         nbttaglist.appendTag((NBTBase)nbttagcompound1);
       } 
       nbttagcompound.setTag("raidsPerformed", (NBTBase)nbttaglist);
       nbttaglist = new NBTTagList();
       for (String s : this.raidsSuffered) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-        nbttagcompound1.setString("raid", s);
+        nbttagcompound1.putString("raid", s);
         nbttaglist.appendTag((NBTBase)nbttagcompound1);
       } 
       nbttagcompound.setTag("raidsTaken", (NBTBase)nbttaglist);
@@ -5452,7 +5446,7 @@ public class Building {
           if (dv != null && !dv.villageType.lonebuilding) {
             NBTTagCompound nbttagcompound1 = new NBTTagCompound();
             p.write(nbttagcompound1, "pos");
-            nbttagcompound1.setInteger("value", ((Integer)this.relations.get(p)).intValue());
+            nbttagcompound1.putInt("value", ((Integer)this.relations.get(p)).intValue());
             nbttaglist.appendTag((NBTBase)nbttagcompound1);
           } 
         } 
@@ -5478,19 +5472,19 @@ public class Building {
         this.pujas.writeToNBT(tag);
         nbttagcompound.setTag("pujas", (NBTBase)tag);
       } 
-      nbttagcompound.setLong("lastGoodsRefresh", this.lastGoodsRefresh);
-      nbttagcompound.setInteger("pathsToBuildIndex", this.pathsToBuildIndex);
-      nbttagcompound.setInteger("pathsToBuildPathIndex", this.pathsToBuildPathIndex);
-      nbttagcompound.setInteger("oldPathPointsToClearIndex", this.oldPathPointsToClearIndex);
+      nbttagcompound.putLong("lastGoodsRefresh", this.lastGoodsRefresh);
+      nbttagcompound.putInt("pathsToBuildIndex", this.pathsToBuildIndex);
+      nbttagcompound.putInt("pathsToBuildPathIndex", this.pathsToBuildPathIndex);
+      nbttagcompound.putInt("oldPathPointsToClearIndex", this.oldPathPointsToClearIndex);
       if (this.brickColourTheme != null)
-        nbttagcompound.setString("brickColourTheme", this.brickColourTheme.key); 
+        nbttagcompound.putString("brickColourTheme", this.brickColourTheme.key); 
       Set<String> tags = getTags();
       if (tags.size() > 0 && MillConfigValues.LogTags >= 1)
         MillLog.major(this, "Tags to write: " + MillCommonUtilities.flattenStrings(tags)); 
       nbttaglist = new NBTTagList();
       for (String tag : tags) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-        nbttagcompound1.setString("value", tag);
+        nbttagcompound1.putString("value", tag);
         nbttaglist.appendTag((NBTBase)nbttagcompound1);
         if (MillConfigValues.LogTags >= 3)
           MillLog.debug(this, "Writing tag: " + tag); 
@@ -5502,7 +5496,7 @@ public class Building {
       if (this.pathsChanged)
         writePaths(); 
       if (this.isTownhall && this.bannerStack != null)
-        nbttagcompound.setTag("bannerStack", (NBTBase)this.bannerStack.writeToNBT(new NBTTagCompound())); 
+        nbttagcompound.setTag("bannerStack", (NBTBase)this.bannerStack.write(new NBTTagCompound())); 
     } catch (Exception e) {
       Mill.proxy.sendChatAdmin("Error when trying to save building. Check millenaire.log.");
       MillLog.error(this, "Exception in Villager.onUpdate(): ");

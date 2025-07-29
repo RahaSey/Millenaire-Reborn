@@ -65,6 +65,7 @@ never=farmp
 never=tannery
 never=council
 never=offering
+never=offering1
 never=armourerhouse
 
 //Selling prices=

@@ -8,7 +8,7 @@ building.icon=stone
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Fontaine
+initial.nativename=Faontoine
 initial.priority=750
 initial.tag=pathnode
 initial.tag=leasure

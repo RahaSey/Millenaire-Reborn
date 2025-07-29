@@ -8,7 +8,7 @@ building.icon=purse
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Marché
+initial.nativename=Marchi
 initial.priority=600
 initial.pathlevel=1
 initial.tag=market

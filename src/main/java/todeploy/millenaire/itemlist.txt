@@ -418,7 +418,7 @@ sod_dark_oak;millenaire:sod;5
 
 icebrick;millenaire:icebrick;0
 snowbrick;millenaire:snowbrick;0
-inuitcarving;millenaire:inuitcarving;4
+inuitcarving;millenaire:inuitcarving;0
 
 inuittrident;millenaire:inuittrident;0
 inuitbow;millenaire:inuitbow;0

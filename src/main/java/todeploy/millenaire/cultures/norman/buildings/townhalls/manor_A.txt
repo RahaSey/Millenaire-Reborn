@@ -10,7 +10,7 @@ building.icon=bookshelves
 
 //Parameters for initial construction
 initial.startlevel=-9
-initial.nativename=Manoir
+initial.nativename=Fief
 initial.priority=600
 initial.male=seneschal
 initial.female=lady

@@ -1,4 +1,4 @@
-native_name=Marchand d'art
+native_name=Marchànd d'Art
 gender=male
 familyNameList=merchant_art_family_names
 firstNameList=merchant_art_first_names

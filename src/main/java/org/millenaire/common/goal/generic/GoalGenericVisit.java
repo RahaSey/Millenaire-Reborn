@@ -59,7 +59,7 @@ public class GoalGenericVisit extends GoalGeneric {
   }
   
   protected boolean isStillValidSpecific(MillVillager villager) throws Exception {
-    if (villager.getGoalDestEntity() != null && (villager.getGoalDestEntity()).isDead)
+    if (villager.getGoalDestEntity() != null && (villager.getGoalDestEntity()).removed)
       return false; 
     if (this.targetVillagerGoals != null && villager.getGoalDestEntity() != null && villager.getGoalDestEntity() instanceof MillVillager) {
       MillVillager targetVillager = (MillVillager)villager.getGoalDestEntity();

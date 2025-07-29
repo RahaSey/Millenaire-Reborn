@@ -147,14 +147,14 @@ public class GuiActions {
   }
   
   public static void hireExtend(EntityPlayer player, MillVillager villager) {
-    villager.hiredBy = player.getName();
+    villager.hiredBy = player.func_70005_c_();
     villager.hiredUntil += 24000L;
     MillCommonUtilities.changeMoney((IInventory)player.inventory, -villager.getHireCost(player), player);
   }
   
   public static void hireHire(EntityPlayer player, MillVillager villager) {
-    villager.hiredBy = player.getName();
-    villager.hiredUntil = villager.world.getWorldTime() + 24000L;
+    villager.hiredBy = player.func_70005_c_();
+    villager.hiredUntil = villager.world.getDayTime() + 24000L;
     VillagerRecord vr = villager.getRecord();
     if (vr != null)
       vr.awayhired = true; 
@@ -175,7 +175,7 @@ public class GuiActions {
     List list = player.world.getEntitiesWithinAABB(MillVillager.class, surroundings);
     for (Object o : list) {
       MillVillager villager = (MillVillager)o;
-      if (player.getName().equals(villager.hiredBy))
+      if (player.func_70005_c_().equals(villager.hiredBy))
         villager.aggressiveStance = stance; 
     } 
   }
@@ -329,7 +329,7 @@ public class GuiActions {
       return EnumActionResult.FAIL;
     } 
     if (block == Blocks.STANDING_SIGN) {
-      if (!Mill.proxy.isTrueServer() || player.getServer().getPlayerList().canSendCommands(player.getGameProfile())) {
+      if (!Mill.proxy.isTrueServer() || player.server.getPlayerList().canSendCommands(player.getGameProfile())) {
         BuildingImportExport.summoningWandImportBuildingRequest((EntityPlayer)player, ((MillWorldData)Mill.serverWorlds.get(0)).world, pos);
       } else {
         ServerSender.sendTranslatedSentence((EntityPlayer)player, '4', "ui.serverimportforbidden", new String[0]);
@@ -359,7 +359,7 @@ public class GuiActions {
     BuildingPlan plan = (chief.getTownHall()).culture.getBuildingPlanSet(planKey).getRandomStartingPlan();
     (chief.getTownHall()).buildingsBought.add(planKey);
     MillCommonUtilities.changeMoney((IInventory)player.inventory, -plan.price, player);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.housebought", new String[] { chief.getName(), plan.nativeName });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.housebought", new String[] { chief.func_70005_c_(), plan.nativeName });
   }
   
   public static void villageChiefPerformCrop(EntityPlayer player, MillVillager chief, String value) {
@@ -367,13 +367,13 @@ public class GuiActions {
     profile.setTag("cropplanting_" + value);
     MillCommonUtilities.changeMoney((IInventory)player.inventory, -512, player);
     Item crop = Item.getByNameOrId("millenaire:" + value);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.croplearned", new String[] { chief.getName(), "ui.crop." + crop.getRegistryName().getResourcePath() });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.croplearned", new String[] { chief.func_70005_c_(), "ui.crop." + crop.getRegistryName().getPath() });
   }
   
   public static void villageChiefPerformCultureControl(EntityPlayer player, MillVillager chief) {
     UserProfile profile = Mill.getMillWorld(player.world).getProfile(player);
     profile.setTag("culturecontrol_" + (chief.getCulture()).key);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.control_gotten", new String[] { chief.getName(), chief.getCulture().getAdjectiveTranslatedKey() });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.control_gotten", new String[] { chief.func_70005_c_(), chief.getCulture().getAdjectiveTranslatedKey() });
   }
   
   public static void villageChiefPerformDiplomacy(EntityPlayer player, MillVillager chief, Point village, boolean praise) {
@@ -399,7 +399,7 @@ public class GuiActions {
     profile.setTag("huntingdrop_" + value);
     MillCommonUtilities.changeMoney((IInventory)player.inventory, -512, player);
     Item drop = Item.getByNameOrId("millenaire:" + value);
-    ServerSender.sendTranslatedSentence(player, 'f', "ui.huntingdroplearned", new String[] { chief.getName(), "ui.huntingdrop." + drop.getRegistryName().getResourcePath() });
+    ServerSender.sendTranslatedSentence(player, 'f', "ui.huntingdroplearned", new String[] { chief.func_70005_c_(), "ui.huntingdrop." + drop.getRegistryName().getPath() });
   }
   
   public static void villageChiefPerformVillageScroll(EntityPlayer player, MillVillager chief) {
@@ -408,7 +408,7 @@ public class GuiActions {
       if (chief.getTownHall().getPos().sameBlock(p)) {
         MillCommonUtilities.changeMoney((IInventory)player.inventory, -128, player);
         player.inventory.addItemStackToInventory(ItemParchment.createParchmentForVillage(chief.getTownHall()));
-        ServerSender.sendTranslatedSentence(player, 'f', "ui.scrollbought", new String[] { chief.getName() });
+        ServerSender.sendTranslatedSentence(player, 'f', "ui.scrollbought", new String[] { chief.func_70005_c_() });
       } 
     } 
   }

@@ -30,7 +30,7 @@ public class GoalShearSheep extends Goal {
     double sheepBestDist = Double.MAX_VALUE;
     List<Entity> sheep = WorldUtilities.getEntitiesWithinAABB(villager.world, EntitySheep.class, villager.getHouse().getPos(), 30, 10);
     for (Entity ent : sheep) {
-      if (!((EntitySheep)ent).getSheared() && !((EntitySheep)ent).isChild() && (
+      if (!((EntitySheep)ent).getSheared() && !((EntitySheep)ent).func_70631_g_() && (
         closestSheep == null || pos.distanceTo(ent) < sheepBestDist)) {
         closestSheep = ent;
         sheepBestDist = pos.distanceTo(ent);
@@ -59,7 +59,7 @@ public class GoalShearSheep extends Goal {
       return false; 
     for (Entity ent : sheep) {
       EntitySheep asheep = (EntitySheep)ent;
-      if (!asheep.isChild() && !asheep.isDead)
+      if (!asheep.func_70631_g_() && !asheep.removed)
         if (!((EntitySheep)ent).getSheared())
           return true;  
     } 
@@ -73,9 +73,9 @@ public class GoalShearSheep extends Goal {
   public boolean performAction(MillVillager villager) throws Exception {
     List<Entity> sheep = WorldUtilities.getEntitiesWithinAABB(villager.world, EntitySheep.class, villager.getPos(), 4, 4);
     for (Entity ent : sheep) {
-      if (!ent.isDead) {
+      if (!ent.removed) {
         EntitySheep animal = (EntitySheep)ent;
-        if (!animal.isChild() && 
+        if (!animal.func_70631_g_() && 
           !animal.getSheared()) {
           villager.addToInv(Blocks.WOOL, ((EntitySheep)ent).getFleeceColor().getMetadata(), 3);
           ((EntitySheep)ent).setSheared(true);

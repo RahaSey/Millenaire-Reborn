@@ -89,15 +89,15 @@ public class MockBlockAnimalSpawn extends Block implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((Creature)state.getValue((IProperty)CREATURE)).getMetadata();
+    return ((Creature)state.get((IProperty)CREATURE)).getMetadata();
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((Creature)state.getValue((IProperty)CREATURE)).meta;
+    return ((Creature)state.get((IProperty)CREATURE)).meta;
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((Creature)getStateFromMeta(stack.getMetadata()).getValue((IProperty)CREATURE)).getName();
+    return "tile.millenaire." + getRegistryName().getPath() + "." + ((Creature)getStateFromMeta(stack.getMetadata()).get((IProperty)CREATURE)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -105,7 +105,7 @@ public class MockBlockAnimalSpawn extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (Creature enumtype : Creature.values())
       items.add(new ItemStack(this, 1, enumtype.getMetadata())); 
   }

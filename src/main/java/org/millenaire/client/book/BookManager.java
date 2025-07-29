@@ -105,7 +105,7 @@ public class BookManager {
         end = fittedString.length(); 
       String subLine = string.substring(0, end);
       string = string.substring(subLine.length()).trim();
-      int colPos = subLine.lastIndexOf('\u00A7');
+      int colPos = subLine.lastIndexOf('§');
       if (colPos > -1)
         string = subLine.substring(colPos, colPos + 2) + string; 
       splitStrings.add(subLine);

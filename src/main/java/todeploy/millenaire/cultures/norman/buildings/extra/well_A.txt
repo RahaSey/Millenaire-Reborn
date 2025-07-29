@@ -7,7 +7,7 @@ building.icon=bucketwater
 
 //Parameters for initial construction
 initial.startlevel=-11
-initial.nativename=Puit
+initial.nativename=Pisse
 initial.priority=1000
 initial.tag=pathnode
 initial.irrigation=5

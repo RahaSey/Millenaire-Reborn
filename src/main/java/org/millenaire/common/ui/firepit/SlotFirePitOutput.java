@@ -48,7 +48,7 @@ public class SlotFirePitOutput extends SlotItemHandler {
       while (i > 0) {
         int k = EntityXPOrb.getXPSplit(i);
         i -= k;
-        this.player.world.spawnEntity((Entity)new EntityXPOrb(this.player.world, this.player.posX, this.player.posY + 0.5D, this.player.posZ + 0.5D, k));
+        this.player.world.addEntity0((Entity)new EntityXPOrb(this.player.world, this.player.posX, this.player.posY + 0.5D, this.player.posZ + 0.5D, k));
       } 
     } 
     this.removeCount = 0;

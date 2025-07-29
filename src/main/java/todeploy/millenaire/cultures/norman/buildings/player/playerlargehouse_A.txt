@@ -10,7 +10,7 @@ building.icon=denierargent
 
 //Parameters for initial construction
 initial.startlevel=-7
-initial.nativename=Maison bourgeoise
+initial.nativename=Riche Maisaon
 initial.priority=1000000
 initial.pathlevel=1
 

@@ -22,4 +22,4 @@ harvestitem=dye_lightblue,100
 
 helditemsoffhand=dye_lightblue
 
-buildinglimit=dye_lightblue,16
+buildinglimit=dye_lightblue,64

@@ -10,7 +10,7 @@ public class BlockOrientedSlabDoubleDecorated extends BlockOrientedSlab {
   }
   
   @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT;
   }
   

@@ -8,7 +8,7 @@ building.icon=egg
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Elevage de volailles
+initial.nativename=Ferme à Pouochins
 initial.priority=1000
 initial.male=shepherd
 initial.female=shepherdf

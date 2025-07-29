@@ -62,7 +62,7 @@ public class WorldGenAppleTree extends WorldGenAbstractTree {
         for (int yPos = 0; yPos < 5; yPos++) {
           BlockPos upN = position.up(yPos);
           state = worldIn.getBlockState(upN);
-          if (state.getBlock().isAir(state, (IBlockAccess)worldIn, upN) || state.getBlock().isLeaves(state, (IBlockAccess)worldIn, upN) || state.getMaterial() == Material.VINE)
+          if (state.getBlock().isAir(state, (IBlockAccess)worldIn, upN) || state.getBlock().isLeaves(state, (IBlockAccess)worldIn, upN) || state.getMaterial() == Material.TALL_PLANTS)
             setBlockAndNotifyAdequately(worldIn, position.up(yPos), WOOD_BS); 
         } 
         Set<EnumFacing> branchFacings = new HashSet<>();
@@ -83,12 +83,12 @@ public class WorldGenAppleTree extends WorldGenAbstractTree {
           for (int hPos = 0; hPos < horizontalSize; hPos++) {
             if (k < position.getY() + treeHeight && Math.random() < 0.7D)
               k++; 
-            if (enumfacing.getFrontOffsetX() != 0) {
-              xPos += enumfacing.getFrontOffsetX();
+            if (enumfacing.getXOffset() != 0) {
+              xPos += enumfacing.getXOffset();
               if (Math.random() < 0.15D)
                 zPos += curve; 
             } else {
-              zPos += enumfacing.getFrontOffsetZ();
+              zPos += enumfacing.getZOffset();
               if (Math.random() < 0.15D)
                 xPos += curve; 
             } 

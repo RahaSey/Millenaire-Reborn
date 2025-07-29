@@ -10,7 +10,7 @@ sentencekey=makestainedglass
 labelkey=makestainedglass
 
 //en/in millisecondes
-duration=20000
+duration=15000
 
 //objets tenus par le villageois
 heldItems=glass,stained_glass_green_blue,dye_lightblue

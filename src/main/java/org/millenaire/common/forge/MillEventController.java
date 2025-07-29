@@ -63,7 +63,7 @@ public class MillEventController {
       if (source != null) {
         MillWorldData mw = Mill.getMillWorld((event.getEntityLiving()).world);
         EntityPlayer player = (EntityPlayer)event.getEntityLiving();
-        String playerName = player.getName();
+        String playerName = player.func_70005_c_();
         for (MillVillager villager : mw.getAllKnownVillagers()) {
           if (playerName.equals(villager.hiredBy))
             villager.setAttackTarget((EntityLivingBase)event.getSource().getTrueSource()); 
@@ -102,7 +102,7 @@ public class MillEventController {
   private void inuitDropsSeaFood(LivingDropsEvent event) {
     EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
     UserProfile profile = Mill.getMillWorld((event.getEntity()).world).getProfile(player);
-    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.SEAFOOD_RAW.getRegistryName().getResourcePath())) {
+    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.SEAFOOD_RAW.getRegistryName().getPath())) {
       int quantity = 0;
       if (event.getEntityLiving() instanceof net.minecraft.entity.passive.EntitySquid) {
         if (MillCommonUtilities.chanceOn(10))
@@ -122,7 +122,7 @@ public class MillEventController {
   private void inuitDropsWolfMeat(LivingDropsEvent event) {
     EntityPlayer player = (EntityPlayer)event.getSource().getTrueSource();
     UserProfile profile = Mill.getMillWorld((event.getEntity()).world).getProfile(player);
-    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.WOLFMEAT_RAW.getRegistryName().getResourcePath())) {
+    if (event.getSource() != null && event.getSource().getTrueSource() != null && event.getSource().getTrueSource() instanceof EntityPlayer && profile.isTagSet("huntingdrop_" + MillItems.WOLFMEAT_RAW.getRegistryName().getPath())) {
       int quantity = MillCommonUtilities.randomInt(3);
       if (quantity > 0) {
         event.getDrops().add(new EntityItem((event.getEntityLiving()).world, (event.getEntityLiving()).posX, (event.getEntityLiving()).posY, (event.getEntityLiving()).posZ, new ItemStack((Item)MillItems.WOLFMEAT_RAW, quantity)));
@@ -135,15 +135,15 @@ public class MillEventController {
   public void playerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
     try {
       UserProfile profile = VillageUtilities.getServerProfile(event.player.world, event.player);
-      if (profile != null && !event.player.getName().equals(profile.playerName)) {
-        MillLog.major(null, "Name of player with UUID '" + profile.uuid + "' changed from '" + profile.playerName + "' to '" + event.player.getName() + "'.");
-        profile.playerName = event.player.getName();
+      if (profile != null && !event.player.func_70005_c_().equals(profile.playerName)) {
+        MillLog.major(null, "Name of player with UUID '" + profile.uuid + "' changed from '" + profile.playerName + "' to '" + event.player.func_70005_c_() + "'.");
+        profile.playerName = event.player.func_70005_c_();
         profile.saveProfile();
       } 
       if (profile != null) {
         profile.connectUser();
       } else {
-        MillLog.error(this, "Could not get profile on login for user: " + event.player.getName());
+        MillLog.error(this, "Could not get profile on login for user: " + event.player.func_70005_c_());
       } 
     } catch (Exception e) {
       MillLog.printException("Error in ConnectionHandler.playerLoggedIn:", e);
@@ -173,7 +173,7 @@ public class MillEventController {
   public void worldSaved(WorldEvent.Save event) {
     if (Mill.startupError)
       return; 
-    if ((event.getWorld()).provider.getDimension() != 0)
+    if ((event.getWorld()).dimension.getDimension() != 0)
       return; 
     if (!(event.getWorld() instanceof net.minecraft.world.WorldServer)) {
       Mill.clientWorld.saveEverything();
@@ -189,7 +189,7 @@ public class MillEventController {
   public void worldUnloaded(WorldEvent.Unload event) {
     if (Mill.startupError)
       return; 
-    if ((event.getWorld()).provider.getDimension() != 0)
+    if ((event.getWorld()).dimension.getDimension() != 0)
       return; 
     if (!(event.getWorld() instanceof net.minecraft.world.WorldServer)) {
       if (Mill.clientWorld.world == event.getWorld())

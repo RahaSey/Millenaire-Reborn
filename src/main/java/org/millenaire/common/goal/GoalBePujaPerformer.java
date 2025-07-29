@@ -94,9 +94,9 @@ public class GoalBePujaPerformer extends Goal {
     EntityPlayer player = villager.world.getClosestPlayer(temple.getResManager().getCraftingPos().getiX(), temple.getResManager().getCraftingPos().getiY(), temple
         .getResManager().getCraftingPos().getiZ(), 7.0D, false);
     if (villager.canMeditate()) {
-      ServerSender.sendTranslatedSentence(player, 'f', "pujas.priestcoming", new String[] { villager.getName() });
+      ServerSender.sendTranslatedSentence(player, 'f', "pujas.priestcoming", new String[] { villager.func_70005_c_() });
     } else if (villager.canPerformSacrifices()) {
-      ServerSender.sendTranslatedSentence(player, 'f', "sacrifices.priestcoming", new String[] { villager.getName() });
+      ServerSender.sendTranslatedSentence(player, 'f', "sacrifices.priestcoming", new String[] { villager.func_70005_c_() });
     } 
   }
   

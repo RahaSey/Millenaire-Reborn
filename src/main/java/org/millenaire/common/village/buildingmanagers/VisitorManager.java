@@ -61,7 +61,7 @@ public class VisitorManager {
         } 
         VillagerRecord merchantRecord = VillagerRecord.createVillagerRecord(type.culture, type.key, this.building.mw, this.building.getPos(), this.building.getTownHall().getPos(), null, null, -1L, false);
         MillVillager merchant = MillVillager.createVillager(merchantRecord, this.building.world, this.building.getResManager().getSleepingPos(), false);
-        this.building.world.spawnEntity((Entity)merchant);
+        this.building.world.addEntity0((Entity)merchant);
         for (InvItem iv : merchant.vtype.foreignMerchantStock.keySet())
           this.building.storeGoods(iv.getItem(), iv.meta, ((Integer)merchant.vtype.foreignMerchantStock.get(iv)).intValue()); 
         if (MillConfigValues.LogMerchant >= 1)
@@ -94,7 +94,7 @@ public class VisitorManager {
           if (MillCommonUtilities.chanceOn(2)) {
             VillagerRecord visitorRecord = VillagerRecord.createVillagerRecord(type.culture, type.key, this.building.mw, this.building.getPos(), this.building.getTownHall().getPos(), null, null, -1L, false);
             MillVillager visitor = MillVillager.createVillager(visitorRecord, this.building.world, this.building.getResManager().getSleepingPos(), false);
-            this.building.world.spawnEntity((Entity)visitor);
+            this.building.world.addEntity0((Entity)visitor);
             if (MillConfigValues.LogMerchant >= 1)
               MillLog.major(this, "Created visitor: " + visitorRecord); 
           } 

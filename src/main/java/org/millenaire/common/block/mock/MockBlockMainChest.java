@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.millenaire.common.block.MillBlocks;
 
 public class MockBlockMainChest extends Block {
-  public static final PropertyDirection FACING = BlockHorizontal.FACING;
+  public static final PropertyDirection FACING = BlockHorizontal.HORIZONTAL_FACING;
   
   public MockBlockMainChest(String blockName) {
     super(Material.WOOD);
@@ -37,11 +37,11 @@ public class MockBlockMainChest extends Block {
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumFacing)state.getValue((IProperty)FACING)).getIndex();
+    return ((EnumFacing)state.get((IProperty)FACING)).getIndex();
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    EnumFacing enumfacing = EnumFacing.getFront(meta);
+    EnumFacing enumfacing = EnumFacing.byIndex(meta);
     if (enumfacing.getAxis() == EnumFacing.Axis.Y)
       enumfacing = EnumFacing.NORTH; 
     return getDefaultState().withProperty((IProperty)FACING, (Comparable)enumfacing);
@@ -53,7 +53,7 @@ public class MockBlockMainChest extends Block {
   }
   
   public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-    EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor((placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3).getOpposite();
+    EnumFacing enumfacing = EnumFacing.byHorizontalIndex(MathHelper.floor((placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3).getOpposite();
     state = state.withProperty((IProperty)FACING, (Comparable)enumfacing);
     worldIn.setBlockState(pos, state, 3);
   }

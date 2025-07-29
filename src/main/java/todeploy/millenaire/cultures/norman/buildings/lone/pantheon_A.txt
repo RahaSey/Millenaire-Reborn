@@ -8,6 +8,6 @@ building.icon=sign
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Panthéon
+initial.nativename=Pànthéaon
 initial.tag=hof
 initial.tag=despawnallmobs

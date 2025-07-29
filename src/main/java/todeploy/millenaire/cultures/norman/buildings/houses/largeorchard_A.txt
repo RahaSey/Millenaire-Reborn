@@ -3,7 +3,7 @@ building.width=23
 building.icon=calva
 
 initial.startlevel=-1
-initial.nativename=Cidrerie
+initial.nativename=Prinsaeux
 initial.priority=1000
 initial.pathwidth=2
 initial.tag=nopaths

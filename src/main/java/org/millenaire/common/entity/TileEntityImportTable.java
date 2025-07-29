@@ -106,12 +106,12 @@ public class TileEntityImportTable extends TileEntity {
     return this.world.getBlockState(this.pos);
   }
   
-  public SPacketUpdateTileEntity getUpdatePacket() {
-    return new SPacketUpdateTileEntity(this.pos, 3, getUpdateTag());
+  public SPacketUpdateTileEntity func_189518_D_() {
+    return new SPacketUpdateTileEntity(this.pos, 3, func_189517_E_());
   }
   
-  public NBTTagCompound getUpdateTag() {
-    return writeToNBT(new NBTTagCompound());
+  public NBTTagCompound func_189517_E_() {
+    return write(new NBTTagCompound());
   }
   
   public int getUpgradeLevel() {
@@ -135,15 +135,15 @@ public class TileEntityImportTable extends TileEntity {
     handleUpdateTag(pkt.getNbtCompound());
   }
   
-  public void readFromNBT(NBTTagCompound compound) {
-    super.readFromNBT(compound);
+  public void read(NBTTagCompound compound) {
+    super.read(compound);
     this.buildingKey = compound.getString("buildingKey");
-    this.variation = compound.getInteger("variation");
-    this.length = compound.getInteger("length");
-    this.width = compound.getInteger("width");
-    this.upgradeLevel = compound.getInteger("upgradeLevel");
-    this.startingLevel = compound.getInteger("startingLevel");
-    this.orientation = compound.getInteger("orientation");
+    this.variation = compound.getInt("variation");
+    this.length = compound.getInt("length");
+    this.width = compound.getInt("width");
+    this.upgradeLevel = compound.getInt("upgradeLevel");
+    this.startingLevel = compound.getInt("startingLevel");
+    this.orientation = compound.getInt("orientation");
     this.exportSnow = compound.getBoolean("exportSnow");
     this.importMockBlocks = compound.getBoolean("importMockBlocks");
     this.autoconvertToPreserveGround = compound.getBoolean("autoconvertToPreserveGround");
@@ -240,20 +240,20 @@ public class TileEntityImportTable extends TileEntity {
       sendUpdates(); 
   }
   
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-    super.writeToNBT(compound);
+  public NBTTagCompound write(NBTTagCompound compound) {
+    super.write(compound);
     if (this.buildingKey != null)
-      compound.setString("buildingKey", this.buildingKey); 
-    compound.setInteger("variation", this.variation);
-    compound.setInteger("length", this.length);
-    compound.setInteger("width", this.width);
-    compound.setInteger("upgradeLevel", this.upgradeLevel);
-    compound.setInteger("startingLevel", this.startingLevel);
-    compound.setInteger("orientation", this.orientation);
-    compound.setBoolean("exportSnow", this.exportSnow);
-    compound.setBoolean("importMockBlocks", this.importMockBlocks);
-    compound.setBoolean("autoconvertToPreserveGround", this.autoconvertToPreserveGround);
-    compound.setBoolean("exportRegularChests", this.exportRegularChests);
+      compound.putString("buildingKey", this.buildingKey); 
+    compound.putInt("variation", this.variation);
+    compound.putInt("length", this.length);
+    compound.putInt("width", this.width);
+    compound.putInt("upgradeLevel", this.upgradeLevel);
+    compound.putInt("startingLevel", this.startingLevel);
+    compound.putInt("orientation", this.orientation);
+    compound.putBoolean("exportSnow", this.exportSnow);
+    compound.putBoolean("importMockBlocks", this.importMockBlocks);
+    compound.putBoolean("autoconvertToPreserveGround", this.autoconvertToPreserveGround);
+    compound.putBoolean("exportRegularChests", this.exportRegularChests);
     if (this.parentTablePos != null)
       this.parentTablePos.write(compound, "parentTablePos"); 
     return compound;

@@ -68,17 +68,17 @@ import org.millenaire.common.utilities.virtualdir.VirtualDir;
 import org.millenaire.common.world.MillWorldData;
 import org.millenaire.common.world.WorldGenVillage;
 
-@Mod(modid = "millenaire", name = "Millénaire", version = "Millénaire 8.1.1", useMetadata = true)
+@Mod(modid = "millenaire", name = "Millénaire", version = "Millénaire 8.1.2", useMetadata = true)
 public class Mill {
   public static final String MODID = "millenaire";
   
   public static final String MODNAME = "Millénaire";
   
-  public static final String VERSION_NUMBER = "8.1.1";
+  public static final String VERSION_NUMBER = "8.1.2";
   
   public static final String MINECRAFT_VERSION_NUMBER = "1.12.2";
   
-  public static final String VERSION = "Millénaire 8.1.1";
+  public static final String VERSION = "Millénaire 8.1.2";
   
   public static final Logger LOGGER = LogManager.getLogger("millenaire");
   
@@ -217,13 +217,13 @@ public class Mill {
     bar.step("Registering entities & items...");
     startupError = error;
     int id = 1;
-    EntityRegistry.registerModEntity(MillVillager.GENERIC_VILLAGER, MillVillager.EntityGenericMale.class, MillVillager.GENERIC_VILLAGER.getResourcePath(), id++, "millenaire", 128, 3, true);
-    EntityRegistry.registerModEntity(MillVillager.GENERIC_SYMM_FEMALE, MillVillager.EntityGenericSymmFemale.class, MillVillager.GENERIC_SYMM_FEMALE.getResourcePath(), id++, "millenaire", 128, 3, true);
-    EntityRegistry.registerModEntity(MillVillager.GENERIC_ASYMM_FEMALE, MillVillager.EntityGenericAsymmFemale.class, MillVillager.GENERIC_ASYMM_FEMALE.getResourcePath(), id++, "millenaire", 128, 3, true);
-    EntityRegistry.registerModEntity(EntityWallDecoration.WALL_DECORATION, EntityWallDecoration.class, EntityWallDecoration.WALL_DECORATION.getResourcePath(), id++, "millenaire", 64, 3, false);
-    EntityRegistry.registerModEntity(ENTITY_TARGETED_BLAZE, EntityTargetedBlaze.class, ENTITY_TARGETED_BLAZE.getResourcePath(), id++, "millenaire", 64, 3, true);
-    EntityRegistry.registerModEntity(ENTITY_TARGETED_WITHERSKELETON, EntityTargetedWitherSkeleton.class, ENTITY_TARGETED_WITHERSKELETON.getResourcePath(), id++, "millenaire", 64, 3, true);
-    EntityRegistry.registerModEntity(ENTITY_TARGETED_GHAST, EntityTargetedGhast.class, ENTITY_TARGETED_GHAST.getResourcePath(), id++, "millenaire", 64, 3, true);
+    EntityRegistry.registerModEntity(MillVillager.GENERIC_VILLAGER, MillVillager.EntityGenericMale.class, MillVillager.GENERIC_VILLAGER.getPath(), id++, "millenaire", 128, 3, true);
+    EntityRegistry.registerModEntity(MillVillager.GENERIC_SYMM_FEMALE, MillVillager.EntityGenericSymmFemale.class, MillVillager.GENERIC_SYMM_FEMALE.getPath(), id++, "millenaire", 128, 3, true);
+    EntityRegistry.registerModEntity(MillVillager.GENERIC_ASYMM_FEMALE, MillVillager.EntityGenericAsymmFemale.class, MillVillager.GENERIC_ASYMM_FEMALE.getPath(), id++, "millenaire", 128, 3, true);
+    EntityRegistry.registerModEntity(EntityWallDecoration.WALL_DECORATION, EntityWallDecoration.class, EntityWallDecoration.WALL_DECORATION.getPath(), id++, "millenaire", 64, 3, false);
+    EntityRegistry.registerModEntity(ENTITY_TARGETED_BLAZE, EntityTargetedBlaze.class, ENTITY_TARGETED_BLAZE.getPath(), id++, "millenaire", 64, 3, true);
+    EntityRegistry.registerModEntity(ENTITY_TARGETED_WITHERSKELETON, EntityTargetedWitherSkeleton.class, ENTITY_TARGETED_WITHERSKELETON.getPath(), id++, "millenaire", 64, 3, true);
+    EntityRegistry.registerModEntity(ENTITY_TARGETED_GHAST, EntityTargetedGhast.class, ENTITY_TARGETED_GHAST.getPath(), id++, "millenaire", 64, 3, true);
     GameRegistry.addSmelting(new ItemStack((Block)MillBlocks.STONE_DECORATION, 1, 0), new ItemStack((Block)MillBlocks.PAINTED_BRICK_WHITE, 1, 0), 1.0F);
     GameRegistry.addSmelting(new ItemStack((Item)MillItems.BEARMEAT_RAW, 1, 0), new ItemStack((Item)MillItems.BEARMEAT_COOKED, 1, 0), 1.0F);
     GameRegistry.addSmelting(new ItemStack((Item)MillItems.WOLFMEAT_RAW, 1, 0), new ItemStack((Item)MillItems.WOLFMEAT_COOKED, 1, 0), 1.0F);
@@ -233,9 +233,9 @@ public class Mill {
     loadingComplete = true;
     if (MillConfigValues.LogOther >= 1)
       if (startupError) {
-        MillLog.major(this, "Millénaire Millénaire 8.1.1 loaded unsuccessfully.");
+        MillLog.major(this, "Millénaire Millénaire 8.1.2 loaded unsuccessfully.");
       } else {
-        MillLog.major(this, "Millénaire Millénaire 8.1.1 loaded successfully.");
+        MillLog.major(this, "Millénaire Millénaire 8.1.2 loaded successfully.");
       }  
     FMLCommonHandler.instance().bus().register(new ServerTickHandler());
     FMLCommonHandler.instance().bus().register(this);

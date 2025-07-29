@@ -1,4 +1,4 @@
-native_name=Aubergiste
+native_name=Carbartchère
 gender=female
 familyNameList=family_names
 firstNameList=women_names

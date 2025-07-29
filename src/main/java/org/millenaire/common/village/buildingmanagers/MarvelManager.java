@@ -211,9 +211,9 @@ public class MarvelManager {
   }
   
   public void readFromNBT(NBTTagCompound nbttagcompound) {
-    NBTTagList nbttaglist = nbttagcompound.getTagList("marvelDonationList", 10);
+    NBTTagList nbttaglist = nbttagcompound.getList("marvelDonationList", 10);
     for (int i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       getDonationList().add(nbttagcompound1.getString("donation"));
     } 
     this.marvelComplete = nbttagcompound.getBoolean("marvelComplete");
@@ -265,14 +265,14 @@ public class MarvelManager {
   }
   
   public void update() {
-    if ((this.townHall.world.getWorldTime() + hashCode()) % 200L == 120L)
+    if ((this.townHall.world.getDayTime() + hashCode()) % 200L == 120L)
       testForCompletion(); 
     updateNightAction();
     updateDawnAction();
   }
   
   private void updateDawnAction() {
-    boolean isDawn = (this.townHall.world.getWorldTime() % 24000L > 23500L);
+    boolean isDawn = (this.townHall.world.getDayTime() % 24000L > 23500L);
     if (!isDawn) {
       this.dawnActionDone = false;
       return;
@@ -300,10 +300,10 @@ public class MarvelManager {
     NBTTagList nbttaglist = new NBTTagList();
     for (String s : getDonationList()) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("donation", s);
+      nbttagcompound1.putString("donation", s);
       nbttaglist.appendTag((NBTBase)nbttagcompound1);
     } 
     nbttagcompound.setTag("marvelDonationList", (NBTBase)nbttaglist);
-    nbttagcompound.setBoolean("marvelComplete", this.marvelComplete);
+    nbttagcompound.putBoolean("marvelComplete", this.marvelComplete);
   }
 }

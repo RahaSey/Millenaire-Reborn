@@ -10,8 +10,12 @@ building.icon=bone
 initial.startlevel=-1
 initial.nativename=Afuniaqti Tupiq
 initial.translatedname=name_en,hunter's house
-initial.priority=1000
+initial.priority=300
 initial.male=inuit_hunter
 initial.female=inuit_wife
 
 //Parameters for specific upgrades
+upgrade1.priority=80
+
+upgrade2.priority=30
+upgrade2.pathlevel=1

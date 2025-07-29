@@ -82,7 +82,7 @@ public class SpecialQuestActions {
       return; 
     if (mw.world.isDaytime())
       return; 
-    String biomeName = ((String)FIELD_BIOME_NAME.get(mw.world.getBiome(player.getPosition()))).toLowerCase();
+    String biomeName = ((String)FIELD_BIOME_NAME.get(mw.world.getBiomeGenForCoords(player.getPosition()))).toLowerCase();
     if (biomeName.equals("extreme hills"))
       biomeName = "mountain"; 
     if (!biomeName.equals(biome))
@@ -460,12 +460,12 @@ public class SpecialQuestActions {
   public static void onTick(MillWorldData mw, EntityPlayer player) {
     long startTime;
     if (mw.lastWorldUpdate > 0L) {
-      startTime = Math.max(mw.lastWorldUpdate + 1L, mw.world.getWorldTime() - 10L);
+      startTime = Math.max(mw.lastWorldUpdate + 1L, mw.world.getDayTime() - 10L);
     } else {
-      startTime = mw.world.getWorldTime();
+      startTime = mw.world.getDayTime();
     } 
     long worldTime;
-    for (worldTime = startTime; worldTime <= mw.world.getWorldTime(); worldTime++) {
+    for (worldTime = startTime; worldTime <= mw.world.getDayTime(); worldTime++) {
       if (worldTime % 250L == 0L)
         try {
           indianCQHandleContinuousExplore(mw, player, worldTime, MillConfigValues.questBiomeForest, Mill.ENTITY_ZOMBIE, 2, 15);

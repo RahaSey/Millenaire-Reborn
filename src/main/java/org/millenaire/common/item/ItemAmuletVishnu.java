@@ -31,7 +31,7 @@ public class ItemAmuletVishnu extends ItemMill {
             if (entityIn == null)
               return 0.0F; 
             world = entityIn.world;
-            if (world.getTotalWorldTime() != this.lastUpdateTick) {
+            if (world.getGameTime() != this.lastUpdateTick) {
               double level = 0.0D;
               double closestDistance = Double.MAX_VALUE;
               if (world != null && entityIn != null) {
@@ -48,7 +48,7 @@ public class ItemAmuletVishnu extends ItemMill {
                 level = (20.0D - closestDistance) / 20.0D;
               } 
               this.savedScore = (float)(level * 15.0D);
-              this.lastUpdateTick = world.getTotalWorldTime();
+              this.lastUpdateTick = world.getGameTime();
               return this.savedScore;
             } 
             return this.savedScore;

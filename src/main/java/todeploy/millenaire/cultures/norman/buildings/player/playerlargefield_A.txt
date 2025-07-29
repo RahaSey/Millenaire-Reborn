@@ -10,7 +10,7 @@ building.icon=fence_oak
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Grand Terrain
+initial.nativename=Grànd Couogn d'Terre
 initial.priority=1000000
 initial.pathlevel=1
 

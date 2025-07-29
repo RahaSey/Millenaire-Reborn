@@ -360,7 +360,7 @@ tile.millenaire.sapling_sakura.name=Sakura Tree Sapling
 tile.millenaire.sakura_leaves.name=Sakura Tree Leaves
 item.millenaire.cherries.name=Cherries
 item.millenaire.cherry_blossom.name=Cherry Blossom
-tile.millenaire.feathered_serpent.name=Feathered Serpent
+#tile.millenaire.feathered_serpent.name=Feathered Serpent
 
 item.millenaire.yogurt.name=Yogurt
 item.millenaire.ayran.name=Ayran
@@ -522,12 +522,12 @@ tile.millenaire.red_tiles_slab.name=Red Tile Slab
 tile.millenaire.wooden_bars_dark.name=Carved Dark Window
 
 # Mayan refresh, mc++
-tile.millenaire.honey_block.name=Beehive
+tile.millenaire.beehive.name=Beehive
 tile.millenaire.lightbluebrick_block.name=Light Blue Concrete Brick
 tile.millenaire.lightbluechiseled_block.name=Light Blue Chiseled Concrete
-tile.millenaire.mayan_carpet.name=Fancy Rug
-tile.millenaire.mayan_carpet_thatch.name=Thatch Rug
-tile.millenaire.mayan_calendar.name=Mayan Calendar
+#tile.millenaire.mayan_carpet.name=Fancy Rug
+#tile.millenaire.mayan_carpet_thatch.name=Thatch Rug
+#tile.millenaire.mayan_calendar.name=Mayan Calendar
 
 advancements.firstcontact.name=Millénaire
 advancements.firstcontact.desc=Meet a Millénaire villager

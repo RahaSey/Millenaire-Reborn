@@ -86,15 +86,15 @@ public class MockBlockSoil extends Block implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((CropType)state.getValue((IProperty)CROPTYPE)).getMetadata();
+    return ((CropType)state.get((IProperty)CROPTYPE)).getMetadata();
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((CropType)state.getValue((IProperty)CROPTYPE)).meta;
+    return ((CropType)state.get((IProperty)CROPTYPE)).meta;
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((CropType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)CROPTYPE)).getName();
+    return "tile.millenaire." + getRegistryName().getPath() + "." + ((CropType)getStateFromMeta(stack.getMetadata()).get((IProperty)CROPTYPE)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -102,7 +102,7 @@ public class MockBlockSoil extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (CropType enumtype : CropType.values())
       items.add(new ItemStack(this, 1, enumtype.getMetadata())); 
   }

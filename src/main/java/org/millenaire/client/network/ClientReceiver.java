@@ -53,7 +53,7 @@ public class ClientReceiver {
       return;
     } 
     final PacketBuffer data = new PacketBuffer(event.getPacket().payload());
-    Minecraft.getMinecraft().addScheduledTask(new Runnable() {
+    Minecraft.getInstance().addScheduledTask(new Runnable() {
           public void run() {
             ClientReceiver.this.processPacket(data);
           }
@@ -138,19 +138,19 @@ public class ClientReceiver {
       if (contentType == 1) {
         BuildingPlanSet planSet = culture.getBuildingPlanSet(contentKey);
         if (planSet != null)
-          Minecraft.getMinecraft().getToastGui().add((IToast)new UnlockingToast(planSet, nbUnlocked, nbTotal)); 
+          Minecraft.getInstance().getToastGui().add((IToast)new UnlockingToast(planSet, nbUnlocked, nbTotal)); 
       } else if (contentType == 4) {
         TradeGood tradeGood = culture.getTradeGood(contentKey);
         if (tradeGood != null)
-          Minecraft.getMinecraft().getToastGui().add((IToast)new UnlockingToast(tradeGood, nbUnlocked, nbTotal)); 
+          Minecraft.getInstance().getToastGui().add((IToast)new UnlockingToast(tradeGood, nbUnlocked, nbTotal)); 
       } else if (contentType == 2) {
         VillageType villageType = culture.getVillageType(contentKey);
         if (villageType != null)
-          Minecraft.getMinecraft().getToastGui().add((IToast)new UnlockingToast(villageType, nbUnlocked, nbTotal)); 
+          Minecraft.getInstance().getToastGui().add((IToast)new UnlockingToast(villageType, nbUnlocked, nbTotal)); 
       } else if (contentType == 3) {
         VillagerType villagerType = culture.getVillagerType(contentKey);
         if (villagerType != null)
-          Minecraft.getMinecraft().getToastGui().add((IToast)new UnlockingToast(villagerType, nbUnlocked, nbTotal)); 
+          Minecraft.getInstance().getToastGui().add((IToast)new UnlockingToast(villagerType, nbUnlocked, nbTotal)); 
       }  
   }
   
@@ -170,7 +170,7 @@ public class ClientReceiver {
             tradeGoods.add(tradeGood); 
         } 
         if (tradeGoods.size() > 0)
-          Minecraft.getMinecraft().getToastGui().add((IToast)new UnlockingToast(tradeGoods, nbUnlocked, nbTotal)); 
+          Minecraft.getInstance().getToastGui().add((IToast)new UnlockingToast(tradeGoods, nbUnlocked, nbTotal)); 
       }  
   }
   

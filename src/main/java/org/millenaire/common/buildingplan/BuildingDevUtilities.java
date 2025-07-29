@@ -351,7 +351,7 @@ public class BuildingDevUtilities {
     picts.put(InvItem.createInvItem(Blocks.LAPIS_ORE, 0), "Ore_Lapis_Lazuli.png");
     picts.put(InvItem.createInvItem(Blocks.DIAMOND_ORE, 0), "Ore_Diamond.png");
     picts.put(InvItem.createInvItem(Blocks.LIT_PUMPKIN, 0), "Jack-O-Lantern.png");
-    picts.put(InvItem.createInvItem(Blocks.MELON_BLOCK, 0), "Melon (Block).png");
+    picts.put(InvItem.createInvItem(Blocks.MELON, 0), "Melon (Block).png");
     picts.put(InvItem.createInvItem(Blocks.LAPIS_BLOCK, 0), "Lapis_Lazuli_(Block).png");
     picts.put(InvItem.createInvItem(Blocks.UNLIT_REDSTONE_TORCH, 0), "Redstone_Torch.png");
     picts.put(InvItem.createInvItem(Blocks.BEDROCK, 0), "Bedrock.png");

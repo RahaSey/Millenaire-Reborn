@@ -67,7 +67,7 @@ public class GuiTrade extends GuiContainer {
     super((Container)new ContainerTrade(player, building));
     this.drawSlotInventory = MillCommonUtilities.getDrawSlotInventoryMethod(this);
     this.drawItemStackInventory = MillCommonUtilities.getDrawItemStackInventoryMethod(this);
-    this.container = (ContainerTrade)this.inventorySlots;
+    this.container = (ContainerTrade)this.container;
     this.building = building;
     this.player = player;
     this.profile = building.mw.getProfile(player);
@@ -81,7 +81,7 @@ public class GuiTrade extends GuiContainer {
     super((Container)new ContainerTrade(player, merchant));
     this.drawSlotInventory = MillCommonUtilities.getDrawSlotInventoryMethod(this);
     this.drawItemStackInventory = MillCommonUtilities.getDrawItemStackInventoryMethod(this);
-    this.container = (ContainerTrade)this.inventorySlots;
+    this.container = (ContainerTrade)this.container;
     this.merchant = merchant;
     this.player = player;
     this.profile = merchant.mw.getProfile(player);
@@ -99,10 +99,10 @@ public class GuiTrade extends GuiContainer {
       } else {
         culture = this.merchant.getCulture();
       } 
-      GuiTravelBook guiTravelBook = new GuiTravelBook((EntityPlayer)(Minecraft.getMinecraft()).player);
+      GuiTravelBook guiTravelBook = new GuiTravelBook((EntityPlayer)(Minecraft.getInstance()).player);
       guiTravelBook.setCallingScreen((GuiScreen)this);
       guiTravelBook.jumpToDetails(culture, GuiText.GuiButtonReference.RefType.CULTURE, null, false);
-      Minecraft.getMinecraft().displayGuiScreen((GuiScreen)guiTravelBook);
+      Minecraft.getInstance().displayGuiScreen((GuiScreen)guiTravelBook);
       return;
     } 
     super.actionPerformed(button);
@@ -133,18 +133,18 @@ public class GuiTrade extends GuiContainer {
   
   protected void drawGuiContainerForegroundLayer(int x, int y) {
     if (this.building != null) {
-      this.fontRenderer.drawString(this.building.getNativeBuildingName(), 8, 6, 4210752);
-      this.fontRenderer.drawString(LanguageUtilities.string("ui.wesell") + ":", 8, 22, 4210752);
-      this.fontRenderer.drawString(LanguageUtilities.string("ui.webuy") + ":", 8, 76, 4210752);
+      this.fontRendererObj.drawString(this.building.getNativeBuildingName(), 8, 6, 4210752);
+      this.fontRendererObj.drawString(LanguageUtilities.string("ui.wesell") + ":", 8, 22, 4210752);
+      this.fontRendererObj.drawString(LanguageUtilities.string("ui.webuy") + ":", 8, 76, 4210752);
     } else {
-      this.fontRenderer.drawString(this.merchant.getName() + ": " + this.merchant.getNativeOccupationName(), 8, 6, 4210752);
-      this.fontRenderer.drawString(LanguageUtilities.string("ui.isell") + ":", 8, 22, 4210752);
+      this.fontRendererObj.drawString(this.merchant.func_70005_c_() + ": " + this.merchant.getNativeOccupationName(), 8, 6, 4210752);
+      this.fontRendererObj.drawString(LanguageUtilities.string("ui.isell") + ":", 8, 22, 4210752);
     } 
-    this.fontRenderer.drawString(LanguageUtilities.string("ui.inventory"), 44, this.ySize - 96 + 2, 4210752);
+    this.fontRendererObj.drawString(LanguageUtilities.string("ui.inventory"), 44, this.ySize - 96 + 2, 4210752);
   }
   
   public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-    drawDefaultBackground();
+    func_146276_q_();
     drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
     GlStateManager.disableRescaleNormal();
     RenderHelper.disableStandardItemLighting();
@@ -167,8 +167,8 @@ public class GuiTrade extends GuiContainer {
     int l = 240;
     OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-    for (int i1 = 0; i1 < this.inventorySlots.inventorySlots.size(); i1++) {
-      Slot slot = this.inventorySlots.inventorySlots.get(i1);
+    for (int i1 = 0; i1 < this.container.inventorySlots.size(); i1++) {
+      Slot slot = this.container.inventorySlots.get(i1);
       if (slot.isEnabled())
         try {
           this.drawSlotInventory.invoke(this, new Object[] { slot });
@@ -280,14 +280,14 @@ public class GuiTrade extends GuiContainer {
     if (dy >= 122 && dy <= 138)
       if (dx >= 8 && dx <= 24) {
         String toolTip = LanguageUtilities.string("ui.trade_buying");
-        int stringlength = this.fontRenderer.getStringWidth(toolTip);
+        int stringlength = this.fontRendererObj.getStringWidth(toolTip);
         drawGradientRect(mouseX + 5, mouseY - 3, mouseX + stringlength + 10, mouseY + 8 + 3, -1073741824, -1073741824);
-        this.fontRenderer.drawString(toolTip, mouseX + 8, mouseY, 16777215);
+        this.fontRendererObj.drawString(toolTip, mouseX + 8, mouseY, 16777215);
       } else if (dx >= 24 && dx <= 40) {
         String toolTip = LanguageUtilities.string("ui.trade_donation");
-        int stringlength = this.fontRenderer.getStringWidth(toolTip);
+        int stringlength = this.fontRendererObj.getStringWidth(toolTip);
         drawGradientRect(mouseX + 5, mouseY - 3, mouseX + stringlength + 10, mouseY + 8 + 3, -1073741824, -1073741824);
-        this.fontRenderer.drawString(toolTip, mouseX + 8, mouseY, 16777215);
+        this.fontRendererObj.drawString(toolTip, mouseX + 8, mouseY, 16777215);
       }  
     renderHoveredToolTip(mouseX, mouseY);
   }
@@ -308,8 +308,8 @@ public class GuiTrade extends GuiContainer {
     super.handleMouseClick(slotIn, slotId, mouseButton, type);
   }
   
-  public void initGui() {
-    super.initGui();
+  public void func_73866_w_() {
+    super.func_73866_w_();
     if (this.building != null) {
       int xStart = (this.width - this.xSize) / 2;
       int yStart = (this.height - this.ySize) / 2;
@@ -364,7 +364,7 @@ public class GuiTrade extends GuiContainer {
   protected void renderToolTipCustom(ItemStack stack, int x, int y, List<String> customToolTip) {
     FontRenderer font = stack.getItem().getFontRenderer(stack);
     GuiUtils.preItemToolTip(stack);
-    drawHoveringText(customToolTip, x, y, (font == null) ? this.fontRenderer : font);
+    drawHoveringText(customToolTip, x, y, (font == null) ? this.fontRendererObj : font);
     GuiUtils.postItemToolTip();
   }
   

@@ -1,4 +1,4 @@
-native_name=Hôtesse
+native_name=Hôtaesse
 gender=female
 familyNameList=family_names
 firstNameList=women_names

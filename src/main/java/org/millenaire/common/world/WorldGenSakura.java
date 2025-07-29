@@ -79,7 +79,7 @@ public class WorldGenSakura extends WorldGenAbstractTree {
               if (MillCommonUtilities.randomInt(100) < chanceOn100) {
                 BlockPos blockpos = new BlockPos(xPos, yPos, zPos);
                 state = worldIn.getBlockState(blockpos);
-                if (state.getBlock().isAir(state, (IBlockAccess)worldIn, blockpos) || state.getBlock().isLeaves(state, (IBlockAccess)worldIn, blockpos) || state.getMaterial() == Material.VINE)
+                if (state.getBlock().isAir(state, (IBlockAccess)worldIn, blockpos) || state.getBlock().isLeaves(state, (IBlockAccess)worldIn, blockpos) || state.getMaterial() == Material.TALL_PLANTS)
                   setBlockAndNotifyAdequately(worldIn, blockpos, this.metaLeaves); 
               } 
             } 
@@ -88,7 +88,7 @@ public class WorldGenSakura extends WorldGenAbstractTree {
         for (int j3 = 0; j3 < treeHeight; j3++) {
           BlockPos upN = position.up(j3);
           state = worldIn.getBlockState(upN);
-          if (state.getBlock().isAir(state, (IBlockAccess)worldIn, upN) || state.getBlock().isLeaves(state, (IBlockAccess)worldIn, upN) || state.getMaterial() == Material.VINE)
+          if (state.getBlock().isAir(state, (IBlockAccess)worldIn, upN) || state.getBlock().isLeaves(state, (IBlockAccess)worldIn, upN) || state.getMaterial() == Material.TALL_PLANTS)
             setBlockAndNotifyAdequately(worldIn, position.up(j3), this.metaWood); 
         } 
         for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL.facings()) {
@@ -101,8 +101,8 @@ public class WorldGenSakura extends WorldGenAbstractTree {
             for (int i = 0; i < branchMaxY; i++) {
               int i2 = position.getY() + i;
               if (i >= branchMinY && horizontalOffset > 0) {
-                xPos += enumfacing.getFrontOffsetX();
-                zPos += enumfacing.getFrontOffsetZ();
+                xPos += enumfacing.getXOffset();
+                zPos += enumfacing.getZOffset();
                 horizontalOffset--;
               } 
               BlockPos blockpos = new BlockPos(xPos, i2, zPos);

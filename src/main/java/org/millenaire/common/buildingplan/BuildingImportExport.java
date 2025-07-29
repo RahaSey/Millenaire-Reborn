@@ -209,7 +209,7 @@ public class BuildingImportExport {
           if (block != Blocks.AIR)
             blockFound = true; 
           if (block instanceof BlockFlowerPot)
-            meta = ((BlockFlowerPot.EnumFlowerType)WorldUtilities.getBlockState(world, p).getActualState((IBlockAccess)world, new BlockPos(p.x, p.y, p.z)).getValue((IProperty)BlockFlowerPot.CONTENTS)).ordinal(); 
+            meta = ((BlockFlowerPot.EnumFlowerType)WorldUtilities.getBlockState(world, p).getActualState((IBlockAccess)world, new BlockPos(p.x, p.y, p.z)).get((IProperty)BlockFlowerPot.CONTENTS)).ordinal(); 
           PointType pt = reverseColourPoints.get(Integer.valueOf(getPointHash(block, meta)));
           if (pt != null) {
             if (exportSnow || pt.getBlock() != Blocks.SNOW_LAYER) {

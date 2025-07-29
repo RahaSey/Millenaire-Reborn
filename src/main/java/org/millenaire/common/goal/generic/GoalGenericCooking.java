@@ -41,7 +41,7 @@ public class GoalGenericCooking extends GoalGeneric {
           TileEntityFurnace furnace = p.getFurnace(villager.world);
           if (furnace != null) {
             if (countGoods >= this.minimumToCook && (furnace.getStackInSlot(0) == ItemStack.EMPTY || furnace.getStackInSlot(0).getItem() == Items.AIR || (furnace
-              .getStackInSlot(0).getItem() == this.itemToCook.getItem() && furnace.getStackInSlot(0).getItemDamage() == this.itemToCook.meta && furnace
+              .getStackInSlot(0).getItem() == this.itemToCook.getItem() && furnace.getStackInSlot(0).getDamage() == this.itemToCook.meta && furnace
               .getStackInSlot(0).getCount() < 32)))
               return packDest(p, dest); 
             if (furnace.getStackInSlot(2) != null && furnace.getStackInSlot(2).getCount() >= this.minimumToCook)
@@ -57,7 +57,7 @@ public class GoalGenericCooking extends GoalGeneric {
               for (slotNb = 0; slotNb < 3; slotNb++) {
                 ItemStack stack = firepit.inputs.getStackInSlot(slotNb);
                 if (countGoods >= this.minimumToCook && (stack
-                  .isEmpty() || (stack.getItem() == this.itemToCook.getItem() && stack.getItemDamage() == this.itemToCook.meta && stack.getCount() < 32)))
+                  .isEmpty() || (stack.getItem() == this.itemToCook.getItem() && stack.getDamage() == this.itemToCook.meta && stack.getCount() < 32)))
                   return packDest(p, dest); 
               } 
               for (slotNb = 0; slotNb < 3; slotNb++) {
@@ -115,7 +115,7 @@ public class GoalGenericCooking extends GoalGeneric {
       ItemStack stack = firepit.inputs.getStackInSlot(slotNb);
       int countGoods = dest.countGoods(this.itemToCook) + villager.countInv(this.itemToCook);
       if ((stack.isEmpty() && countGoods >= this.minimumToCook) || (
-        !stack.isEmpty() && stack.getItem() == this.itemToCook.getItem() && stack.getItemDamage() == this.itemToCook.meta && stack.getCount() < 64 && countGoods > 0))
+        !stack.isEmpty() && stack.getItem() == this.itemToCook.getItem() && stack.getDamage() == this.itemToCook.meta && stack.getCount() < 64 && countGoods > 0))
         if (stack.isEmpty()) {
           int nb = Math.min(64, countGoods);
           firepit.inputs.setStackInSlot(slotNb, new ItemStack(this.itemToCook.getItem(), nb, this.itemToCook.meta));
@@ -132,7 +132,7 @@ public class GoalGenericCooking extends GoalGeneric {
       ItemStack stack = firepit.outputs.getStackInSlot(slotNb);
       if (!stack.isEmpty()) {
         Item item = stack.getItem();
-        int meta = stack.getItemDamage();
+        int meta = stack.getDamage();
         dest.storeGoods(item, meta, stack.getCount());
         firepit.outputs.setStackInSlot(slotNb, ItemStack.EMPTY);
       } 
@@ -142,7 +142,7 @@ public class GoalGenericCooking extends GoalGeneric {
   private void performAction_furnace(Building dest, TileEntityFurnace furnace, MillVillager villager) {
     int countGoods = dest.countGoods(this.itemToCook) + villager.countInv(this.itemToCook);
     if ((furnace.getStackInSlot(0).isEmpty() && countGoods >= this.minimumToCook) || (!furnace.getStackInSlot(0).isEmpty() && furnace.getStackInSlot(0).getItem() == this.itemToCook.getItem() && furnace
-      .getStackInSlot(0).getItemDamage() == this.itemToCook.meta && furnace.getStackInSlot(0).getCount() < 64 && countGoods > 0))
+      .getStackInSlot(0).getDamage() == this.itemToCook.meta && furnace.getStackInSlot(0).getCount() < 64 && countGoods > 0))
       if (furnace.getStackInSlot(0).isEmpty()) {
         int nb = Math.min(64, countGoods);
         furnace.setInventorySlotContents(0, new ItemStack(this.itemToCook.getItem(), nb, this.itemToCook.meta));
@@ -156,7 +156,7 @@ public class GoalGenericCooking extends GoalGeneric {
       }  
     if (!furnace.getStackInSlot(2).isEmpty()) {
       Item item = furnace.getStackInSlot(2).getItem();
-      int meta = furnace.getStackInSlot(2).getItemDamage();
+      int meta = furnace.getStackInSlot(2).getDamage();
       dest.storeGoods(item, meta, furnace.getStackInSlot(2).getCount());
       furnace.setInventorySlotContents(2, ItemStack.EMPTY);
     } 

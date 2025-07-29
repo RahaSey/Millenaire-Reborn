@@ -178,7 +178,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     villager.familyName = villagerRecord.familyName;
     villager.texture = villagerRecord.texture;
     villager.setHealth(villager.getMaxHealth());
-    villager.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((villagerRecord.getType()).health);
+    villager.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((villagerRecord.getType()).health);
     villager.updateClothTexturePath();
     return villager;
   }
@@ -210,8 +210,8 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     villager.familyName = villagerRecord.familyName;
     villager.texture = villagerRecord.texture;
     villager.setHealth(villager.getMaxHealth());
-    villager.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((villagerRecord.getType()).health);
-    villager.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((villagerRecord.getType()).baseSpeed);
+    villager.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue((villagerRecord.getType()).health);
+    villager.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((villagerRecord.getType()).baseSpeed);
     villager.updateClothTexturePath();
     if (!respawn)
       for (InvItem item : (villagerRecord.getType()).startingInv.keySet())
@@ -392,10 +392,10 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     this.inventory = new HashMap<>();
     setHealth(getMaxHealth());
     this.isImmuneToFire = true;
-    this.client_lastupdated = world.getWorldTime();
+    this.client_lastupdated = world.getDayTime();
     if (!world.isRemote)
       this.pathPlannerJPS = new AStarPathPlannerJPS(world, this, MillConfigValues.jpsPathing); 
-    getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
     if (MillConfigValues.LogVillagerSpawn >= 3) {
       Exception e = new Exception();
       MillLog.printException("Creating villager " + this + " in world: " + world, e);
@@ -433,10 +433,10 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     updateClothTexturePath();
   }
   
-  protected void applyEntityAttributes() {
-    super.applyEntityAttributes();
-    getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-    getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(computeMaxHealth());
+  protected void registerAttributes() {
+    super.registerAttributes();
+    getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+    getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(computeMaxHealth());
   }
   
   private void applyPathCalculatedSinceLastTick() {
@@ -465,7 +465,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
           this.attackTime--;
         }  
     } else {
-      if (this.attackTime <= 0 && distance < 2.0D && (entity.getEntityBoundingBox()).maxY > (getEntityBoundingBox()).minY && (entity.getEntityBoundingBox()).minY < (getEntityBoundingBox()).maxY) {
+      if (this.attackTime <= 0 && distance < 2.0D && (entity.getBoundingBox()).maxY > (getBoundingBox()).minY && (entity.getBoundingBox()).minY < (getBoundingBox()).maxY) {
         this.attackTime = 20;
         swingArm(EnumHand.MAIN_HAND);
         attackEntity_testHiredGoon(entity);
@@ -495,7 +495,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (entity != null && 
       entity instanceof EntityLivingBase)
       if (entity instanceof EntityPlayer) {
-        if (!((EntityPlayer)entity).isSpectator() && !((EntityPlayer)entity).isCreative()) {
+        if (!((EntityPlayer)entity).isSpectator() && !((EntityPlayer)entity).func_184812_l_()) {
           this.lastAttackByPlayer = true;
           EntityPlayer player = (EntityPlayer)entity;
           if (!this.isRaider) {
@@ -541,7 +541,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
     EntityArrow entityarrow = getArrow(distanceFactor);
     double d0 = target.posX - this.posX;
-    double d1 = (target.getEntityBoundingBox()).minY + (target.height / 3.0F) - entityarrow.posY;
+    double d1 = (target.getBoundingBox()).minY + (target.height / 3.0F) - entityarrow.posY;
     double d2 = target.posZ - this.posZ;
     double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
     float speedFactor = 1.0F;
@@ -558,15 +558,15 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       } 
     } 
     entityarrow.setDamage(entityarrow.getDamage() + damageBonus);
-    entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (14 - this.world.getDifficulty().ordinal() * 4) * speedFactor);
+    entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (14 - this.world.getDifficulty().getId() * 4) * speedFactor);
     playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (getRNG().nextFloat() * 0.4F + 0.8F));
-    this.world.spawnEntity((Entity)entityarrow);
+    this.world.addEntity0((Entity)entityarrow);
   }
   
   public boolean attemptChildConception() {
     int nbChildren = 0;
     for (MillVillager villager : getHouse().getKnownVillagers()) {
-      if (villager.isChild())
+      if (villager.func_70631_g_())
         nbChildren++; 
     } 
     if (nbChildren > 1) {
@@ -596,7 +596,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     boolean manFound = false;
     for (Entity ent : entities) {
       MillVillager villager = (MillVillager)ent;
-      if (villager.gender == 1 && !villager.isChild())
+      if (villager.gender == 1 && !villager.func_70631_g_())
         manFound = true; 
     } 
     if (!manFound)
@@ -688,7 +688,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       return;
     } 
     if (getGoalDestEntity() != null)
-      if ((getGoalDestEntity()).isDead) {
+      if ((getGoalDestEntity()).removed) {
         setGoalDestEntity((Entity)null);
         setPathDestPoint((Point)null, 0);
       } else {
@@ -709,12 +709,12 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     } else if (target != null && target.horizontalDistanceTo((Entity)this) < goal.range(this)) {
       if (this.actionStart == 0L) {
         this.stopMoving = goal.stopMovingWhileWorking();
-        this.actionStart = this.world.getWorldTime();
+        this.actionStart = this.world.getDayTime();
         this.shouldLieDown = goal.shouldVillagerLieDown();
         if (MillConfigValues.LogGeneralAI >= 2 && this.extraLog)
           MillLog.minor(this, "Starting action: " + this.actionStart); 
       } 
-      if (this.world.getWorldTime() - this.actionStart >= goal.actionDuration(this)) {
+      if (this.world.getDayTime() - this.actionStart >= goal.actionDuration(this)) {
         if (goal.performAction(this)) {
           clearGoal();
           this.goalKey = goal.nextGoal(this);
@@ -729,7 +729,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
           this.stopMoving = goal.stopMovingWhileWorking();
         } 
         this.actionStart = 0L;
-        this.goalStarted = this.world.getWorldTime();
+        this.goalStarted = this.world.getDayTime();
       } 
     } else {
       this.stopMoving = false;
@@ -738,10 +738,10 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (!continuingGoal)
       return; 
     if (goal.isStillValid(this)) {
-      if (this.world.getWorldTime() - this.goalStarted > goal.stuckDelay(this)) {
+      if (this.world.getDayTime() - this.goalStarted > goal.stuckDelay(this)) {
         boolean actionDone = goal.stuckAction(this);
         if (actionDone)
-          this.goalStarted = this.world.getWorldTime(); 
+          this.goalStarted = this.world.getDayTime(); 
         if (goal.isStillValid(this)) {
           this.allowRandomMoves = goal.allowRandomMoves();
           if (this.stopMoving) {
@@ -776,7 +776,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   private boolean closeFenceGate(int i, int j, int k) {
     Point p = new Point(i, j, k);
     IBlockState state = p.getBlockActualState(this.world);
-    if (BlockItemUtilities.isFenceGate(state.getBlock()) && ((Boolean)state.getValue((IProperty)BlockFenceGate.OPEN)).booleanValue()) {
+    if (BlockItemUtilities.isFenceGate(state.getBlock()) && ((Boolean)state.get((IProperty)BlockFenceGate.OPEN)).booleanValue()) {
       p.setBlockState(this.world, state.withProperty((IProperty)BlockFenceGate.OPEN, Boolean.valueOf(false)));
       return true;
     } 
@@ -800,7 +800,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   public float computeMaxHealth() {
     if (this.vtype == null || getRecord() == null)
       return 40.0F; 
-    if (isChild())
+    if (func_70631_g_())
       return (10 + getSize()); 
     return this.vtype.health;
   }
@@ -899,7 +899,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       for (int i = 0; i < list.size(); i++) {
         if (((Entity)list.get(i)).getClass() == EntityItem.class) {
           EntityItem entity = (EntityItem)list.get(i);
-          if (!entity.isDead)
+          if (!entity.removed)
             for (Item id : items) {
               if (id == entity.getItem().getItem())
                 count++; 
@@ -915,10 +915,10 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (this.hiredBy != null) {
       EntityPlayer owner = this.world.getPlayerEntityByName(this.hiredBy);
       if (owner != null)
-        ServerSender.sendTranslatedSentence(owner, '4', "hire.hiredied", new String[] { getName() }); 
+        ServerSender.sendTranslatedSentence(owner, '4', "hire.hiredied", new String[] { func_70005_c_() }); 
     } 
     this.mw.clearVillagerOfId(getVillagerId());
-    super.setDead();
+    super.remove();
   }
   
   public void despawnVillagerSilent() {
@@ -927,7 +927,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       MillLog.printException("Despawning villager: " + this, e);
     } 
     this.mw.clearVillagerOfId(getVillagerId());
-    super.setDead();
+    super.remove();
   }
   
   public void detrampleCrops() {
@@ -955,14 +955,14 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   public void faceEntity(Entity par1Entity, float par2, float par3) {}
   
   public void faceEntityMill(Entity entityIn, float par2, float par3) {
-    getLookHelper().setLookPositionWithEntity(entityIn, par2, par3);
+    getLookController().setLookPositionWithEntity(entityIn, par2, par3);
   }
   
   public void facePoint(Point p, float par2, float par3) {
     double x = p.x + 0.5D;
     double z = p.z + 0.5D;
     double y = p.y + 1.0D;
-    getLookHelper().setLookPosition(x, y, z, 10.0F, getVerticalFaceSpeed());
+    getLookController().setLookPosition(x, y, z, 10.0F, getVerticalFaceSpeed());
   }
   
   private void foreignMerchantUpdate() {
@@ -1018,7 +1018,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     Block block = WorldUtilities.getBlock(this.world, ref);
     if (block instanceof net.minecraft.block.BlockBed) {
       IBlockState state = ref.getBlockActualState(this.world);
-      EnumFacing side = (EnumFacing)state.getValue((IProperty)BlockHorizontal.FACING);
+      EnumFacing side = (EnumFacing)state.get((IProperty)BlockHorizontal.HORIZONTAL_FACING);
       if (side == EnumFacing.SOUTH)
         return 0.0F; 
       if (side == EnumFacing.NORTH)
@@ -1160,7 +1160,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       return ""; 
     if (!getCulture().canReadVillagerNames())
       return ""; 
-    if (isChild() && getSize() == 20)
+    if (func_70631_g_() && getSize() == 20)
       return getCulture().getCultureString("villager." + this.vtype.altkey); 
     return getCulture().getCultureString("villager." + this.vtype.key);
   }
@@ -1172,7 +1172,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (speech != null) {
       int duration = 10 + speech.length() / 5;
       duration = Math.min(duration, 30);
-      if (this.speech_started + (20 * duration) < this.world.getWorldTime())
+      if (this.speech_started + (20 * duration) < this.world.getDayTime())
         return null; 
     } 
     return speech;
@@ -1297,14 +1297,14 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     return this.vtype.maleChild;
   }
   
-  public String getName() {
+  public String func_70005_c_() {
     return this.firstName + " " + this.familyName;
   }
   
   public String getNameKey() {
     if (this.vtype == null || getRecord() == null)
       return ""; 
-    if (isChild() && getSize() == 20)
+    if (func_70631_g_() && getSize() == 20)
       return this.vtype.altkey; 
     return this.vtype.key;
   }
@@ -1312,7 +1312,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   public String getNativeOccupationName() {
     if (this.vtype == null)
       return null; 
-    if (isChild() && getSize() == 20)
+    if (func_70631_g_() && getSize() == 20)
       return this.vtype.altname; 
     return this.vtype.name;
   }
@@ -1324,7 +1324,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (speech != null) {
       int duration = 10 + speech.length() / 5;
       duration = Math.min(duration, 30);
-      if (this.speech_started + (20 * duration) < this.world.getWorldTime())
+      if (this.speech_started + (20 * duration) < this.world.getDayTime())
         return null; 
     } 
     return speech;
@@ -1341,7 +1341,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   }
   
   public PathPoint getPathPointPos() {
-    return new PathPoint(MathHelper.floor((getEntityBoundingBox()).minX), MathHelper.floor((getEntityBoundingBox()).minY), MathHelper.floor((getEntityBoundingBox()).minZ));
+    return new PathPoint(MathHelper.floor((getBoundingBox()).minX), MathHelper.floor((getBoundingBox()).minY), MathHelper.floor((getBoundingBox()).minZ));
   }
   
   public Point getPos() {
@@ -1371,10 +1371,10 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   }
   
   public MillVillager getSpouse() {
-    if (getHouse() == null || isChild())
+    if (getHouse() == null || func_70631_g_())
       return null; 
     for (MillVillager v : getHouse().getKnownVillagers()) {
-      if (!v.isChild() && v.gender != this.gender)
+      if (!v.func_70631_g_() && v.gender != this.gender)
         return v; 
     } 
     return null;
@@ -1460,11 +1460,11 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (this.doorToClose != null)
       if (this.pathEntity == null || this.pathEntity.getCurrentPathLength() == 0 || (this.pathEntity.getPastTargetPathPoint(2) != null && this.doorToClose.sameBlock(this.pathEntity.getPastTargetPathPoint(2))))
         if (BlockItemUtilities.isWoodenDoor(getBlock(this.doorToClose))) {
-          if (((Boolean)this.doorToClose.getBlockActualState(this.world).getValue((IProperty)BlockDoor.OPEN)).booleanValue())
+          if (((Boolean)this.doorToClose.getBlockActualState(this.world).get((IProperty)BlockDoor.OPEN)).booleanValue())
             toggleDoor(this.doorToClose); 
           for (Point nearbyDoor : new Point[] { this.doorToClose.getNorth(), this.doorToClose.getSouth(), this.doorToClose.getEast(), this.doorToClose.getWest() }) {
             if (BlockItemUtilities.isWoodenDoor(getBlock(nearbyDoor)) && (
-              (Boolean)nearbyDoor.getBlockActualState(this.world).getValue((IProperty)BlockDoor.OPEN)).booleanValue())
+              (Boolean)nearbyDoor.getBlockActualState(this.world).get((IProperty)BlockDoor.OPEN)).booleanValue())
               toggleDoor(nearbyDoor); 
           } 
           this.doorToClose = null;
@@ -1489,7 +1489,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       } 
       if (p != null) {
         Point point = new Point(p);
-        if (!((Boolean)point.getBlockActualState(this.world).getValue((IProperty)BlockDoor.OPEN)).booleanValue())
+        if (!((Boolean)point.getBlockActualState(this.world).get((IProperty)BlockDoor.OPEN)).booleanValue())
           toggleDoor(new Point(p)); 
         this.doorToClose = new Point(p);
       } else {
@@ -1530,14 +1530,14 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         IBlockState blockState = point.getBlockActualState(this.world);
         if (blockState.getBlock() instanceof BlockLeaves) {
           if (blockState.getBlock() == Blocks.LEAVES || blockState.getBlock() == Blocks.LEAVES2) {
-            if (((Boolean)blockState.getValue((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
+            if (((Boolean)blockState.get((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
               WorldUtilities.setBlock(this.world, point, Blocks.AIR, true, true); 
             continue;
           } 
           if (blockState.getBlock() instanceof org.millenaire.common.block.BlockFruitLeaves)
             continue; 
           if (BlockStateUtilities.hasPropertyByName(blockState, "decayable")) {
-            if (((Boolean)blockState.getValue((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
+            if (((Boolean)blockState.get((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
               WorldUtilities.setBlock(this.world, point, Blocks.AIR, true, true); 
             continue;
           } 
@@ -1594,7 +1594,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
           } 
         } 
       } else {
-        ServerSender.sendTranslatedSentence(entityplayer, 'f', "ui.sellerboycott", new String[] { getName() });
+        ServerSender.sendTranslatedSentence(entityplayer, 'f', "ui.sellerboycott", new String[] { func_70005_c_() });
         return false;
       } 
     } 
@@ -1609,10 +1609,10 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         } 
       } else {
         if (!(getTownHall()).chestLocked) {
-          ServerSender.sendTranslatedSentence(entityplayer, 'f', "ui.sellernotcurrently possible", new String[] { getName() });
+          ServerSender.sendTranslatedSentence(entityplayer, 'f', "ui.sellernotcurrently possible", new String[] { func_70005_c_() });
           return false;
         } 
-        ServerSender.sendTranslatedSentence(entityplayer, 'f', "ui.sellerboycott", new String[] { getName() });
+        ServerSender.sendTranslatedSentence(entityplayer, 'f', "ui.sellerboycott", new String[] { func_70005_c_() });
         return false;
       }  
     if (isForeignMerchant()) {
@@ -1620,15 +1620,15 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       return true;
     } 
     if (this.vtype.hireCost > 0) {
-      if (this.hiredBy == null || this.hiredBy.equals(entityplayer.getName())) {
+      if (this.hiredBy == null || this.hiredBy.equals(entityplayer.func_70005_c_())) {
         ServerSender.displayHireGUI(entityplayer, this);
         return true;
       } 
-      ServerSender.sendTranslatedSentence(entityplayer, 'f', "hire.hiredbyotherplayer", new String[] { getName(), this.hiredBy });
+      ServerSender.sendTranslatedSentence(entityplayer, 'f', "hire.hiredbyotherplayer", new String[] { func_70005_c_(), this.hiredBy });
       return false;
     } 
     if (isLocalMerchant() && !profile.villagersInQuests.containsKey(Long.valueOf(getVillagerId()))) {
-      ServerSender.sendTranslatedSentence(entityplayer, '6', "other.localmerchantinteract", new String[] { getName() });
+      ServerSender.sendTranslatedSentence(entityplayer, '6', "other.localmerchantinteract", new String[] { func_70005_c_() });
       return false;
     } 
     return false;
@@ -1638,7 +1638,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     return this.vtype.isChief;
   }
   
-  public boolean isChild() {
+  public boolean func_70631_g_() {
     if (this.vtype == null)
       return false; 
     return this.vtype.isChild;
@@ -1661,7 +1661,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   }
   
   public boolean isReallyDead() {
-    return (this.isDead && getHealth() <= 0.0F);
+    return (this.removed && getHealth() <= 0.0F);
   }
   
   public boolean isSeller() {
@@ -1704,7 +1704,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   
   public void killVillager() {
     if (this.world.isRemote || !(this.world instanceof net.minecraft.world.WorldServer)) {
-      super.setDead();
+      super.remove();
       return;
     } 
     for (InvItem iv : this.inventory.keySet()) {
@@ -1714,7 +1714,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (this.hiredBy != null) {
       EntityPlayer owner = this.world.getPlayerEntityByName(this.hiredBy);
       if (owner != null)
-        ServerSender.sendTranslatedSentence(owner, 'f', "hire.hiredied", new String[] { getName() }); 
+        ServerSender.sendTranslatedSentence(owner, 'f', "hire.hiredied", new String[] { func_70005_c_() }); 
     } 
     VillagerRecord vr = getRecord();
     if (vr != null) {
@@ -1722,7 +1722,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         MillLog.major(this, getTownHall() + ": Villager has been killed!"); 
       vr.killed = true;
     } 
-    super.setDead();
+    super.remove();
   }
   
   private void leaveVillage() {
@@ -1762,8 +1762,8 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     this.pathCalculatedSinceLastTick = result;
   }
   
-  public void onLivingUpdate() {
-    super.onLivingUpdate();
+  public void livingTick() {
+    super.livingTick();
     updateArmSwingProgress();
     setFacingDirection();
     if (isVillagerSleeping()) {
@@ -1777,13 +1777,13 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     this.pathFailedSincelastTick = true;
   }
   
-  public void onUpdate() {
+  public void func_70071_h_() {
     long startTime = System.nanoTime();
-    if (this.world.provider.getDimension() != 0)
+    if (this.world.dimension.getDimension() != 0)
       despawnVillagerSilent(); 
     try {
       if (this.vtype == null) {
-        if (!this.isDead) {
+        if (!this.removed) {
           MillLog.error(this, "Unknown villager type. Killing him.");
           despawnVillagerSilent();
         } 
@@ -1794,20 +1794,20 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       if (this.pathCalculatedSinceLastTick != null)
         applyPathCalculatedSinceLastTick(); 
       if (this.world.isRemote) {
-        super.onUpdate();
+        super.func_70071_h_();
         return;
       } 
-      if (this.isDead) {
-        super.onUpdate();
+      if (this.removed) {
+        super.func_70071_h_();
         return;
       } 
-      if (Math.abs(this.world.getWorldTime() + hashCode()) % 10L == 2L)
+      if (Math.abs(this.world.getDayTime() + hashCode()) % 10L == 2L)
         sendVillagerPacket(); 
-      if (Math.abs(this.world.getWorldTime() + hashCode()) % 40L == 4L)
+      if (Math.abs(this.world.getDayTime() + hashCode()) % 40L == 4L)
         unlockForNearbyPlayers(); 
       if (this.hiredBy != null) {
         updateHired();
-        super.onUpdate();
+        super.func_70071_h_();
         return;
       } 
       if (getTownHall() == null || getHouse() == null)
@@ -1826,7 +1826,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         this.allowRandomMoves = true;
         this.stopMoving = false;
         if (getTownHall() == null || getHouse() == null) {
-          super.onUpdate();
+          super.func_70071_h_();
           return;
         } 
         if (Goal.beSeller.key.equals(this.goalKey)) {
@@ -1854,7 +1854,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         if (getAttackTarget() != null) {
           if (this.vtype.isDefensive && getPos().distanceTo(getHouse().getResManager().getDefendingPos()) > 20.0D) {
             setAttackTarget(null);
-          } else if (!getAttackTarget().isEntityAlive() || getPos().distanceTo((Entity)getAttackTarget()) > 80.0D || (this.world
+          } else if (!getAttackTarget().isAlive() || getPos().distanceTo((Entity)getAttackTarget()) > 80.0D || (this.world
             .getDifficulty() == EnumDifficulty.PEACEFUL && getAttackTarget() instanceof EntityPlayer)) {
             setAttackTarget(null);
           } 
@@ -1891,14 +1891,14 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
             speakSentence("greeting", 12000, 3, 10);
             this.nightActionPerformed = false;
             List<InvItem> goods = getGoodsToCollect();
-            if (goods != null && (this.world.getWorldTime() + getVillagerId()) % 20L == 0L) {
+            if (goods != null && (this.world.getDayTime() + getVillagerId()) % 20L == 0L) {
               EntityItem item = getClosestItemVertical(goods, 5, 30);
               if (item != null) {
-                item.setDead();
+                item.remove();
                 if (item.getItem().getItem() == Item.getItemFromBlock(Blocks.SAPLING)) {
-                  addToInv(item.getItem().getItem(), item.getItem().getItemDamage() & 0x3, 1);
+                  addToInv(item.getItem().getItem(), item.getItem().getDamage() & 0x3, 1);
                 } else {
-                  addToInv(item.getItem().getItem(), item.getItem().getItemDamage(), 1);
+                  addToInv(item.getItem().getItem(), item.getItem().getDamage(), 1);
                 } 
               } 
             } 
@@ -1970,7 +1970,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         } 
         this.prevPoint = getPos();
         if (canVillagerClearLeaves())
-          if (Math.abs(this.world.getWorldTime() + hashCode()) % 10L == 6L)
+          if (Math.abs(this.world.getDayTime() + hashCode()) % 10L == 6L)
             handleLeaveClearing();  
         handleDoorsAndFenceGates();
         if (System.currentTimeMillis() - this.timeSinceLastPathingTimeDisplay > 10000L) {
@@ -1994,19 +1994,19 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
           this.nbPathFailure = 0;
         } 
       } catch (org.millenaire.common.utilities.MillLog.MillenaireException e) {
-        Mill.proxy.sendChatAdmin(getName() + ": Error in onUpdate(). Check millenaire.log.");
+        Mill.proxy.sendChatAdmin(func_70005_c_() + ": Error in onUpdate(). Check millenaire.log.");
         MillLog.error(this, e.getMessage());
       } catch (Exception e) {
-        Mill.proxy.sendChatAdmin(getName() + ": Error in onUpdate(). Check millenaire.log.");
+        Mill.proxy.sendChatAdmin(func_70005_c_() + ": Error in onUpdate(). Check millenaire.log.");
         MillLog.error(this, "Exception in Villager.onUpdate(): ");
         MillLog.printException(e);
       } 
-      if (Math.abs(this.world.getWorldTime() + hashCode()) % 10L == 5L)
+      if (Math.abs(this.world.getDayTime() + hashCode()) % 10L == 5L)
         triggerMobAttacks(); 
       updateDialogue();
       this.isUsingBow = false;
       this.isUsingHandToHand = false;
-      super.onUpdate();
+      super.func_70071_h_();
       if (MillConfigValues.DEV) {
         if (getPathDestPoint() == null || this.pathPlannerJPS.isBusy() || this.pathEntity == null);
         if (getPathDestPoint() == null || getGoalDestPoint() == null || getPathDestPoint().distanceTo(getGoalDestPoint()) > 20.0D);
@@ -2021,7 +2021,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   private boolean openFenceGate(int i, int j, int k) {
     Point p = new Point(i, j, k);
     IBlockState state = p.getBlockActualState(this.world);
-    if (BlockItemUtilities.isFenceGate(state.getBlock()) && !((Boolean)state.getValue((IProperty)BlockFenceGate.OPEN)).booleanValue())
+    if (BlockItemUtilities.isFenceGate(state.getBlock()) && !((Boolean)state.get((IProperty)BlockFenceGate.OPEN)).booleanValue())
       p.setBlockState(this.world, state.withProperty((IProperty)BlockFenceGate.OPEN, Boolean.valueOf(true))); 
     return true;
   }
@@ -2035,7 +2035,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   public boolean performNightAction() {
     if (getRecord() == null || getHouse() == null || getTownHall() == null)
       return false; 
-    if (isChild())
+    if (func_70631_g_())
       if (getSize() < 20) {
         growSize();
       } else {
@@ -2078,8 +2078,8 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     return nb;
   }
   
-  public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-    super.readEntityFromNBT(nbttagcompound);
+  public void readAdditional(NBTTagCompound nbttagcompound) {
+    super.readAdditional(nbttagcompound);
     String type = nbttagcompound.getString("vtype");
     String culture = nbttagcompound.getString("culture");
     if (Culture.getCultureByName(culture) != null) {
@@ -2095,54 +2095,54 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     this.housePoint = Point.read(nbttagcompound, "housePos");
     if (this.housePoint == null) {
       MillLog.error(this, "Error when loading villager: housePoint null");
-      Mill.proxy.sendChatAdmin(getName() + ": Could not load house position. Check millenaire.log");
+      Mill.proxy.sendChatAdmin(func_70005_c_() + ": Could not load house position. Check millenaire.log");
     } 
     this.townHallPoint = Point.read(nbttagcompound, "townHallPos");
     if (this.townHallPoint == null) {
       MillLog.error(this, "Error when loading villager: townHallPoint null");
-      Mill.proxy.sendChatAdmin(getName() + ": Could not load town hall position. Check millenaire.log");
+      Mill.proxy.sendChatAdmin(func_70005_c_() + ": Could not load town hall position. Check millenaire.log");
     } 
     setGoalDestPoint(Point.read(nbttagcompound, "destPoint"));
     setPathDestPoint(Point.read(nbttagcompound, "pathDestPoint"), 0);
     setGoalBuildingDestPoint(Point.read(nbttagcompound, "destBuildingPoint"));
     this.prevPoint = Point.read(nbttagcompound, "prevPoint");
     this.doorToClose = Point.read(nbttagcompound, "doorToClose");
-    this.action = nbttagcompound.getInteger("action");
+    this.action = nbttagcompound.getInt("action");
     this.goalKey = nbttagcompound.getString("goal");
     if (this.goalKey.trim().length() == 0)
       this.goalKey = null; 
     if (this.goalKey != null && !Goal.goals.containsKey(this.goalKey))
       this.goalKey = null; 
-    this.constructionJobId = nbttagcompound.getInteger("constructionJobId");
+    this.constructionJobId = nbttagcompound.getInt("constructionJobId");
     this.dialogueKey = nbttagcompound.getString("dialogueKey");
     this.dialogueStart = nbttagcompound.getLong("dialogueStart");
-    this.dialogueRole = nbttagcompound.getInteger("dialogueRole");
-    this.dialogueColour = (char)nbttagcompound.getInteger("dialogueColour");
+    this.dialogueRole = nbttagcompound.getInt("dialogueRole");
+    this.dialogueColour = (char)nbttagcompound.getInt("dialogueColour");
     this.dialogueChat = nbttagcompound.getBoolean("dialogueChat");
     if (this.dialogueKey.trim().length() == 0)
       this.dialogueKey = null; 
     this.familyName = nbttagcompound.getString("familyName");
     this.firstName = nbttagcompound.getString("firstName");
-    this.gender = nbttagcompound.getInteger("gender");
-    if (nbttagcompound.hasKey("villager_lid"))
+    this.gender = nbttagcompound.getInt("gender");
+    if (nbttagcompound.contains("villager_lid"))
       setVillagerId(Math.abs(nbttagcompound.getLong("villager_lid"))); 
-    if (!isTextureValid(this.texture.toString())) {
+    if (!isTextureValid(this.texture.getPath())) {
       ResourceLocation newTexture = this.vtype.getNewTexture();
-      MillLog.major(this, "Texture " + this.texture.toString() + " cannot be found, replacing it with " + newTexture.toString());
+      MillLog.major(this, "Texture " + this.texture.getPath() + " cannot be found, replacing it with " + newTexture.getPath());
       this.texture = newTexture;
     } 
-    NBTTagList nbttaglist = nbttagcompound.getTagList("inventoryNew", 10);
+    NBTTagList nbttaglist = nbttagcompound.getList("inventoryNew", 10);
     MillCommonUtilities.readInventory(nbttaglist, this.inventory);
-    this.previousBlock = Block.getBlockById(nbttagcompound.getInteger("previousBlock"));
-    this.previousBlockMeta = nbttagcompound.getInteger("previousBlockMeta");
+    this.previousBlock = Block.getBlockById(nbttagcompound.getInt("previousBlock"));
+    this.previousBlockMeta = nbttagcompound.getInt("previousBlockMeta");
     this.hiredBy = nbttagcompound.getString("hiredBy");
     this.hiredUntil = nbttagcompound.getLong("hiredUntil");
     this.aggressiveStance = nbttagcompound.getBoolean("aggressiveStance");
     this.isRaider = nbttagcompound.getBoolean("isRaider");
-    this.visitorNbNights = nbttagcompound.getInteger("visitorNbNights");
+    this.visitorNbNights = nbttagcompound.getInt("visitorNbNights");
     if (this.hiredBy.equals(""))
       this.hiredBy = null; 
-    if (nbttagcompound.hasKey("clothTexture")) {
+    if (nbttagcompound.contains("clothTexture")) {
       this.clothTexture[0] = new ResourceLocation("millenaire", nbttagcompound.getString("clothTexture"));
     } else {
       for (int i = 0; i < 2; i++) {
@@ -2167,8 +2167,8 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     updateClothTexturePath();
   }
   
-  public void readFromNBT(NBTTagCompound compound) {
-    super.readFromNBT(compound);
+  public void read(NBTTagCompound compound) {
+    super.read(compound);
   }
   
   public void readSpawnData(ByteBuf ds) {
@@ -2247,7 +2247,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         setGoalDestEntity(ent); 
     } 
     this.isDeadOnServer = data.readBoolean();
-    this.client_lastupdated = this.world.getWorldTime();
+    this.client_lastupdated = this.world.getDayTime();
   }
   
   public void registerNewPath(AS_PathEntity path) throws Exception {
@@ -2260,7 +2260,13 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       if (!handled)
         clearGoal(); 
     } else {
-      this.navigator.setPath((Path)path, 0.5D);
+      try {
+        this.navigator.setPath((Path)path, 0.5D);
+      } catch (Exception e) {
+        MillLog.major(null, "Goal : " + this.goalKey);
+        MillLog.major(null, "Path to : " + this.pathDestPoint.x + "/" + this.pathDestPoint.y + "/" + this.pathDestPoint.z);
+        MillLog.printException(this + ": Pathing error detected", e);
+      } 
       this.pathEntity = path;
       this.moveStrafing = 0.0F;
     } 
@@ -2286,7 +2292,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   }
   
   public HashMap<InvItem, Integer> requiresGoods() {
-    if (isChild() && getSize() < 20)
+    if (func_70631_g_() && getSize() < 20)
       return this.vtype.requiredFoodAndGoods; 
     if (hasChildren() && getHouse() != null && getHouse().getKnownVillagers().size() < 4)
       return this.vtype.requiredFoodAndGoods; 
@@ -2320,10 +2326,10 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     return WorldUtilities.setBlockstate(this.world, p, bs, true, true);
   }
   
-  public void setDead() {
+  public void remove() {
     if (getHealth() <= 0.0F)
       killVillager(); 
-    super.setDead();
+    super.remove();
   }
   
   private void setFacingDirection() {
@@ -2424,9 +2430,9 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       this.heldItemOffHand = ItemStack.EMPTY;
       this.heldItemCount = Integer.MAX_VALUE;
       nextGoal.onAccept(this);
-      this.goalStarted = this.world.getWorldTime();
-      this.lastGoalTime.put(nextGoal, Long.valueOf(this.world.getWorldTime()));
-      IAttributeInstance iattributeinstance = getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+      this.goalStarted = this.world.getDayTime();
+      this.lastGoalTime.put(nextGoal, Long.valueOf(this.world.getDayTime()));
+      IAttributeInstance iattributeinstance = getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
       iattributeinstance.removeModifier(SPRINT_SPEED_BOOST);
       if (nextGoal.sprint)
         iattributeinstance.applyModifier(SPRINT_SPEED_BOOST); 
@@ -2436,7 +2442,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     if (MillConfigValues.LogBuildingPlan >= 1 && nextGoal != null && nextGoal.key.equals(Goal.getResourcesForBuild.key)) {
       ConstructionIP cip = getCurrentConstruction();
       if (cip != null)
-        MillLog.major(this, getName() + " is new builder, for: " + (cip.getBuildingLocation()).planKey + "_" + (cip.getBuildingLocation()).level + ". Blocks loaded: " + (cip.getBblocks()).length); 
+        MillLog.major(this, func_70005_c_() + " is new builder, for: " + (cip.getBuildingLocation()).planKey + "_" + (cip.getBuildingLocation()).level + ". Blocks loaded: " + (cip.getBblocks()).length); 
     } 
   }
   
@@ -2467,7 +2473,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   }
   
   public void speakSentence(String key, int delay, int distance, int chanceOn) {
-    if (delay > this.world.getWorldTime() - this.speech_started)
+    if (delay > this.world.getDayTime() - this.speech_started)
       return; 
     if (!MillCommonUtilities.chanceOn(chanceOn))
       return; 
@@ -2484,7 +2490,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     } 
     if (this.speech_key != null) {
       this.speech_variant = MillCommonUtilities.randomInt(getCulture().getSentences(this.speech_key).size());
-      this.speech_started = this.world.getWorldTime();
+      this.speech_started = this.world.getDayTime();
       sendVillagerPacket();
       ServerSender.sendVillageSentenceInRange(this.world, getPos(), 30, this);
     } 
@@ -2622,7 +2628,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
             if (MillConfigValues.LogChildren >= 1)
               MillLog.major(this, "Moving to village: " + distantVillage.getVillageQualifiedName()); 
             getHouse().transferVillagerPermanently(getRecord(), distantInn);
-            distantInn.visitorsList.add("panels.childarrived;" + getName() + ";" + getTownHall().getVillageQualifiedName());
+            distantInn.visitorsList.add("panels.childarrived;" + func_70005_c_() + ";" + getTownHall().getVillageQualifiedName());
           } 
         } 
       } 
@@ -2653,7 +2659,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       } 
       if (flag1) {
         setPosition(this.posX, this.posY, this.posZ);
-        if (this.world.getCollisionBoxes((Entity)this, getEntityBoundingBox()).size() == 0 && !this.world.containsAnyLiquid(getEntityBoundingBox()))
+        if (this.world.getCollisionBoxes((Entity)this, getBoundingBox()).size() == 0 && !this.world.containsAnyLiquid(getBoundingBox()))
           flag = true; 
       } 
     } 
@@ -2665,7 +2671,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   }
   
   public boolean teleportToEntity(Entity entity) {
-    Vec3d vec3d = new Vec3d(this.posX - entity.posX, (getEntityBoundingBox()).minY + (this.height / 2.0F) - entity.posY + entity.getEyeHeight(), this.posZ - entity.posZ);
+    Vec3d vec3d = new Vec3d(this.posX - entity.posX, (getBoundingBox()).minY + (this.height / 2.0F) - entity.posY + entity.getEyeHeight(), this.posZ - entity.posZ);
     vec3d = vec3d.normalize();
     double d = 16.0D;
     double d1 = this.posX + (this.rand.nextDouble() - 0.5D) * 8.0D - vec3d.x * 16.0D;
@@ -2676,7 +2682,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   
   private void toggleDoor(Point p) {
     IBlockState state = p.getBlockActualState(this.world);
-    if (((Boolean)state.getValue((IProperty)BlockDoor.OPEN)).booleanValue()) {
+    if (((Boolean)state.get((IProperty)BlockDoor.OPEN)).booleanValue()) {
       state = state.withProperty((IProperty)BlockDoor.OPEN, Boolean.valueOf(false));
     } else {
       state = state.withProperty((IProperty)BlockDoor.OPEN, Boolean.valueOf(true));
@@ -2686,8 +2692,8 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
   
   public String toString() {
     if (this.vtype != null)
-      return getName() + "/" + this.vtype.key + "/" + getVillagerId() + "/" + getPos(); 
-    return getName() + "/none/" + getVillagerId() + "/" + getPos();
+      return func_70005_c_() + "/" + this.vtype.key + "/" + getVillagerId() + "/" + getPos(); 
+    return func_70005_c_() + "/none/" + getVillagerId() + "/" + getPos();
   }
   
   private void triggerMobAttacks() {
@@ -2765,7 +2771,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       this.dialogueKey = null;
       return;
     } 
-    long timePassed = this.world.getWorldTime() - this.dialogueStart;
+    long timePassed = this.world.getDayTime() - this.dialogueStart;
     if ((((Integer)d.timeDelays.get(d.timeDelays.size() - 1)).intValue() + 100) < timePassed) {
       this.dialogueKey = null;
       return;
@@ -2784,9 +2790,9 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
       if ((((getHealth() < getMaxHealth()) ? 1 : 0) & ((MillCommonUtilities.randomInt(1600) == 0) ? 1 : 0)) != 0)
         setHealth(getHealth() + 1.0F); 
       EntityPlayer entityplayer = this.world.getPlayerEntityByName(this.hiredBy);
-      if (this.world.getWorldTime() > this.hiredUntil) {
+      if (this.world.getDayTime() > this.hiredUntil) {
         if (entityplayer != null)
-          ServerSender.sendTranslatedSentence(entityplayer, 'f', "hire.hireover", new String[] { getName() }); 
+          ServerSender.sendTranslatedSentence(entityplayer, 'f', "hire.hireover", new String[] { func_70005_c_() }); 
         this.hiredBy = null;
         this.hiredUntil = 0L;
         VillagerRecord vr = getRecord();
@@ -2795,7 +2801,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         return;
       } 
       if (getAttackTarget() != null) {
-        if (getPos().distanceTo((Entity)getAttackTarget()) > 80.0D || this.world.getDifficulty() == EnumDifficulty.PEACEFUL || (getAttackTarget()).isDead)
+        if (getPos().distanceTo((Entity)getAttackTarget()) > 80.0D || this.world.getDifficulty() == EnumDifficulty.PEACEFUL || (getAttackTarget()).removed)
           setAttackTarget(null); 
       } else if (isHostile() && this.world.getDifficulty() != EnumDifficulty.PEACEFUL && (getTownHall()).closestPlayer != null && getPos().distanceTo((Entity)(getTownHall()).closestPlayer) <= 80.0D) {
         setAttackTarget((EntityLivingBase)this.world.getClosestPlayer(this.posX, this.posY, this.posZ, 100.0D, true));
@@ -2833,7 +2839,7 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         EntityLivingBase entityLivingBase = getAttackTarget();
         this.heldItem = getWeapon();
         this.heldItemOffHand = ItemStack.EMPTY;
-        Path newPathEntity = getNavigator().getPathToEntityLiving((Entity)entityLivingBase);
+        Path newPathEntity = getNavigator().getPathToEntity((Entity)entityLivingBase);
         if (newPathEntity != null)
           getNavigator().setPath(newPathEntity, 0.5D); 
         attackEntity((Entity)getAttackTarget());
@@ -2846,21 +2852,15 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
           teleportToEntity((Entity)entityplayer);
         } else if (dist > 4) {
           boolean rebuildPath = false;
-          Path currentPath = getNavigator().getPath();
-          if (currentPath == null) {
+          if (getNavigator().getPath() == null) {
             rebuildPath = true;
           } else {
-            PathPoint finalPoint = currentPath.getFinalPathPoint();
-            if (finalPoint != null) {
-              Point currentTargetPoint = new Point(finalPoint.x, finalPoint.y, finalPoint.z);
-              if (currentTargetPoint.distanceTo((Entity)entityplayer) > 2.0D)
-                rebuildPath = true;
-            } else {
-              rebuildPath = true;
-            }
-          }
+            Point currentTargetPoint = new Point(getNavigator().getPath().getFinalPathPoint());
+            if (currentTargetPoint.distanceTo((Entity)entityplayer) > 2.0D)
+              rebuildPath = true; 
+          } 
           if (rebuildPath) {
-            Path newPathEntity = getNavigator().getPathToEntityLiving((Entity)entityPlayer);
+            Path newPathEntity = getNavigator().getPathToEntity((Entity)entityPlayer);
             if (newPathEntity != null)
               getNavigator().setPath(newPathEntity, 0.5D); 
           } 
@@ -2922,9 +2922,9 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         return;
       } 
       super.writeEntityToNBT(nbttagcompound);
-      nbttagcompound.setString("vtype", this.vtype.key);
-      nbttagcompound.setString("culture", (getCulture()).key);
-      nbttagcompound.setString("texture", this.texture.toString());
+      nbttagcompound.putString("vtype", this.vtype.key);
+      nbttagcompound.putString("culture", (getCulture()).key);
+      nbttagcompound.putString("texture", this.texture.getPath());
       if (this.housePoint != null)
         this.housePoint.write(nbttagcompound, "housePos"); 
       if (this.townHallPoint != null)
@@ -2939,38 +2939,38 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
         this.prevPoint.write(nbttagcompound, "prevPoint"); 
       if (this.doorToClose != null)
         this.doorToClose.write(nbttagcompound, "doorToClose"); 
-      nbttagcompound.setInteger("action", this.action);
+      nbttagcompound.putInt("action", this.action);
       if (this.goalKey != null)
-        nbttagcompound.setString("goal", this.goalKey); 
-      nbttagcompound.setInteger("constructionJobId", this.constructionJobId);
-      nbttagcompound.setString("firstName", this.firstName);
-      nbttagcompound.setString("familyName", this.familyName);
-      nbttagcompound.setInteger("gender", this.gender);
-      nbttagcompound.setLong("lastSpeechLong", this.speech_started);
-      nbttagcompound.setLong("villager_lid", getVillagerId());
+        nbttagcompound.putString("goal", this.goalKey); 
+      nbttagcompound.putInt("constructionJobId", this.constructionJobId);
+      nbttagcompound.putString("firstName", this.firstName);
+      nbttagcompound.putString("familyName", this.familyName);
+      nbttagcompound.putInt("gender", this.gender);
+      nbttagcompound.putLong("lastSpeechLong", this.speech_started);
+      nbttagcompound.putLong("villager_lid", getVillagerId());
       if (this.dialogueKey != null) {
-        nbttagcompound.setString("dialogueKey", this.dialogueKey);
-        nbttagcompound.setLong("dialogueStart", this.dialogueStart);
-        nbttagcompound.setInteger("dialogueRole", this.dialogueRole);
-        nbttagcompound.setInteger("dialogueColour", this.dialogueColour);
-        nbttagcompound.setBoolean("dialogueChat", this.dialogueChat);
+        nbttagcompound.putString("dialogueKey", this.dialogueKey);
+        nbttagcompound.putLong("dialogueStart", this.dialogueStart);
+        nbttagcompound.putInt("dialogueRole", this.dialogueRole);
+        nbttagcompound.putInt("dialogueColour", this.dialogueColour);
+        nbttagcompound.putBoolean("dialogueChat", this.dialogueChat);
       } 
       NBTTagList nbttaglist = MillCommonUtilities.writeInventory(this.inventory);
       nbttagcompound.setTag("inventoryNew", (NBTBase)nbttaglist);
-      nbttagcompound.setInteger("previousBlock", Block.getIdFromBlock(this.previousBlock));
-      nbttagcompound.setInteger("previousBlockMeta", this.previousBlockMeta);
+      nbttagcompound.putInt("previousBlock", Block.getIdFromBlock(this.previousBlock));
+      nbttagcompound.putInt("previousBlockMeta", this.previousBlockMeta);
       if (this.hiredBy != null) {
-        nbttagcompound.setString("hiredBy", this.hiredBy);
-        nbttagcompound.setLong("hiredUntil", this.hiredUntil);
-        nbttagcompound.setBoolean("aggressiveStance", this.aggressiveStance);
+        nbttagcompound.putString("hiredBy", this.hiredBy);
+        nbttagcompound.putLong("hiredUntil", this.hiredUntil);
+        nbttagcompound.putBoolean("aggressiveStance", this.aggressiveStance);
       } 
-      nbttagcompound.setBoolean("isRaider", this.isRaider);
-      nbttagcompound.setInteger("visitorNbNights", this.visitorNbNights);
+      nbttagcompound.putBoolean("isRaider", this.isRaider);
+      nbttagcompound.putInt("visitorNbNights", this.visitorNbNights);
       if (this.clothName != null) {
-        nbttagcompound.setString("clothName", this.clothName);
+        nbttagcompound.putString("clothName", this.clothName);
         for (int layer = 0; layer < 2; layer++) {
           if (this.clothTexture[layer] != null)
-            nbttagcompound.setString("clothTexture_" + layer, this.clothTexture[layer].toString()); 
+            nbttagcompound.putString("clothTexture_" + layer, this.clothTexture[layer].toString()); 
         } 
       } 
     } catch (Exception e) {
@@ -3051,6 +3051,6 @@ public abstract class MillVillager extends EntityCreature implements IEntityAddi
     } else {
       data.writeInt(-1);
     } 
-    data.writeBoolean(this.isDead);
+    data.writeBoolean(this.removed);
   }
 }

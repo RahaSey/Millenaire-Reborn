@@ -71,7 +71,7 @@ public class BlockWetBrick extends Block implements IMetaBlockName {
   static final PropertyEnum<EnumType> PROGRESS = PropertyEnum.create("progress", EnumType.class);
   
   public BlockWetBrick(String blockName) {
-    super(Material.GROUND);
+    super(Material.EARTH);
     setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
@@ -79,7 +79,7 @@ public class BlockWetBrick extends Block implements IMetaBlockName {
     setHarvestLevel("shovel", 0);
     setHardness(0.8F);
     setSoundType(SoundType.GROUND);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)PROGRESS, EnumType.WETBRICK0));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)PROGRESS, EnumType.WETBRICK0));
   }
   
   protected BlockStateContainer createBlockState() {
@@ -91,11 +91,11 @@ public class BlockWetBrick extends Block implements IMetaBlockName {
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)PROGRESS)).getMetadata();
+    return ((EnumType)state.get((IProperty)PROGRESS)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)PROGRESS)).getName();
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)PROGRESS)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -103,7 +103,7 @@ public class BlockWetBrick extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     items.add(new ItemStack(this, 1, 0));
   }
   
@@ -114,7 +114,7 @@ public class BlockWetBrick extends Block implements IMetaBlockName {
   }
   
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    int currentValue = ((EnumType)state.getValue((IProperty)PROGRESS)).getMetadata();
+    int currentValue = ((EnumType)state.get((IProperty)PROGRESS)).getMetadata();
     if (worldIn.getLightFromNeighbors(pos.up()) > 14) {
       currentValue++;
       if (currentValue < 2 && MillCommonUtilities.chanceOn(2)) {

@@ -42,7 +42,7 @@ public class BlockMillBed extends BlockBed {
   }
   
   public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune) {
-    if (state.getValue((IProperty)PART) == BlockBed.EnumPartType.HEAD) {
+    if (state.get((IProperty)PART) == BlockBed.EnumPartType.HEAD) {
       ItemStack itemstack = getItem(worldIn, pos, state);
       spawnAsEntity(worldIn, pos, itemstack);
     } 
@@ -52,7 +52,7 @@ public class BlockMillBed extends BlockBed {
     return this.bedHeight;
   }
   
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT_MIPPED;
   }
   
@@ -66,7 +66,7 @@ public class BlockMillBed extends BlockBed {
   }
   
   public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-    return (state.getValue((IProperty)PART) == BlockBed.EnumPartType.FOOT) ? Items.AIR : Item.getItemFromBlock((Block)this);
+    return (state.get((IProperty)PART) == BlockBed.EnumPartType.FOOT) ? Items.AIR : Item.getItemFromBlock((Block)this);
   }
   
   public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -74,7 +74,7 @@ public class BlockMillBed extends BlockBed {
   }
   
   public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack) {
-    if (state.getValue((IProperty)PART) == BlockBed.EnumPartType.HEAD && te instanceof net.minecraft.tileentity.TileEntityBed) {
+    if (state.get((IProperty)PART) == BlockBed.EnumPartType.HEAD && te instanceof net.minecraft.tileentity.TileEntityBed) {
       ItemStack itemstack = getItem(worldIn, pos, state);
       spawnAsEntity(worldIn, pos, itemstack);
     } else {

@@ -1,4 +1,4 @@
-native_name=Femme Seule
+native_name=Seule Faumme
 gender=female
 familyNameList=family_names
 firstNameList=women_names

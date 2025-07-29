@@ -8,7 +8,7 @@ building.icon=sapling
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Bosquet
+initial.nativename=Bouaissrie
 initial.priority=1000
 initial.pathwidth=1
 initial.tag=grove

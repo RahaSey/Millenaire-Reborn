@@ -21,18 +21,18 @@ import org.millenaire.common.world.MillWorldData;
 
 public class CommandGiveReputation implements ICommand {
   public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-    return sender.canUseCommand(getRequiredPermissionLevel(), getName());
+    return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
   }
   
   public int compareTo(ICommand o) {
-    return getName().compareTo(o.getName());
+    return getCommandName().compareTo(o.getCommandName());
   }
   
   public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-    World world = sender.getEntityWorld();
+    World world = sender.func_130014_f_();
     if (!world.isRemote) {
       if (args.length != 3)
-        throw new WrongUsageException(getUsage(sender), new Object[0]); 
+        throw new WrongUsageException(getCommandUsage(sender), new Object[0]); 
       Entity entity = CommandBase.getEntity(server, sender, args[0]);
       MillWorldData worldData = Mill.getMillWorld(world);
       List<Building> townHalls = CommandUtilities.getMatchingVillages(worldData, args[1]);
@@ -44,20 +44,20 @@ public class CommandGiveReputation implements ICommand {
       if (entity instanceof EntityPlayer) {
         int repToGive = CommandBase.parseInt(args[2]);
         village.adjustReputation((EntityPlayer)entity, repToGive);
-        ServerSender.sendTranslatedSentence((EntityPlayer)entity, '9', "command.giverep_notification", new String[] { sender.getName(), entity.getName(), "" + repToGive, village
+        ServerSender.sendTranslatedSentence((EntityPlayer)entity, '9', "command.giverep_notification", new String[] { sender.func_70005_c_(), entity.func_70005_c_(), "" + repToGive, village
               .getVillageQualifiedName() });
         if (sender instanceof EntityPlayer)
-          ServerSender.sendTranslatedSentence((EntityPlayer)sender, '9', "command.giverep_notification", new String[] { sender.getName(), entity.getName(), "" + repToGive, village
+          ServerSender.sendTranslatedSentence((EntityPlayer)sender, '9', "command.giverep_notification", new String[] { sender.func_70005_c_(), entity.func_70005_c_(), "" + repToGive, village
                 .getVillageQualifiedName() }); 
       } 
     } 
   }
   
-  public List<String> getAliases() {
+  public List<String> getCommandAliases() {
     return Collections.emptyList();
   }
   
-  public String getName() {
+  public String getCommandName() {
     return "millGiveRep";
   }
   
@@ -65,11 +65,11 @@ public class CommandGiveReputation implements ICommand {
     return 3;
   }
   
-  public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
+  public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
     if (args.length == 1)
       return CommandBase.getListOfStringsMatchingLastWord(args, server.getOnlinePlayerNames()); 
     if (args.length == 2) {
-      World world = sender.getEntityWorld();
+      World world = sender.func_130014_f_();
       MillWorldData worldData = Mill.getMillWorld(world);
       List<Building> townHalls = CommandUtilities.getMatchingVillages(worldData, args[1]);
       List<String> possibleMatches = new ArrayList<>();
@@ -80,8 +80,8 @@ public class CommandGiveReputation implements ICommand {
     return Collections.emptyList();
   }
   
-  public String getUsage(ICommandSender sender) {
-    return "commands." + getName().toLowerCase() + ".usage";
+  public String getCommandUsage(ICommandSender sender) {
+    return "commands." + getCommandName().toLowerCase() + ".usage";
   }
   
   public boolean isUsernameIndex(String[] args, int index) {

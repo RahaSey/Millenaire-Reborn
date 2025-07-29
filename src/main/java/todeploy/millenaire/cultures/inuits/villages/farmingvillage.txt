@@ -36,11 +36,11 @@ centre=tannery
 start=farmp
 start=flower
 start=flower
-start=flower
 start=lumberman
 start=grove
 start=lake
 start=foodprephouse
+start=sodder
 
 pathmaterial=pathsnow
 
@@ -54,22 +54,25 @@ player=playerlargehouse
 
 //to be built in priority
 core=farmw
-core=sodder
+core=flower
 core=guesthouse
 core=farmp
 core=foodpreparer
-core=animistic
+core=carver
+core=hunterex
 
 //to be built after the core ones
 secondary=grove
 secondary=shaman
 secondary=market
-secondary=offering
+secondary=offering1
+secondary=animistic
 
 never=hunter
 never=shamanistic
 never=council
-never=offering1
+never=offering
+never=offering2
 
 //Selling prices=
 sellingPrice=bread,7

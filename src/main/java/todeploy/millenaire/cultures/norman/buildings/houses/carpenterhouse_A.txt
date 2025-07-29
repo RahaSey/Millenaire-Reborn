@@ -9,7 +9,7 @@ building.icon=timberframecross
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Maison du charpentier
+initial.nativename=Maisaon du Tcherpentcher
 initial.priority=800
 initial.male=carpenter
 initial.female=wife

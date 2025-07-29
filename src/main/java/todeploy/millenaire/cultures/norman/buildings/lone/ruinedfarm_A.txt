@@ -14,6 +14,6 @@ building.icon=wheat
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Ferme en ruine
+initial.nativename=Ferme en rouaenne
 initial.priority=5
 

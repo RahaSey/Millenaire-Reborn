@@ -1,4 +1,4 @@
-native_name=Garde de l'Ordre
+native_name=Garde d'l'Ordre
 gender=male
 familyNameList=noble_family_names
 firstNameList=men_names

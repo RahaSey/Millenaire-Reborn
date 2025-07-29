@@ -13,10 +13,10 @@ public class SlotFirePitFuel extends SlotItemHandler {
   }
   
   public int getItemStackLimit(@Nonnull ItemStack stack) {
-    return SlotFurnaceFuel.isBucket(stack) ? 1 : super.getItemStackLimit(stack);
+    return SlotFurnaceFuel.func_178173_c_(stack) ? 1 : super.getItemStackLimit(stack);
   }
   
   public boolean isItemValid(@Nonnull ItemStack stack) {
-    return (TileEntityFurnace.isItemFuel(stack) || SlotFurnaceFuel.isBucket(stack));
+    return (TileEntityFurnace.isItemFuel(stack) || SlotFurnaceFuel.func_178173_c_(stack));
   }
 }

@@ -23,7 +23,7 @@ public class ItemSummoningWand extends ItemMill {
       return EnumActionResult.PASS; 
     if (world.isRemote)
       return EnumActionResult.PASS; 
-    if (world.provider.getDimension() != 0)
+    if (world.dimension.getDimension() != 0)
       return EnumActionResult.PASS; 
     Point pos = new Point(bp);
     return GuiActions.useSummoningWand((EntityPlayerMP)player, pos);

@@ -1,4 +1,4 @@
-name=Hameau abbatial
+name=Haumé d'l'Abbaye
 icon=stained_glass_green_blue
 type=hameau
 weight=0

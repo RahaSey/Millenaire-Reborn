@@ -8,7 +8,7 @@ building.icon=boudin
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Elevage porcin
+initial.nativename=Ferme à Pourchets
 initial.priority=1000
 initial.male=pigherd
 initial.female=pigherdf

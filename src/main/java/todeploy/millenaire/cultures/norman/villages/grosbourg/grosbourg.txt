@@ -1,4 +1,4 @@
-name=Gros Bourg
+name=Gros Ville
 icon=tapestry
 weight=3
 qualifier=le-bourg

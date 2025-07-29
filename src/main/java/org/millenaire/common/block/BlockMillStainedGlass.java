@@ -86,7 +86,7 @@ public class BlockMillStainedGlass extends BlockPane implements IMetaBlockName {
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setSoundType(SoundType.GLASS);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false)).withProperty((IProperty)SOUTH, Boolean.valueOf(false))
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false)).withProperty((IProperty)SOUTH, Boolean.valueOf(false))
         .withProperty((IProperty)WEST, Boolean.valueOf(false)).withProperty((IProperty)VARIANT, EnumType.WHITE));
   }
   
@@ -100,31 +100,31 @@ public class BlockMillStainedGlass extends BlockPane implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.TRANSLUCENT;
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
     return MapColor.GRAY;
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + this.blockName + "." + ((EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + this.blockName + "." + ((EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)VARIANT)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
     return getDefaultState().withProperty((IProperty)VARIANT, EnumType.byMetadata(meta));
   }
   
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (int i = 0; i < (EnumType.values()).length; i++)
       items.add(new ItemStack((Block)this, 1, i)); 
   }
@@ -140,24 +140,24 @@ public class BlockMillStainedGlass extends BlockPane implements IMetaBlockName {
       BlockBeacon.updateColorAsync(worldIn, pos); 
   }
   
-  public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+  public IBlockState mirror(IBlockState state, Mirror mirrorIn) {
     switch (mirrorIn) {
-      case LEFT_RIGHT:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)NORTH));
-      case FRONT_BACK:
-        return state.withProperty((IProperty)EAST, state.getValue((IProperty)WEST)).withProperty((IProperty)WEST, state.getValue((IProperty)EAST));
+      case CLOCKWISE_180:
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.get((IProperty)NORTH));
+      case COUNTERCLOCKWISE_90:
+        return state.withProperty((IProperty)EAST, state.get((IProperty)WEST)).withProperty((IProperty)WEST, state.get((IProperty)EAST));
     } 
-    return super.withMirror(state, mirrorIn);
+    return super.mirror(state, mirrorIn);
   }
   
-  public IBlockState withRotation(IBlockState state, Rotation rot) {
+  public IBlockState rotate(IBlockState state, Rotation rot) {
     switch (rot) {
       case CLOCKWISE_180:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)SOUTH)).withProperty((IProperty)EAST, state.getValue((IProperty)WEST)).withProperty((IProperty)SOUTH, state.getValue((IProperty)NORTH)).withProperty((IProperty)WEST, state.getValue((IProperty)EAST));
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)SOUTH)).withProperty((IProperty)EAST, state.get((IProperty)WEST)).withProperty((IProperty)SOUTH, state.get((IProperty)NORTH)).withProperty((IProperty)WEST, state.get((IProperty)EAST));
       case COUNTERCLOCKWISE_90:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)EAST)).withProperty((IProperty)EAST, state.getValue((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)WEST)).withProperty((IProperty)WEST, state.getValue((IProperty)NORTH));
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)EAST)).withProperty((IProperty)EAST, state.get((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.get((IProperty)WEST)).withProperty((IProperty)WEST, state.get((IProperty)NORTH));
       case CLOCKWISE_90:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)WEST)).withProperty((IProperty)EAST, state.getValue((IProperty)NORTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)EAST)).withProperty((IProperty)WEST, state.getValue((IProperty)SOUTH));
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)WEST)).withProperty((IProperty)EAST, state.get((IProperty)NORTH)).withProperty((IProperty)SOUTH, state.get((IProperty)EAST)).withProperty((IProperty)WEST, state.get((IProperty)SOUTH));
     } 
     return state;
   }

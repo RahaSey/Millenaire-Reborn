@@ -177,13 +177,13 @@ public class GuiPanelParchment extends GuiText {
     if (!labels.isEmpty()) {
       int stringlength = 0;
       for (String s : labels) {
-        int w = this.fontRenderer.getStringWidth(s);
+        int w = this.fontRendererObj.getStringWidth(s);
         if (w > stringlength)
           stringlength = w; 
       } 
       drawGradientRect(i - 3 - windowXstart + 10, j - 3 - windowYstart, i + stringlength + 3 - windowXstart + 10, j + 11 * labels.size() - windowYstart, -1073741824, -1073741824);
       for (int si = 0; si < labels.size(); si++)
-        this.fontRenderer.drawString(labels.get(si), i - windowXstart + 10, j - windowYstart + 11 * si, 9474192); 
+        this.fontRendererObj.drawString(labels.get(si), i - windowXstart + 10, j - windowYstart + 11 * si, 9474192); 
     } 
     GL11.glEnable(2896);
     GL11.glEnable(2929);
@@ -314,7 +314,7 @@ public class GuiPanelParchment extends GuiText {
       int k = (int)(villager.posX - minfo.mapStartX);
       int m = (int)(villager.posZ - minfo.mapStartZ);
       if (k > 0 && m > 0 && k < minfo.length && m < minfo.width) {
-        if (villager.isChild()) {
+        if (villager.func_70631_g_()) {
           drawScaledRect(k - 1, m - 1, k + 1, m + 1, -1593835776);
         } else if (villager.getRecord() != null && (villager.getRecord()).raidingVillage) {
           drawScaledRect(k - 1, m - 1, k + 1, m + 1, -1610612736);
@@ -339,55 +339,55 @@ public class GuiPanelParchment extends GuiText {
         playerHover = this.player; 
     } 
     if (villagerHover != null) {
-      int stringlength = this.fontRenderer.getStringWidth(villagerHover.getName());
-      stringlength = Math.max(stringlength, this.fontRenderer.getStringWidth(villagerHover.getNativeOccupationName()));
-      boolean gameString = (villagerHover.getGameOccupationName(this.player.getName()) != null && villagerHover.getGameOccupationName(this.player.getName()).length() > 0);
+      int stringlength = this.fontRendererObj.getStringWidth(villagerHover.func_70005_c_());
+      stringlength = Math.max(stringlength, this.fontRendererObj.getStringWidth(villagerHover.getNativeOccupationName()));
+      boolean gameString = (villagerHover.getGameOccupationName(this.player.func_70005_c_()) != null && villagerHover.getGameOccupationName(this.player.func_70005_c_()).length() > 0);
       if (gameString) {
-        stringlength = Math.max(stringlength, this.fontRenderer.getStringWidth(villagerHover.getGameOccupationName(this.player.getName())));
+        stringlength = Math.max(stringlength, this.fontRendererObj.getStringWidth(villagerHover.getGameOccupationName(this.player.func_70005_c_())));
         drawGradientRect(i + 10 - 3 - xStart, j + 10 - 3 - yStart, i + 10 + stringlength + 3 - xStart, j + 10 + 33 - yStart, -1073741824, -1073741824);
-        this.fontRenderer.drawString(villagerHover.getName(), i + 10 - xStart, j + 10 - yStart, 9474192);
-        this.fontRenderer.drawString(villagerHover.getNativeOccupationName(), i + 10 - xStart, j + 10 - yStart + 11, 9474192);
-        this.fontRenderer.drawString(villagerHover.getGameOccupationName(this.player.getName()), i + 10 - xStart, j + 10 - yStart + 22, 9474192);
+        this.fontRendererObj.drawString(villagerHover.func_70005_c_(), i + 10 - xStart, j + 10 - yStart, 9474192);
+        this.fontRendererObj.drawString(villagerHover.getNativeOccupationName(), i + 10 - xStart, j + 10 - yStart + 11, 9474192);
+        this.fontRendererObj.drawString(villagerHover.getGameOccupationName(this.player.func_70005_c_()), i + 10 - xStart, j + 10 - yStart + 22, 9474192);
       } else {
         drawGradientRect(i + 10 - 3 - xStart, j + 10 - 3 - yStart, i + 10 + stringlength + 3 - xStart, j + 10 + 22 - yStart, -1073741824, -1073741824);
-        this.fontRenderer.drawString(villagerHover.getName(), i + 10 - xStart, j + 10 - yStart, 9474192);
-        this.fontRenderer.drawString(villagerHover.getNativeOccupationName(), i + 10 - xStart, j + 10 - yStart + 11, 9474192);
+        this.fontRendererObj.drawString(villagerHover.func_70005_c_(), i + 10 - xStart, j + 10 - yStart, 9474192);
+        this.fontRendererObj.drawString(villagerHover.getNativeOccupationName(), i + 10 - xStart, j + 10 - yStart + 11, 9474192);
       } 
     } else if (playerHover != null) {
-      int stringlength = this.fontRenderer.getStringWidth(playerHover.getName());
+      int stringlength = this.fontRendererObj.getStringWidth(playerHover.func_70005_c_());
       drawGradientRect(i + 10 - 3 - xStart, j + 10 - 3 - yStart, i + 10 + stringlength + 3 - xStart, j + 10 + 11 - yStart, -1073741824, -1073741824);
-      this.fontRenderer.drawString(playerHover.getName(), i + 10 - xStart, j + 10 - yStart, 9474192);
+      this.fontRendererObj.drawString(playerHover.func_70005_c_(), i + 10 - xStart, j + 10 - yStart, 9474192);
     } else if (locHover != null) {
       int stringlength;
       String nativeString;
       Building b = locHover.getBuilding(this.townHall.world);
       boolean unreachable = (b != null && this.townHall.regionMapper != null && !b.isReachableFromRegion(this.townHall.regionMapper.thRegion));
       if (unreachable) {
-        stringlength = this.fontRenderer.getStringWidth(locHover.getNativeName() + " - " + LanguageUtilities.string("panels.unreachablebuilding"));
+        stringlength = this.fontRendererObj.getStringWidth(locHover.getNativeName() + " - " + LanguageUtilities.string("panels.unreachablebuilding"));
         nativeString = locHover.getNativeName() + " - " + LanguageUtilities.string("panels.unreachablebuilding");
       } else {
-        stringlength = this.fontRenderer.getStringWidth(locHover.getNativeName());
+        stringlength = this.fontRendererObj.getStringWidth(locHover.getNativeName());
         nativeString = locHover.getNativeName();
       } 
       int nblines = 1;
       boolean gameString = (locHover.getGameName() != null && locHover.getGameName().length() > 0);
       if (gameString) {
-        stringlength = Math.max(stringlength, this.fontRenderer.getStringWidth(locHover.getGameName()));
+        stringlength = Math.max(stringlength, this.fontRendererObj.getStringWidth(locHover.getGameName()));
         nblines++;
       } 
       List<String> effects = locHover.getBuildingEffects(this.townHall.world);
       nblines += effects.size();
       for (String s : effects)
-        stringlength = Math.max(stringlength, this.fontRenderer.getStringWidth(s)); 
+        stringlength = Math.max(stringlength, this.fontRendererObj.getStringWidth(s)); 
       drawGradientRect(i - 3 - xStart, j - 3 - yStart, i + stringlength + 3 - xStart, j + 11 * nblines - yStart, -1073741824, -1073741824);
-      this.fontRenderer.drawString(nativeString, i - xStart, j - yStart, 9474192);
+      this.fontRendererObj.drawString(nativeString, i - xStart, j - yStart, 9474192);
       int pos = 1;
       if (gameString) {
-        this.fontRenderer.drawString(locHover.getGameName(), i - xStart, j - yStart + 11, 9474192);
+        this.fontRendererObj.drawString(locHover.getGameName(), i - xStart, j - yStart + 11, 9474192);
         pos++;
       } 
       for (String s : effects) {
-        this.fontRenderer.drawString(s, i - xStart, j - yStart + 11 * pos, 9474192);
+        this.fontRendererObj.drawString(s, i - xStart, j - yStart + 11 * pos, 9474192);
         pos++;
       } 
     } 

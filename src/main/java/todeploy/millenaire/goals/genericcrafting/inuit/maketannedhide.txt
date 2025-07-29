@@ -2,7 +2,7 @@
 
 //Note to Windows users: if you see the entire file in one line, open it using PSPad or UltraEdit instead of Notepad
 
-priority=42
+priority=50
 
 //en/in millisecondes
 duration=5000
@@ -25,3 +25,5 @@ output=tannedhide,1
 //son à jouer quand un objet est fabriqué
 //sound to play once an object is done
 sound=wool
+
+townhalllimit=tannedhide,16

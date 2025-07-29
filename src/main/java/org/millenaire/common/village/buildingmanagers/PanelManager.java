@@ -234,7 +234,7 @@ public class PanelManager {
     EntityPlayer player = this.building.world.getClosestPlayer(this.building.getPos().getiX(), this.building.getPos().getiY(), this.building.getPos().getiZ(), 16.0D, false);
     if (player == null)
       return; 
-    if (this.building.world.getWorldTime() - this.lastSignUpdate < 100L)
+    if (this.building.world.getDayTime() - this.lastSignUpdate < 100L)
       return; 
     if ((this.building.getResManager()).signs.size() == 0)
       return; 
@@ -304,7 +304,7 @@ public class PanelManager {
         } 
       } 
     } 
-    this.lastSignUpdate = this.building.world.getWorldTime();
+    this.lastSignUpdate = this.building.world.getDayTime();
   }
   
   private void updateBorderPostSign() {
@@ -364,7 +364,7 @@ public class PanelManager {
     EntityPlayer player = this.building.world.getClosestPlayer(this.building.getPos().getiX(), this.building.getPos().getiY(), this.building.getPos().getiZ(), 16.0D, false);
     if (player == null)
       return; 
-    if (this.building.world.getWorldTime() - this.lastSignUpdate < 100L)
+    if (this.building.world.getDayTime() - this.lastSignUpdate < 100L)
       return; 
     Point p = (this.building.getResManager()).signs.get(0);
     if (p == null)
@@ -387,7 +387,7 @@ public class PanelManager {
       sign.texture = this.building.culture.panelTexture;
       sign.triggerUpdate();
     } 
-    this.lastSignUpdate = this.building.world.getWorldTime();
+    this.lastSignUpdate = this.building.world.getDayTime();
   }
   
   private void updateHouseSign() {
@@ -402,7 +402,7 @@ public class PanelManager {
     EntityPlayer player = this.building.world.getClosestPlayer(this.building.getPos().getiX(), this.building.getPos().getiY(), this.building.getPos().getiZ(), 16.0D, false);
     if (player == null)
       return; 
-    if (this.building.world.getWorldTime() - this.lastSignUpdate < 100L)
+    if (this.building.world.getDayTime() - this.lastSignUpdate < 100L)
       return; 
     VillagerRecord wife = null, husband = null;
     int nbMaleAdults = 0, nbFemaleAdults = 0, nbResidents = 0;
@@ -461,7 +461,7 @@ public class PanelManager {
       sign.texture = this.building.culture.panelTexture;
       sign.triggerUpdate();
     } 
-    this.lastSignUpdate = this.building.world.getWorldTime();
+    this.lastSignUpdate = this.building.world.getDayTime();
   }
   
   private void updateInnSign() {
@@ -582,7 +582,7 @@ public class PanelManager {
       lines.add(createFullLine("ui.panelmarvelres1", stackFromItem(Item.getItemFromBlock((Block)Blocks.CHEST)), stackFromItem(Item.getItemFromBlock((Block)Blocks.CHEST))));
       lines.add(createFullLine("ui.panelmarvelres2", (ItemStack)null, (ItemStack)null));
       lines.add(createEmptyLine());
-      lines.add(createFullLine(new String[] { "ui.panelmarvelrescount", String.format("%,d", new Object[] { Integer.valueOf(totalCostSum - remainingNeedsSum) }), String.format("%,d", new Object[] { Integer.valueOf(totalCostSum) }) }, (ItemStack)null, (ItemStack)null));
+      lines.add(createFullLine(new String[] { "ui.panelmarvelrescount", String.format("%,d", new Object[] { Integer.valueOf(totalCostSum - remainingNeedsSum) }), String.format("%,d", new Object[] { Integer.valueOf(totalCostSum) }) }(ItemStack)null, (ItemStack)null));
       sign.untranslatedLines = lines;
       sign.buildingPos = this.building.getPos();
       sign.panelType = 3;
@@ -597,7 +597,7 @@ public class PanelManager {
     EntityPlayer player = this.townHall.world.getClosestPlayer(this.townHall.getPos().getiX(), this.townHall.getPos().getiY(), this.townHall.getPos().getiZ(), 20.0D, false);
     if (player == null)
       return; 
-    if (!forced && this.townHall.world.getWorldTime() - this.lastSignUpdate < 40L)
+    if (!forced && this.townHall.world.getDayTime() - this.lastSignUpdate < 40L)
       return; 
     if ((this.townHall.getResManager()).signs.size() < 7)
       return; 
@@ -641,7 +641,7 @@ public class PanelManager {
     sign = ((Point)(this.townHall.getResManager()).signs.get(signPos)).getPanel(this.townHall.world);
     updateMarvelDonationsSign(sign);
     signPos++;
-    this.lastSignUpdate = this.townHall.world.getWorldTime();
+    this.lastSignUpdate = this.townHall.world.getDayTime();
   }
   
   public void updateSigns() {
@@ -978,7 +978,7 @@ public class PanelManager {
     EntityPlayer player = this.building.world.getClosestPlayer(this.building.getPos().getiX(), this.building.getPos().getiY(), this.building.getPos().getiZ(), 20.0D, false);
     if (player == null)
       return; 
-    if (!forced && this.building.world.getWorldTime() - this.lastSignUpdate < 40L)
+    if (!forced && this.building.world.getDayTime() - this.lastSignUpdate < 40L)
       return; 
     for (int i = 0; i < (this.building.getResManager()).signs.size(); i++) {
       Point p = (this.building.getResManager()).signs.get(i);
@@ -1022,7 +1022,7 @@ public class PanelManager {
           }  
       } 
     } 
-    this.lastSignUpdate = this.building.world.getWorldTime();
+    this.lastSignUpdate = this.building.world.getDayTime();
   }
   
   public void updateVisitorsSigns() {

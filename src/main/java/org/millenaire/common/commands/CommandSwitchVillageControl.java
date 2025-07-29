@@ -21,18 +21,18 @@ import org.millenaire.common.world.MillWorldData;
 
 public class CommandSwitchVillageControl implements ICommand {
   public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-    return sender.canUseCommand(getRequiredPermissionLevel(), getName());
+    return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
   }
   
   public int compareTo(ICommand o) {
-    return getName().compareTo(o.getName());
+    return getCommandName().compareTo(o.getCommandName());
   }
   
   public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-    World world = sender.getEntityWorld();
+    World world = sender.func_130014_f_();
     if (!world.isRemote) {
       if (args.length != 2)
-        throw new WrongUsageException(getUsage(sender), new Object[0]); 
+        throw new WrongUsageException(getCommandUsage(sender), new Object[0]); 
       MillWorldData worldData = Mill.getMillWorld(world);
       List<Building> townHalls = CommandUtilities.getMatchingVillages(worldData, args[0]);
       if (townHalls.size() == 0)
@@ -43,25 +43,25 @@ public class CommandSwitchVillageControl implements ICommand {
       if (!village.villageType.playerControlled)
         throw new CommandException(LanguageUtilities.string("command.switchcontrol_notcontrolled", new String[] { village.getVillageQualifiedName() }), new Object[0]); 
       String playerName = args[1];
-      GameProfile profile = world.getMinecraftServer().getPlayerProfileCache().getGameProfileForUsername(playerName);
+      GameProfile profile = world.getServer().getPlayerProfileCache().getGameProfileForUsername(playerName);
       if (profile == null)
         throw new CommandException(LanguageUtilities.string("command.switchcontrol_playernotfound", new String[] { playerName }), new Object[0]); 
       String oldControllerName = village.controlledByName;
       village.controlledBy = profile.getId();
       village.controlledByName = profile.getName();
-      MillLog.major(this, "Switched controller from " + oldControllerName + " to " + village.controlledByName + " via command by " + sender.getName() + ".");
+      MillLog.major(this, "Switched controller from " + oldControllerName + " to " + village.controlledByName + " via command by " + sender.func_70005_c_() + ".");
       for (EntityPlayer player : world.playerEntities) {
-        ServerSender.sendTranslatedSentence(player, '9', "command.switchcontrol_notification", new String[] { sender.getName(), oldControllerName, profile.getName(), village
+        ServerSender.sendTranslatedSentence(player, '9', "command.switchcontrol_notification", new String[] { sender.func_70005_c_(), oldControllerName, profile.getName(), village
               .getVillageQualifiedName() });
       } 
     } 
   }
   
-  public List<String> getAliases() {
+  public List<String> getCommandAliases() {
     return Collections.emptyList();
   }
   
-  public String getName() {
+  public String getCommandName() {
     return "millSwitchVillageControl";
   }
   
@@ -69,9 +69,9 @@ public class CommandSwitchVillageControl implements ICommand {
     return 3;
   }
   
-  public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
+  public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
     if (args.length == 1) {
-      World world = sender.getEntityWorld();
+      World world = sender.func_130014_f_();
       MillWorldData worldData = Mill.getMillWorld(world);
       List<Building> townHalls = CommandUtilities.getMatchingVillages(worldData, args[0]);
       List<String> possibleMatches = new ArrayList<>();
@@ -82,10 +82,10 @@ public class CommandSwitchVillageControl implements ICommand {
       return possibleMatches;
     } 
     if (args.length == 2) {
-      World world = sender.getEntityWorld();
+      World world = sender.func_130014_f_();
       List<String> possibleMatches = new ArrayList<>();
       String normalizedQuery = CommandUtilities.normalizeString(args[1]);
-      for (String userName : world.getMinecraftServer().getPlayerProfileCache().getUsernames()) {
+      for (String userName : world.getServer().getPlayerProfileCache().getUsernames()) {
         String normalizedName = CommandUtilities.normalizeString(userName);
         if (normalizedName.startsWith(normalizedQuery))
           possibleMatches.add(normalizedName); 
@@ -95,8 +95,8 @@ public class CommandSwitchVillageControl implements ICommand {
     return Collections.emptyList();
   }
   
-  public String getUsage(ICommandSender sender) {
-    return "commands." + getName().toLowerCase() + ".usage";
+  public String getCommandUsage(ICommandSender sender) {
+    return "commands." + getCommandName().toLowerCase() + ".usage";
   }
   
   public boolean isUsernameIndex(String[] args, int index) {

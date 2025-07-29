@@ -7,7 +7,7 @@ building.icon=alchemistexplosive
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Tour de l'Alchimiste
+initial.nativename=Touor d'l'Alchimiste
 initial.male=alchemist
 initial.male=alchemistassistant
 

@@ -1,4 +1,4 @@
-name=Village d'artisans
+name=Village dé Métcher
 icon=timberframecross
 weight=10
 carriesraid=true

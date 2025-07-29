@@ -95,7 +95,7 @@ public class StreamReadWrite {
       boolean hasNBTTag = par1PacketBuffer.readBoolean();
       if (hasNBTTag) {
         NBTTagCompound tag = readNBTTagCompound(par1PacketBuffer);
-        is.setTagCompound(tag);
+        is.setTag(tag);
       } 
     } 
     return is;
@@ -452,10 +452,10 @@ public class StreamReadWrite {
     } else {
       par2PacketBuffer.writeInt(Item.getIdFromItem(par1ItemStack.getItem()));
       par2PacketBuffer.writeByte(par1ItemStack.getCount());
-      par2PacketBuffer.writeShort(par1ItemStack.getItemDamage());
-      if (par1ItemStack.isItemStackDamageable()) {
+      par2PacketBuffer.writeShort(par1ItemStack.getDamage());
+      if (par1ItemStack.isDamageable()) {
         par2PacketBuffer.writeBoolean(true);
-        writeNBTTagCompound(par1ItemStack.getTagCompound(), par2PacketBuffer);
+        writeNBTTagCompound(par1ItemStack.getTag(), par2PacketBuffer);
       } else {
         par2PacketBuffer.writeBoolean(false);
       } 

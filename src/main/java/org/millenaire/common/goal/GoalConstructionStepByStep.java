@@ -215,7 +215,7 @@ public class GoalConstructionStepByStep extends Goal {
     if (!foundNextBlock)
       villager.setGoalDestPoint(null); 
     if (MillConfigValues.LogWifeAI >= 2 && villager.extraLog)
-      MillLog.minor(villager, "Reseting actionStart after " + (villager.world.getWorldTime() - villager.actionStart)); 
+      MillLog.minor(villager, "Reseting actionStart after " + (villager.world.getDayTime() - villager.actionStart)); 
     return !cip.areBlocksLeft();
   }
   

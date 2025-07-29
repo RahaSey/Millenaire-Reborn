@@ -43,24 +43,24 @@ public class ContainerLockedChest extends Container {
   public ContainerLockedChest(IInventory playerInventory, IInventory chestInventory, EntityPlayer player, Building building, boolean locked) {
     this.locked = locked;
     this.lowerChestInventory = chestInventory;
-    this.numRows = chestInventory.getSizeInventory() / 9;
+    this.numRows = chestInventory.func_70302_i_() / 9;
     chestInventory.openInventory(player);
     int i = (this.numRows - 4) * 18;
     for (int j = 0; j < this.numRows; j++) {
       for (int k = 0; k < 9; k++) {
         if (locked) {
-          addSlotToContainer(new LockedSlot(chestInventory, k + j * 9, 8 + k * 18, 18 + j * 18));
+          addSlot(new LockedSlot(chestInventory, k + j * 9, 8 + k * 18, 18 + j * 18));
         } else {
-          addSlotToContainer(new CachedSlot(chestInventory, k + j * 9, 8 + k * 18, 18 + j * 18, building));
+          addSlot(new CachedSlot(chestInventory, k + j * 9, 8 + k * 18, 18 + j * 18, building));
         } 
       } 
     } 
     for (int l = 0; l < 3; l++) {
       for (int j1 = 0; j1 < 9; j1++)
-        addSlotToContainer(new Slot(playerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 103 + l * 18 + i)); 
+        addSlot(new Slot(playerInventory, j1 + l * 9 + 9, 8 + j1 * 18, 103 + l * 18 + i)); 
     } 
     for (int i1 = 0; i1 < 9; i1++)
-      addSlotToContainer(new Slot(playerInventory, i1, 8 + i1 * 18, 161 + i)); 
+      addSlot(new Slot(playerInventory, i1, 8 + i1 * 18, 161 + i)); 
   }
   
   public boolean canInteractWith(EntityPlayer playerIn) {

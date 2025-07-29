@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBanner;
-import net.minecraft.block.BlockMillWallItem;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -217,7 +216,7 @@ public class MillBlocks {
     
     private static final String SNOW_BRICK_BLOCK = "snowbrick";
     
-    private static final String INUIT_CARVING_BLOCK = "inuitcarving";
+    private static final String INUIT_CARVING = "inuitcarving";
     
     private static final String SNOW_WALL = "snowwall";
     
@@ -266,17 +265,9 @@ public class MillBlocks {
     private static final String SAPLING_SAKURA = "sapling_sakura";
     
     private static final String SAKURA_LEAVES = "sakura_leaves";
-    
-    private static final String FEATHERED_SERPENT_BLOCK = "feathered_serpent";
-    
-    private static final String MAYAN_CARPET = "mayan_carpet";
-    
-    private static final String MAYAN_CARPET_THATCH = "mayan_carpet_thatch";
-    
-    private static final String MAYAN_CALENDAR = "mayan_calendar";
   }
   
-  public static Map<String, Map<EnumDyeColor, ? extends Block>> PAINTED_BRICK_MAP = new HashMap<>();
+  public static Map<String, Map<EnumDyeColor, Block>> PAINTED_BRICK_MAP = new HashMap<>();
   
   @ObjectHolder("millenaire:painted_brick_white")
   public static BlockPaintedBricks PAINTED_BRICK_WHITE;
@@ -578,18 +569,6 @@ public class MillBlocks {
   @ObjectHolder("millenaire:sakura_leaves")
   public static BlockFruitLeaves SAKURA_LEAVES;
   
-  @ObjectHolder("millenaire:feathered_serpent")
-  public static BlockMillStatue FEATHERED_SERPENT;
-  
-  @ObjectHolder("millenaire:mayan_carpet")
-  public static BlockMillCarpet MAYAN_CARPET;
-  
-  @ObjectHolder("millenaire:mayan_carpet_thatch")
-  public static BlockMillCarpet MAYAN_CARPET_THATCH;
-  
-  @ObjectHolder("millenaire:mayan_calendar")
-  public static BlockMillWallItem MAYAN_CALENDAR;
-  
   public static IBlockState BS_WET_BRICK;
   
   public static IBlockState BS_MUD_BRICK;
@@ -598,21 +577,11 @@ public class MillBlocks {
       public ItemStack createIcon() {
         return new ItemStack((Item)MillItems.DENIER_OR, 1);
       }
-      
-      @Override
-      public ItemStack getTabIconItem() {
-        return createIcon();
-      }
     };
   
   public static CreativeTabs tabMillenaireContentCreator = new CreativeTabs("millenaire_content_creator") {
       public ItemStack createIcon() {
         return new ItemStack((Block)MillBlocks.DECOR_BLOCK, 1);
-      }
-      
-      @Override
-      public ItemStack getTabIconItem() {
-        return createIcon();
       }
     };
   
@@ -623,11 +592,11 @@ public class MillBlocks {
   
   public static void registerBlocks(RegistryEvent.Register<Block> event) {
     BlockDecorativeWood blockDecorativeWood = new BlockDecorativeWood("wood_deco");
-    event.getRegistry().register(blockDecorativeWood);
+    event.getRegistry().register((IForgeRegistryEntry)blockDecorativeWood);
     BlockDecorativeStone blockDecorativeStone = new BlockDecorativeStone("stone_deco");
-    event.getRegistry().register(blockDecorativeStone);
-    event.getRegistry().register(new BlockDecorativeEarth("earth_deco"));
-    event.getRegistry().register(new BlockMillWall("wall_mud_brick", (Block)blockDecorativeStone));
+    event.getRegistry().register((IForgeRegistryEntry)blockDecorativeStone);
+    event.getRegistry().register((IForgeRegistryEntry)new BlockDecorativeEarth("earth_deco"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillWall("wall_mud_brick", (Block)blockDecorativeStone));
     PAINTED_BRICK_MAP.put("painted_brick", new HashMap<>());
     PAINTED_BRICK_MAP.put("painted_brick_decorated", new HashMap<>());
     PAINTED_BRICK_MAP.put("stairs_painted_brick", new HashMap<>());
@@ -635,158 +604,154 @@ public class MillBlocks {
     PAINTED_BRICK_MAP.put("wall_painted_brick", new HashMap<>());
     for (EnumDyeColor colour : EnumDyeColor.values()) {
       Block paintedBrick = new BlockPaintedBricks("painted_brick", colour);
-      event.getRegistry().register(paintedBrick);
+      event.getRegistry().register((IForgeRegistryEntry)paintedBrick);
       ((Map<EnumDyeColor, Block>)PAINTED_BRICK_MAP.get("painted_brick")).put(colour, paintedBrick);
       Block paintedBrickDecorated = new BlockPaintedBricks("painted_brick_decorated", colour);
-      event.getRegistry().register(paintedBrickDecorated);
+      event.getRegistry().register((IForgeRegistryEntry)paintedBrickDecorated);
       ((Map<EnumDyeColor, Block>)PAINTED_BRICK_MAP.get("painted_brick_decorated")).put(colour, paintedBrickDecorated);
       BlockPaintedStairs blockPaintedStairs = new BlockPaintedStairs("stairs_painted_brick", paintedBrick.getDefaultState(), colour);
-      event.getRegistry().register(blockPaintedStairs);
+      event.getRegistry().register((IForgeRegistryEntry)blockPaintedStairs);
       ((Map<EnumDyeColor, BlockPaintedStairs>)PAINTED_BRICK_MAP.get("stairs_painted_brick")).put(colour, blockPaintedStairs);
       Block paintedBrickSlabs = new BlockPaintedSlab("slab_painted_brick", paintedBrick, colour);
-      event.getRegistry().register(paintedBrickSlabs);
+      event.getRegistry().register((IForgeRegistryEntry)paintedBrickSlabs);
       ((Map<EnumDyeColor, Block>)PAINTED_BRICK_MAP.get("slab_painted_brick")).put(colour, paintedBrickSlabs);
       Block paintedBrickWall = new BlockPaintedWall("wall_painted_brick", paintedBrick, colour);
-      event.getRegistry().register(paintedBrickWall);
+      event.getRegistry().register((IForgeRegistryEntry)paintedBrickWall);
       ((Map<EnumDyeColor, Block>)PAINTED_BRICK_MAP.get("wall_painted_brick")).put(colour, paintedBrickWall);
     } 
-    event.getRegistry().register(new BlockExtendedMudBrick("extended_mud_brick"));
-    event.getRegistry().register(new BlockSlabWood("slab_wood_deco"));
-    event.getRegistry().register(new BlockSlabStone("slab_stone_deco"));
-    event.getRegistry().register(new BlockMillStairs("stairs_cookedbrick", blockDecorativeStone
+    event.getRegistry().register((IForgeRegistryEntry)new BlockExtendedMudBrick("extended_mud_brick"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockSlabWood("slab_wood_deco"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockSlabStone("slab_stone_deco"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_cookedbrick", blockDecorativeStone
           .getDefaultState().withProperty((IProperty)BlockDecorativeStone.VARIANT, BlockDecorativeStone.EnumType.COOKEDBRICK)));
     event.getRegistry()
-      .register(new BlockMillStairs("stairs_mudbrick", blockDecorativeStone.getDefaultState().withProperty((IProperty)BlockDecorativeStone.VARIANT, BlockDecorativeStone.EnumType.MUDBRICK)));
-    event.getRegistry().register(new BlockMillStairs("stairs_timberframe", blockDecorativeWood
+      .register((IForgeRegistryEntry)new BlockMillStairs("stairs_mudbrick", blockDecorativeStone.getDefaultState().withProperty((IProperty)BlockDecorativeStone.VARIANT, BlockDecorativeStone.EnumType.MUDBRICK)));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_timberframe", blockDecorativeWood
           .getDefaultState().withProperty((IProperty)BlockDecorativeWood.VARIANT, BlockDecorativeWood.EnumType.TIMBERFRAMEPLAIN)));
     event.getRegistry()
-      .register(new BlockMillStairs("stairs_thatch", blockDecorativeWood.getDefaultState().withProperty((IProperty)BlockDecorativeWood.VARIANT, BlockDecorativeWood.EnumType.THATCH)));
+      .register((IForgeRegistryEntry)new BlockMillStairs("stairs_thatch", blockDecorativeWood.getDefaultState().withProperty((IProperty)BlockDecorativeWood.VARIANT, BlockDecorativeWood.EnumType.THATCH)));
     BlockMillSandstone sandstoneCarved = new BlockMillSandstone("sandstone_carved");
-    event.getRegistry().register(sandstoneCarved);
+    event.getRegistry().register((IForgeRegistryEntry)sandstoneCarved);
     BlockMillSandstone redSandstoneCarved = new BlockMillSandstone("sandstone_red_carved");
-    event.getRegistry().register(redSandstoneCarved);
+    event.getRegistry().register((IForgeRegistryEntry)redSandstoneCarved);
     BlockMillSandstone ochreSandstoneCarved = new BlockMillSandstone("sandstone_ochre_carved");
-    event.getRegistry().register(ochreSandstoneCarved);
-    event.getRegistry().register(new BlockMillStairs("stairs_sandstone_carved", sandstoneCarved.getDefaultState()));
-    event.getRegistry().register(new BlockMillStairs("stairs_sandstone_red_carved", redSandstoneCarved.getDefaultState()));
-    event.getRegistry().register(new BlockMillStairs("stairs_sandstone_ochre_carved", ochreSandstoneCarved.getDefaultState()));
-    event.getRegistry().register(new BlockMillSlab("slab_sandstone_carved", sandstoneCarved));
-    event.getRegistry().register(new BlockMillSlab("slab_sandstone_red_carved", redSandstoneCarved));
-    event.getRegistry().register(new BlockMillSlab("slab_sandstone_ochre_carved", ochreSandstoneCarved));
-    event.getRegistry().register(new BlockMillWall("wall_sandstone_carved", sandstoneCarved));
-    event.getRegistry().register(new BlockMillWall("wall_sandstone_red_carved", redSandstoneCarved));
-    event.getRegistry().register(new BlockMillWall("wall_sandstone_ochre_carved", ochreSandstoneCarved));
-    event.getRegistry().register((new BlockMillStainedGlass("stained_glass")).setHardness(0.3F));
-    event.getRegistry().register((new BlockRosette("rosette", Material.GLASS, SoundType.GLASS)).setHardness(0.3F));
-    event.getRegistry().register(new BlockWetBrick("wet_brick"));
-    event.getRegistry().register(new BlockSilkWorm("silk_worm"));
-    event.getRegistry().register(new BlockSnailSoil("snail_soil"));
-    event.getRegistry().register(new BlockPath("pathdirt", MapColor.DIRT, SoundType.GROUND));
-    event.getRegistry().register(new BlockPathSlab("pathdirt", MapColor.DIRT, SoundType.GROUND));
-    event.getRegistry().register(new BlockPath("pathgravel", MapColor.GRAY, SoundType.GROUND));
-    event.getRegistry().register(new BlockPathSlab("pathgravel", MapColor.GRAY, SoundType.GROUND));
-    event.getRegistry().register(new BlockPath("pathslabs", MapColor.STONE, SoundType.STONE));
-    event.getRegistry().register(new BlockPathSlab("pathslabs", MapColor.STONE, SoundType.STONE));
-    event.getRegistry().register(new BlockPath("pathsandstone", MapColor.SAND, SoundType.STONE));
-    event.getRegistry().register(new BlockPathSlab("pathsandstone", MapColor.SAND, SoundType.STONE));
-    event.getRegistry().register(new BlockPath("pathgravelslabs", MapColor.GRAY, SoundType.STONE));
-    event.getRegistry().register(new BlockPathSlab("pathgravelslabs", MapColor.GRAY, SoundType.STONE));
-    event.getRegistry().register(new BlockPath("pathochretiles", MapColor.BROWN_STAINED_HARDENED_CLAY, SoundType.STONE));
-    event.getRegistry().register(new BlockPathSlab("pathochretiles", MapColor.BROWN_STAINED_HARDENED_CLAY, SoundType.STONE));
-    event.getRegistry().register(new BlockPath("pathsnow", MapColor.SNOW, SoundType.SNOW));
-    event.getRegistry().register(new BlockPathSlab("pathsnow", MapColor.SNOW, SoundType.SNOW));
-    event.getRegistry().register(new BlockLockedChest("locked_chest"));
+    event.getRegistry().register((IForgeRegistryEntry)ochreSandstoneCarved);
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_sandstone_carved", sandstoneCarved.getDefaultState()));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_sandstone_red_carved", redSandstoneCarved.getDefaultState()));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_sandstone_ochre_carved", ochreSandstoneCarved.getDefaultState()));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSlab("slab_sandstone_carved", sandstoneCarved));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSlab("slab_sandstone_red_carved", redSandstoneCarved));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSlab("slab_sandstone_ochre_carved", ochreSandstoneCarved));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillWall("wall_sandstone_carved", sandstoneCarved));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillWall("wall_sandstone_red_carved", redSandstoneCarved));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillWall("wall_sandstone_ochre_carved", ochreSandstoneCarved));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockMillStainedGlass("stained_glass")).setHardness(0.3F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockRosette("rosette", Material.GLASS, SoundType.GLASS)).setHardness(0.3F));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockWetBrick("wet_brick"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockSilkWorm("silk_worm"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockSnailSoil("snail_soil"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPath("pathdirt", MapColor.DIRT, SoundType.GROUND));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPathSlab("pathdirt", MapColor.DIRT, SoundType.GROUND));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPath("pathgravel", MapColor.GRAY, SoundType.GROUND));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPathSlab("pathgravel", MapColor.GRAY, SoundType.GROUND));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPath("pathslabs", MapColor.STONE, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPathSlab("pathslabs", MapColor.STONE, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPath("pathsandstone", MapColor.SAND, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPathSlab("pathsandstone", MapColor.SAND, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPath("pathgravelslabs", MapColor.GRAY, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPathSlab("pathgravelslabs", MapColor.GRAY, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPath("pathochretiles", MapColor.BROWN_TERRACOTTA, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPathSlab("pathochretiles", MapColor.BROWN_TERRACOTTA, SoundType.STONE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPath("pathsnow", MapColor.SNOW, SoundType.SNOW));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPathSlab("pathsnow", MapColor.SNOW, SoundType.SNOW));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockLockedChest("locked_chest"));
     GameRegistry.registerTileEntity(TileEntityLockedChest.class, "millenaire:locked_chest");
-    event.getRegistry().register(new BlockPanel("panel"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockPanel("panel"));
     GameRegistry.registerTileEntity(TileEntityPanel.class, "millenaire:panel");
-    event.getRegistry().register(new BlockMillCrops("crop_rice", true, false, new ResourceLocation("millenaire", "rice")));
-    event.getRegistry().register(new BlockMillCrops("crop_turmeric", false, false, new ResourceLocation("millenaire", "turmeric")));
-    event.getRegistry().register(new BlockMillCrops("crop_maize", false, true, new ResourceLocation("millenaire", "maize")));
-    event.getRegistry().register(new BlockGrapeVine("crop_vine", false, false, new ResourceLocation("millenaire", "grapes")));
-    event.getRegistry().register(new BlockMillCrops("crop_cotton", true, false, new ResourceLocation("millenaire", "cotton")));
-    event.getRegistry().register((new BlockMillPane("paper_wall", Material.WOOD, SoundType.CLOTH)).setHardness(0.3F));
-    event.getRegistry().register((new BlockBars("wooden_bars")).setHardness(0.3F));
-    event.getRegistry().register((new BlockBars("wooden_bars_indian")).setHardness(0.3F));
-    event.getRegistry().register((new BlockRosetteBars("wooden_bars_rosette", Material.WOOD, SoundType.WOOD)).setHardness(0.3F));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillCrops("crop_rice", true, false, new ResourceLocation("millenaire", "rice")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillCrops("crop_turmeric", false, false, new ResourceLocation("millenaire", "turmeric")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillCrops("crop_maize", false, true, new ResourceLocation("millenaire", "maize")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockGrapeVine("crop_vine", false, false, new ResourceLocation("millenaire", "grapes")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillCrops("crop_cotton", true, false, new ResourceLocation("millenaire", "cotton")));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockMillPane("paper_wall", Material.WOOD, SoundType.CLOTH)).setHardness(0.3F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockBars("wooden_bars")).setHardness(0.3F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockBars("wooden_bars_indian")).setHardness(0.3F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockRosetteBars("wooden_bars_rosette", Material.WOOD, SoundType.WOOD)).setHardness(0.3F));
     Block byzantineTiles = (new BlockOrientedSlab.BlockOrientedSlabDouble("byzantine_tiles")).setHardness(2.0F).setResistance(10.0F);
-    event.getRegistry().register(byzantineTiles);
-    event.getRegistry().register((new BlockOrientedSlab.BlockOrientedSlabSlab("byzantine_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
-    event.getRegistry().register((new BlockOrientedSlabDoubleDecorated("byzantine_stone_tiles")).setHardness(2.0F).setResistance(10.0F));
-    event.getRegistry().register((new BlockOrientedSlabDoubleDecorated("byzantine_sandstone_tiles")).setHardness(2.0F).setResistance(10.0F));
+    event.getRegistry().register((IForgeRegistryEntry)byzantineTiles);
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockOrientedSlab.BlockOrientedSlabSlab("byzantine_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockOrientedSlabDoubleDecorated("byzantine_stone_tiles")).setHardness(2.0F).setResistance(10.0F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockOrientedSlabDoubleDecorated("byzantine_sandstone_tiles")).setHardness(2.0F).setResistance(10.0F));
     BlockMillSandstoneDecorated byzantine_stone_ornament = new BlockMillSandstoneDecorated("byzantine_stone_ornament");
-    event.getRegistry().register(byzantine_stone_ornament);
+    event.getRegistry().register((IForgeRegistryEntry)byzantine_stone_ornament);
     BlockMillSandstoneDecorated byzantine_sandstone_ornament = new BlockMillSandstoneDecorated("byzantine_sandstone_ornament");
-    event.getRegistry().register(byzantine_sandstone_ornament);
-    event.getRegistry().register(new BlockMillStairs("stairs_byzantine_tiles", byzantineTiles.getDefaultState()));
-    event.getRegistry().register((new BlockAlchemistExplosive("alchemistexplosive")).setHardness(2.0F).setResistance(10.0F));
-    event.getRegistry().register(new BlockSod("sod"));
-    event.getRegistry().register((new BlockCustomIce("icebrick")).setHardness(0.5F));
-    event.getRegistry().register((new BlockCustomSnow("snowbrick")).setHardness(0.4F));
-    event.getRegistry().register(new BlockMillWall("snowwall", Blocks.SNOW));
-    event.getRegistry().register(new BlockMillBed("bed_straw", 4));
-    event.getRegistry().register(new BlockMillBed("bed_charpoy", 4));
+    event.getRegistry().register((IForgeRegistryEntry)byzantine_sandstone_ornament);
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_byzantine_tiles", byzantineTiles.getDefaultState()));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockAlchemistExplosive("alchemistexplosive")).setHardness(2.0F).setResistance(10.0F));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockSod("sod"));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockCustomIce("icebrick")).setHardness(0.5F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockCustomSnow("snowbrick")).setHardness(0.4F));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillWall("snowwall", Blocks.SNOW));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillBed("bed_straw", 4));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillBed("bed_charpoy", 4));
     GameRegistry.registerTileEntity(TileEntityMillBed.class, "millenaire:millbed");
-    event.getRegistry().register(new BlockImportTable("import_table"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockImportTable("import_table"));
     GameRegistry.registerTileEntity(TileEntityImportTable.class, "millenaire:import_table");
-    event.getRegistry().register(new BlockMillSapling("sapling_appletree", BlockMillSapling.EnumMillWoodType.APPLETREE));
-    event.getRegistry().register(new BlockFruitLeaves("leaves_appletree", BlockMillSapling.EnumMillWoodType.APPLETREE, new ResourceLocation("millenaire", "sapling_appletree"), new ResourceLocation("millenaire", "ciderapple")));
-    event.getRegistry().register(new BlockMillSapling("sapling_olivetree", BlockMillSapling.EnumMillWoodType.OLIVETREE));
-    event.getRegistry().register(new BlockFruitLeaves("leaves_olivetree", BlockMillSapling.EnumMillWoodType.OLIVETREE, new ResourceLocation("millenaire", "sapling_olivetree"), new ResourceLocation("millenaire", "olives")));
-    event.getRegistry().register(new BlockMillSapling("sapling_pistachio", BlockMillSapling.EnumMillWoodType.PISTACHIO));
-    event.getRegistry().register(new BlockFruitLeaves("leaves_pistachio", BlockMillSapling.EnumMillWoodType.PISTACHIO, new ResourceLocation("millenaire", "sapling_pistachio"), new ResourceLocation("millenaire", "pistachios")));
-    event.getRegistry().register(new BlockMillSapling("sapling_cherry", BlockMillSapling.EnumMillWoodType.CHERRY));
-    event.getRegistry().register(new BlockFruitLeaves("cherry_leaves", BlockMillSapling.EnumMillWoodType.CHERRY, new ResourceLocation("millenaire", "sapling_cherry"), new ResourceLocation("millenaire", "cherries")));
-    event.getRegistry().register(new BlockMillSapling("sapling_sakura", BlockMillSapling.EnumMillWoodType.SAKURA));
-    event.getRegistry().register(new BlockFruitLeaves("sakura_leaves", BlockMillSapling.EnumMillWoodType.SAKURA, new ResourceLocation("millenaire", "sapling_sakura"), new ResourceLocation("millenaire", "cherry_blossom")));
-    event.getRegistry().register(new MockBlockMarker("markerblock"));
-    event.getRegistry().register(new MockBlockMainChest("mainchest"));
-    event.getRegistry().register(new MockBlockAnimalSpawn("animalspawn"));
-    event.getRegistry().register(new MockBlockSource("source"));
-    event.getRegistry().register(new MockBlockFree("freeblock"));
-    event.getRegistry().register(new MockBlockTreeSpawn("treespawn"));
-    event.getRegistry().register(new MockBlockSoil("soil"));
-    event.getRegistry().register(new MockBlockDecor("decorblock"));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSapling("sapling_appletree", BlockMillSapling.EnumMillWoodType.APPLETREE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockFruitLeaves("leaves_appletree", BlockMillSapling.EnumMillWoodType.APPLETREE, new ResourceLocation("millenaire", "sapling_appletree"), new ResourceLocation("millenaire", "ciderapple")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSapling("sapling_olivetree", BlockMillSapling.EnumMillWoodType.OLIVETREE));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockFruitLeaves("leaves_olivetree", BlockMillSapling.EnumMillWoodType.OLIVETREE, new ResourceLocation("millenaire", "sapling_olivetree"), new ResourceLocation("millenaire", "olives")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSapling("sapling_pistachio", BlockMillSapling.EnumMillWoodType.PISTACHIO));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockFruitLeaves("leaves_pistachio", BlockMillSapling.EnumMillWoodType.PISTACHIO, new ResourceLocation("millenaire", "sapling_pistachio"), new ResourceLocation("millenaire", "pistachios")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSapling("sapling_cherry", BlockMillSapling.EnumMillWoodType.CHERRY));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockFruitLeaves("cherry_leaves", BlockMillSapling.EnumMillWoodType.CHERRY, new ResourceLocation("millenaire", "sapling_cherry"), new ResourceLocation("millenaire", "cherries")));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillSapling("sapling_sakura", BlockMillSapling.EnumMillWoodType.SAKURA));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockFruitLeaves("sakura_leaves", BlockMillSapling.EnumMillWoodType.SAKURA, new ResourceLocation("millenaire", "sapling_sakura"), new ResourceLocation("millenaire", "cherry_blossom")));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockMarker("markerblock"));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockMainChest("mainchest"));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockAnimalSpawn("animalspawn"));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockSource("source"));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockFree("freeblock"));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockTreeSpawn("treespawn"));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockSoil("soil"));
+    event.getRegistry().register((IForgeRegistryEntry)new MockBlockDecor("decorblock"));
     MockBlockBannerHanging villageBannerWall = new MockBlockBannerHanging(ItemMockBanner.BANNER_VILLAGE);
     villageBannerWall.setHardness(1.0F);
     villageBannerWall.setUnlocalizedName("millenaire.villagebannerwall");
     villageBannerWall.setRegistryName("villagebannerwall");
-    event.getRegistry().register((Block)villageBannerWall);
+    event.getRegistry().register((IForgeRegistryEntry)villageBannerWall);
     MockBlockBannerStanding villageBannerStanding = new MockBlockBannerStanding(ItemMockBanner.BANNER_VILLAGE);
     villageBannerStanding.setHardness(1.0F);
     villageBannerStanding.setUnlocalizedName("millenaire.villagebannerstanding");
     villageBannerStanding.setRegistryName("villagebannerstanding");
-    event.getRegistry().register((Block)villageBannerStanding);
+    event.getRegistry().register((IForgeRegistryEntry)villageBannerStanding);
     MockBlockBannerHanging cultureBannerWall = new MockBlockBannerHanging(ItemMockBanner.BANNER_CULTURE);
     cultureBannerWall.setHardness(1.0F);
     cultureBannerWall.setUnlocalizedName("millenaire.culturebannerwall");
     cultureBannerWall.setRegistryName("culturebannerwall");
-    event.getRegistry().register((Block)cultureBannerWall);
+    event.getRegistry().register((IForgeRegistryEntry)cultureBannerWall);
     MockBlockBannerStanding cultureBannerStanding = new MockBlockBannerStanding(ItemMockBanner.BANNER_CULTURE);
     cultureBannerStanding.setHardness(1.0F);
     cultureBannerStanding.setUnlocalizedName("millenaire.culturebannerstanding");
     cultureBannerStanding.setRegistryName("culturebannerstanding");
-    event.getRegistry().register((Block)cultureBannerStanding);
-    event.getRegistry().register(new BlockFirePit("fire_pit"));
+    event.getRegistry().register((IForgeRegistryEntry)cultureBannerStanding);
+    event.getRegistry().register((IForgeRegistryEntry)new BlockFirePit("fire_pit"));
     GameRegistry.registerTileEntity(TileEntityFirePit.class, "millenaire:fire_pit");
     GameRegistry.registerTileEntity(TileEntityMockBanner.class, "millenaire:mockbanner");
     Block grayTiles = (new BlockOrientedSlab.BlockOrientedSlabDouble("gray_tiles")).setHardness(2.0F).setResistance(10.0F);
     Block greenTiles = (new BlockOrientedSlab.BlockOrientedSlabDouble("green_tiles")).setHardness(2.0F).setResistance(10.0F);
     Block redTiles = (new BlockOrientedSlab.BlockOrientedSlabDouble("red_tiles")).setHardness(2.0F).setResistance(10.0F);
-    event.getRegistry().register(grayTiles);
-    event.getRegistry().register(greenTiles);
-    event.getRegistry().register(redTiles);
-    event.getRegistry().register((new BlockOrientedSlab.BlockOrientedSlabSlab("gray_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
-    event.getRegistry().register((new BlockOrientedSlab.BlockOrientedSlabSlab("green_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
-    event.getRegistry().register((new BlockOrientedSlab.BlockOrientedSlabSlab("red_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
-    event.getRegistry().register(new BlockMillStairs("stairs_gray_tiles", grayTiles.getDefaultState()));
-    event.getRegistry().register(new BlockMillStairs("stairs_green_tiles", greenTiles.getDefaultState()));
-    event.getRegistry().register(new BlockMillStairs("stairs_red_tiles", redTiles.getDefaultState()));
-    event.getRegistry().register((new BlockBars("wooden_bars_dark")).setHardness(0.3F));
-    event.getRegistry().register(new BlockMillStatue("feathered_serpent", SoundType.STONE, Material.ROCK));
-    event.getRegistry().register(new BlockMillStatue("inuitcarving", SoundType.SNOW, Material.ICE));
-    event.getRegistry().register(new BlockMillCarpet("mayan_carpet"));
-    event.getRegistry().register(new BlockMillCarpet("mayan_carpet_thatch"));
-    event.getRegistry().register(new BlockMillWallItem("mayan_calendar", Material.WOOD, SoundType.WOOD));
+    event.getRegistry().register((IForgeRegistryEntry)grayTiles);
+    event.getRegistry().register((IForgeRegistryEntry)greenTiles);
+    event.getRegistry().register((IForgeRegistryEntry)redTiles);
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockOrientedSlab.BlockOrientedSlabSlab("gray_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockOrientedSlab.BlockOrientedSlabSlab("green_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockOrientedSlab.BlockOrientedSlabSlab("red_tiles_slab")).setHardness(2.0F).setResistance(10.0F));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_gray_tiles", grayTiles.getDefaultState()));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_green_tiles", greenTiles.getDefaultState()));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStairs("stairs_red_tiles", redTiles.getDefaultState()));
+    event.getRegistry().register((IForgeRegistryEntry)(new BlockBars("wooden_bars_dark")).setHardness(0.3F));
+    event.getRegistry().register((IForgeRegistryEntry)new BlockMillStatue("inuitcarving", SoundType.SNOW, Material.ICE));
   }
   
   @SideOnly(Side.CLIENT)
@@ -796,7 +761,7 @@ public class MillBlocks {
     EARTH_DECORATION.initModel();
     EXTENDED_MUD_BRICK.initModel();
     WALL_MUD_BRICK.initModel();
-    for (Map<EnumDyeColor, ? extends Block> blockMap : PAINTED_BRICK_MAP.values()) {
+    for (Map<EnumDyeColor, Block> blockMap : PAINTED_BRICK_MAP.values()) {
       for (Block block : blockMap.values())
         ((IPaintedBlock)block).initModel(); 
     } 
@@ -891,10 +856,6 @@ public class MillBlocks {
     CHERRY_LEAVES.initModel();
     SAPLING_SAKURA.initModel();
     SAKURA_LEAVES.initModel();
-    FEATHERED_SERPENT.initModel();
-    MAYAN_CARPET.initModel();
-    MAYAN_CARPET_THATCH.initModel();
-    MAYAN_CALENDAR.initModel();
   }
   
   public static void registerItemBlocks(RegistryEvent.Register<Item> event) {
@@ -902,7 +863,7 @@ public class MillBlocks {
     event.getRegistry().register((new ItemBlockMeta((Block)STONE_DECORATION)).setRegistryName(STONE_DECORATION.getRegistryName()));
     event.getRegistry().register((new ItemBlockMeta(EARTH_DECORATION)).setRegistryName(EARTH_DECORATION.getRegistryName()));
     event.getRegistry().register((new ItemBlock(WALL_MUD_BRICK)).setRegistryName(WALL_MUD_BRICK.getRegistryName()));
-    for (Map<EnumDyeColor, ? extends Block> blockMap : PAINTED_BRICK_MAP.values()) {
+    for (Map<EnumDyeColor, Block> blockMap : PAINTED_BRICK_MAP.values()) {
       for (Block block : blockMap.values()) {
         if (block instanceof BlockPaintedSlab) {
           BlockPaintedSlab blockSlab = (BlockPaintedSlab)block;
@@ -1007,9 +968,5 @@ public class MillBlocks {
     event.getRegistry().register((new ItemBlock((Block)CHERRY_LEAVES)).setRegistryName(CHERRY_LEAVES.getRegistryName()));
     event.getRegistry().register((new ItemMillSapling((Block)SAPLING_SAKURA, "sapling_sakura")).setRegistryName(SAPLING_SAKURA.getRegistryName()));
     event.getRegistry().register((new ItemBlock((Block)SAKURA_LEAVES)).setRegistryName(SAKURA_LEAVES.getRegistryName()));
-    event.getRegistry().register((new ItemBlock((Block)FEATHERED_SERPENT)).setRegistryName(FEATHERED_SERPENT.getRegistryName()));
-    event.getRegistry().register((new ItemBlock(MAYAN_CARPET)).setRegistryName(MAYAN_CARPET.getRegistryName()));
-    event.getRegistry().register((new ItemBlock(MAYAN_CARPET_THATCH)).setRegistryName(MAYAN_CARPET_THATCH.getRegistryName()));
-    event.getRegistry().register((new ItemBlock((Block)MAYAN_CALENDAR)).setRegistryName(MAYAN_CALENDAR.getRegistryName()));
   }
 }

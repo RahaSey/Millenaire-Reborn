@@ -101,7 +101,7 @@ public class LanguageData {
     try {
       int percentDone, translationsMissing = 0, translationsDone = 0;
       BufferedWriter writer = MillCommonUtilities.getWriter(file);
-      writer.write("Translation comparison between " + this.language + " and " + ref.language + ", version " + "8.1.1" + ", date: " + MillLog.now() + "\n" + "\n");
+      writer.write("Translation comparison between " + this.language + " and " + ref.language + ", version " + "8.1.2" + ", date: " + MillLog.now() + "\n" + "\n");
       Set<String> errors = new HashSet<>();
       Set<String> errors2 = new HashSet<>();
       Map<String, String> langStrings = loadLangFileFromDisk(languageDirs);
@@ -159,8 +159,8 @@ public class LanguageData {
           errors.add("goal." + goal.labelKey(null) + "="); 
       } 
       printErrors(writer, errors, "Goals with labels missing in both " + ref.language + " and " + this.language + ":");
-      for (Iterator<Integer> iterator = ref.texts.keySet().iterator(); iterator.hasNext(); ) {
-        int id = ((Integer)iterator.next()).intValue();
+      for (null = ref.texts.keySet().iterator(); null.hasNext(); ) {
+        int id = ((Integer)null.next()).intValue();
         if (!this.texts.containsKey(Integer.valueOf(id))) {
           errors.add("Parchment " + id + " is missing.");
           translationsMissing += 10;
@@ -175,8 +175,8 @@ public class LanguageData {
         translationsDone += 10;
       } 
       printErrors(writer, errors, "Differences in parchments with " + ref.language + ":");
-      for (Iterator<Integer> iterator = ref.help.keySet().iterator(); iterator.hasNext(); ) {
-        int id = ((Integer)iterator.next()).intValue();
+      for (null = ref.help.keySet().iterator(); null.hasNext(); ) {
+        int id = ((Integer)null.next()).intValue();
         if (!this.help.containsKey(Integer.valueOf(id))) {
           errors.add("Help " + id + " is missing.");
           translationsMissing += 10;

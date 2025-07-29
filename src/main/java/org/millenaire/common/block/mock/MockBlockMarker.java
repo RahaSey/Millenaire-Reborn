@@ -109,8 +109,10 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
     EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
     switch (plantType) {
-      case Crop:
-        return (state.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND);
+      case PRESERVE_GROUND:
+        return (state.get((IProperty)VARIANT) == Type.PRESERVE_GROUND);
+      case SLEEPING_POS:
+        return (state.get((IProperty)VARIANT) == Type.PRESERVE_GROUND);
     } 
     return false;
   }
@@ -120,7 +122,7 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((Type)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((Type)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   public float getAmbientOcclusionLightValue(IBlockState state) {
@@ -128,26 +130,26 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   }
   
   public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-    if (state.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND)
+    if (state.get((IProperty)VARIANT) == Type.PRESERVE_GROUND)
       return BlockFaceShape.SOLID; 
     return (face == EnumFacing.DOWN) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
   }
   
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-    if (state.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND)
+    if (state.get((IProperty)VARIANT) == Type.PRESERVE_GROUND)
       return FULL_BLOCK_AABB; 
     return CARPET_AABB;
   }
   
   @Nullable
   public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-    if (blockState.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND)
+    if (blockState.get((IProperty)VARIANT) == Type.PRESERVE_GROUND)
       return FULL_BLOCK_AABB; 
     return NULL_AABB;
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((Type)state.getValue((IProperty)VARIANT)).meta;
+    return ((Type)state.get((IProperty)VARIANT)).meta;
   }
   
   public EnumBlockRenderType getRenderType(IBlockState state) {
@@ -159,7 +161,7 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((Type)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + getRegistryName().getPath() + "." + ((Type)getStateFromMeta(stack.getMetadata()).get((IProperty)VARIANT)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -167,7 +169,7 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (Type enumtype : Type.values())
       items.add(new ItemStack(this, 1, enumtype.getMetadata())); 
   }
@@ -179,11 +181,11 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
   }
   
   public boolean isFullCube(IBlockState state) {
-    return (state.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND);
+    return (state.get((IProperty)VARIANT) == Type.PRESERVE_GROUND);
   }
   
   public boolean isOpaqueCube(IBlockState state) {
-    return (state.getValue((IProperty)VARIANT) == Type.PRESERVE_GROUND);
+    return (state.get((IProperty)VARIANT) == Type.PRESERVE_GROUND);
   }
   
   public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -200,9 +202,9 @@ public class MockBlockMarker extends Block implements IMetaBlockName {
     return false;
   }
   
-  public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+  public void animateTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
     int color = 16777215;
-    switch ((Type)stateIn.getValue((IProperty)VARIANT)) {
+    switch ((Type)stateIn.get((IProperty)VARIANT)) {
       case PRESERVE_GROUND:
         return;
       case SLEEPING_POS:

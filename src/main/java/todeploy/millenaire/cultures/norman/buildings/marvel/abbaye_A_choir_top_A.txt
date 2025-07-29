@@ -10,7 +10,7 @@ building.icon=chiseledstonebrick
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Chœur (Sud)
+initial.nativename=Chànt (Sud)
 initial.priority=650
 initial.tag=scaffoldings
 

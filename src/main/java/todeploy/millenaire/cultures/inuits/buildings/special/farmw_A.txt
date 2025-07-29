@@ -10,8 +10,10 @@ building.icon=wheat
 initial.startlevel=-1
 initial.nativename=Puviaq
 initial.translatedname=name_en,farm
-initial.priority=10
+initial.priority=300
 initial.tag=wheat
 initial.tag=farm
+
+upgrade1.priority=40
 
 //Parameters for specific upgrades

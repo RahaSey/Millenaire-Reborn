@@ -10,8 +10,10 @@ building.max=2
 initial.startlevel=-1
 initial.nativename=Puviaq
 initial.translatedname=name_en,farm
-initial.priority=10
+initial.priority=200
 initial.tag=potato
 initial.tag=farm
+
+upgrade1.priority=40
 
 //Parameters for specific upgrades

@@ -34,7 +34,7 @@ public class PathNavigateSimple extends PathNavigate {
   
   private int getPathablePosY() {
     if (this.entity.isInWater() && getCanSwim()) {
-      int i = (int)(this.entity.getEntityBoundingBox()).minY;
+      int i = (int)(this.entity.getBoundingBox()).minY;
       Block block = this.world.getBlockState(new BlockPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ))).getBlock();
       int j = 0;
       while (block == Blocks.FLOWING_WATER || block == Blocks.WATER) {
@@ -42,11 +42,11 @@ public class PathNavigateSimple extends PathNavigate {
         block = this.world.getBlockState(new BlockPos(MathHelper.floor(this.entity.posX), i, MathHelper.floor(this.entity.posZ))).getBlock();
         j++;
         if (j > 16)
-          return (int)(this.entity.getEntityBoundingBox()).minY; 
+          return (int)(this.entity.getBoundingBox()).minY; 
       } 
       return i;
     } 
-    return (int)((this.entity.getEntityBoundingBox()).minY + 0.5D);
+    return (int)((this.entity.getBoundingBox()).minY + 0.5D);
   }
   
   protected PathFinder getPathFinder() {

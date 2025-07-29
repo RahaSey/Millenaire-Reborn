@@ -37,61 +37,61 @@ public class DisplayActions {
   }
   
   public static void displayConfigGUI() {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiConfig());
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiConfig());
   }
   
   public static void displayControlledMilitaryGUI(EntityPlayer player, Building townHall) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiControlledMilitary(player, townHall));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiControlledMilitary(player, townHall));
   }
   
   public static void displayControlledProjectGUI(EntityPlayer player, Building townHall) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiControlledProjects(player, townHall));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiControlledProjects(player, townHall));
   }
   
   public static void displayEditCustomBuildingGUI(EntityPlayer player, Building building) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiCustomBuilding(player, building));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiCustomBuilding(player, building));
   }
   
   public static void displayHelpGUI() {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiHelp());
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiHelp());
   }
   
   public static void displayHireGUI(EntityPlayer player, MillVillager villager) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiHire(player, villager));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiHire(player, villager));
   }
   
   public static void displayImportTableGUI(EntityPlayer player, Point tablePos) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiImportTable(player, tablePos));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiImportTable(player, tablePos));
   }
   
   public static void displayNegationWandGUI(EntityPlayer player, Building townHall) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiNegationWand(player, townHall));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiNegationWand(player, townHall));
   }
   
   public static void displayNewBuildingProjectGUI(EntityPlayer player, Building townHall, Point pos) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiNewBuildingProject(player, townHall, pos));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiNewBuildingProject(player, townHall, pos));
   }
   
   public static void displayNewCustomBuildingGUI(EntityPlayer player, Building townHall, Point pos, BuildingCustomPlan customBuilding) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiCustomBuilding(player, townHall, pos, customBuilding));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiCustomBuilding(player, townHall, pos, customBuilding));
   }
   
   public static void displayNewCustomBuildingGUI(EntityPlayer player, Point pos, VillageType villageType) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiCustomBuilding(player, pos, villageType));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiCustomBuilding(player, pos, villageType));
   }
   
   public static void displayNewVillageGUI(EntityPlayer player, Point pos) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiNewVillage(player, pos));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiNewVillage(player, pos));
   }
   
   public static void displayParchmentPanelGUI(EntityPlayer player, TextBook book, Building building, int mapType, boolean isParchment) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiPanelParchment(player, book, building, mapType, isParchment));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiPanelParchment(player, book, building, mapType, isParchment));
   }
   
   public static void displayQuestGUI(EntityPlayer player, MillVillager villager) {
     UserProfile profile = Mill.clientWorld.getProfile(player);
     if (profile.villagersInQuests.containsKey(Long.valueOf(villager.getVillagerId())))
-      Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiQuest(player, villager)); 
+      Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiQuest(player, villager)); 
   }
   
   public static void displayStartupOrError(EntityPlayer player, boolean error) {
@@ -99,7 +99,7 @@ public class DisplayActions {
   }
   
   public static void displayTravelBookGUI(EntityPlayer player) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiTravelBook(player));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiTravelBook(player));
   }
   
   public static void displayVillageBookGUI(EntityPlayer player, Point p) {
@@ -107,6 +107,6 @@ public class DisplayActions {
   }
   
   public static void displayVillageChiefGUI(EntityPlayer player, MillVillager chief) {
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiVillageHead(player, chief));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiVillageHead(player, chief));
   }
 }

@@ -832,7 +832,7 @@ public class BuildingPlan implements IBuildingPlan, MillCommonUtilities.Weighted
     } 
     for (BuildingBlock door : doors) {
       IBlockState bs = Blocks.OAK_DOOR.getStateFromMeta(door.getMeta());
-      EnumFacing facing = (EnumFacing)bs.getValue((IProperty)BlockDoor.FACING);
+      EnumFacing facing = (EnumFacing)bs.get((IProperty)BlockDoor.FACING);
       boolean invert = false;
       if (facing == EnumFacing.NORTH) {
         if ((!map.containsKey(door.p.getWest()) || ((BuildingBlock)map.get(door.p.getWest())).block == Blocks.AIR || ((BuildingBlock)map.get(door.p.getWest())).block == Blocks.OAK_DOOR) && map
@@ -933,18 +933,18 @@ public class BuildingPlan implements IBuildingPlan, MillCommonUtilities.Weighted
   private void build_cleanup(BuildingLocation location, World world) {
     List<Entity> entities = WorldUtilities.getEntitiesWithinAABB(world, EntityItem.class, location.pos, Math.max(this.width / 2, this.length / 2) + 5, 10);
     for (Entity entity : entities)
-      entity.setDead(); 
+      entity.remove(); 
     entities = WorldUtilities.getEntitiesWithinAABB(world, EntityAnimal.class, location.pos, Math.max(this.width / 2, this.length / 2) + 5, 10);
     for (Entity entity : entities) {
       EntityAnimal animal = (EntityAnimal)entity;
       if (animal.isEntityInsideOpaqueBlock() && !animal.isNoDespawnRequired())
-        entity.setDead(); 
+        entity.remove(); 
     } 
     entities = WorldUtilities.getEntitiesWithinAABB(world, EntityMob.class, location.pos, Math.max(this.width / 2, this.length / 2) + 5, 10);
     for (Entity entity : entities) {
       EntityMob mob = (EntityMob)entity;
       if (mob.isEntityInsideOpaqueBlock() && !mob.isNoDespawnRequired())
-        entity.setDead(); 
+        entity.remove(); 
     } 
     TreeClearer treeClearer = new TreeClearer(this, location, world);
     treeClearer.cleanup();
@@ -2216,13 +2216,12 @@ public class BuildingPlan implements IBuildingPlan, MillCommonUtilities.Weighted
         if (!foundNearbyBuilding)
           return new LocationReturn(8, testPosHorizontal); 
       }  
-    int orientation;
     if (porientation == -1) {
       orientation = computeOrientation(new Point((x + winfo.mapStartX), 0.0D, (z + winfo.mapStartZ)), centre);
     } else {
       orientation = porientation;
     } 
-    orientation = (orientation + this.buildingOrientation) % 4;
+    int orientation = (orientation + this.buildingOrientation) % 4;
     if (orientation == 0 || orientation == 2) {
       xwidth = this.length + this.areaToClearLengthBefore + this.areaToClearLengthAfter + 2;
       zwidth = this.width + this.areaToClearWidthBefore + this.areaToClearWidthAfter + 2;

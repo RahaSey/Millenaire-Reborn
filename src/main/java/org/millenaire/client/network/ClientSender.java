@@ -278,7 +278,7 @@ public class ClientSender {
   public static void sendVersionInfo() {
     PacketBuffer data = getPacketBuffer();
     data.writeInt(202);
-    data.writeString("8.1.1");
+    data.writeString("8.1.2");
     createAndSendServerPacket(data);
   }
   

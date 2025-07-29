@@ -29,7 +29,7 @@ public class BlockSlabWood extends BlockSlab implements IMetaBlockName {
   
   public BlockSlabWood(String blockName) {
     super(Material.WOOD);
-    IBlockState iblockstate = this.blockState.getBaseState();
+    IBlockState iblockstate = this.stateContainer.getBaseState();
     if (isDouble()) {
       iblockstate = iblockstate.withProperty((IProperty)SEAMLESS, Boolean.valueOf(false));
     } else {
@@ -49,27 +49,27 @@ public class BlockSlabWood extends BlockSlab implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((BlockDecorativeWood.EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((BlockDecorativeWood.EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-    return ((BlockDecorativeWood.EnumType)state.getValue((IProperty)VARIANT)).getMapColor();
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    return ((BlockDecorativeWood.EnumType)state.get((IProperty)VARIANT)).getMapColor();
   }
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    i |= ((BlockDecorativeWood.EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    i |= ((BlockDecorativeWood.EnumType)state.get((IProperty)VARIANT)).getMetadata();
     if (isDouble()) {
-      if (((Boolean)state.getValue((IProperty)SEAMLESS)).booleanValue())
+      if (((Boolean)state.get((IProperty)SEAMLESS)).booleanValue())
         i |= 0x8; 
-    } else if (state.getValue((IProperty)HALF) == BlockSlab.EnumBlockHalf.TOP) {
+    } else if (state.get((IProperty)HALF) == BlockSlab.EnumBlockHalf.TOP) {
       i |= 0x8;
     } 
     return i;
   }
   
   public String getSpecialName(ItemStack stack) {
-    return getTranslationKey(stack.getMetadata());
+    return getUnlocalizedName(stack.getMetadata());
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -82,7 +82,7 @@ public class BlockSlabWood extends BlockSlab implements IMetaBlockName {
     return iblockstate;
   }
   
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (BlockDecorativeWood.EnumType enumtype : BlockDecorativeWood.EnumType.values()) {
       if (enumtype.hasSlab())
         items.add(new ItemStack((Block)this, 1, enumtype.getMetadata())); 
@@ -93,12 +93,8 @@ public class BlockSlabWood extends BlockSlab implements IMetaBlockName {
     return BlockDecorativeWood.EnumType.byMetadata(stack.getMetadata() & 0x7);
   }
   
-  public String getTranslationKey(int meta) {
-    return "tile.millenaire.slabs_" + BlockDecorativeWood.EnumType.byMetadata(meta).getUnlocalizedName();
-  }
-  
   public String getUnlocalizedName(int meta) {
-    return getTranslationKey(meta);
+    return "tile.millenaire.slabs_" + BlockDecorativeWood.EnumType.byMetadata(meta).getUnlocalizedName();
   }
   
   public IProperty<?> getVariantProperty() {

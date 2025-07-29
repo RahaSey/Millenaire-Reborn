@@ -14,5 +14,5 @@ building.icon=normanpickaxe
 
 //Parameters for initial construction
 initial.startlevel=-5
-initial.nativename=Mine abandonnée
+initial.nativename=Maene en pàncaïle
 

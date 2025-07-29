@@ -10,7 +10,7 @@ building.icon=bed_straw
 
 //Parameters for initial construction
 initial.startlevel=-3
-initial.nativename=Dortois des femmes
+initial.nativename=Chàmbre des Faummes
 initial.visitor=pilgrimfemale
 initial.visitor=pilgrimfemale
 initial.visitor=pilgrimfemale

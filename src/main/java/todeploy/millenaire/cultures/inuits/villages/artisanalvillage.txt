@@ -65,6 +65,7 @@ never=farmw
 never=shamanistic
 never=council
 never=offering1
+never=offering2
 
 //Selling prices=
 sellingPrice=bread,7

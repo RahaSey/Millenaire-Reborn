@@ -84,7 +84,7 @@ public class BlockSilkWorm extends Block implements IMetaBlockName {
     setHardness(2.0F);
     setResistance(5.0F);
     setSoundType(SoundType.WOOD);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)PROGRESS, EnumType.SILKWORMEMPTY));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)PROGRESS, EnumType.SILKWORMEMPTY));
   }
   
   protected BlockStateContainer createBlockState() {
@@ -100,16 +100,16 @@ public class BlockSilkWorm extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT;
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)PROGRESS)).getMetadata();
+    return ((EnumType)state.get((IProperty)PROGRESS)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)PROGRESS)).getName();
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)PROGRESS)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -117,7 +117,7 @@ public class BlockSilkWorm extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     items.add(new ItemStack(this, 1, 0));
     items.add(new ItemStack(this, 1, 3));
   }
@@ -137,7 +137,7 @@ public class BlockSilkWorm extends Block implements IMetaBlockName {
   }
   
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    int currentValue = ((EnumType)state.getValue((IProperty)PROGRESS)).getMetadata();
+    int currentValue = ((EnumType)state.get((IProperty)PROGRESS)).getMetadata();
     if (currentValue < 3 && 
       worldIn.getLight(pos.up()) < 7 && 
       rand.nextInt(2) == 0) {

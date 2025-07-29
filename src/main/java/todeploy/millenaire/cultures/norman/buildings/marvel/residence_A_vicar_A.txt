@@ -10,7 +10,7 @@ building.icon=book
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Chambre du vicaire
+initial.nativename=Chàmbre du Ministe
 initial.priority=300
 initial.male=vicar
 initial.tag=autospawnvillagers

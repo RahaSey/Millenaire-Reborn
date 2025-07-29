@@ -11,7 +11,7 @@ building.icon=rosette
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Notre Dame
+initial.nativename=Catédrale
 initial.subbuilding=abbaye_A_transept_top
 initial.subbuilding=abbaye_A_transept_bottom
 initial.subbuilding=abbaye_A_tower_top

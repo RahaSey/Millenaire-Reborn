@@ -9,7 +9,7 @@ building.icon=book
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Presbytère
+initial.nativename=Probytère
 initial.priority=500
 initial.male=priest
 initial.pathlevel=1

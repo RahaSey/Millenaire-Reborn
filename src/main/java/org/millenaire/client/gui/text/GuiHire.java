@@ -86,10 +86,10 @@ public class GuiHire extends GuiText {
   
   private TextBook getData() {
     List<TextLine> text = new ArrayList<>();
-    text.add(new TextLine(this.villager.getName() + ", " + this.villager.getNativeOccupationName(), "§1", new GuiText.GuiButtonReference(this.villager.vtype)));
+    text.add(new TextLine(this.villager.func_70005_c_() + ", " + this.villager.getNativeOccupationName(), "§1", new GuiText.GuiButtonReference(this.villager.vtype)));
     text.add(new TextLine());
     if (this.villager.hiredBy != null) {
-      text.add(new TextLine(LanguageUtilities.string("hire.hiredvillager", new String[] { "" + Math.round((float)((this.villager.hiredUntil - this.villager.world.getWorldTime()) / 1000L)), 
+      text.add(new TextLine(LanguageUtilities.string("hire.hiredvillager", new String[] { "" + Math.round((float)((this.villager.hiredUntil - this.villager.world.getDayTime()) / 1000L)), 
                 Keyboard.getKeyName(ClientProxy.KB_ESCORTS.getKeyCode()) })));
     } else if (this.villager.getTownHall().getReputation(this.player) >= 4096) {
       text.add(new TextLine(LanguageUtilities.string("hire.hireablevillager")));

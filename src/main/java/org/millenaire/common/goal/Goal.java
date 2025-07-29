@@ -317,9 +317,9 @@ public abstract class Goal {
         return false; 
       if (!villager.world.isDaytime() && !canBeDoneAtNight())
         return false; 
-      if (this.minimumHour >= 0 && villager.world.getWorldTime() % 24000L < this.minimumHour)
+      if (this.minimumHour >= 0 && villager.world.getDayTime() % 24000L < this.minimumHour)
         return false; 
-      if (this.maximumHour >= 0 && villager.world.getWorldTime() % 24000L > this.maximumHour)
+      if (this.maximumHour >= 0 && villager.world.getDayTime() % 24000L > this.maximumHour)
         return false; 
       for (InvItem item : this.townhallLimit.keySet()) {
         if (villager.getTownHall().nbGoodAvailable(item, false, false, false) > ((Integer)this.townhallLimit.get(item)).intValue())

@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.relauncher.Side;
@@ -59,7 +58,7 @@ public class ItemParchment extends ItemMill {
     ItemStack parchment = new ItemStack(MillItems.PARCHMENT_VILLAGE_SCROLL);
     NBTTagCompound compound = new NBTTagCompound();
     townHall.getPos().write(compound, "village_pos_");
-    parchment.setTagCompound(compound);
+    parchment.setTag(compound);
     return parchment;
   }
   
@@ -78,13 +77,13 @@ public class ItemParchment extends ItemMill {
   private void displayVillageBook(EntityPlayer player, ItemStack is) {
     if (player.world.isRemote)
       return; 
-    Point p = Point.read(is.getTagCompound(), "village_pos_");
+    Point p = Point.read(is.getTag(), "village_pos_");
     Building townHall = Mill.getMillWorld(player.world).getBuilding(p);
     if (townHall == null) {
       ServerSender.sendTranslatedSentence(player, '6', "panels.invalidid", new String[0]);
       return;
     } 
-    Chunk chunk = player.world.getChunkFromBlockCoords(new BlockPos(p.getiX(), 0, p.getiZ()));
+    Chunk chunk = player.world.getChunkFromChunkCoords(p.getChunkX(), p.getChunkZ());
     if (!chunk.isLoaded()) {
       ServerSender.sendTranslatedSentence(player, '6', "panels.toofar", new String[0]);
       return;
@@ -98,10 +97,10 @@ public class ItemParchment extends ItemMill {
   
   @SideOnly(Side.CLIENT)
   public String getItemStackDisplayName(ItemStack stack) {
-    if (this.textsId[0] == 4 && stack.getTagCompound() != null) {
-      Point p = Point.read(stack.getTagCompound(), "village_pos_");
+    if (this.textsId[0] == 4 && stack.getTag() != null) {
+      Point p = Point.read(stack.getTag(), "village_pos_");
       if (p != null) {
-        Building townHall = Mill.getMillWorld((World)(Minecraft.getMinecraft()).world).getBuilding(p);
+        Building townHall = Mill.getMillWorld((World)(Minecraft.getInstance()).world).getBuilding(p);
         if (townHall != null)
           return super.getItemStackDisplayName(stack) + ": " + townHall.getVillageQualifiedName(); 
       } 

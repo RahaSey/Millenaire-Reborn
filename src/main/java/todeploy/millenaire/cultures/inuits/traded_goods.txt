@@ -11,6 +11,7 @@ wood_any,2,1,0,64,0,false,,0,construction
 cobblestone,2,1,0,64,0,false,,0,construction
 stone,5,3,128,1024,0,false,,0,construction
 coarse_dirt,2,1,0,0,0,false,,0,construction
+dirt,2,1,0,0,0,false,,0,construction
 
 wool_white,10,8,0,64,12,false,,0,construction
 
@@ -21,9 +22,9 @@ leather,20,15,0,0,25,false,,0,crafting
 bread,10,8,5,10,32,false,,0,agriculture
 egg,4,2,0,0,6,false,,0,foreigntrade
 rottenflesh,2,1,0,0,2,false,0,0,crafting
-chickenmeat,20,0,0,0,32,false,,0,agriculture
+chickenmeat,20,12,0,0,32,false,,0,agriculture
 chickenmeatcooked,28,20,0,0,48,false,,0,agriculture
-rabbit,20,0,0,0,32,false,,0,agriculture
+rabbit,20,12,0,0,32,false,,0,agriculture
 cooked_rabbit,28,20,0,0,48,false,,0,agriculture
 beefcooked,28,20,0,0,48,false,,0,agriculture
 beefraw,16,10,0,0,48,false,,0,agriculture
@@ -56,8 +57,8 @@ rasgulla,2*64,2*60,8,0,3*64,,,2*64*64,foreigntrade
 vegcurry,32,30,0,0,40,false,,0,foreigntrade
 chickencurry,2*64,2*60,0,0,3*64,false,,2*64*64,foreigntrade
 
-rice,32,0,0,128,48,false,,0,foreigntrade
-turmeric,64,0,0,64,90,false,,0,foreigntrade
+rice,32,12,0,128,48,false,,0,foreigntrade
+turmeric,64,50,0,64,90,false,,0,foreigntrade
 
 
 grapes,2,1,0,512,2,false,,0,foreigntrade

@@ -1,4 +1,4 @@
-name=Seigneurie (walled)
+name=Seigneurie (dauve des murailes)
 icon=normanhelmet
 playerControlled=true
 hillQualifier=les-collines

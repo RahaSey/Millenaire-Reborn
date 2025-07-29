@@ -32,7 +32,7 @@ import org.millenaire.common.utilities.Point;
 import org.millenaire.common.village.Building;
 
 public class BlockPanel extends BlockContainer {
-  public static final PropertyDirection FACING = BlockHorizontal.FACING;
+  public static final PropertyDirection FACING = BlockHorizontal.HORIZONTAL_FACING;
   
   protected static final AxisAlignedBB SIGN_EAST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 1.0D, 1.0D);
   
@@ -44,7 +44,7 @@ public class BlockPanel extends BlockContainer {
   
   public BlockPanel(String blockName) {
     super(Material.WOOD);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)FACING, (Comparable)EnumFacing.NORTH));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)FACING, (Comparable)EnumFacing.NORTH));
     setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setHardness(1.0F);
@@ -75,7 +75,7 @@ public class BlockPanel extends BlockContainer {
   }
   
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-    switch ((EnumFacing)state.getValue((IProperty)FACING)) {
+    switch ((EnumFacing)state.get((IProperty)FACING)) {
       default:
         return SIGN_NORTH_AABB;
       case SOUTH:
@@ -102,11 +102,11 @@ public class BlockPanel extends BlockContainer {
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumFacing)state.getValue((IProperty)FACING)).getIndex();
+    return ((EnumFacing)state.get((IProperty)FACING)).getIndex();
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    EnumFacing enumfacing = EnumFacing.getFront(meta);
+    EnumFacing enumfacing = EnumFacing.byIndex(meta);
     if (enumfacing.getAxis() == EnumFacing.Axis.Y)
       enumfacing = EnumFacing.NORTH; 
     return getDefaultState().withProperty((IProperty)FACING, (Comparable)enumfacing);
@@ -130,7 +130,7 @@ public class BlockPanel extends BlockContainer {
   }
   
   public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-    EnumFacing enumfacing = (EnumFacing)state.getValue((IProperty)FACING);
+    EnumFacing enumfacing = (EnumFacing)state.get((IProperty)FACING);
     if (!worldIn.getBlockState(pos.offset(enumfacing.getOpposite())).getMaterial().isSolid()) {
       dropBlockAsItem(worldIn, pos, state, 0);
       worldIn.setBlockToAir(pos);
@@ -163,11 +163,11 @@ public class BlockPanel extends BlockContainer {
     return 0;
   }
   
-  public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
-    return state.withRotation(mirrorIn.toRotation((EnumFacing)state.getValue((IProperty)FACING)));
+  public IBlockState mirror(IBlockState state, Mirror mirrorIn) {
+    return state.rotate(mirrorIn.toRotation((EnumFacing)state.get((IProperty)FACING)));
   }
   
-  public IBlockState withRotation(IBlockState state, Rotation rot) {
-    return state.withProperty((IProperty)FACING, (Comparable)rot.rotate((EnumFacing)state.getValue((IProperty)FACING)));
+  public IBlockState rotate(IBlockState state, Rotation rot) {
+    return state.withProperty((IProperty)FACING, (Comparable)rot.rotate((EnumFacing)state.get((IProperty)FACING)));
   }
 }

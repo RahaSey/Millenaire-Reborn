@@ -11,7 +11,7 @@ building.icon=cider
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Relais
+initial.nativename=Isolaïe Maisaon d'Invitaïs
 initial.male=innkeepermale
 initial.female=innkeeperfemale
 initial.tag=market

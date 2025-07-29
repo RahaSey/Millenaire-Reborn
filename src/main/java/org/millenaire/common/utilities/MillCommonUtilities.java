@@ -138,11 +138,11 @@ public class MillCommonUtilities {
   public static class VersionCheckThread extends Thread {
     public void run() {
       try {
-        if ("8.1.1".contains("@VERSION@"))
+        if ("8.1.2".contains("@VERSION@"))
           return; 
         Thread.sleep(60000L);
         boolean devVersion = false;
-        if ("8.1.1".contains("alpha") || "8.1.1".contains("beta") || "8.1.1".contains("rc"))
+        if ("8.1.2".contains("alpha") || "8.1.2".contains("beta") || "8.1.2".contains("rc"))
           devVersion = true; 
         String url = "http://millenaire.org/lastversion/1.12.2";
         if (devVersion)
@@ -153,7 +153,7 @@ public class MillCommonUtilities {
         String currentVersion = reader.readLine();
         if (currentVersion != null) {
           currentVersion = currentVersion.trim();
-          if (!currentVersion.equals("8.1.1")) {
+          if (!currentVersion.equals("8.1.2")) {
             String releaseNotesEN = reader.readLine().trim();
             String releaseNotesFR = reader.readLine().trim();
             if (MillConfigValues.mainLanguage.language.startsWith("fr")) {
@@ -256,7 +256,7 @@ public class MillCommonUtilities {
   
   public static void changeMoney(IInventory chest, int toChange, EntityPlayer player) {
     boolean hasPurse = false;
-    for (int i = 0; i < chest.getSizeInventory() && !hasPurse; i++) {
+    for (int i = 0; i < chest.func_70302_i_() && !hasPurse; i++) {
       ItemStack stack = chest.getStackInSlot(i);
       if (stack != null && 
         stack.getItem() == MillItems.PURSE)
@@ -267,7 +267,7 @@ public class MillCommonUtilities {
       int current_DENIER_ARGENT = WorldUtilities.getItemsFromChest(chest, (Item)MillItems.DENIER_ARGENT, 0, 2147483647);
       int current_DENIER_OR = WorldUtilities.getItemsFromChest(chest, (Item)MillItems.DENIER_OR, 0, 2147483647);
       int finalChange = current_DENIER_OR * 64 * 64 + current_DENIER_ARGENT * 64 + current_denier + toChange;
-      for (int j = 0; j < chest.getSizeInventory() && finalChange != 0; j++) {
+      for (int j = 0; j < chest.func_70302_i_() && finalChange != 0; j++) {
         ItemStack stack = chest.getStackInSlot(j);
         if (stack != null && 
           stack.getItem() == MillItems.PURSE) {
@@ -322,13 +322,13 @@ public class MillCommonUtilities {
   public static int countChestItems(IInventory chest, Item item, int meta) {
     if (chest == null)
       return 0; 
-    int maxSlot = chest.getSizeInventory();
+    int maxSlot = chest.func_70302_i_();
     if (chest instanceof net.minecraft.entity.player.InventoryPlayer)
       maxSlot -= 5; 
     int nb = 0;
     for (int i = 0; i < maxSlot; i++) {
       ItemStack stack = chest.getStackInSlot(i);
-      if (stack != null && stack.getItem() == item && (meta == -1 || stack.getItemDamage() < 0 || stack.getItemDamage() == meta))
+      if (stack != null && stack.getItem() == item && (meta == -1 || stack.getDamage() < 0 || stack.getDamage() == meta))
         nb += stack.getCount(); 
       if (item == Item.getItemFromBlock(Blocks.LOG) && meta == -1 && 
         stack != null && stack.getItem() == Item.getItemFromBlock(Blocks.LOG2))
@@ -342,7 +342,7 @@ public class MillCommonUtilities {
       return 0; 
     int nb = 0;
     ItemStack stack = furnace.getStackInSlot(2);
-    if (stack != null && stack.getItem() == item && (meta == -1 || stack.getItemDamage() < 0 || stack.getItemDamage() == meta))
+    if (stack != null && stack.getItem() == item && (meta == -1 || stack.getDamage() < 0 || stack.getDamage() == meta))
       nb += stack.getCount(); 
     if (item == Item.getItemFromBlock(Blocks.LOG) && meta == -1 && 
       stack != null && stack.getItem() == Item.getItemFromBlock(Blocks.LOG2))
@@ -352,7 +352,7 @@ public class MillCommonUtilities {
   
   public static int countMoney(IInventory chest) {
     int deniers = 0;
-    for (int i = 0; i < chest.getSizeInventory(); i++) {
+    for (int i = 0; i < chest.func_70302_i_(); i++) {
       ItemStack stack = chest.getStackInSlot(i);
       if (stack != null)
         if (stack.getItem() == MillItems.PURSE) {
@@ -469,7 +469,7 @@ public class MillCommonUtilities {
   }
   
   public static double getItemWeaponDamage(Item item) {
-    Multimap<String, AttributeModifier> multimap = item.getItemAttributeModifiers(EntityEquipmentSlot.MAINHAND);
+    Multimap<String, AttributeModifier> multimap = item.getAttributeModifiers(EntityEquipmentSlot.MAINHAND);
     if (multimap.containsKey(SharedMonsterAttributes.ATTACK_DAMAGE.getName()) && (
       multimap.get(SharedMonsterAttributes.ATTACK_DAMAGE.getName()).toArray()).length > 0 && 
       multimap.get(SharedMonsterAttributes.ATTACK_DAMAGE.getName()).toArray()[0] instanceof AttributeModifier) {
@@ -629,7 +629,7 @@ public class MillCommonUtilities {
       } 
       advancementsCreativeDone = advancementsCreativeDone + advancement.getKey() + ":" + MillConfigValues.advancementsCreative.contains(advancement.getKey());
     } 
-    String url = "http://millenaire.org/php/mlnuse.php?uid=" + MillConfigValues.randomUid + "&mlnversion=" + "8.1.1" + "&mode=" + mode + "&lang=" + lang + "&backuplang=" + MillConfigValues.fallback_language + "&nbplayers=" + nbplayers + "&os=" + os + "&totalexp=" + totalexp + "&advancementssurvival=" + advancementsSurvivalDone + "&advancementscreative=" + advancementsCreativeDone + "&validation=" + MillAdvancements.computeKey();
+    String url = "http://millenaire.org/php/mlnuse.php?uid=" + MillConfigValues.randomUid + "&mlnversion=" + "8.1.2" + "&mode=" + mode + "&lang=" + lang + "&backuplang=" + MillConfigValues.fallback_language + "&nbplayers=" + nbplayers + "&os=" + os + "&totalexp=" + totalexp + "&advancementssurvival=" + advancementsSurvivalDone + "&advancementscreative=" + advancementsCreativeDone + "&validation=" + MillAdvancements.computeKey();
     if (Mill.proxy.getClientProfile() != null && MillConfigValues.sendAdvancementLogin)
       url = url + "&login=" + (Mill.proxy.getClientProfile()).playerName; 
     url = url.replaceAll(" ", "%20");
@@ -672,13 +672,13 @@ public class MillCommonUtilities {
     if (chest == null)
       return 0; 
     int nb = 0;
-    int maxSlot = chest.getSizeInventory();
+    int maxSlot = chest.func_70302_i_();
     if (chest instanceof net.minecraft.entity.player.InventoryPlayer)
       maxSlot -= 5; 
     int i;
     for (i = 0; i < maxSlot && nb < toPut; i++) {
       ItemStack stack = chest.getStackInSlot(i);
-      if (stack != ItemStack.EMPTY && stack.getItem() == item && stack.getItemDamage() == meta) {
+      if (stack != ItemStack.EMPTY && stack.getItem() == item && stack.getDamage() == meta) {
         if (stack.getMaxStackSize() - stack.getCount() >= toPut - nb) {
           stack.setCount(stack.getCount() + toPut - nb);
           nb = toPut;
@@ -725,11 +725,11 @@ public class MillCommonUtilities {
   
   public static void readInventory(NBTTagList nbttaglist, Map<InvItem, Integer> inventory) {
     for (int i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       String itemName = nbttagcompound1.getString("item");
       String itemMod = nbttagcompound1.getString("itemmod");
-      int itemMeta = nbttagcompound1.getInteger("meta");
-      inventory.put(InvItem.createInvItem(Item.getByNameOrId(itemMod + ":" + itemName), itemMeta), Integer.valueOf(nbttagcompound1.getInteger("amount")));
+      int itemMeta = nbttagcompound1.getInt("meta");
+      inventory.put(InvItem.createInvItem(Item.getByNameOrId(itemMod + ":" + itemName), itemMeta), Integer.valueOf(nbttagcompound1.getInt("amount")));
     } 
   }
   
@@ -746,12 +746,12 @@ public class MillCommonUtilities {
     for (InvItem key : inventory.keySet()) {
       if (key.getItem() != null) {
         NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-        String[] registryParts = key.getItem().getRegistryName().toString().split(":");
-        nbttagcompound1.setString("itemmod", registryParts[0]);
-        nbttagcompound1.setString("item", registryParts[1]);
-        nbttagcompound1.setInteger("meta", key.meta);
-        nbttagcompound1.setInteger("amount", ((Integer)inventory.get(key)).intValue());
+        nbttagcompound1.putString("item", key.getItem().getRegistryName().getPath());
+        nbttagcompound1.putString("itemmod", key.getItem().getRegistryName().getNamespace());
+        nbttagcompound1.putInt("meta", key.meta);
+        nbttagcompound1.putInt("amount", ((Integer)inventory.get(key)).intValue());
         nbttaglist.appendTag((NBTBase)nbttagcompound1);
+        continue;
       } 
       MillLog.error(null, "Key with null item when saving inventory: " + key);
     } 

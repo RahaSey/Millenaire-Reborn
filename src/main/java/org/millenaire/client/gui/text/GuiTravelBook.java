@@ -119,10 +119,10 @@ public class GuiTravelBook extends GuiText {
     villager.rotationYawHead = villager.rotationYaw;
     villager.prevRotationYawHead = villager.rotationYaw;
     GlStateManager.translate(0.0F, 0.0F, 0.0F);
-    RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
+    RenderManager rendermanager = Minecraft.getInstance().getRenderManager();
     rendermanager.setPlayerViewY(180.0F);
     rendermanager.setRenderShadow(false);
-    rendermanager.renderEntity((Entity)villager, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
+    rendermanager.doRenderEntity((Entity)villager, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
     rendermanager.setRenderShadow(true);
     villager.renderYawOffset = renderYawOffset;
     villager.rotationYaw = rotationYaw;
@@ -475,8 +475,8 @@ public class GuiTravelBook extends GuiText {
     VillagerType villagerType = this.currentCulture.getVillagerType(this.currentItemKey);
     boolean knownVillager = this.profile.isVillagerUnlocked(this.currentCulture, villagerType);
     if (knownVillager || !MillConfigValues.TRAVEL_BOOK_LEARNING) {
-      VillagerRecord villagerRecord = VillagerRecord.createVillagerRecord(this.currentCulture, villagerType.key, Mill.getMillWorld((World)(Minecraft.getMinecraft()).world), null, null, null, null, -1L, true);
-      this.mockVillager = MillVillager.createMockVillager(villagerRecord, (World)(Minecraft.getMinecraft()).world);
+      VillagerRecord villagerRecord = VillagerRecord.createVillagerRecord(this.currentCulture, villagerType.key, Mill.getMillWorld((World)(Minecraft.getInstance()).world), null, null, null, null, -1L, true);
+      this.mockVillager = MillVillager.createMockVillager(villagerRecord, (World)(Minecraft.getInstance()).world);
       this.mockVillager.heldItem = villagerType.getTravelBookHeldItem();
       this.mockVillager.heldItemOffHand = villagerType.getTravelBookHeldItemOffHand();
       this.mockVillager.travelBookMockVillager = true;

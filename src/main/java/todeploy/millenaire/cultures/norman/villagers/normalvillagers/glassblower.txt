@@ -54,6 +54,7 @@ requiredGood=wood_acacia,64
 requiredGood=wood_darkoak,64
 requiredGood=sand,64
 requiredGood=glass,64
+requiredGood=dye_white,8
 requiredGood=dye_yellow,8
 requiredGood=dye_red,8
 requiredGood=dye_lightblue,8

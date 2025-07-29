@@ -54,7 +54,7 @@ public class ItemMockBanner extends ItemBlock {
   public static ItemStack makeBanner(Item banner, EnumDyeColor color, @Nullable NBTTagCompound patterns) {
     ItemStack itemstack = new ItemStack(banner, 1, color.getDyeDamage());
     if (patterns != null && !patterns.hasNoTags())
-      itemstack.getOrCreateSubCompound("BlockEntityTag").setTag("Patterns", (NBTBase)patterns.copy().getTagList("Patterns", 10)); 
+      itemstack.getOrCreateChildTag("BlockEntityTag").setTag("Patterns", (NBTBase)patterns.copy().getList("Patterns", 10)); 
     return itemstack;
   }
   
@@ -68,7 +68,7 @@ public class ItemMockBanner extends ItemBlock {
     setMaxDamage(0);
   }
   
-  public CreativeTabs getCreativeTab() {
+  public CreativeTabs getGroup() {
     return MillBlocks.tabMillenaireContentCreator;
   }
   
@@ -76,8 +76,8 @@ public class ItemMockBanner extends ItemBlock {
     return 0;
   }
   
-  public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-    if (isInCreativeTab(tab))
+  public void fillItemGroup(CreativeTabs tab, NonNullList<ItemStack> items) {
+    if (isInGroup(tab))
       try {
         items.add(makeBanner((Item)this, this.color, JsonToNBT.getTagFromJson(BANNER_DESIGNS[this.bannerDesign])));
       } catch (NBTException e) {
@@ -107,7 +107,7 @@ public class ItemMockBanner extends ItemBlock {
         TileEntity bannerEntity = worldIn.getTileEntity(pos);
         if (bannerEntity instanceof TileEntityMockBanner) {
           ItemStack bannerStack = itemstack.copy();
-          bannerStack.getOrCreateSubCompound("BlockEntityTag").setTag("Base", (NBTBase)new NBTTagInt(this.color.getDyeDamage()));
+          bannerStack.getOrCreateChildTag("BlockEntityTag").setTag("Base", (NBTBase)new NBTTagInt(this.color.getDyeDamage()));
           ((TileEntityMockBanner)bannerEntity).setItemValues(bannerStack, true);
         } 
         if (player instanceof EntityPlayerMP)

@@ -397,27 +397,27 @@ public class BuildingCustomPlan implements IBuildingPlan {
         (building.getResManager()).woodspawn.add(p);
         IBlockState bs = building.world.getBlockState(p.getBlockPos());
         if (bs.getBlock() == Blocks.SAPLING) {
-          if (bs.getValue((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.OAK) {
+          if (bs.get((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.OAK) {
             (building.getResManager()).woodspawnTypes.put(p, "oakspawn");
             continue;
           } 
-          if (bs.getValue((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.SPRUCE) {
+          if (bs.get((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.SPRUCE) {
             (building.getResManager()).woodspawnTypes.put(p, "pinespawn");
             continue;
           } 
-          if (bs.getValue((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.BIRCH) {
+          if (bs.get((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.BIRCH) {
             (building.getResManager()).woodspawnTypes.put(p, "birchspawn");
             continue;
           } 
-          if (bs.getValue((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.JUNGLE) {
+          if (bs.get((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.JUNGLE) {
             (building.getResManager()).woodspawnTypes.put(p, "junglespawn");
             continue;
           } 
-          if (bs.getValue((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.ACACIA) {
+          if (bs.get((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.ACACIA) {
             (building.getResManager()).woodspawnTypes.put(p, "acaciaspawn");
             continue;
           } 
-          if (bs.getValue((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.DARK_OAK)
+          if (bs.get((IProperty)BlockSapling.TYPE) == BlockPlanks.EnumType.DARK_OAK)
             (building.getResManager()).woodspawnTypes.put(p, "darkoakspawn"); 
           continue;
         } 

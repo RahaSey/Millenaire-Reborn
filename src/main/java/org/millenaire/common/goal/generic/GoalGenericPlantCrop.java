@@ -126,7 +126,7 @@ public class GoalGenericPlantCrop extends GoalGeneric {
       if (taken == 0)
         dest.takeGoods(this.seed, 1); 
     } 
-    Block soil = (Block)Block.REGISTRY.getObject(this.soilType);
+    Block soil = (Block)Block.REGISTRY.getOrDefault(this.soilType);
     if (villager.getGoalDestPoint().getBelow().getBlock(villager.world) != soil)
       villager.setBlockAndMetadata(villager.getGoalDestPoint().getBelow(), soil, 0); 
     if (!this.plantBlockState.isEmpty()) {
@@ -135,7 +135,7 @@ public class GoalGenericPlantCrop extends GoalGeneric {
       if (cropState.getBlock() instanceof BlockDoublePlant)
         villager.setBlockstate(villager.getGoalDestPoint().getAbove(), cropState.withProperty((IProperty)BlockDoublePlant.HALF, (Comparable)BlockDoublePlant.EnumBlockHalf.UPPER)); 
     } else {
-      Block cropBlock = (Block)Block.REGISTRY.getObject(this.cropType);
+      Block cropBlock = (Block)Block.REGISTRY.getOrDefault(this.cropType);
       int cropMeta = getCropBlockMeta(this.cropType);
       villager.setBlockAndMetadata(villager.getGoalDestPoint(), cropBlock, cropMeta);
       if (cropBlock instanceof BlockDoublePlant || cropBlock instanceof org.millenaire.common.block.BlockGrapeVine)

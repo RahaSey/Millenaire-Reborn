@@ -30,7 +30,7 @@ public class GoalMerchantVisitInn extends Goal {
     if (!villager.lastGoalTime.containsKey(this)) {
       delayOver = true;
     } else {
-      delayOver = (villager.world.getWorldTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
+      delayOver = (villager.world.getDayTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
     } 
     int nb = 0;
     for (InvItem good : villager.getInventoryKeys()) {
@@ -66,7 +66,7 @@ public class GoalMerchantVisitInn extends Goal {
       } 
     } 
     if (s.length() > 0)
-      (villager.getHouse()).visitorsList.add("storedexports;" + villager.getName() + s); 
+      (villager.getHouse()).visitorsList.add("storedexports;" + villager.func_70005_c_() + s); 
     s = "";
     for (TradeGood good : (villager.getTownHall()).culture.goodsList) {
       if (good.item.meta >= 0) {
@@ -79,7 +79,7 @@ public class GoalMerchantVisitInn extends Goal {
       } 
     } 
     if (s.length() > 0)
-      (villager.getHouse()).visitorsList.add("broughtimport;" + villager.getName() + s); 
+      (villager.getHouse()).visitorsList.add("broughtimport;" + villager.func_70005_c_() + s); 
     return true;
   }
   

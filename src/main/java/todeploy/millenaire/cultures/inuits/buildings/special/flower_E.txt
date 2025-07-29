@@ -1,14 +1,9 @@
-//Parameters for the building as a whole
 building.length=1
 building.width=1
-building.areatoclear=1
-building.buildingorientation=3
-building.icon=dirt
+building.areatoclear=3
 
-//Parameters for initial construction
-initial.startlevel=-1
-initial.nativename=inuuniun nautchiak
-initial.translatedname=name_en,flower field
-initial.priority=999
+initial.startlevel=-2
+initial.nativename=flower
+initial.tag=nopaths
 
-//Parameters for specific upgrades
+initial.priority=200

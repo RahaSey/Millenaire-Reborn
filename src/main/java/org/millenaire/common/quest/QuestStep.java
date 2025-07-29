@@ -146,17 +146,17 @@ public class QuestStep {
       int diff;
       if (item.special == 1) {
         int nbenchanted = 0;
-        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+        for (int i = 0; i < player.inventory.func_70302_i_(); i++) {
           ItemStack stack = player.inventory.getStackInSlot(i);
-          if (stack != null && stack.isItemEnchanted())
+          if (stack != null && stack.isEnchanted())
             nbenchanted++; 
         } 
         diff = ((Integer)this.requiredGood.get(item)).intValue() - nbenchanted;
       } else if (item.special == 2) {
         int nbenchanted = 0;
-        for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
+        for (int i = 0; i < player.inventory.func_70302_i_(); i++) {
           ItemStack stack = player.inventory.getStackInSlot(i);
-          if (stack != null && stack.isItemEnchanted() && stack.getItem() instanceof net.minecraft.item.ItemSword)
+          if (stack != null && stack.isEnchanted() && stack.getItem() instanceof net.minecraft.item.ItemSword)
             nbenchanted++; 
         } 
         diff = ((Integer)this.requiredGood.get(item)).intValue() - nbenchanted;

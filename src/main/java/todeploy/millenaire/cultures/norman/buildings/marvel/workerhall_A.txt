@@ -8,7 +8,7 @@ building.icon=normanshovel
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Dortoirs
+initial.nativename=Chàmbre des Travaillaeux
 initial.priority=10000
 initial.male=marvelbuilder
 initial.male=marvelbuilder

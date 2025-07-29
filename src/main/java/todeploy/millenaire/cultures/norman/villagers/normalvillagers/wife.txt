@@ -1,4 +1,4 @@
-native_name=Villageoise
+native_name=Villageaise
 gender=female
 familyNameList=family_names
 firstNameList=women_names

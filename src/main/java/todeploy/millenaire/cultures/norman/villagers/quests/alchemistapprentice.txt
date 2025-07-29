@@ -1,4 +1,4 @@
-native_name=Apprenti alchimiste
+native_name=Apprentif Alchimiste
 gender=male
 familyNameList=family_names
 firstNameList=men_names

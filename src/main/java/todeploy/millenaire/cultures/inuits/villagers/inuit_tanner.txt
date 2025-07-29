@@ -14,21 +14,31 @@ texture=textures/entity/inuit/inuit_shaman.png
 
 collectGood=rottenflesh
 collectGood=bone
+bringBackHomeGood=bone
+bringBackHomeGood=rottenflesh
 
 goal=gorest
 goal=gosocialise
 goal=chat
 
 goal=deliverResourcesShop
-bringBackHomeGood=rottenflesh
 
 goal=maketannedhide
 goal=makehidehanging
 goal=makeleather
 goal=makeinuitbow
 goal=makebannerleather
+requiredGood=leather,8
+requiredGood=bone,2
 
-requiredGood=leather,10
+requiredGood=bearmeat_cooked,4
+requiredGood=wolfmeat_cooked,4
+requiredGood=inuitbearstew,4
+requiredGood=inuitmeatystew,4
+requiredGood=inuitpotatostew,8
+requiredGood=seafood_cooked,16
+requiredGood=baked_potato,64
+
 baseAttackStrength=6
 tag=helpInAttacks
 

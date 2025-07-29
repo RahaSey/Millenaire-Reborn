@@ -246,8 +246,8 @@ public class VillagerConfig {
               if (((Integer)map.get(item)).intValue() <= 0)
                 map.remove(item); 
             } 
-            List<InvItem> sortedList = new ArrayList<>(map.keySet());
-            Collections.sort(sortedList, (key1, key2) -> map.get(key2).compareTo(map.get(key1)));
+            List<?> sortedList = new ArrayList(map.keySet());
+            Collections.sort(sortedList, (key1, key2) -> ((Comparable)map.get(key2)).compareTo(map.get(key1)));
             Field listField = VillagerConfig.class.getDeclaredField(field.getName() + "Sorted");
             listField.set(this, sortedList);
             this.categories.put(field.getName().toLowerCase(), sortedList);

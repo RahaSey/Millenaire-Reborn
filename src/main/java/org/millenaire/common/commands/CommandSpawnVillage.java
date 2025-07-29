@@ -27,19 +27,19 @@ public class CommandSpawnVillage implements ICommand {
   }
   
   public boolean checkPermission(MinecraftServer server, ICommandSender sender) {
-    return sender.canUseCommand(getRequiredPermissionLevel(), getName());
+    return sender.canCommandSenderUseCommand(getRequiredPermissionLevel(), getCommandName());
   }
   
   public int compareTo(ICommand o) {
-    return getName().compareTo(o.getName());
+    return getCommandName().compareTo(o.getCommandName());
   }
   
   public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-    World world = sender.getEntityWorld();
+    World world = sender.func_130014_f_();
     if (!world.isRemote) {
       VillageType villageType;
       if (args.length < 2 || args.length > 5)
-        throw new WrongUsageException(getUsage(sender), new Object[0]); 
+        throw new WrongUsageException(getCommandUsage(sender), new Object[0]); 
       String cultureParam = args[0];
       String villageTypeParam = args[1];
       Culture culture = Culture.getCultureByName(cultureParam);
@@ -76,11 +76,11 @@ public class CommandSpawnVillage implements ICommand {
     } 
   }
   
-  public List<String> getAliases() {
+  public List<String> getCommandAliases() {
     return Collections.emptyList();
   }
   
-  public String getName() {
+  public String getCommandName() {
     if (this.spawnLoneBuilding)
       return "millSpawnLoneBuilding"; 
     return "millSpawnVillage";
@@ -90,7 +90,7 @@ public class CommandSpawnVillage implements ICommand {
     return 3;
   }
   
-  public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
+  public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
     if (args.length == 1) {
       List<String> possibleMatches = new ArrayList<>();
       String partialKey = CommandUtilities.normalizeString(args[0]);
@@ -121,8 +121,8 @@ public class CommandSpawnVillage implements ICommand {
     return Collections.emptyList();
   }
   
-  public String getUsage(ICommandSender sender) {
-    return "commands." + getName().toLowerCase() + ".usage";
+  public String getCommandUsage(ICommandSender sender) {
+    return "commands." + getCommandName().toLowerCase() + ".usage";
   }
   
   public boolean isUsernameIndex(String[] args, int index) {

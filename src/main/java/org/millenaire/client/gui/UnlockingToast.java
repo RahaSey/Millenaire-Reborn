@@ -128,7 +128,7 @@ public class UnlockingToast implements IToast {
       (toastGui.getMinecraft()).fontRenderer.drawString(text, 30, 18, -16777216);
       RenderHelper.enableGUIStandardItemLighting();
       if (icon != null)
-        toastGui.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI((EntityLivingBase)null, icon, 8, 8); 
+        toastGui.getMinecraft().getItemRenderer().renderItemAndEffectIntoGUI((EntityLivingBase)null, icon, 8, 8); 
     } catch (Exception e) {
       MillLog.printException(toString(), e);
       return IToast.Visibility.HIDE;

@@ -24,7 +24,7 @@ public class TESRMockBanner extends TileEntitySpecialRenderer<TileEntityMockBann
     boolean isWorldValid = (te.getWorld() != null);
     boolean standing = (!isWorldValid || te.getBlockType() instanceof net.minecraft.block.BlockBanner.BlockBannerStanding);
     int rotation = isWorldValid ? te.getBlockMetadata() : 0;
-    long j = isWorldValid ? te.getWorld().getTotalWorldTime() : 0L;
+    long j = isWorldValid ? te.getWorld().getGameTime() : 0L;
     GlStateManager.pushMatrix();
     if (standing) {
       GlStateManager.translate((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F);

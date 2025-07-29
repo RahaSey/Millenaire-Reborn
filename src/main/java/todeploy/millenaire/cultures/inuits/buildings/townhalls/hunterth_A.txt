@@ -19,10 +19,10 @@ initial.signs=0,2,1,3,5,7,8,6,4
 
 
 //Parameters for specific upgrades
-upgrade1.priority=700
+upgrade1.priority=500
 
-upgrade2.priority=600
+upgrade2.priority=100
 upgrade2.rebuildpath=true
 
-upgrade3.priority=500
+upgrade3.priority=50
 upgrade3.rebuildpath=true

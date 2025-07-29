@@ -240,15 +240,15 @@ public class EntityWallDecoration extends EntityHanging implements IEntityAdditi
       playSound(SoundEvents.ENTITY_PAINTING_BREAK, 1.0F, 1.0F);
       if (brokenEntity instanceof EntityPlayer) {
         EntityPlayer entityplayer = (EntityPlayer)brokenEntity;
-        if (entityplayer.capabilities.isCreativeMode)
+        if (entityplayer.abilities.isCreativeMode)
           return; 
       } 
       entityDropItem(new ItemStack(getDropItem()), 0.0F);
     } 
   }
   
-  public void onUpdate() {
-    super.onUpdate();
+  public void func_70071_h_() {
+    super.func_70071_h_();
   }
   
   public boolean onValidSurface() {
@@ -259,8 +259,8 @@ public class EntityWallDecoration extends EntityHanging implements IEntityAdditi
     playSound(SoundEvents.ENTITY_PAINTING_PLACE, 1.0F, 1.0F);
   }
   
-  public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
-    this.type = nbttagcompound.getInteger("Type");
+  public void readAdditional(NBTTagCompound nbttagcompound) {
+    this.type = nbttagcompound.getInt("Type");
     String s = nbttagcompound.getString("Motive");
     for (EnumWallDecoration enumart : EnumWallDecoration.values()) {
       if (enumart.title.equals(s))
@@ -270,7 +270,7 @@ public class EntityWallDecoration extends EntityHanging implements IEntityAdditi
       this.millArt = EnumWallDecoration.Griffon; 
     if (this.type == 0)
       this.type = 1; 
-    super.readEntityFromNBT(nbttagcompound);
+    super.readAdditional(nbttagcompound);
   }
   
   public void readSpawnData(ByteBuf bb) {
@@ -284,7 +284,7 @@ public class EntityWallDecoration extends EntityHanging implements IEntityAdditi
     Point p = StreamReadWrite.readNullablePoint(data);
     setPosition(p.x, p.y, p.z);
     int facingId = data.readInt();
-    updateFacingWithBoundingBox(EnumFacing.getFront(facingId));
+    updateFacingWithBoundingBox(EnumFacing.byIndex(facingId));
   }
   
   public void setLocationAndAngles(double x, double y, double z, float yaw, float pitch) {
@@ -302,8 +302,8 @@ public class EntityWallDecoration extends EntityHanging implements IEntityAdditi
   }
   
   public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
-    nbttagcompound.setInteger("Type", this.type);
-    nbttagcompound.setString("Motive", this.millArt.title);
+    nbttagcompound.putInt("Type", this.type);
+    nbttagcompound.putString("Motive", this.millArt.title);
     super.writeEntityToNBT(nbttagcompound);
   }
   

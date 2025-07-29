@@ -25,11 +25,11 @@ public class CommandListActiveVillages implements ICommand {
   }
   
   public int compareTo(ICommand o) {
-    return getName().compareTo(o.getName());
+    return getCommandName().compareTo(o.getCommandName());
   }
   
   public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-    World world = sender.getEntityWorld();
+    World world = sender.func_130014_f_();
     if (!world.isRemote) {
       MillWorldData worldData = Mill.getMillWorld(world);
       for (int i = 0; i < worldData.villagesList.pos.size(); i++) {
@@ -50,7 +50,7 @@ public class CommandListActiveVillages implements ICommand {
             EntityPlayer player = (EntityPlayer)playerEntity;
             if (players.length() > 0)
               players = players + ", "; 
-            players = players + player.getName();
+            players = players + player.func_70005_c_();
           } 
           if (!(sender instanceof EntityPlayer)) {
             MillLog.major(this, "Village " + townHall
@@ -66,20 +66,20 @@ public class CommandListActiveVillages implements ICommand {
     } 
   }
   
-  public List<String> getAliases() {
+  public List<String> getCommandAliases() {
     return Collections.emptyList();
   }
   
-  public String getName() {
+  public String getCommandName() {
     return "millListActiveVillages";
   }
   
-  public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
+  public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
     return Collections.emptyList();
   }
   
-  public String getUsage(ICommandSender sender) {
-    return "commands." + getName().toLowerCase() + ".usage";
+  public String getCommandUsage(ICommandSender sender) {
+    return "commands." + getCommandName().toLowerCase() + ".usage";
   }
   
   public boolean isUsernameIndex(String[] args, int index) {

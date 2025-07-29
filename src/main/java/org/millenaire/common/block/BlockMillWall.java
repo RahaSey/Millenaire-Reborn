@@ -50,19 +50,19 @@ public class BlockMillWall extends Block {
   
   private static int getAABBIndex(IBlockState state) {
     int i = 0;
-    if (((Boolean)state.getValue((IProperty)NORTH)).booleanValue())
+    if (((Boolean)state.get((IProperty)NORTH)).booleanValue())
       i |= 1 << EnumFacing.NORTH.getHorizontalIndex(); 
-    if (((Boolean)state.getValue((IProperty)EAST)).booleanValue())
+    if (((Boolean)state.get((IProperty)EAST)).booleanValue())
       i |= 1 << EnumFacing.EAST.getHorizontalIndex(); 
-    if (((Boolean)state.getValue((IProperty)SOUTH)).booleanValue())
+    if (((Boolean)state.get((IProperty)SOUTH)).booleanValue())
       i |= 1 << EnumFacing.SOUTH.getHorizontalIndex(); 
-    if (((Boolean)state.getValue((IProperty)WEST)).booleanValue())
+    if (((Boolean)state.get((IProperty)WEST)).booleanValue())
       i |= 1 << EnumFacing.WEST.getHorizontalIndex(); 
     return i;
   }
   
   protected static boolean isExcepBlockForAttachWithPiston(Block p_194143_0_) {
-    return (Block.isExceptBlockForAttachWithPiston(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON_BLOCK || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN);
+    return (Block.isExceptBlockForAttachWithPiston(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN);
   }
   
   public BlockMillWall(String blockName, Block baseBlock) {
@@ -71,7 +71,7 @@ public class BlockMillWall extends Block {
     setCreativeTab(MillBlocks.tabMillenaire);
     setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)UP, Boolean.valueOf(false)).withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false))
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)UP, Boolean.valueOf(false)).withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false))
         .withProperty((IProperty)SOUTH, Boolean.valueOf(false)).withProperty((IProperty)WEST, Boolean.valueOf(false)));
     setHardness(baseBlock.getBlockHardness(null, null, null));
     setResistance(baseBlock.getExplosionResistance(null) * 5.0F / 3.0F);

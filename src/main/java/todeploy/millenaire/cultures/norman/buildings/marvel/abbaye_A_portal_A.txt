@@ -10,7 +10,7 @@ building.icon=door_spruce
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Portail
+initial.nativename=Grànd Hus
 initial.priority=650
 initial.tag=scaffoldings
 

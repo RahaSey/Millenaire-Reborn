@@ -14,9 +14,15 @@ texture=textures/entity/inuit/inuit_shaman3.png
 goal=gorest
 goal=gosocialise
 goal=chat
+
+goal=getGoodsHousehold
+goal=deliverGoodsHousehold
+
 goal=gopray
 goal=goholdaservice
+
 goal=tendfurnace
+
 goal=deliverResourcesShop
 
 startingInv=totem_of_undying,1

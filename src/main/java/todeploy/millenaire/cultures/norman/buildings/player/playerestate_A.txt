@@ -11,7 +11,7 @@ building.icon=denieror
 
 //Parameters for initial construction
 initial.startlevel=-11
-initial.nativename=Hôtel particulier
+initial.nativename=Châté
 initial.priority=1000000
 initial.pathlevel=2
 

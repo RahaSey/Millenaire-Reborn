@@ -100,11 +100,11 @@ public class GuiQuest extends GuiText {
   private TextBook getData(int type, String baseText) {
     List<TextLine> text = new ArrayList<>();
     String game = "";
-    if (this.villager.getGameOccupationName(this.player.getName()).length() > 0)
-      game = " (" + this.villager.getGameOccupationName(this.player.getName()) + ")"; 
-    text.add(new TextLine(this.villager.getName() + ", " + this.villager.getNativeOccupationName() + game, "§1", new GuiText.GuiButtonReference(this.villager.vtype)));
+    if (this.villager.getGameOccupationName(this.player.func_70005_c_()).length() > 0)
+      game = " (" + this.villager.getGameOccupationName(this.player.func_70005_c_()) + ")"; 
+    text.add(new TextLine(this.villager.func_70005_c_() + ", " + this.villager.getNativeOccupationName() + game, "§1", new GuiText.GuiButtonReference(this.villager.vtype)));
     text.add(new TextLine());
-    text.add(new TextLine(baseText.replaceAll("\\$name", this.player.getName())));
+    text.add(new TextLine(baseText.replaceAll("\\$name", this.player.func_70005_c_())));
     UserProfile profile = Mill.proxy.getClientProfile();
     if (type == 0) {
       QuestStep step = ((QuestInstance)profile.villagersInQuests.get(Long.valueOf(this.villager.getVillagerId()))).getCurrentStep();

@@ -26,7 +26,7 @@ public class ItemAmuletYggdrasil extends ItemMill {
             if (entityIn == null)
               return 0.0F; 
             world = entityIn.world;
-            if (world.getTotalWorldTime() != this.lastUpdateTick) {
+            if (world.getGameTime() != this.lastUpdateTick) {
               int level = 0;
               Point p = new Point((Entity)entityIn);
               level = (int)Math.floor(p.getiY());

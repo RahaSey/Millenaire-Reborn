@@ -10,7 +10,7 @@ building.icon=cider
 
 //Parameters for initial construction
 initial.startlevel=-3
-initial.nativename=Taverne
+initial.nativename=Cabaret
 initial.tag=drinking
 initial.tag=cider
 initial.shop=tavern

@@ -22,14 +22,14 @@ public class CommandDebugResendProfiles implements ICommand {
   }
   
   public int compareTo(ICommand o) {
-    return getName().compareTo(o.getName());
+    return getCommandName().compareTo(o.getCommandName());
   }
   
   public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-    World world = sender.getEntityWorld();
+    World world = sender.func_130014_f_();
     if (!world.isRemote) {
       if (args.length != 1)
-        throw new WrongUsageException(getUsage(sender), new Object[0]); 
+        throw new WrongUsageException(getCommandUsage(sender), new Object[0]); 
       if (args[0].equals("all")) {
         MillWorldData worldData = Mill.getMillWorld(world);
         for (UserProfile profile : worldData.profiles.values()) {
@@ -58,20 +58,20 @@ public class CommandDebugResendProfiles implements ICommand {
     } 
   }
   
-  public List<String> getAliases() {
+  public List<String> getCommandAliases() {
     return Collections.emptyList();
   }
   
-  public String getName() {
+  public String getCommandName() {
     return "millDebugSendProfiles";
   }
   
-  public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
+  public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
     return Collections.emptyList();
   }
   
-  public String getUsage(ICommandSender sender) {
-    return "commands." + getName().toLowerCase() + ".usage";
+  public String getCommandUsage(ICommandSender sender) {
+    return "commands." + getCommandName().toLowerCase() + ".usage";
   }
   
   public boolean isUsernameIndex(String[] args, int index) {

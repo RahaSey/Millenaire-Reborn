@@ -7,6 +7,6 @@ building.isborderbuilding=true
 building.areatoclear=1
 
 initial.startlevel=-1
-initial.nativename=Borne
+initial.nativename=Dévize
 initial.tag=borderpostsign
 initial.nopathstobuilding=true

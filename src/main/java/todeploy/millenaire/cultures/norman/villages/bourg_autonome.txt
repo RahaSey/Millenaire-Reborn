@@ -1,4 +1,4 @@
-name=Bourg
+name=Ville
 icon=calva
 weight=10
 carriesraid=true

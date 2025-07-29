@@ -10,7 +10,7 @@ building.icon=planks_darkoak
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Confessionnal
+initial.nativename=Caonféssiounnal
 initial.priority=100
 initial.tag=confessional
 initial.parenttag=202

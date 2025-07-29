@@ -58,7 +58,7 @@ public abstract class BlockOrientedSlab extends BlockSlab implements IMetaBlockN
   
   public BlockOrientedSlab(String slabName) {
     super(Material.ROCK);
-    IBlockState iblockstate = this.blockState.getBaseState();
+    IBlockState iblockstate = this.stateContainer.getBaseState();
     if (!isDouble()) {
       iblockstate = iblockstate.withProperty((IProperty)HALF, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM);
       this.useNeighborBrightness = true;
@@ -89,28 +89,28 @@ public abstract class BlockOrientedSlab extends BlockSlab implements IMetaBlockN
     return Item.getItemFromBlock(state.getBlock());
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
     return MapColor.ADOBE;
   }
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis)state.getValue((IProperty)AXIS);
+    EnumFacing.Axis enumfacing$axis = (EnumFacing.Axis)state.get((IProperty)AXIS);
     if (enumfacing$axis == EnumFacing.Axis.X) {
       i |= 0x4;
     } else if (enumfacing$axis == EnumFacing.Axis.Z) {
       i |= 0x8;
     } 
-    if (!isDouble() && state.getValue((IProperty)HALF) == BlockSlab.EnumBlockHalf.TOP)
+    if (!isDouble() && state.get((IProperty)HALF) == BlockSlab.EnumBlockHalf.TOP)
       i |= 0x2; 
     return i;
   }
   
-    public String getSpecialName(ItemStack stack) {
-    return getUnlocalizedName();
+  public String getSpecialName(ItemStack stack) {
+    return getTranslationKey();
   }
-
-  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+  
+  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
     IBlockState iblockstate = getStateFromMeta(meta);
     if (facing.getAxis() == EnumFacing.Axis.Y) {
       iblockstate = iblockstate.withProperty((IProperty)AXIS, (Comparable)EnumFacing.Axis.X);
@@ -140,10 +140,10 @@ public abstract class BlockOrientedSlab extends BlockSlab implements IMetaBlockN
     return Variant.DEFAULT;
   }
   
-    public String getUnlocalizedName(int meta) {
-    return getUnlocalizedName();
+  public String getUnlocalizedName(int meta) {
+    return getTranslationKey();
   }
-
+  
   public IProperty<?> getVariantProperty() {
     return (IProperty<?>)VARIANT;
   }

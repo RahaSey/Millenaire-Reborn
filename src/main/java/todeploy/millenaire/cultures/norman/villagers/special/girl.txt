@@ -1,5 +1,5 @@
 native_name=Fille
-alt_native_name=Jeune
+alt_native_name=Jonne
 alt_key=teenagerfemale
 gender=female
 tag=child

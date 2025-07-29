@@ -13,7 +13,7 @@ townhalllimit=icebrick,512
 
 sourceblockstate=minecraft:ice
 
-loot=icebrick,1
+loot=icebrick,2
 
 sentencekey=mining
 

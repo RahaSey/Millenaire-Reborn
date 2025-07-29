@@ -1,4 +1,4 @@
-name=Hameau industrieux
+name=Haumé d'Métcher
 icon=timberframecross
 type=hameau
 weight=0

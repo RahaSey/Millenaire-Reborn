@@ -11,7 +11,7 @@ building.icon=carpet_yellow
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Autel
+initial.nativename=Tablle d'la Communiaon
 initial.priority=3000
 initial.tag=praying
 

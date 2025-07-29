@@ -161,7 +161,7 @@ public class ContainerTrade extends Container {
     if (sellingGoods != null)
       for (TradeGood g : sellingGoods) {
         int slotrow = slotnb / 13;
-        addSlotToContainer(new TradeSlot(building, player, true, g, 8 + 18 * (slotnb - 13 * slotrow), 32 + slotrow * 18));
+        addSlot(new TradeSlot(building, player, true, g, 8 + 18 * (slotnb - 13 * slotrow), 32 + slotrow * 18));
         slotnb++;
       }  
     this.nbRowSelling = slotnb / 13 + 1;
@@ -170,16 +170,16 @@ public class ContainerTrade extends Container {
     if (buyingGoods != null)
       for (TradeGood g : buyingGoods) {
         int slotrow = slotnb / 13;
-        addSlotToContainer(new TradeSlot(building, player, false, g, 8 + 18 * (slotnb - 13 * slotrow), 86 + slotrow * 18));
+        addSlot(new TradeSlot(building, player, false, g, 8 + 18 * (slotnb - 13 * slotrow), 86 + slotrow * 18));
         slotnb++;
       }  
     this.nbRowBuying = slotnb / 13 + 1;
     for (int l = 0; l < 3; l++) {
       for (int k1 = 0; k1 < 9; k1++)
-        addSlotToContainer(new Slot((IInventory)player.inventory, k1 + l * 9 + 9, 8 + k1 * 18 + 36, 103 + l * 18 + 37)); 
+        addSlot(new Slot((IInventory)player.inventory, k1 + l * 9 + 9, 8 + k1 * 18 + 36, 103 + l * 18 + 37)); 
     } 
     for (int i1 = 0; i1 < 9; i1++)
-      addSlotToContainer(new Slot((IInventory)player.inventory, i1, 8 + i1 * 18 + 36, 198)); 
+      addSlot(new Slot((IInventory)player.inventory, i1, 8 + i1 * 18 + 36, 198)); 
     if (!building.world.isRemote) {
       UserProfile profile = building.mw.getProfile(player);
       unlockTradableGoods(profile);
@@ -193,16 +193,16 @@ public class ContainerTrade extends Container {
     if (sellingGoods != null)
       for (TradeGood g : sellingGoods) {
         int slotrow = slotnb / 13;
-        addSlotToContainer(new MerchantSlot(merchant, player, g, 8 + 18 * (slotnb - 13 * slotrow), 32 + slotrow * 18));
+        addSlot(new MerchantSlot(merchant, player, g, 8 + 18 * (slotnb - 13 * slotrow), 32 + slotrow * 18));
         slotnb++;
       }  
     this.nbRowSelling = slotnb / 13 + 1;
     for (int l = 0; l < 3; l++) {
       for (int k1 = 0; k1 < 9; k1++)
-        addSlotToContainer(new Slot((IInventory)player.inventory, k1 + l * 9 + 9, 8 + k1 * 18 + 36, 103 + l * 18 + 37)); 
+        addSlot(new Slot((IInventory)player.inventory, k1 + l * 9 + 9, 8 + k1 * 18 + 36, 103 + l * 18 + 37)); 
     } 
     for (int i1 = 0; i1 < 9; i1++)
-      addSlotToContainer(new Slot((IInventory)player.inventory, i1, 8 + i1 * 18 + 36, 198)); 
+      addSlot(new Slot((IInventory)player.inventory, i1, 8 + i1 * 18 + 36, 198)); 
     if (!merchant.world.isRemote) {
       UserProfile profile = merchant.mw.getProfile(player);
       unlockTradableGoods(profile);

@@ -1,4 +1,4 @@
-native_name=Abbé
+native_name=Abbaï
 gender=male
 familyNameList=noble_family_names
 firstNameList=men_names

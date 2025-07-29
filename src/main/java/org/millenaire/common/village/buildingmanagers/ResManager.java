@@ -172,7 +172,7 @@ public class ResManager {
     for (Point p : this.chests) {
       TileEntityLockedChest chest = p.getMillChest(this.building.world);
       if (chest != null)
-        for (int i = 0; i < chest.getSizeInventory(); i++) {
+        for (int i = 0; i < chest.func_70302_i_(); i++) {
           ItemStack stack = chest.getStackInSlot(i);
           if (stack != null && stack.getItem() != Items.AIR) {
             InvItem key = InvItem.createInvItem(stack);
@@ -194,7 +194,7 @@ public class ResManager {
         for (Point p : this.soils.get(i)) {
           IBlockState state = p.getBlockActualState(this.building.world);
           if (state.getBlock() == Blocks.COCOA && (
-            (Integer)state.getValue((IProperty)BlockCocoa.AGE)).intValue() >= 2)
+            (Integer)state.get((IProperty)BlockCocoa.AGE)).intValue() >= 2)
             return p; 
         }  
     } 
@@ -513,7 +513,7 @@ public class ResManager {
   }
   
   private boolean isBlockJungleWood(IBlockState state) {
-    return (state.getValue((IProperty)BlockOldLog.VARIANT) == BlockPlanks.EnumType.JUNGLE);
+    return (state.get((IProperty)BlockOldLog.VARIANT) == BlockPlanks.EnumType.JUNGLE);
   }
   
   public void readDataStream(PacketBuffer ds) throws IOException {
@@ -541,108 +541,108 @@ public class ResManager {
     this.leasurePos = Point.read(nbttagcompound, "leasurePos");
     if (this.sleepingPos == null)
       this.sleepingPos = this.building.getPos().getAbove(); 
-    NBTTagList nbttaglist = nbttagcompound.getTagList("chests", 10);
+    NBTTagList nbttaglist = nbttagcompound.getList("chests", 10);
     int i;
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null && 
         !this.chests.contains(p))
         this.chests.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("furnaces", 10);
+    nbttaglist = nbttagcompound.getList("furnaces", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.furnaces.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("firepits", 10);
+    nbttaglist = nbttagcompound.getList("firepits", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.firepits.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("brewingStands", 10);
+    nbttaglist = nbttagcompound.getList("brewingStands", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.brewingStands.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("banners", 10);
+    nbttaglist = nbttagcompound.getList("banners", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.banners.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("culturebanners", 10);
+    nbttaglist = nbttagcompound.getList("culturebanners", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.cultureBanners.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("signs", 10);
+    nbttaglist = nbttagcompound.getList("signs", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       this.signs.add(p);
     } 
-    nbttaglist = nbttagcompound.getTagList("netherwartsoils", 10);
+    nbttaglist = nbttagcompound.getList("netherwartsoils", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.netherwartsoils.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("silkwormblock", 10);
+    nbttaglist = nbttagcompound.getList("silkwormblock", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.silkwormblock.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("snailsoilblock", 10);
+    nbttaglist = nbttagcompound.getList("snailsoilblock", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.snailsoilblock.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("sugarcanesoils", 10);
+    nbttaglist = nbttagcompound.getList("sugarcanesoils", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.sugarcanesoils.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("fishingspots", 10);
+    nbttaglist = nbttagcompound.getList("fishingspots", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.fishingspots.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("healingspots", 10);
+    nbttaglist = nbttagcompound.getList("healingspots", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.healingspots.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("stalls", 10);
+    nbttaglist = nbttagcompound.getList("stalls", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.stalls.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("woodspawn", 10);
+    nbttaglist = nbttagcompound.getList("woodspawn", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null) {
         this.woodspawn.add(p);
@@ -651,22 +651,22 @@ public class ResManager {
           this.woodspawnTypes.put(p, type); 
       } 
     } 
-    nbttaglist = nbttagcompound.getTagList("brickspot", 10);
+    nbttaglist = nbttagcompound.getList("brickspot", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       Point p = Point.read(nbttagcompound1, "pos");
       if (p != null)
         this.brickspot.add(p); 
     } 
-    nbttaglist = nbttagcompound.getTagList("spawns", 10);
+    nbttaglist = nbttagcompound.getList("spawns", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       ResourceLocation spawnType = new ResourceLocation(nbttagcompound1.getString("type"));
       this.spawnTypes.add(spawnType);
       CopyOnWriteArrayList<Point> v = new CopyOnWriteArrayList<>();
-      NBTTagList nbttaglist2 = nbttagcompound1.getTagList("points", 10);
+      NBTTagList nbttaglist2 = nbttagcompound1.getList("points", 10);
       for (int j = 0; j < nbttaglist2.tagCount(); j++) {
-        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(j);
+        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompound(j);
         Point p = Point.read(nbttagcompound2, "pos");
         if (p != null) {
           v.add(p);
@@ -678,14 +678,14 @@ public class ResManager {
       if (MillConfigValues.LogHybernation >= 2)
         MillLog.minor(this, "Loaded " + v.size() + " spawn points for " + this.spawnTypes.get(i)); 
     } 
-    nbttaglist = nbttagcompound.getTagList("mobspawns", 10);
+    nbttaglist = nbttagcompound.getList("mobspawns", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       this.mobSpawnerTypes.add(new ResourceLocation(nbttagcompound1.getString("type")));
       CopyOnWriteArrayList<Point> v = new CopyOnWriteArrayList<>();
-      NBTTagList nbttaglist2 = nbttagcompound1.getTagList("points", 10);
+      NBTTagList nbttaglist2 = nbttagcompound1.getList("points", 10);
       for (int j = 0; j < nbttaglist2.tagCount(); j++) {
-        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(j);
+        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompound(j);
         Point p = Point.read(nbttagcompound2, "pos");
         if (p != null) {
           v.add(p);
@@ -697,22 +697,22 @@ public class ResManager {
       if (MillConfigValues.LogHybernation >= 2)
         MillLog.minor(this, "Loaded " + v.size() + " mob spawn points for " + this.spawnTypes.get(i)); 
     } 
-    nbttaglist = nbttagcompound.getTagList("sources", 10);
+    nbttaglist = nbttagcompound.getList("sources", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-      if (nbttagcompound1.hasKey("block_rl")) {
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
+      if (nbttagcompound1.contains("block_rl")) {
         Block block = Block.getBlockFromName(nbttagcompound1.getString("block_rl"));
-        int meta = nbttagcompound1.getInteger("block_meta");
+        int meta = nbttagcompound1.getInt("block_meta");
         IBlockState blockState = block.getStateFromMeta(meta);
         this.sourceTypes.add(blockState);
       } else {
-        int blockId = nbttagcompound1.getInteger("type");
+        int blockId = nbttagcompound1.getInt("type");
         this.sourceTypes.add(Block.getBlockById(blockId).getDefaultState());
       } 
       CopyOnWriteArrayList<Point> v = new CopyOnWriteArrayList<>();
-      NBTTagList nbttaglist2 = nbttagcompound1.getTagList("points", 10);
+      NBTTagList nbttaglist2 = nbttagcompound1.getList("points", 10);
       for (int j = 0; j < nbttaglist2.tagCount(); j++) {
-        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(j);
+        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompound(j);
         Point p = Point.read(nbttagcompound2, "pos");
         if (p != null) {
           v.add(p);
@@ -724,13 +724,13 @@ public class ResManager {
       if (MillConfigValues.LogHybernation >= 1)
         MillLog.debug(this, "Loaded " + v.size() + " sources points for " + ((IBlockState)this.sourceTypes.get(i)).toString()); 
     } 
-    nbttaglist = nbttagcompound.getTagList("genericsoils", 10);
+    nbttaglist = nbttagcompound.getList("genericsoils", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       ResourceLocation type = new ResourceLocation(nbttagcompound1.getString("type"));
-      NBTTagList nbttaglist2 = nbttagcompound1.getTagList("points", 10);
+      NBTTagList nbttaglist2 = nbttagcompound1.getList("points", 10);
       for (int j = 0; j < nbttaglist2.tagCount(); j++) {
-        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompoundTagAt(j);
+        NBTTagCompound nbttagcompound2 = nbttaglist2.getCompound(j);
         Point p = Point.read(nbttagcompound2, "pos");
         if (p != null)
           addSoilPoint(type, p); 
@@ -801,9 +801,9 @@ public class ResManager {
       if (p != null) {
         p.write(nbttagcompound1, "pos");
       } else {
-        nbttagcompound1.setDouble("pos_xCoord", 0.0D);
-        nbttagcompound1.setDouble("pos_yCoord", 0.0D);
-        nbttagcompound1.setDouble("pos_zCoord", 0.0D);
+        nbttagcompound1.putDouble("pos_xCoord", 0.0D);
+        nbttagcompound1.putDouble("pos_yCoord", 0.0D);
+        nbttagcompound1.putDouble("pos_zCoord", 0.0D);
       } 
       nbttaglist.appendTag((NBTBase)nbttagcompound1);
     } 
@@ -862,7 +862,7 @@ public class ResManager {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
       p.write(nbttagcompound1, "pos");
       if (this.woodspawnTypes.containsKey(p))
-        nbttagcompound1.setString("type", this.woodspawnTypes.get(p)); 
+        nbttagcompound1.putString("type", this.woodspawnTypes.get(p)); 
       nbttaglist.appendTag((NBTBase)nbttagcompound1);
     } 
     nbttagcompound.setTag("woodspawn", (NBTBase)nbttaglist);
@@ -877,7 +877,7 @@ public class ResManager {
     int i;
     for (i = 0; i < this.spawns.size(); i++) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("type", ((ResourceLocation)this.spawnTypes.get(i)).toString());
+      nbttagcompound1.putString("type", ((ResourceLocation)this.spawnTypes.get(i)).toString());
       NBTTagList nbttaglist2 = new NBTTagList();
       for (Point p : this.spawns.get(i)) {
         NBTTagCompound nbttagcompound2 = new NBTTagCompound();
@@ -891,7 +891,7 @@ public class ResManager {
     nbttaglist = new NBTTagList();
     for (i = 0; i < this.soilTypes.size(); i++) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("type", ((ResourceLocation)this.soilTypes.get(i)).toString());
+      nbttagcompound1.putString("type", ((ResourceLocation)this.soilTypes.get(i)).toString());
       NBTTagList nbttaglist2 = new NBTTagList();
       for (Point p : this.soils.get(i)) {
         NBTTagCompound nbttagcompound2 = new NBTTagCompound();
@@ -905,7 +905,7 @@ public class ResManager {
     nbttaglist = new NBTTagList();
     for (i = 0; i < this.mobSpawners.size(); i++) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("type", ((ResourceLocation)this.mobSpawnerTypes.get(i)).toString());
+      nbttagcompound1.putString("type", ((ResourceLocation)this.mobSpawnerTypes.get(i)).toString());
       NBTTagList nbttaglist2 = new NBTTagList();
       for (Point p : this.mobSpawners.get(i)) {
         NBTTagCompound nbttagcompound2 = new NBTTagCompound();
@@ -919,8 +919,8 @@ public class ResManager {
     nbttaglist = new NBTTagList();
     for (i = 0; i < this.sources.size(); i++) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("block_rl", ((IBlockState)this.sourceTypes.get(i)).getBlock().getRegistryName().toString());
-      nbttagcompound1.setInteger("block_meta", ((IBlockState)this.sourceTypes.get(i)).getBlock().getMetaFromState(this.sourceTypes.get(i)));
+      nbttagcompound1.putString("block_rl", ((IBlockState)this.sourceTypes.get(i)).getBlock().getRegistryName().toString());
+      nbttagcompound1.putInt("block_meta", ((IBlockState)this.sourceTypes.get(i)).getBlock().getMetaFromState(this.sourceTypes.get(i)));
       NBTTagList nbttaglist2 = new NBTTagList();
       for (Point p : this.sources.get(i)) {
         NBTTagCompound nbttagcompound2 = new NBTTagCompound();

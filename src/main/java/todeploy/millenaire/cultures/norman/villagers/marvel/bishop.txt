@@ -1,4 +1,4 @@
-native_name=Évêque
+native_name=Éveque
 gender=male
 familyNameList=noble_family_names
 firstNameList=men_names

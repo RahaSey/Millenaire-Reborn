@@ -12,4 +12,5 @@ building.icon=denieror
 initial.startlevel=-1
 initial.nativename=Sugruk Tupiq
 initial.translatedname=name_en,large house
+initial.priority=3000
 

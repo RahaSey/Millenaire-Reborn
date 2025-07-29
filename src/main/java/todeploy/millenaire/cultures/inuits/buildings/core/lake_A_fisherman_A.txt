@@ -12,14 +12,16 @@ building.icon=fishing_rod
 //Parameters for initial construction
 initial.startlevel=-3
 initial.nativename=Alluaq Tupiq
-initial.priority=10000000
+initial.priority=1000000
 initial.male=inuit_fisherman
 initial.female=inuit_wife
 initial.pathlevel=1
+initial.tag=cattle
 initial.tag=fishingspot
+initial.tag=nopaths
 
 //Parameters for specific upgrades
-upgrade1.priority=5000
+upgrade1.priority=3000
 
-upgrade2.priority=90
+upgrade2.priority=50
 

@@ -27,7 +27,7 @@ output=sod_birch,1
 
 //s'il y a plus d'objets dans le batiment que ça, arrêter le but
 //if more than that number of item is present in building, stop goal
-buildinglimit=sod_birch,128
+//buildinglimit=sod_birch,128
 townhalllimit=sod_birch,256
 
 //son à jouer quand un objet est fabriqué

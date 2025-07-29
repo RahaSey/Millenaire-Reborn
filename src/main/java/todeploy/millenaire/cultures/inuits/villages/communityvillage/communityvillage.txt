@@ -39,7 +39,6 @@ centre=council
 start=lumberman
 start=flower
 start=flower
-start=flower
 start=grove
 start=sodder
 start=lake
@@ -56,9 +55,10 @@ player=playerlargehouse
 core=foodpreparer
 core=armoury
 core=farmp
-core=market
+core=flower
 core=armourerhouse
 core=foodprephouse
+core=market
 
 //to be built after the core ones
 secondary=grove
@@ -73,6 +73,8 @@ secondary=carver
 never=hunter
 never=shamanistic
 never=tannery
+never=offering1
+never=offering2
 
 //Selling prices=
 sellingPrice=bread,7

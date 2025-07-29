@@ -8,7 +8,7 @@ building.icon=bed_red
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Auberge
+initial.nativename=Hotael
 initial.priority=600
 initial.male=merchant
 initial.pathlevel=1

@@ -10,6 +10,6 @@ building.icon=fence_oak
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Petit terrain
+initial.nativename=Ptit Couogn d'Terre
 initial.priority=1000000
 

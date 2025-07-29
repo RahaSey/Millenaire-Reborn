@@ -14,6 +14,7 @@ initial.nativename=Ferme
 initial.priority=1000
 initial.male=farmer
 initial.female=wife
+initial.tag=nopaths
 
 //Parameters for specific upgrades
 upgrade1.priority=100

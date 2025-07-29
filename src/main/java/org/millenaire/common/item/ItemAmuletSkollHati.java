@@ -19,11 +19,11 @@ public class ItemAmuletSkollHati extends ItemMill {
       MillLog.debug(this, "Using skoll amulet."); 
     if (worldIn.isRemote)
       return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn)); 
-    long time = worldIn.getWorldTime() + 24000L;
+    long time = worldIn.getDayTime() + 24000L;
     if (time % 24000L > 11000L && time % 24000L < 23500L) {
-      worldIn.setWorldTime(time - time % 24000L - 500L);
+      worldIn.setDayTime(time - time % 24000L - 500L);
     } else {
-      worldIn.setWorldTime(time - time % 24000L + 13000L);
+      worldIn.setDayTime(time - time % 24000L + 13000L);
     } 
     return new ActionResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
   }

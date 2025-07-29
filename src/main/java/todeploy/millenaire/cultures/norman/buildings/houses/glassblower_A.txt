@@ -8,7 +8,7 @@ building.icon=stained_glass_yellow_red
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Atelier du verrier
+initial.nativename=Verrie
 initial.priority=800
 initial.male=glassblower
 initial.female=herbalist

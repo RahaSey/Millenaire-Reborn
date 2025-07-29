@@ -1,4 +1,4 @@
-native_name=Herboriste
+native_name=Marchànd d'Pllàntes
 gender=male
 familyNameList=merchant_plant_family_names
 firstNameList=merchant_plant_first_names

@@ -21,7 +21,6 @@ import org.millenaire.common.culture.Culture;
 import org.millenaire.common.forge.Mill;
 import org.millenaire.common.item.InvItem;
 import org.millenaire.common.item.MillItems;
-import org.millenaire.common.utilities.MillLog.MillenaireException;
 
 public class LanguageUtilities {
   public static final char BLACK = '0';
@@ -78,7 +77,7 @@ public class LanguageUtilities {
       return ""; 
     EntityPlayer player = Mill.proxy.getTheSinglePlayer();
     if (player != null)
-      return s.replaceAll("\\$name", player.getName()); 
+      return s.replaceAll("\\$name", player.func_70005_c_()); 
     return s;
   }
   

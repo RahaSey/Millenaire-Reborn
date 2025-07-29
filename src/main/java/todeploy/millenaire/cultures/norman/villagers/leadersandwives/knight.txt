@@ -1,4 +1,4 @@
-native_name=Chevalier
+native_name=Cvalier
 gender=male
 familyNameList=noble_family_names
 firstNameList=men_names

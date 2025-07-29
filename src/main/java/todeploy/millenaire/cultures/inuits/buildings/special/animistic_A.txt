@@ -9,9 +9,10 @@ building.icon=inuitcarving
 initial.startlevel=-1
 initial.nativename=Kashim
 initial.translatedname=name_en,ceremonial house
-initial.priority=500
+initial.priority=200
 initial.pathlevel=1
 initial.tag=praying
+initial.tag=nopaths
 
 //Parameters for specific upgrades
 upgrade1.priority=50

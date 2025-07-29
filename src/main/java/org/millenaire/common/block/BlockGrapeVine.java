@@ -22,16 +22,16 @@ public class BlockGrapeVine extends BlockMillCrops {
   
   public BlockGrapeVine(String cropName, boolean requireIrrigation, boolean slowGrowth, ResourceLocation seed) {
     super(cropName, requireIrrigation, slowGrowth, seed);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)HALF, (Comparable)BlockDoublePlant.EnumBlockHalf.LOWER));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)HALF, (Comparable)BlockDoublePlant.EnumBlockHalf.LOWER));
   }
   
   public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
-    if (state.getValue((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
+    if (state.get((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
       return (worldIn.getBlockState(pos.down()).getBlock() == this && worldIn
-        .getBlockState(pos.down()).getValue((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.LOWER && super
+        .getBlockState(pos.down()).get((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.LOWER && super
         .canBlockStay(worldIn, pos.down(), worldIn.getBlockState(pos.down()))); 
     return (worldIn.getBlockState(pos.up()).getBlock() == this && worldIn
-      .getBlockState(pos.up()).getValue((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER && super
+      .getBlockState(pos.up()).get((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER && super
       .canBlockStay(worldIn, pos, state));
   }
   
@@ -41,7 +41,7 @@ public class BlockGrapeVine extends BlockMillCrops {
   
   protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state) {
     if (!canBlockStay(worldIn, pos, state)) {
-      boolean upper = (state.getValue((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER);
+      boolean upper = (state.get((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER);
       BlockPos upperPos = upper ? pos : pos.up();
       BlockPos lowerPos = upper ? pos.down() : pos;
       Block upperBlock = upper ? (Block)this : worldIn.getBlockState(upperPos).getBlock();
@@ -63,7 +63,7 @@ public class BlockGrapeVine extends BlockMillCrops {
   
   public int getMetaFromState(IBlockState state) {
     int i = getAge(state);
-    i |= (state.getValue((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER) ? 8 : 0;
+    i |= (state.get((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER) ? 8 : 0;
     return i;
   }
   
@@ -76,7 +76,7 @@ public class BlockGrapeVine extends BlockMillCrops {
     int j = getMaxAge();
     if (i > j)
       i = j; 
-    if (state.getValue((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER) {
+    if (state.get((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER) {
       worldIn.setBlockState(pos.down(), withAge(i), 2);
       worldIn.setBlockState(pos, withAge(i).withProperty((IProperty)HALF, (Comparable)BlockDoublePlant.EnumBlockHalf.UPPER), 2);
     } else {
@@ -91,7 +91,7 @@ public class BlockGrapeVine extends BlockMillCrops {
   
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
     checkAndDropBlock(worldIn, pos, state);
-    if (state.getValue((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
+    if (state.get((IProperty)HALF) == BlockDoublePlant.EnumBlockHalf.UPPER)
       return; 
     if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
       int i = getAge(state);

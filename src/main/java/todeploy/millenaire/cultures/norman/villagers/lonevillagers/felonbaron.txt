@@ -1,4 +1,4 @@
-native_name=Baron félon
+native_name=Baraon des Bandits
 gender=male
 familyNameList=noble_family_names
 firstNameList=men_names

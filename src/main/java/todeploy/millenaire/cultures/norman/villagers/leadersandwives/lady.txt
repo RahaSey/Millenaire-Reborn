@@ -1,4 +1,4 @@
-native_name=Dame
+native_name=Daume
 gender=female
 familyNameList=noble_family_names
 firstNameList=women_names

@@ -10,7 +10,7 @@ building.icon=bed_red
 
 //Parameters for initial construction
 initial.startlevel=-9
-initial.nativename=Chambre d’ amis
+initial.nativename=Chàmbre d'Omis
 initial.priority=600
 initial.male=merchant
 initial.tag=inn

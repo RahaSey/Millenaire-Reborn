@@ -8,7 +8,7 @@ building.travelbook_display=false
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Dortoir des pélerins
+initial.nativename=Chàmbre des Pélérins
 initial.priority=10000
 initial.visitor=pilgrim
 initial.visitor=pilgrim

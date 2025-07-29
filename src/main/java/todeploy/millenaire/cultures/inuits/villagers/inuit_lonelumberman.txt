@@ -24,7 +24,7 @@ goal=gosocialise
 goal=chat
 goal=gopray
 goal=goDrink
-goal=gopray
+
 goal=tendfurnace
 
 goal=chopTrees

@@ -106,9 +106,9 @@ public class TileEntityPanel extends TileEntity {
       line.fullLine = readText(compound, "fullLine");
       line.leftColumn = readText(compound, "leftColumn");
       line.rightColumn = readText(compound, "rightColumn");
-      line.leftIcon = new ItemStack(compound.getCompoundTag("leftIcon"));
-      line.middleIcon = new ItemStack(compound.getCompoundTag("middleIcon"));
-      line.rightIcon = new ItemStack(compound.getCompoundTag("rightIcon"));
+      line.leftIcon = new ItemStack(compound.getCompound("leftIcon"));
+      line.middleIcon = new ItemStack(compound.getCompound("middleIcon"));
+      line.rightIcon = new ItemStack(compound.getCompound("rightIcon"));
       line.centerLine = compound.getBoolean("centerLine");
       return line;
     }
@@ -116,7 +116,7 @@ public class TileEntityPanel extends TileEntity {
     private static String[] readText(NBTTagCompound compound, String key) {
       List<String> lineFragment = new ArrayList<>();
       int i = 0;
-      while (compound.hasKey(key + "_" + i)) {
+      while (compound.contains(key + "_" + i)) {
         lineFragment.add(compound.getString(key + "_" + i));
         i++;
       } 
@@ -125,7 +125,7 @@ public class TileEntityPanel extends TileEntity {
     
     private static void writeText(NBTTagCompound compound, String[] text, String key) {
       for (int i = 0; i < text.length; i++)
-        compound.setString(key + "_" + i, text[i]); 
+        compound.putString(key + "_" + i, text[i]); 
     }
     
     private String[] fullLine = new String[] { "" };
@@ -170,10 +170,10 @@ public class TileEntityPanel extends TileEntity {
       writeText(compound, this.fullLine, "fullLine");
       writeText(compound, this.leftColumn, "leftColumn");
       writeText(compound, this.rightColumn, "rightColumn");
-      compound.setTag("leftIcon", (NBTBase)this.leftIcon.writeToNBT(new NBTTagCompound()));
-      compound.setTag("middleIcon", (NBTBase)this.middleIcon.writeToNBT(new NBTTagCompound()));
-      compound.setTag("rightIcon", (NBTBase)this.rightIcon.writeToNBT(new NBTTagCompound()));
-      compound.setBoolean("centerLine", this.centerLine);
+      compound.setTag("leftIcon", (NBTBase)this.leftIcon.write(new NBTTagCompound()));
+      compound.setTag("middleIcon", (NBTBase)this.middleIcon.write(new NBTTagCompound()));
+      compound.setTag("rightIcon", (NBTBase)this.rightIcon.write(new NBTTagCompound()));
+      compound.putBoolean("centerLine", this.centerLine);
       return compound;
     }
   }
@@ -238,12 +238,12 @@ public class TileEntityPanel extends TileEntity {
   }
   
   @Nullable
-  public SPacketUpdateTileEntity getUpdatePacket() {
-    return new SPacketUpdateTileEntity(this.pos, -1, getUpdateTag());
+  public SPacketUpdateTileEntity func_189518_D_() {
+    return new SPacketUpdateTileEntity(this.pos, -1, func_189517_E_());
   }
   
-  public NBTTagCompound getUpdateTag() {
-    return writeToNBT(new NBTTagCompound());
+  public NBTTagCompound func_189517_E_() {
+    return write(new NBTTagCompound());
   }
   
   public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
@@ -251,25 +251,25 @@ public class TileEntityPanel extends TileEntity {
     handleUpdateTag(pkt.getNbtCompound());
   }
   
-  public void readFromNBT(NBTTagCompound compound) {
-    super.readFromNBT(compound);
+  public void read(NBTTagCompound compound) {
+    super.read(compound);
     this.buildingPos = Point.read(compound, "buildingPos");
-    this.panelType = compound.getInteger("panelType");
+    this.panelType = compound.getInt("panelType");
     this.villager_id = compound.getLong("villager_id");
-    if (compound.hasKey("texture")) {
+    if (compound.contains("texture")) {
       String textureString = compound.getString("texture");
       this.texture = new ResourceLocation(textureString);
     } 
     int pos = 0;
     this.untranslatedLines.clear();
-    while (compound.hasKey("Lines_" + pos)) {
-      this.untranslatedLines.add(PanelUntranslatedLine.readFromNBT(compound.getCompoundTag("Lines_" + pos)));
+    while (compound.contains("Lines_" + pos)) {
+      this.untranslatedLines.add(PanelUntranslatedLine.readFromNBT(compound.getCompound("Lines_" + pos)));
       pos++;
     } 
   }
   
   protected void setWorldCreate(World worldIn) {
-    setWorld(worldIn);
+    setWorldObj(worldIn);
   }
   
   private String translatedLines_cutLines(FontRenderer fontrenderer, String text, int maxLength) {
@@ -318,15 +318,15 @@ public class TileEntityPanel extends TileEntity {
     markDirty();
   }
   
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-    super.writeToNBT(compound);
+  public NBTTagCompound write(NBTTagCompound compound) {
+    super.write(compound);
     try {
       if (this.buildingPos != null)
         this.buildingPos.write(compound, "buildingPos"); 
-      compound.setInteger("panelType", this.panelType);
-      compound.setLong("villager_id", this.villager_id);
+      compound.putInt("panelType", this.panelType);
+      compound.putLong("villager_id", this.villager_id);
       if (this.texture != null)
-        compound.setString("texture", this.texture.toString()); 
+        compound.putString("texture", this.texture.toString()); 
       for (int i = 0; i < this.untranslatedLines.size(); i++)
         compound.setTag("Lines_" + i, (NBTBase)((PanelUntranslatedLine)this.untranslatedLines.get(i)).writeToNBT(new NBTTagCompound())); 
     } catch (Exception e) {

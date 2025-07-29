@@ -8,7 +8,7 @@ building.icon=tapestry
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Forteresse
+initial.nativename=Fortéraesse
 initial.priority=600
 initial.tag=patrol
 initial.tag=nopaths

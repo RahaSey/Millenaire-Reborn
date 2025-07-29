@@ -10,7 +10,7 @@ public class BlockMillSandstoneDecorated extends BlockMillSandstone {
   }
   
   @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT;
   }
 }

@@ -7,7 +7,7 @@ building.icon=bread
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Boulangerie
+initial.nativename=Fouor
 initial.priority=800
 initial.pathlevel=1
 initial.tag=bakery

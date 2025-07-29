@@ -20,17 +20,18 @@ texture=textures/entity/inuit/inuit_male8.png
 goal=gorest
 goal=goDrink
 goal=bringBackResourcesHome
+
 goal=fishinuit
-goal=cookfish
-goal=cookfishslab
+//goal=cookfish
+//goal=cookfishslab
 
 bringBackHomeGood=fishraw
 bringBackHomeGood=boneblock
 bringBackHomeGood=seafood_raw
 
 collectGood=fishraw
-collectGood=rottenflesh
-collectGood=bone
+//collectGood=rottenflesh
+//collectGood=bone
 collectGood=boneblock
 
 baseAttackStrength=4

@@ -6,5 +6,5 @@ building.startinggood=netherwart,1.0,16,0
 building.travelbook_display=false
 
 //Parameters for initial construction
-initial.nativename=Anomalie Deux
+initial.nativename=Tchuriaeussitaïe Daeux
 

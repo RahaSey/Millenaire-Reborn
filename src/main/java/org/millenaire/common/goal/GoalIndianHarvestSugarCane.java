@@ -65,7 +65,7 @@ public class GoalIndianHarvestSugarCane extends Goal {
     if (!villager.lastGoalTime.containsKey(this)) {
       delayOver = true;
     } else {
-      delayOver = (villager.world.getWorldTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
+      delayOver = (villager.world.getDayTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
     } 
     for (Building kiln : villager.getTownHall().getBuildingsWithTag("sugarplantation")) {
       int nb = kiln.getResManager().getNbSugarCaneHarvestLocation();

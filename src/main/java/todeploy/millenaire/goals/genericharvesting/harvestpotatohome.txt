@@ -29,4 +29,4 @@ harvestitem=potato,25
 helditemsoffhand=potato
 
 
-villagelimit=potato,512
+villagelimit=potato,256

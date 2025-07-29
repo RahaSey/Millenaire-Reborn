@@ -34,21 +34,17 @@ bringBackHomeGood=wood
 bringBackHomeGood=wood_pine
 bringBackHomeGood=wood_birch
 bringBackHomeGood=wood_jungle
-bringBackHomeGood=woodaxe
-bringBackHomeGood=woodhoe
-bringBackHomeGood=woodpickaxe
-bringBackHomeGood=woodshovel
-
 
 collectGood=wood
 collectGood=wood_pine
 collectGood=wood_birch
-collectGood=wood_jungle
 collectGood=sapling_pine
 collectGood=sapling_birch
-collectGood=sapling_jungle
+
 collectGood=rottenflesh
 collectGood=bone
+bringBackHomeGood=bone
+bringBackHomeGood=rottenflesh
 
 toolneededclass=axes
 

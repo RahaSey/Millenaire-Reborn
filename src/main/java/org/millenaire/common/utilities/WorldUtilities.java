@@ -176,7 +176,7 @@ public class WorldUtilities {
       return Blocks.SAND.getDefaultState(); 
     if (b == Blocks.SANDSTONE && !surface)
       return currentBlockState; 
-    if (b == Blocks.HARDENED_CLAY)
+    if (b == Blocks.TERRACOTTA)
       return currentBlockState; 
     return null;
   }
@@ -216,9 +216,9 @@ public class WorldUtilities {
     for (Entity ent : list) {
       if (ent.getClass() == EntityItem.class) {
         EntityItem item = (EntityItem)ent;
-        if (!item.isDead)
+        if (!item.removed)
           for (InvItem key : goods) {
-            if (item.getItem().getItem() == key.getItem() && item.getItem().getItemDamage() == key.meta) {
+            if (item.getItem().getItem() == key.getItem() && item.getItem().getDamage() == key.meta) {
               double dist = item.getDistanceSq(p.x, p.y, p.z);
               if (dist < bestdist) {
                 bestdist = dist;
@@ -263,12 +263,12 @@ public class WorldUtilities {
     if (chest == null)
       return 0; 
     int nb = 0;
-    int maxSlot = chest.getSizeInventory() - 1;
+    int maxSlot = chest.func_70302_i_() - 1;
     if (chest instanceof net.minecraft.entity.player.InventoryPlayer)
       maxSlot -= 4; 
     for (int i = maxSlot; i >= 0 && nb < toTake; i--) {
       ItemStack stack = chest.getStackInSlot(i);
-      if (stack != null && stack.getItem() == item && (stack.getItemDamage() == meta || meta == -1))
+      if (stack != null && stack.getItem() == item && (stack.getDamage() == meta || meta == -1))
         if (stack.getCount() <= toTake - nb) {
           nb += stack.getCount();
           chest.setInventorySlotContents(i, ItemStack.EMPTY);
@@ -492,7 +492,7 @@ public class WorldUtilities {
     for (int j = nb; j > 0; ) {
       int l = EntityXPOrb.getXPSplit(j);
       j -= l;
-      world.spawnEntity((Entity)new EntityXPOrb(world, p.x + 0.5D, p.y + 5.0D, p.z + 0.5D, l));
+      world.addEntity0((Entity)new EntityXPOrb(world, p.x + 0.5D, p.y + 5.0D, p.z + 0.5D, l));
     } 
   }
   
@@ -501,7 +501,7 @@ public class WorldUtilities {
       return null; 
     EntityItem entityitem = new EntityItem(world, p.x, p.y + f, p.z, itemstack);
     entityitem.setDefaultPickupDelay();
-    world.spawnEntity((Entity)entityitem);
+    world.addEntity0((Entity)entityitem);
     return entityitem;
   }
   
@@ -521,7 +521,7 @@ public class WorldUtilities {
           if (ep.getBelow().getBlockActualState(world).isBlockNormalCube()) {
             entityliving.setLocationAndAngles(ex, ey, ez, world.rand.nextFloat() * 360.0F, 0.0F);
             if (entityliving.getCanSpawnHere()) {
-              world.spawnEntity((Entity)entityliving);
+              world.addEntity0((Entity)entityliving);
               MillLog.major(null, "Entering world: " + entityliving.getClass().getName());
               spawned = true;
             } 
@@ -546,7 +546,7 @@ public class WorldUtilities {
     if (getBlock(world, ex, ey, ez) != Blocks.AIR && getBlock(world, ex, ey + 1, ez) != Blocks.AIR)
       return null; 
     entityliving.setLocationAndAngles(ex, ey, ez, world.rand.nextFloat() * 360.0F, 0.0F);
-    world.spawnEntity((Entity)entityliving);
+    world.addEntity0((Entity)entityliving);
     entityliving.spawnExplosionParticle();
     return (Entity)entityliving;
   }

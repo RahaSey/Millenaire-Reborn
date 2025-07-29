@@ -10,7 +10,7 @@ building.icon=chiseledstonebrick
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Dôme
+initial.nativename=Daome
 initial.priority=600
 initial.tag=scaffoldings
 initial.parenttag=5

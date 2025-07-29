@@ -8,7 +8,7 @@ building.icon=tripes
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Elevage bovin
+initial.nativename=Ferme à Bêtes
 initial.priority=1000
 initial.male=cattlefarmermale
 initial.female=cattlefarmerfemale

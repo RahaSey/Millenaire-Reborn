@@ -4,6 +4,7 @@
 requiredTag=lake
 
 priority=30
+priorityrandom=10
 
 //en/in millisecondes
 duration=10000
@@ -13,8 +14,9 @@ heldItems=woodpickaxe
 
 //chaque action consome tous les objets "input" et produit tous les "output"
 //each action will require and use all the inputs and produce all the outputs
-output=ice,8
+output=ice,4
 
 //s'il y a plus d'objets dans le centre du village que ça, arrêter le but
 //if more than that number of item is present in townhall, stop goal
 buildinglimit=ice,16
+townhalllimit=ice,128

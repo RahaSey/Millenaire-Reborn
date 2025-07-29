@@ -7,7 +7,7 @@ building.icon=stone
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Grande fontaine
+initial.nativename=Grànd' Faontoine
 initial.priority=750
 initial.tag=pathnode
 initial.tag=leasure

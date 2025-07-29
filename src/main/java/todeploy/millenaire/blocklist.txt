@@ -731,8 +731,8 @@ redstonelampoff;minecraft:redstone_lamp;0;false;121/12/12
 redstonelampon;minecraft:lit_redstone_lamp;0;false;222/12/12;;;0
  
  
-cauldronempty;minecraft:cauldron;0;false;120/120/120;minecraft:cauldron;;1
-cauldronfull;minecraft:cauldron;3;false;120/120/125;minecraft:cauldron;;1
+cauldronempty;minecraft:cauldron;0;true;120/120/120;minecraft:cauldron;;1
+cauldronfull;minecraft:cauldron;3;true;120/120/125;minecraft:cauldron;;1
 netherwart;minecraft:nether_wart;3;true;150/10/62;;;0
 
 chiseled stone brick;minecraft:stonebrick;3;false;88/88/88;minecraft:stone;;1
@@ -1538,13 +1538,13 @@ beehive;millenaire:wood_deco;3;false;0/242/242
 stuccobricks;millenaire:stone_deco;5;false;4/242/242
 chiseledstucco;millenaire:stone_deco;6;false;20/242/242
 
-feathered_serpent_north;millenaire:feathered_serpent;facing=north;false;33/242/242;millenaire:feathered_serpent;;1
-feathered_serpent_east;millenaire:feathered_serpent;facing=east;false;40/242/242;millenaire:feathered_serpent;;1
-feathered_serpent_south;millenaire:feathered_serpent;facing=south;false;41/242/242;millenaire:feathered_serpent;;1
-feathered_serpent_west;millenaire:feathered_serpent;facing=west;false;42/242/242;millenaire:feathered_serpent;;1
-mayan_calendar;millenaire:mayan_calendar;facing=north;false;34/242/242
-mayan_calendar;millenaire:mayan_calendar;facing=east;false;50/242/242
-mayan_calendar;millenaire:mayan_calendar;facing=south;false;51/242/242
-mayan_calendar;millenaire:mayan_calendar;facing=west;false;52/242/242
-mayan_carpet_thatch;millenaire:mayan_carpet_thatch;0;true;35/242/242
-mayan_carpet;millenaire:mayan_carpet;0;true;36/242/242
+//feathered_serpent_north;millenaire:feathered_serpent;facing=north;false;33/242/242;millenaire:feathered_serpent;;1
+//feathered_serpent_east;millenaire:feathered_serpent;facing=east;false;40/242/242;millenaire:feathered_serpent;;1
+//feathered_serpent_south;millenaire:feathered_serpent;facing=south;false;41/242/242;millenaire:feathered_serpent;;1
+//feathered_serpent_west;millenaire:feathered_serpent;facing=west;false;42/242/242;millenaire:feathered_serpent;;1
+//mayan_calendar;millenaire:mayan_calendar;facing=north;false;34/242/242
+//mayan_calendar;millenaire:mayan_calendar;facing=east;false;50/242/242
+//mayan_calendar;millenaire:mayan_calendar;facing=south;false;51/242/242
+//mayan_calendar;millenaire:mayan_calendar;facing=west;false;52/242/242
+//mayan_carpet_thatch;millenaire:mayan_carpet_thatch;0;true;35/242/242
+//mayan_carpet;millenaire:mayan_carpet;0;true;36/242/242

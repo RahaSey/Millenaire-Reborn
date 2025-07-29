@@ -10,7 +10,7 @@ building.icon=normanbroadsword
 
 //Parameters for initial construction
 initial.startlevel=-5
-initial.nativename=Tour de garde
+initial.nativename=Touor dé Garde
 initial.priority=900
 initial.male=guard
 

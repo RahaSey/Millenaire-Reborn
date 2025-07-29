@@ -24,7 +24,7 @@ public class BlockCustomIce extends Block {
   }
   
   @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.TRANSLUCENT;
   }
   

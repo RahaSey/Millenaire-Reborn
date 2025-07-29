@@ -21,10 +21,11 @@ import org.millenaire.common.block.MillBlocks;
 
 public class ItemMayanQuestCrown extends ItemArmor implements InvItem.IItemInitialEnchantmens {
   public ItemMayanQuestCrown(String itemName, EntityEquipmentSlot type) {
-    super(ItemArmor.ArmorMaterial.GOLD, -1, type);
+    super(MillItems.ARMOUR_mayan_quest_crown, -1, type);
+    setMaxDamage(0);
+    setCreativeTab(MillBlocks.tabMillenaire);
     setUnlocalizedName("millenaire." + itemName);
     setRegistryName(itemName);
-    setCreativeTab(MillBlocks.tabMillenaire);
   }
   
   public void applyEnchantments(ItemStack stack) {
@@ -38,7 +39,8 @@ public class ItemMayanQuestCrown extends ItemArmor implements InvItem.IItemIniti
   
   @SideOnly(Side.CLIENT)
   public void initModel() {
-    ModelLoader.setCustomModelResourceLocation((Item)this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+    ModelLoader.setCustomModelResourceLocation((Item)this, 0, new ModelResourceLocation(
+          getRegistryName(), "inventory"));
   }
   
   public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos bp, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand) {
@@ -46,8 +48,8 @@ public class ItemMayanQuestCrown extends ItemArmor implements InvItem.IItemIniti
     return super.onItemUseFirst(player, world, bp, side, hitX, hitY, hitZ, hand);
   }
   
-  public void onUpdate(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) {
+  public void inventoryTick(ItemStack par1ItemStack, World par2World, Entity par3Entity, int par4, boolean par5) {
     applyEnchantments(par1ItemStack);
-    super.onUpdate(par1ItemStack, par2World, par3Entity, par4, par5);
+    super.inventoryTick(par1ItemStack, par2World, par3Entity, par4, par5);
   }
 }

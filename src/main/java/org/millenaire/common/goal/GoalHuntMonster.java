@@ -44,7 +44,7 @@ public class GoalHuntMonster extends Goal {
   }
   
   public boolean isStillValidSpecific(MillVillager villager) throws Exception {
-    if (villager.world.getWorldTime() % 10L == 0L)
+    if (villager.world.getDayTime() % 10L == 0L)
       setVillagerDest(villager); 
     return (villager.getGoalDestPoint() != null);
   }
@@ -52,7 +52,7 @@ public class GoalHuntMonster extends Goal {
   public boolean performAction(MillVillager villager) throws Exception {
     List<Entity> mobs = WorldUtilities.getEntitiesWithinAABB(villager.world, EntityMob.class, villager.getPos(), 4, 4);
     for (Entity ent : mobs) {
-      if (!ent.isDead && ent instanceof EntityMob && villager.canEntityBeSeen(ent)) {
+      if (!ent.removed && ent instanceof EntityMob && villager.canEntityBeSeen(ent)) {
         EntityMob mob = (EntityMob)ent;
         villager.setAttackTarget((EntityLivingBase)mob);
         if (MillConfigValues.LogGeneralAI >= 1)

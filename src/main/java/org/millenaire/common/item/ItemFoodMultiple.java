@@ -61,7 +61,7 @@ public class ItemFoodMultiple extends ItemFood {
     return this.healthAmount;
   }
   
-  public EnumAction getItemUseAction(ItemStack itemstack) {
+  public EnumAction getUseAction(ItemStack itemstack) {
     if (this.drink)
       return EnumAction.DRINK; 
     return EnumAction.EAT;
@@ -108,8 +108,8 @@ public class ItemFoodMultiple extends ItemFood {
       if (entityplayer instanceof EntityPlayerMP)
         CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)entityplayer, stack); 
     } 
-    if (stack.getItemDamage() + 64 < stack.getMaxDamage()) {
-      stack.setItemDamage(stack.getItemDamage() + 64);
+    if (stack.getDamage() + 64 < stack.getMaxDamage()) {
+      stack.setItemDamage(stack.getDamage() + 64);
     } else {
       stack.setCount(stack.getCount() - 1);
     } 

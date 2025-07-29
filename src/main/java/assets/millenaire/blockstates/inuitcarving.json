@@ -1,7 +1,12 @@
 {
     "variants": 
     {
-        "facing=up": 
+        "facing=down":
+        {
+            "model": "millenaire:inuitcarving"
+        },
+
+        "facing=up":
         { 
             "model": "millenaire:inuitcarving" 
         },

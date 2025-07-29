@@ -52,25 +52,25 @@ public class ContentDeployer {
     try {
       boolean redeployMillenaire = false;
       File millenaireDir = new File(modsDir, "millenaire");
-      if ("8.1.1".equals("@VERSION@")) {
+      if ("8.1.2".equals("@VERSION@")) {
         redeployMillenaire = true;
         Mill.LOGGER.warn("Deploying millenaire/ as we are using a dev version and can't test whether it has changed.");
       } else if (!millenaireDir.exists()) {
         redeployMillenaire = true;
-        Mill.LOGGER.warn("Deploying millenaire/ to version 8.1.1 as it can't be found.");
+        Mill.LOGGER.warn("Deploying millenaire/ to version 8.1.2 as it can't be found.");
       } else {
         File versionFile = new File(millenaireDir, "version.txt");
         if (!versionFile.exists()) {
           redeployMillenaire = true;
           MillCommonUtilities.deleteDir(millenaireDir);
-          Mill.LOGGER.warn("Redeploying millenaire/ to version 8.1.1 as it has no version file.");
+          Mill.LOGGER.warn("Redeploying millenaire/ to version 8.1.2 as it has no version file.");
         } else {
           BufferedReader reader = MillCommonUtilities.getReader(versionFile);
           String versionString = reader.readLine();
-          if (!versionString.equals("8.1.1")) {
+          if (!versionString.equals("8.1.2")) {
             redeployMillenaire = true;
             MillCommonUtilities.deleteDir(millenaireDir);
-            Mill.LOGGER.warn("Redeploying millenaire/ to version 8.1.1 as it has version " + versionString + ".");
+            Mill.LOGGER.warn("Redeploying millenaire/ to version 8.1.2 as it has version " + versionString + ".");
           } else {
             Mill.LOGGER.warn("No need to redeploy Millénaire as the millenaire folder is already at vesion " + versionString + ".");
           } 
@@ -80,7 +80,7 @@ public class ContentDeployer {
         try {
           long startTime = System.currentTimeMillis();
           copyFolder(ourJar.getAbsolutePath(), "todeploy/", "millenaire/", modsDir);
-          Files.write(Paths.get(modsDir.getAbsolutePath() + "/millenaire/version.txt", new String[0]), "8.1.1".getBytes(), new java.nio.file.OpenOption[0]);
+          Files.write(Paths.get(modsDir.getAbsolutePath() + "/millenaire/version.txt", new String[0]), "8.1.2".getBytes(), new java.nio.file.OpenOption[0]);
           Mill.LOGGER.warn("Deployed millenaire folder in " + (System.currentTimeMillis() - startTime) + " ms.");
         } catch (IOException e) {
           Mill.LOGGER.error("Error when checking existing millenaire dir: ", e);

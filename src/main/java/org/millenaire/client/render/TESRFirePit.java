@@ -56,11 +56,11 @@ public class TESRFirePit extends TileEntitySpecialRenderer<TileEntityFirePit> {
   }
   
   public void render(TileEntityFirePit te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-    RenderItem item = Minecraft.getMinecraft().getRenderItem();
+    RenderItem item = Minecraft.getInstance().getItemRenderer();
     IBlockState firePitBS = te.getWorld().getBlockState(te.getPos());
     if (!(firePitBS.getBlock() instanceof BlockFirePit))
       return; 
-    double alignment = ((BlockFirePit.EnumAlignment)firePitBS.getValue((IProperty)BlockFirePit.ALIGNMENT)).angle;
+    double alignment = ((BlockFirePit.EnumAlignment)firePitBS.get((IProperty)BlockFirePit.ALIGNMENT)).angle;
     GlStateManager.pushMatrix();
     GlStateManager.translate(x + 0.5D, y + 0.5D, z + 0.5D);
     GlStateManager.rotate((float)alignment, 0.0F, 1.0F, 0.0F);

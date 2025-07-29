@@ -1,5 +1,5 @@
-native_name=Garçon
-alt_native_name=Jeune
+native_name=Garcaon
+alt_native_name=Jonne
 alt_key=teenagermale
 gender=male
 tag=child

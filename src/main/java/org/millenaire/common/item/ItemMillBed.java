@@ -31,13 +31,13 @@ public class ItemMillBed extends ItemBlock {
     super(bed);
   }
   
-  public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-    if (isInCreativeTab(tab))
+  public void fillItemGroup(CreativeTabs tab, NonNullList<ItemStack> items) {
+    if (isInGroup(tab))
       items.add(new ItemStack((Item)this, 1, 0)); 
   }
   
   public String getTranslationKey(ItemStack stack) {
-    return getUnlocalizedName();
+    return getTranslationKey();
   }
   
   public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -51,7 +51,7 @@ public class ItemMillBed extends ItemBlock {
     if (!flag)
       pos = pos.up(); 
     int i = MathHelper.floor((player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 0x3;
-    EnumFacing enumfacing = EnumFacing.getFront(i);
+    EnumFacing enumfacing = EnumFacing.byHorizontalIndex(i);
     BlockPos blockpos = pos.offset(enumfacing);
     ItemStack itemstack = player.getHeldItem(hand);
     if (player.canPlayerEdit(pos, facing, itemstack) && player.canPlayerEdit(blockpos, facing, itemstack)) {
@@ -59,8 +59,8 @@ public class ItemMillBed extends ItemBlock {
       boolean flag1 = iblockstate1.getBlock().isReplaceable((IBlockAccess)worldIn, blockpos);
       boolean flag2 = (flag || worldIn.isAirBlock(pos));
       boolean flag3 = (flag1 || worldIn.isAirBlock(blockpos));
-      if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isTopSolid() && worldIn.getBlockState(blockpos.down()).isTopSolid()) {
-        IBlockState iblockstate2 = this.block.getDefaultState().withProperty((IProperty)BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty((IProperty)BlockHorizontal.FACING, (Comparable)enumfacing).withProperty((IProperty)BlockBed.PART, (Comparable)BlockBed.EnumPartType.FOOT);
+      if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isFullyOpaque() && worldIn.getBlockState(blockpos.down()).isFullyOpaque()) {
+        IBlockState iblockstate2 = this.block.getDefaultState().withProperty((IProperty)BlockBed.OCCUPIED, Boolean.valueOf(false)).withProperty((IProperty)BlockHorizontal.HORIZONTAL_FACING, (Comparable)enumfacing).withProperty((IProperty)BlockBed.PART, (Comparable)BlockBed.EnumPartType.FOOT);
         worldIn.setBlockState(pos, iblockstate2, 10);
         worldIn.setBlockState(blockpos, iblockstate2.withProperty((IProperty)BlockBed.PART, (Comparable)BlockBed.EnumPartType.HEAD), 10);
         SoundType soundtype = iblockstate2.getBlock().getSoundType(iblockstate2, worldIn, pos, (Entity)player);

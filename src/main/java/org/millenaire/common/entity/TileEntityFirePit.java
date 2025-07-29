@@ -109,12 +109,12 @@ public class TileEntityFirePit extends TileEntity implements ITickable {
   }
   
   @Nullable
-  public SPacketUpdateTileEntity getUpdatePacket() {
-    return new SPacketUpdateTileEntity(this.pos, -1, getUpdateTag());
+  public SPacketUpdateTileEntity func_189518_D_() {
+    return new SPacketUpdateTileEntity(this.pos, -1, func_189517_E_());
   }
   
   @Nonnull
-  public NBTTagCompound getUpdateTag() {
+  public NBTTagCompound func_189517_E_() {
     return serializeNBT();
   }
   
@@ -127,14 +127,14 @@ public class TileEntityFirePit extends TileEntity implements ITickable {
     handleUpdateTag(pkt.getNbtCompound());
   }
   
-  public void readFromNBT(NBTTagCompound compound) {
-    NBTTagCompound inventory = compound.getCompoundTag("Inventory");
-    inventory.removeTag("Size");
+  public void read(NBTTagCompound compound) {
+    NBTTagCompound inventory = compound.getCompound("Inventory");
+    inventory.remove("Size");
     this.items.deserializeNBT(inventory);
-    this.burnTime = compound.getInteger("BurnTime");
+    this.burnTime = compound.getInt("BurnTime");
     this.cookTimes = Arrays.copyOf(compound.getIntArray("CookTime"), 3);
-    this.totalBurnTime = compound.getInteger("TotalBurnTime");
-    super.readFromNBT(compound);
+    this.totalBurnTime = compound.getInt("TotalBurnTime");
+    super.read(compound);
   }
   
   public void setBurnTime(int burnTime) {
@@ -167,7 +167,7 @@ public class TileEntityFirePit extends TileEntity implements ITickable {
     } 
   }
   
-  public void update() {
+  public void tick() {
     boolean burning = (this.burnTime > 0);
     boolean dirty = false;
     if (burning)
@@ -217,13 +217,13 @@ public class TileEntityFirePit extends TileEntity implements ITickable {
   }
   
   @Nonnull
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+  public NBTTagCompound write(NBTTagCompound compound) {
     NBTTagCompound inventory = this.items.serializeNBT();
-    inventory.removeTag("Size");
+    inventory.remove("Size");
     compound.setTag("Inventory", (NBTBase)inventory);
-    compound.setInteger("BurnTime", this.burnTime);
-    compound.setIntArray("CookTime", this.cookTimes);
-    compound.setInteger("TotalBurnTime", this.totalBurnTime);
-    return super.writeToNBT(compound);
+    compound.putInt("BurnTime", this.burnTime);
+    compound.putIntArray("CookTime", this.cookTimes);
+    compound.putInt("TotalBurnTime", this.totalBurnTime);
+    return super.write(compound);
   }
 }

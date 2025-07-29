@@ -36,7 +36,7 @@ public class GoalBringBackResourcesHome extends Goal {
     if (!villager.lastGoalTime.containsKey(this)) {
       delayOver = true;
     } else {
-      delayOver = (villager.world.getWorldTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
+      delayOver = (villager.world.getDayTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
     } 
     for (InvItem key : villager.getInventoryKeys()) {
       if (villager.countInv(key) > 0)

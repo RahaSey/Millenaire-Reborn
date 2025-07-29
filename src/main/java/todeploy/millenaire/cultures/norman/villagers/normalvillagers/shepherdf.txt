@@ -1,4 +1,4 @@
-native_name=Eleveuse ovine
+native_name=Bergère
 gender=female
 familyNameList=family_names
 firstNameList=women_names
@@ -35,17 +35,18 @@ goal=gopray
 goal=goDrinkCider
 goal=gatherGoods
 goal=bringBackResourcesHome
-goal=shearsheep
 goal=deliverResourcesShop
 goal=GetHouseTHResources
+goal=getGoodsHousehold
+goal=deliverGoodsHousehold
+
+goal=shearsheep
 goal=slaughterchicken
+
 goal=construction
 goal=buildpath
 goal=clearoldpath
 goal=makeBread
-goal=getGoodsHousehold
-goal=deliverGoodsHousehold
-
 
 collectGood=chickenmeat
 collectGood=chickenmeatcooked

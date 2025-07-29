@@ -269,8 +269,8 @@ public class ServerSender {
     StreamReadWrite.writeNullablePoint(pos, data);
     StreamReadWrite.writeNullablePoint(chest.buildingPos, data);
     data.writeBoolean(MillConfigValues.DEV);
-    data.writeByte(chest.getSizeInventory());
-    for (int i = 0; i < chest.getSizeInventory(); i++)
+    data.writeByte(chest.func_70302_i_());
+    for (int i = 0; i < chest.func_70302_i_(); i++)
       StreamReadWrite.writeNullableItemStack(chest.getStackInSlot(i), data); 
     sendPacketToPlayer(data, player);
   }

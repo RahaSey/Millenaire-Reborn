@@ -27,13 +27,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockRosetteBars extends BlockBars {
-  public static final PropertyDirection FACING = BlockHorizontal.FACING;
+  public static final PropertyDirection FACING = BlockHorizontal.HORIZONTAL_FACING;
   
   static final PropertyEnum<BlockSlab.EnumBlockHalf> TOP_BOTTOM = PropertyEnum.create("topbottom", BlockSlab.EnumBlockHalf.class);
   
   public BlockRosetteBars(String blockName, Material material, SoundType soundType) {
     super(blockName);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false)).withProperty((IProperty)SOUTH, Boolean.valueOf(false))
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false)).withProperty((IProperty)SOUTH, Boolean.valueOf(false))
         .withProperty((IProperty)WEST, Boolean.valueOf(false)).withProperty((IProperty)FACING, (Comparable)EnumFacing.SOUTH).withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.TOP));
   }
   
@@ -61,41 +61,41 @@ public class BlockRosetteBars extends BlockBars {
   }
   
   @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.TRANSLUCENT;
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
     return MapColor.GRAY;
   }
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    if (state.getValue((IProperty)TOP_BOTTOM) == BlockSlab.EnumBlockHalf.BOTTOM)
+    if (state.get((IProperty)TOP_BOTTOM) == BlockSlab.EnumBlockHalf.BOTTOM)
       i |= 0x4; 
-    i |= ((EnumFacing)state.getValue((IProperty)FACING)).getHorizontalIndex();
+    i |= ((EnumFacing)state.get((IProperty)FACING)).getHorizontalIndex();
     return i;
   }
   
-  public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+  public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
     IBlockState iBlockStateAbove = world.getBlockState(pos.add(0, 1, 0));
-    if (iBlockStateAbove.getBlock() == this && iBlockStateAbove.getValue((IProperty)TOP_BOTTOM) == BlockSlab.EnumBlockHalf.TOP)
-      return getDefaultState().withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM).withProperty((IProperty)FACING, iBlockStateAbove.getValue((IProperty)FACING)); 
+    if (iBlockStateAbove.getBlock() == this && iBlockStateAbove.get((IProperty)TOP_BOTTOM) == BlockSlab.EnumBlockHalf.TOP)
+      return getDefaultState().withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM).withProperty((IProperty)FACING, iBlockStateAbove.get((IProperty)FACING)); 
     IBlockState iBlockStateWest = world.getBlockState(pos.add(-1, 0, 0));
-    if (iBlockStateWest.getBlock() == this && iBlockStateWest.getValue((IProperty)FACING) == EnumFacing.WEST)
-      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.EAST).withProperty((IProperty)TOP_BOTTOM, iBlockStateWest.getValue((IProperty)TOP_BOTTOM)); 
+    if (iBlockStateWest.getBlock() == this && iBlockStateWest.get((IProperty)FACING) == EnumFacing.WEST)
+      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.EAST).withProperty((IProperty)TOP_BOTTOM, iBlockStateWest.get((IProperty)TOP_BOTTOM)); 
     IBlockState iBlockStateSouth = world.getBlockState(pos.add(0, 0, 1));
-    if (iBlockStateSouth.getBlock() == this && iBlockStateSouth.getValue((IProperty)FACING) == EnumFacing.SOUTH)
-      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.NORTH).withProperty((IProperty)TOP_BOTTOM, iBlockStateSouth.getValue((IProperty)TOP_BOTTOM)); 
+    if (iBlockStateSouth.getBlock() == this && iBlockStateSouth.get((IProperty)FACING) == EnumFacing.SOUTH)
+      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.NORTH).withProperty((IProperty)TOP_BOTTOM, iBlockStateSouth.get((IProperty)TOP_BOTTOM)); 
     IBlockState iBlockStateBelow = world.getBlockState(pos.add(0, -1, 0));
-    if (iBlockStateBelow.getBlock() == this && iBlockStateBelow.getValue((IProperty)TOP_BOTTOM) == BlockSlab.EnumBlockHalf.BOTTOM)
-      return getDefaultState().withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.TOP).withProperty((IProperty)FACING, iBlockStateBelow.getValue((IProperty)FACING)); 
+    if (iBlockStateBelow.getBlock() == this && iBlockStateBelow.get((IProperty)TOP_BOTTOM) == BlockSlab.EnumBlockHalf.BOTTOM)
+      return getDefaultState().withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.TOP).withProperty((IProperty)FACING, iBlockStateBelow.get((IProperty)FACING)); 
     IBlockState iBlockStateEast = world.getBlockState(pos.add(1, 0, 0));
-    if (iBlockStateEast.getBlock() == this && iBlockStateEast.getValue((IProperty)FACING) == EnumFacing.EAST)
-      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.WEST).withProperty((IProperty)TOP_BOTTOM, iBlockStateEast.getValue((IProperty)TOP_BOTTOM)); 
+    if (iBlockStateEast.getBlock() == this && iBlockStateEast.get((IProperty)FACING) == EnumFacing.EAST)
+      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.WEST).withProperty((IProperty)TOP_BOTTOM, iBlockStateEast.get((IProperty)TOP_BOTTOM)); 
     IBlockState iBlockStateNorth = world.getBlockState(pos.add(0, 0, -1));
-    if (iBlockStateNorth.getBlock() == this && iBlockStateNorth.getValue((IProperty)FACING) == EnumFacing.NORTH)
-      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.SOUTH).withProperty((IProperty)TOP_BOTTOM, iBlockStateNorth.getValue((IProperty)TOP_BOTTOM)); 
+    if (iBlockStateNorth.getBlock() == this && iBlockStateNorth.get((IProperty)FACING) == EnumFacing.NORTH)
+      return getDefaultState().withProperty((IProperty)FACING, (Comparable)EnumFacing.SOUTH).withProperty((IProperty)TOP_BOTTOM, iBlockStateNorth.get((IProperty)TOP_BOTTOM)); 
     IBlockState basicState = getDefaultState();
     if (!iBlockStateAbove.isFullBlock() && iBlockStateBelow.isFullBlock())
       basicState = basicState.withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM); 
@@ -115,7 +115,7 @@ public class BlockRosetteBars extends BlockBars {
     IBlockState iblockstate = getDefaultState();
     if ((meta & 0x4) == 4)
       iblockstate = iblockstate.withProperty((IProperty)TOP_BOTTOM, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM); 
-    EnumFacing enumfacing = EnumFacing.getHorizontal(meta & 0x3);
+    EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta & 0x3);
     if (enumfacing.getAxis() == EnumFacing.Axis.Y)
       enumfacing = EnumFacing.NORTH; 
     iblockstate = iblockstate.withProperty((IProperty)FACING, (Comparable)enumfacing);
@@ -132,24 +132,24 @@ public class BlockRosetteBars extends BlockBars {
       BlockBeacon.updateColorAsync(worldIn, pos); 
   }
   
-  public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+  public IBlockState mirror(IBlockState state, Mirror mirrorIn) {
     switch (mirrorIn) {
-      case LEFT_RIGHT:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)NORTH));
-      case FRONT_BACK:
-        return state.withProperty((IProperty)EAST, state.getValue((IProperty)WEST)).withProperty((IProperty)WEST, state.getValue((IProperty)EAST));
+      case CLOCKWISE_180:
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.get((IProperty)NORTH));
+      case COUNTERCLOCKWISE_90:
+        return state.withProperty((IProperty)EAST, state.get((IProperty)WEST)).withProperty((IProperty)WEST, state.get((IProperty)EAST));
     } 
-    return super.withMirror(state, mirrorIn);
+    return super.mirror(state, mirrorIn);
   }
   
-  public IBlockState withRotation(IBlockState state, Rotation rot) {
+  public IBlockState rotate(IBlockState state, Rotation rot) {
     switch (rot) {
       case CLOCKWISE_180:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)SOUTH)).withProperty((IProperty)EAST, state.getValue((IProperty)WEST)).withProperty((IProperty)SOUTH, state.getValue((IProperty)NORTH)).withProperty((IProperty)WEST, state.getValue((IProperty)EAST));
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)SOUTH)).withProperty((IProperty)EAST, state.get((IProperty)WEST)).withProperty((IProperty)SOUTH, state.get((IProperty)NORTH)).withProperty((IProperty)WEST, state.get((IProperty)EAST));
       case COUNTERCLOCKWISE_90:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)EAST)).withProperty((IProperty)EAST, state.getValue((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)WEST)).withProperty((IProperty)WEST, state.getValue((IProperty)NORTH));
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)EAST)).withProperty((IProperty)EAST, state.get((IProperty)SOUTH)).withProperty((IProperty)SOUTH, state.get((IProperty)WEST)).withProperty((IProperty)WEST, state.get((IProperty)NORTH));
       case CLOCKWISE_90:
-        return state.withProperty((IProperty)NORTH, state.getValue((IProperty)WEST)).withProperty((IProperty)EAST, state.getValue((IProperty)NORTH)).withProperty((IProperty)SOUTH, state.getValue((IProperty)EAST)).withProperty((IProperty)WEST, state.getValue((IProperty)SOUTH));
+        return state.withProperty((IProperty)NORTH, state.get((IProperty)WEST)).withProperty((IProperty)EAST, state.get((IProperty)NORTH)).withProperty((IProperty)SOUTH, state.get((IProperty)EAST)).withProperty((IProperty)WEST, state.get((IProperty)SOUTH));
     } 
     return state;
   }

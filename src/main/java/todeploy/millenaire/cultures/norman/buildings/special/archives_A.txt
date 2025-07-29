@@ -6,7 +6,7 @@ building.icon=sign
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Archives du village
+initial.nativename=Archives
 initial.priority=100
 initial.pathlevel=1
 initial.tag=archives

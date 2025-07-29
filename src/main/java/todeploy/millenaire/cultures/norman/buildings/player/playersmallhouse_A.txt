@@ -10,6 +10,6 @@ building.icon=denier
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Petite maison
+initial.nativename=Maisounaette
 initial.priority=1000000
 

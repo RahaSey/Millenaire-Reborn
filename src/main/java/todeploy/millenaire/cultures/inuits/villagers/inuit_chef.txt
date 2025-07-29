@@ -23,21 +23,48 @@ goal=gosocialise
 goal=chat
 goal=bringBackResourcesHome
 
-goal=makebread 
+// Bread
+goal=makebread
+requiredGood=wheat,9
+
+// Fish
 goal=cookFish 
-goal=cookSteak
-goal=cookpotato
 goal=cookfishslab
+goal=makemeatstew5
+goal=makemeatstew7
+requiredGood=fishraw,32
+requiredGood=seafood_raw,16
+
+// Beef
+goal=cookSteak
+goal=makemeatstew1
+requiredGood=beefraw,16
+
+// Potato
+goal=cookpotato
+goal=makepotatostew
+requiredGood=potato,64
+
+// Bear 
 goal=makebearsteak
 goal=makebearstew
-goal=makemeatstew1
+requiredGood=bearmeat_raw,16
+
+// Pig
 goal=makemeatstew2
+requiredGood=porkchops,16
+
+// Sheep
 goal=makemeatstew3
+requiredGood=mutton,16
+
+// Chicken
 goal=makemeatstew4
-goal=makemeatstew5
+requiredGood=chickenmeat,16
+
+// Rabbit
 goal=makemeatstew6
-goal=makemeatstew7
-goal=makepotatostew
+requiredGood=rabbit,16
 
 goal=tendfurnace
 

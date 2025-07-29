@@ -9,7 +9,7 @@ building.version=2
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Abbaye
+initial.nativename=Isolaïe Abbaye
 initial.priority=3000
 initial.male=loneabbot
 initial.male=lonemonk

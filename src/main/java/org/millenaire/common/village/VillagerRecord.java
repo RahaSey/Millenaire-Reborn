@@ -100,13 +100,13 @@ public class VillagerRecord implements Cloneable {
   }
   
   public static VillagerRecord read(MillWorldData mw, NBTTagCompound nbttagcompound, String label) {
-    if (!nbttagcompound.hasKey(label + "_id") && !nbttagcompound.hasKey(label + "_lid"))
+    if (!nbttagcompound.contains(label + "_id") && !nbttagcompound.contains(label + "_lid"))
       return null; 
     VillagerRecord vr = new VillagerRecord(mw, Culture.getCultureByName(nbttagcompound.getString(label + "_culture")));
-    if (nbttagcompound.hasKey(label + "_lid"))
+    if (nbttagcompound.contains(label + "_lid"))
       vr.setVillagerId(Math.abs(nbttagcompound.getLong(label + "_lid"))); 
-    vr.nb = nbttagcompound.getInteger(label + "_nb");
-    vr.gender = nbttagcompound.getInteger(label + "_gender");
+    vr.nb = nbttagcompound.getInt(label + "_nb");
+    vr.gender = nbttagcompound.getInt(label + "_gender");
     vr.type = nbttagcompound.getString(label + "_type").toLowerCase();
     vr.raiderSpawn = nbttagcompound.getLong(label + "_raiderSpawn");
     vr.firstName = nbttagcompound.getString(label + "_firstName");
@@ -121,9 +121,9 @@ public class VillagerRecord implements Cloneable {
     vr.setTownHallPos(Point.read(nbttagcompound, label + "_townHallPos"));
     vr.originalId = nbttagcompound.getLong(label + "_originalId");
     vr.originalVillagePos = Point.read(nbttagcompound, label + "_originalVillagePos");
-    vr.size = nbttagcompound.getInteger(label + "_size");
+    vr.size = nbttagcompound.getInt(label + "_size");
     vr.scale = nbttagcompound.getFloat(label + "_scale");
-    if (nbttagcompound.hasKey(label + "_rightHanded"))
+    if (nbttagcompound.contains(label + "_rightHanded"))
       vr.rightHanded = nbttagcompound.getBoolean(label + "_rightHanded"); 
     vr.fathersName = nbttagcompound.getString(label + "_fathersName");
     vr.mothersName = nbttagcompound.getString(label + "_mothersName");
@@ -133,18 +133,18 @@ public class VillagerRecord implements Cloneable {
     vr.raidingVillage = nbttagcompound.getBoolean(label + "_raidingVillage");
     vr.awayraiding = nbttagcompound.getBoolean(label + "_awayraiding");
     vr.awayhired = nbttagcompound.getBoolean(label + "_awayhired");
-    NBTTagList nbttaglist = nbttagcompound.getTagList(label + "questTags", 10);
+    NBTTagList nbttaglist = nbttagcompound.getList(label + "questTags", 10);
     int i;
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
       vr.questTags.add(nbttagcompound1.getString("tag"));
     } 
-    nbttaglist = nbttagcompound.getTagList(label + "_inventory", 10);
+    nbttaglist = nbttagcompound.getList(label + "_inventory", 10);
     for (i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-      vr.inventory.put(InvItem.createInvItem(Item.getItemById(nbttagcompound1.getInteger("item")), nbttagcompound1.getInteger("meta")), Integer.valueOf(nbttagcompound1.getInteger("amount")));
+      NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
+      vr.inventory.put(InvItem.createInvItem(Item.getItemById(nbttagcompound1.getInt("item")), nbttagcompound1.getInt("meta")), Integer.valueOf(nbttagcompound1.getInt("amount")));
     } 
-    nbttaglist = nbttagcompound.getTagList(label + "_inventoryNew", 10);
+    nbttaglist = nbttagcompound.getList(label + "_inventoryNew", 10);
     MillCommonUtilities.readInventory(nbttaglist, vr.inventory);
     if (vr.getType() == null) {
       MillLog.error(vr, "Could not find type " + vr.type + " for VR. Skipping.");
@@ -290,7 +290,7 @@ public class VillagerRecord implements Cloneable {
     raidRecord.awayraiding = false;
     raidRecord.originalVillagePos = getTownHall().getPos();
     raidRecord.originalId = getVillagerId();
-    raidRecord.raiderSpawn = (getTownHall()).world.getWorldTime();
+    raidRecord.raiderSpawn = (getTownHall()).world.getDayTime();
     return raidRecord;
   }
   
@@ -528,45 +528,45 @@ public class VillagerRecord implements Cloneable {
   }
   
   public void write(NBTTagCompound nbttagcompound, String label) {
-    nbttagcompound.setLong(label + "_lid", getVillagerId());
-    nbttagcompound.setInteger(label + "_nb", this.nb);
-    nbttagcompound.setString(label + "_type", this.type);
-    nbttagcompound.setString(label + "_firstName", this.firstName);
-    nbttagcompound.setString(label + "_familyName", this.familyName);
+    nbttagcompound.putLong(label + "_lid", getVillagerId());
+    nbttagcompound.putInt(label + "_nb", this.nb);
+    nbttagcompound.putString(label + "_type", this.type);
+    nbttagcompound.putString(label + "_firstName", this.firstName);
+    nbttagcompound.putString(label + "_familyName", this.familyName);
     if (this.fathersName != null && this.fathersName.length() > 0)
-      nbttagcompound.setString(label + "_fathersName", this.fathersName); 
+      nbttagcompound.putString(label + "_fathersName", this.fathersName); 
     if (this.mothersName != null && this.mothersName.length() > 0)
-      nbttagcompound.setString(label + "_mothersName", this.mothersName); 
+      nbttagcompound.putString(label + "_mothersName", this.mothersName); 
     if (this.maidenName != null && this.maidenName.length() > 0)
-      nbttagcompound.setString(label + "_maidenName", this.maidenName); 
+      nbttagcompound.putString(label + "_maidenName", this.maidenName); 
     if (this.spousesName != null && this.spousesName.length() > 0)
-      nbttagcompound.setString(label + "_spousesName", this.spousesName); 
-    nbttagcompound.setInteger(label + "_gender", this.gender);
-    nbttagcompound.setString(label + "_texture", this.texture.toString());
-    nbttagcompound.setBoolean(label + "_killed", this.killed);
-    nbttagcompound.setBoolean(label + "_raidingVillage", this.raidingVillage);
-    nbttagcompound.setBoolean(label + "_awayraiding", this.awayraiding);
-    nbttagcompound.setBoolean(label + "_awayhired", this.awayhired);
-    nbttagcompound.setLong(label + "_raiderSpawn", this.raiderSpawn);
+      nbttagcompound.putString(label + "_spousesName", this.spousesName); 
+    nbttagcompound.putInt(label + "_gender", this.gender);
+    nbttagcompound.putString(label + "_texture", this.texture.toString());
+    nbttagcompound.putBoolean(label + "_killed", this.killed);
+    nbttagcompound.putBoolean(label + "_raidingVillage", this.raidingVillage);
+    nbttagcompound.putBoolean(label + "_awayraiding", this.awayraiding);
+    nbttagcompound.putBoolean(label + "_awayhired", this.awayhired);
+    nbttagcompound.putLong(label + "_raiderSpawn", this.raiderSpawn);
     if (getHousePos() != null)
       getHousePos().write(nbttagcompound, label + "_housePos"); 
     if (getTownHallPos() != null)
       getTownHallPos().write(nbttagcompound, label + "_townHallPos"); 
-    nbttagcompound.setLong(label + "_originalId", this.originalId);
+    nbttagcompound.putLong(label + "_originalId", this.originalId);
     if (this.originalVillagePos != null)
       this.originalVillagePos.write(nbttagcompound, label + "_originalVillagePos"); 
-    nbttagcompound.setInteger(label + "_size", this.size);
-    nbttagcompound.setFloat(label + "_scale", this.scale);
-    nbttagcompound.setBoolean(label + "_rightHanded", this.rightHanded);
+    nbttagcompound.putInt(label + "_size", this.size);
+    nbttagcompound.putFloat(label + "_scale", this.scale);
+    nbttagcompound.putBoolean(label + "_rightHanded", this.rightHanded);
     NBTTagList nbttaglist = new NBTTagList();
     for (String tag : this.questTags) {
       NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-      nbttagcompound1.setString("tag", tag);
+      nbttagcompound1.putString("tag", tag);
       nbttaglist.appendTag((NBTBase)nbttagcompound1);
     } 
     nbttagcompound.setTag(label + "questTags", (NBTBase)nbttaglist);
     nbttaglist = MillCommonUtilities.writeInventory(this.inventory);
     nbttagcompound.setTag(label + "_inventoryNew", (NBTBase)nbttaglist);
-    nbttagcompound.setString(label + "_culture", (getCulture()).key);
+    nbttagcompound.putString(label + "_culture", (getCulture()).key);
   }
 }

@@ -9,7 +9,7 @@ building.icon=bread
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Moulin à eau isolé
+initial.nativename=Isolaï Moulin à Iaoue
 initial.male=lonemiller
 initial.female=lonewife
 initial.tag=bakery

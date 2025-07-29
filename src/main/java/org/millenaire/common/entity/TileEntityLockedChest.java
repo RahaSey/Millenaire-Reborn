@@ -63,9 +63,9 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
         lowerChestIn = upperChestIn; 
       this.upperChest = upperChestIn;
       this.lowerChest = lowerChestIn;
-      if (upperChestIn.isLocked()) {
+      if (upperChestIn.func_174893_q_()) {
         lowerChestIn.setLockCode(upperChestIn.getLockCode());
-      } else if (lowerChestIn.isLocked()) {
+      } else if (lowerChestIn.func_174893_q_()) {
         upperChestIn.setLockCode(lowerChestIn.getLockCode());
       } 
     }
@@ -94,14 +94,14 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     }
     
     public ItemStack decrStackSize(int index, int count) {
-      return (index >= this.upperChest.getSizeInventory()) ? this.lowerChest.decrStackSize(index - this.upperChest.getSizeInventory(), count) : this.upperChest.decrStackSize(index, count);
+      return (index >= this.upperChest.func_70302_i_()) ? this.lowerChest.decrStackSize(index - this.upperChest.func_70302_i_(), count) : this.upperChest.decrStackSize(index, count);
     }
     
-    public ITextComponent getDisplayName() {
-      return hasCustomName() ? (ITextComponent)new TextComponentString(getName()) : (ITextComponent)new TextComponentTranslation(getName(), new Object[0]);
+    public ITextComponent func_145748_c_() {
+      return func_145818_k_() ? (ITextComponent)new TextComponentString(func_70005_c_()) : (ITextComponent)new TextComponentTranslation(func_70005_c_(), new Object[0]);
     }
     
-    public int getField(int id) {
+    public int func_174887_a_(int id) {
       return 0;
     }
     
@@ -113,22 +113,22 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
       return this.upperChest.getGuiID();
     }
     
-    public int getInventoryStackLimit() {
-      return this.upperChest.getInventoryStackLimit();
+    public int func_70297_j_() {
+      return this.upperChest.func_70297_j_();
     }
     
     public LockCode getLockCode() {
       return this.upperChest.getLockCode();
     }
     
-    public String getName() {
-      if (this.upperChest.hasCustomName())
-        return this.upperChest.getName(); 
-      return this.lowerChest.hasCustomName() ? this.lowerChest.getName() : this.name;
+    public String func_70005_c_() {
+      if (this.upperChest.func_145818_k_())
+        return this.upperChest.func_70005_c_(); 
+      return this.lowerChest.func_145818_k_() ? this.lowerChest.func_70005_c_() : this.name;
     }
     
-    public int getSizeInventory() {
-      return this.upperChest.getSizeInventory() + this.lowerChest.getSizeInventory();
+    public int func_70302_i_() {
+      return this.upperChest.func_70302_i_() + this.lowerChest.func_70302_i_();
     }
     
     public int[] getSlotsForFace(EnumFacing side) {
@@ -136,11 +136,11 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     }
     
     public ItemStack getStackInSlot(int index) {
-      return (index >= this.upperChest.getSizeInventory()) ? this.lowerChest.getStackInSlot(index - this.upperChest.getSizeInventory()) : this.upperChest.getStackInSlot(index);
+      return (index >= this.upperChest.func_70302_i_()) ? this.lowerChest.getStackInSlot(index - this.upperChest.func_70302_i_()) : this.upperChest.getStackInSlot(index);
     }
     
-    public boolean hasCustomName() {
-      return (this.upperChest.hasCustomName() || this.lowerChest.hasCustomName());
+    public boolean func_145818_k_() {
+      return (this.upperChest.func_145818_k_() || this.lowerChest.func_145818_k_());
     }
     
     public boolean isEmpty() {
@@ -151,8 +151,8 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
       return true;
     }
     
-    public boolean isLocked() {
-      return (this.upperChest.isLocked() || this.lowerChest.isLocked());
+    public boolean func_174893_q_() {
+      return (this.upperChest.func_174893_q_() || this.lowerChest.func_174893_q_());
     }
     
     public boolean isPartOfLargeChest(IInventory inventoryIn) {
@@ -174,14 +174,14 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     }
     
     public ItemStack removeStackFromSlot(int index) {
-      return (index >= this.upperChest.getSizeInventory()) ? this.lowerChest.removeStackFromSlot(index - this.upperChest.getSizeInventory()) : this.upperChest.removeStackFromSlot(index);
+      return (index >= this.upperChest.func_70302_i_()) ? this.lowerChest.removeStackFromSlot(index - this.upperChest.func_70302_i_()) : this.upperChest.removeStackFromSlot(index);
     }
     
     public void setField(int id, int value) {}
     
     public void setInventorySlotContents(int index, ItemStack stack) {
-      if (index >= this.upperChest.getSizeInventory()) {
-        this.lowerChest.setInventorySlotContents(index - this.upperChest.getSizeInventory(), stack);
+      if (index >= this.upperChest.func_70302_i_()) {
+        this.lowerChest.setInventorySlotContents(index - this.upperChest.func_70302_i_(), stack);
       } else {
         this.upperChest.setInventorySlotContents(index, stack);
       } 
@@ -296,7 +296,7 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     return null;
   }
   
-  public ITextComponent getDisplayName() {
+  public ITextComponent func_145748_c_() {
     if (this.buildingPos == null)
       return LanguageUtilities.textComponent("ui.unlockedchest"); 
     Building building = null;
@@ -314,7 +314,7 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     return "minecraft:chest";
   }
   
-  public int getInventoryStackLimit() {
+  public int func_70297_j_() {
     return 64;
   }
   
@@ -336,8 +336,8 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     return this.chestContents;
   }
   
-  public String getName() {
-    return hasCustomName() ? this.customName : "container.chest";
+  public String func_70005_c_() {
+    return func_145818_k_() ? this.customName : "container.chest";
   }
   
   @SideOnly(Side.CLIENT)
@@ -349,7 +349,7 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     return (IItemHandler)getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
   }
   
-  public int getSizeInventory() {
+  public int func_70302_i_() {
     return 27;
   }
   
@@ -363,8 +363,8 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     return super.hasCapability(capability, facing);
   }
   
-  public void invalidate() {
-    super.invalidate();
+  public void remove() {
+    super.remove();
     updateContainingBlockInfo();
     checkForAdjacentChests();
   }
@@ -420,12 +420,12 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     } 
   }
   
-  public void readFromNBT(NBTTagCompound compound) {
-    super.readFromNBT(compound);
-    this.chestContents = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
+  public void read(NBTTagCompound compound) {
+    super.read(compound);
+    this.chestContents = NonNullList.withSize(func_70302_i_(), ItemStack.EMPTY);
     if (!checkLootAndRead(compound))
       ItemStackHelper.loadAllItems(compound, this.chestContents); 
-    if (compound.hasKey("CustomName", 8))
+    if (compound.contains("CustomName", 8))
       this.customName = compound.getString("CustomName"); 
     this.buildingPos = Point.read(compound, "buildingPos");
     if (Mill.clientWorld != null) {
@@ -448,7 +448,7 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
   }
   
   private void setNeighbor(TileEntityLockedChest chestTe, EnumFacing side) {
-    if (chestTe.isInvalid()) {
+    if (chestTe.isRemoved()) {
       this.adjacentChestChecked = false;
     } else if (this.adjacentChestChecked) {
       switch (side) {
@@ -472,7 +472,7 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     } 
   }
   
-  public void update() {
+  public void tick() {
     checkForAdjacentChests();
     int i = this.pos.getX();
     int j = this.pos.getY();
@@ -526,12 +526,12 @@ public class TileEntityLockedChest extends TileEntityLockableLoot implements ITi
     this.adjacentChestChecked = false;
   }
   
-  public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-    super.writeToNBT(compound);
+  public NBTTagCompound write(NBTTagCompound compound) {
+    super.write(compound);
     if (!checkLootAndWrite(compound))
       ItemStackHelper.saveAllItems(compound, this.chestContents); 
-    if (hasCustomName())
-      compound.setString("CustomName", this.customName); 
+    if (func_145818_k_())
+      compound.putString("CustomName", this.customName); 
     if (this.buildingPos != null)
       this.buildingPos.write(compound, "buildingPos"); 
     return compound;

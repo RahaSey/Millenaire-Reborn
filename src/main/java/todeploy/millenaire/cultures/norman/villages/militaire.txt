@@ -1,4 +1,4 @@
-name=Village militaire
+name=Militaire Village
 icon=normanbroadsword
 weight=10
 carriesraid=true

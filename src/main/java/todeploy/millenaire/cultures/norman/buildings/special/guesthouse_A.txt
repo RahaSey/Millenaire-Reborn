@@ -7,7 +7,7 @@ building.icon=bed_straw
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Relais
+initial.nativename=Maisaon d'Invitaïs
 initial.priority=600
 initial.tag=inn
 initial.signs=1,0

@@ -1,4 +1,4 @@
-native_name=Marchand d'armes
+native_name=Marchànd d'Armes
 gender=male
 familyNameList=merchant_weapons_family_names
 firstNameList=merchant_weapons_first_names

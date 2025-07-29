@@ -95,7 +95,7 @@ public class TESRPanel extends TileEntitySpecialRenderer<TileEntityPanel> {
       GlStateManager.pushMatrix();
       GlStateManager.scale(scale / 32.0F, scale / 32.0F, -1.0E-4F);
       GlStateManager.translate(-8.0F, -11.0F, -420.0F);
-      RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+      RenderItem renderItem = Minecraft.getInstance().getItemRenderer();
       renderItem.renderItemAndEffectIntoGUI(itemStack, 0, 0);
       GlStateManager.popMatrix();
     } 
@@ -112,7 +112,7 @@ public class TESRPanel extends TileEntitySpecialRenderer<TileEntityPanel> {
       } 
       GlStateManager.pushAttrib();
       RenderHelper.enableStandardItemLighting();
-      Minecraft.getMinecraft().getRenderItem().renderItem(itemstack, ItemCameraTransforms.TransformType.FIXED);
+      Minecraft.getInstance().getItemRenderer().renderItem(itemstack, ItemCameraTransforms.TransformType.FIXED);
       RenderHelper.disableStandardItemLighting();
       GlStateManager.popAttrib();
       GlStateManager.enableLighting();

@@ -129,7 +129,7 @@ public class TradeGood {
   }
   
   public String toString() {
-    return "Goods@" + this.culture.key + ":" + this.key + "/" + this.item.getItemStack().getUnlocalizedName();
+    return "Goods@" + this.culture.key + ":" + this.key + "/" + this.item.getItemStack().getTranslationKey();
   }
   
   public void validateGood() {

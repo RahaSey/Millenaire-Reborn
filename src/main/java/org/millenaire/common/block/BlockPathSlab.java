@@ -37,14 +37,14 @@ public class BlockPathSlab extends Block implements IMetaBlockName, IBlockPath {
   private final String doubleSlabName;
   
   public BlockPathSlab(String blockName, MapColor color, SoundType soundType) {
-    super(Material.GROUND, color);
+    super(Material.EARTH, color);
     setSoundType(soundType);
     this.singleSlabBlockName = blockName + "_slab";
     this.doubleSlabName = blockName;
     setUnlocalizedName("millenaire." + this.doubleSlabName);
     setRegistryName(this.singleSlabBlockName);
     this.useNeighborBrightness = true;
-    IBlockState iblockstate = this.blockState.getBaseState();
+    IBlockState iblockstate = this.stateContainer.getBaseState();
     iblockstate = iblockstate.withProperty((IProperty)IBlockPath.STABLE, Boolean.valueOf(false));
     iblockstate = iblockstate.withProperty((IProperty)BlockSlab.HALF, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM);
     setDefaultState(iblockstate);
@@ -67,20 +67,20 @@ public class BlockPathSlab extends Block implements IMetaBlockName, IBlockPath {
   public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
     if (ForgeModContainer.disableStairSlabCulling)
       return super.doesSideBlockRendering(state, world, pos, face); 
-    BlockSlab.EnumBlockHalf side = (BlockSlab.EnumBlockHalf)state.getValue((IProperty)BlockSlab.HALF);
+    BlockSlab.EnumBlockHalf side = (BlockSlab.EnumBlockHalf)state.get((IProperty)BlockSlab.HALF);
     return ((side == BlockSlab.EnumBlockHalf.TOP && face == EnumFacing.UP) || (side == BlockSlab.EnumBlockHalf.BOTTOM && face == EnumFacing.DOWN));
   }
   
   public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
-    return (face == EnumFacing.DOWN && state.getValue((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.BOTTOM) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
+    return (face == EnumFacing.DOWN && state.get((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.BOTTOM) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
   }
   
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT;
   }
   
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-    return (state.getValue((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP) ? AABB_TOP_HALF : AABB_BOTTOM_HALF;
+    return (state.get((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP) ? AABB_TOP_HALF : AABB_BOTTOM_HALF;
   }
   
   public BlockPath getDoubleSlab() {
@@ -97,9 +97,9 @@ public class BlockPathSlab extends Block implements IMetaBlockName, IBlockPath {
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    if (((Boolean)state.getValue((IProperty)IBlockPath.STABLE)).booleanValue())
+    if (((Boolean)state.get((IProperty)IBlockPath.STABLE)).booleanValue())
       i |= 0x1; 
-    if (state.getValue((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP)
+    if (state.get((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP)
       i |= 0x8; 
     return i;
   }
@@ -109,11 +109,11 @@ public class BlockPathSlab extends Block implements IMetaBlockName, IBlockPath {
   }
   
   public String getSpecialName(ItemStack stack) {
-    return getUnlocalizedName();
+    return getTranslationKey();
   }
   
-  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-    IBlockState iblockstate = super.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty((IProperty)BlockSlab.HALF, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM).withProperty((IProperty)IBlockPath.STABLE, Boolean.valueOf(true));
+  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+    IBlockState iblockstate = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer).withProperty((IProperty)BlockSlab.HALF, (Comparable)BlockSlab.EnumBlockHalf.BOTTOM).withProperty((IProperty)IBlockPath.STABLE, Boolean.valueOf(true));
     return (facing != EnumFacing.DOWN && (facing == EnumFacing.UP || hitY <= 0.5D)) ? iblockstate : iblockstate.withProperty((IProperty)BlockSlab.HALF, (Comparable)BlockSlab.EnumBlockHalf.TOP);
   }
   
@@ -142,8 +142,8 @@ public class BlockPathSlab extends Block implements IMetaBlockName, IBlockPath {
     return false;
   }
   
-  public boolean isTopSolid(IBlockState state) {
-    return (state.getValue((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP);
+  public boolean isFullyOpaque(IBlockState state) {
+    return (state.get((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP);
   }
   
   @SideOnly(Side.CLIENT)

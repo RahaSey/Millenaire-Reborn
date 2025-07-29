@@ -96,17 +96,17 @@ public class GuiPujas extends GuiContainer {
   
   protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
     if (this.temple.pujas.type == 1) {
-      this.fontRenderer.drawString(LanguageUtilities.string("sacrifices.offering"), 8, 6, 4210752);
-      this.fontRenderer.drawString(LanguageUtilities.string("sacrifices.panditfee"), 8, 75, 4210752);
+      this.fontRendererObj.drawString(LanguageUtilities.string("sacrifices.offering"), 8, 6, 4210752);
+      this.fontRendererObj.drawString(LanguageUtilities.string("sacrifices.panditfee"), 8, 75, 4210752);
     } else {
-      this.fontRenderer.drawString(LanguageUtilities.string("pujas.offering"), 8, 6, 4210752);
-      this.fontRenderer.drawString(LanguageUtilities.string("pujas.panditfee"), 8, 75, 4210752);
+      this.fontRendererObj.drawString(LanguageUtilities.string("pujas.offering"), 8, 6, 4210752);
+      this.fontRendererObj.drawString(LanguageUtilities.string("pujas.panditfee"), 8, 75, 4210752);
     } 
-    this.fontRenderer.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94 + 2, 4210752);
+    this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize - 94 + 2, 4210752);
   }
   
   public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-    drawDefaultBackground();
+    func_146276_q_();
     int i = this.guiLeft;
     int j = this.guiTop;
     drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
@@ -132,8 +132,8 @@ public class GuiPujas extends GuiContainer {
     OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     Slot hoveredSlot = null;
-    for (int i1 = 0; i1 < this.inventorySlots.inventorySlots.size(); i1++) {
-      Slot slot1 = this.inventorySlots.inventorySlots.get(i1);
+    for (int i1 = 0; i1 < this.container.inventorySlots.size(); i1++) {
+      Slot slot1 = this.container.inventorySlots.get(i1);
       drawSlotInventory(slot1);
       if (getIsMouseOverSlot(slot1, mouseX, mouseY)) {
         hoveredSlot = slot1;
@@ -196,9 +196,9 @@ public class GuiPujas extends GuiContainer {
           getTargetYStart() + getButtonHeight() * linePos && mouseY < starty + 
           getTargetYStart() + getButtonHeight() * (linePos + 1)) {
           String s = LanguageUtilities.string(((PujaSacrifice.PrayerTarget)this.temple.pujas.getTargets().get(cp)).mouseOver);
-          int stringlength = this.fontRenderer.getStringWidth(s);
+          int stringlength = this.fontRendererObj.getStringWidth(s);
           drawGradientRect(mouseX + 5, mouseY - 3, mouseX + stringlength + 10, mouseY + 8 + 3, -1073741824, -1073741824);
-          this.fontRenderer.drawString(s, mouseX + 8, mouseY, 15790320);
+          this.fontRendererObj.drawString(s, mouseX + 8, mouseY, 15790320);
         } 
         colPos++;
         if (colPos >= getNbPerLines()) {
@@ -302,7 +302,7 @@ public class GuiPujas extends GuiContainer {
       stack = ItemStack.EMPTY; 
     FontRenderer font = stack.getItem().getFontRenderer(stack);
     GuiUtils.preItemToolTip(stack);
-    drawHoveringText(customToolTip, x, y, (font == null) ? this.fontRenderer : font);
+    drawHoveringText(customToolTip, x, y, (font == null) ? this.fontRendererObj : font);
     GuiUtils.postItemToolTip();
   }
 }

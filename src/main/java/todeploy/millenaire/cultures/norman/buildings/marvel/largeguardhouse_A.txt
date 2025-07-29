@@ -8,7 +8,7 @@ building.icon=normanbroadsword
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Caserne
+initial.nativename=Barraques
 initial.priority=15000
 initial.male=orderguard
 initial.male=orderguard

@@ -1,4 +1,4 @@
-native_name=Assistant
+native_name=Assistànt Alchimiste
 gender=male
 familyNameList=alchemistassistant_last
 firstNameList=alchemistassistant_first

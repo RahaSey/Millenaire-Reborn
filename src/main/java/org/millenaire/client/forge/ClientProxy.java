@@ -138,7 +138,7 @@ public class ClientProxy extends CommonProxy {
   
   public String getSinglePlayerName() {
     if (getTheSinglePlayer() != null)
-      return getTheSinglePlayer().getName(); 
+      return getTheSinglePlayer().func_70005_c_(); 
     return "NULL_PLAYER";
   }
   
@@ -148,7 +148,7 @@ public class ClientProxy extends CommonProxy {
   
   public void handleClientGameUpdate() {
     MillClientUtilities.handleKeyPress(Mill.clientWorld.world);
-    if (Mill.clientWorld.world.getWorldTime() % 20L == 0L)
+    if (Mill.clientWorld.world.getDayTime() % 20L == 0L)
       Mill.clientWorld.clearPanelQueue(); 
     loadLanguagesIfNeeded();
   }
@@ -171,7 +171,7 @@ public class ClientProxy extends CommonProxy {
   }
   
   public void loadLanguagesIfNeeded() {
-    Minecraft minecraft = Minecraft.getMinecraft();
+    Minecraft minecraft = Minecraft.getInstance();
     LanguageUtilities.loadLanguages(minecraft.gameSettings.language);
   }
   
@@ -186,20 +186,20 @@ public class ClientProxy extends CommonProxy {
   }
   
   public void refreshClientResources() {
-    Minecraft.getMinecraft().refreshResources();
+    Minecraft.getInstance().refreshResources();
   }
   
   public void registerForgeClientClasses() {
     FMLCommonHandler.instance().bus().register(new ClientTickHandler());
     Mill.millChannel.register(new ClientReceiver());
-    Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+    Minecraft.getInstance().getBlockColors().register(new IBlockColor() {
           public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {
-            return (worldIn != null && pos != null) ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+            return (worldIn != null && pos != null) ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getDefault();
           }
-        }, new Block[] { (Block)MillBlocks.LEAVES_PISTACHIO });
-    Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new IItemColor() {
-          public int colorMultiplier(ItemStack stack, int tintIndex) {
-            return ColorizerFoliage.getFoliageColorBasic();
+        }new Block[] { (Block)MillBlocks.LEAVES_PISTACHIO });
+    Minecraft.getInstance().getItemColors().registerItemColorHandler(new IItemColor() {
+          public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+            return ColorizerFoliage.getDefault();
           }
         },  new Block[] { (Block)MillBlocks.LEAVES_PISTACHIO });
   }
@@ -215,19 +215,19 @@ public class ClientProxy extends CommonProxy {
   
   public void sendChatAdmin(String s) {
     s = s.trim();
-    (Minecraft.getMinecraft()).ingameGUI.getChatGUI().printChatMessage((ITextComponent)new TextComponentString(s));
+    (Minecraft.getInstance()).ingameGUI.getChatGUI().printChatMessage((ITextComponent)new TextComponentString(s));
   }
   
   public void sendChatAdmin(String s, TextFormatting colour) {
     s = s.trim();
     TextComponentString cc = new TextComponentString(s);
     cc.getStyle().setColor(colour);
-    (Minecraft.getMinecraft()).ingameGUI.getChatGUI().printChatMessage((ITextComponent)cc);
+    (Minecraft.getInstance()).ingameGUI.getChatGUI().printChatMessage((ITextComponent)cc);
   }
   
   public void sendLocalChat(EntityPlayer player, char colour, String s) {
     s = s.trim();
-    (Minecraft.getMinecraft()).ingameGUI.getChatGUI().printChatMessage((ITextComponent)new TextComponentString("§" + colour + s));
+    (Minecraft.getInstance()).ingameGUI.getChatGUI().printChatMessage((ITextComponent)new TextComponentString("§" + colour + s));
   }
   
   public void setGraphicsLevel(BlockLeaves blockLeaves, boolean value) {

@@ -10,7 +10,7 @@ building.icon=sapling
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Hutte de Bûcheron Isolé
+initial.nativename=Isolaïe Caumine du Buchaeux
 initial.tag=drinking
 initial.tag=leasure
 initial.pathwidth=1

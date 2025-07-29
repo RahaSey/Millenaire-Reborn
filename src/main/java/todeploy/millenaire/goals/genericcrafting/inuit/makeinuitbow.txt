@@ -7,7 +7,7 @@
 //extra tag required for the destination to be valid
 requiredTag=armoury
 
-priority=75
+priority=55
 
 //spécifier si l'étiquette ou les phrases pour ce but n'ont pas le code du but lui-même
 //specify if the label and sentences for this goal is not the name of the goal itself

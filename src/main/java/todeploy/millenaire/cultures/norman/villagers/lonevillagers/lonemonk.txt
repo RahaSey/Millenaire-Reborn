@@ -1,4 +1,4 @@
-native_name=Moine
+native_name=Moigne
 gender=male
 familyNameList=family_names
 firstNameList=men_names

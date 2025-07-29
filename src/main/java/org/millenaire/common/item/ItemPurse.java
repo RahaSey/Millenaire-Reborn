@@ -29,11 +29,11 @@ public class ItemPurse extends ItemMill {
   
   @SideOnly(Side.CLIENT)
   public String getItemStackDisplayName(ItemStack purse) {
-    if (purse.getTagCompound() == null)
-      return I18n.format(MillItems.PURSE.getUnlocalizedName() + ".name", new Object[0]); 
-    int DENIERs = purse.getTagCompound().getInteger("ml_Purse_DENIER");
-    int DENIERargent = purse.getTagCompound().getInteger("ml_Purse_DENIERargent");
-    int DENIERor = purse.getTagCompound().getInteger("ml_Purse_DENIERor");
+    if (purse.getTag() == null)
+      return I18n.format(MillItems.PURSE.getTranslationKey() + ".name", new Object[0]); 
+    int DENIERs = purse.getTag().getInt("ml_Purse_DENIER");
+    int DENIERargent = purse.getTag().getInt("ml_Purse_DENIERargent");
+    int DENIERor = purse.getTag().getInt("ml_Purse_DENIERor");
     String label = "";
     if (DENIERor != 0)
       label = "§e" + DENIERor + "o "; 
@@ -42,7 +42,7 @@ public class ItemPurse extends ItemMill {
     if (DENIERs != 0 || label.length() == 0)
       label = label + "§6" + DENIERs + "d"; 
     label = label.trim();
-    return "§f" + I18n.format(MillItems.PURSE.getUnlocalizedName() + ".name", new Object[0]) + ": " + label;
+    return "§f" + I18n.format(MillItems.PURSE.getTranslationKey() + ".name", new Object[0]) + ": " + label;
   }
   
   public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
@@ -56,17 +56,17 @@ public class ItemPurse extends ItemMill {
   }
   
   private void removeDeniersFromPurse(ItemStack purse, EntityPlayer player) {
-    if (purse.getTagCompound() != null) {
-      int DENIERs = purse.getTagCompound().getInteger("ml_Purse_DENIER");
-      int DENIERargent = purse.getTagCompound().getInteger("ml_Purse_DENIERargent");
-      int DENIERor = purse.getTagCompound().getInteger("ml_Purse_DENIERor");
+    if (purse.getTag() != null) {
+      int DENIERs = purse.getTag().getInt("ml_Purse_DENIER");
+      int DENIERargent = purse.getTag().getInt("ml_Purse_DENIERargent");
+      int DENIERor = purse.getTag().getInt("ml_Purse_DENIERor");
       int result = MillCommonUtilities.putItemsInChest((IInventory)player.inventory, MillItems.DENIER, DENIERs);
-      purse.getTagCompound().setInteger("ml_Purse_DENIER", DENIERs - result);
+      purse.getTag().putInt("ml_Purse_DENIER", DENIERs - result);
       result = MillCommonUtilities.putItemsInChest((IInventory)player.inventory, MillItems.DENIER_ARGENT, DENIERargent);
-      purse.getTagCompound().setInteger("ml_Purse_DENIERargent", DENIERargent - result);
+      purse.getTag().putInt("ml_Purse_DENIERargent", DENIERargent - result);
       result = MillCommonUtilities.putItemsInChest((IInventory)player.inventory, MillItems.DENIER_OR, DENIERor);
-      purse.getTagCompound().setInteger("ml_Purse_DENIERor", DENIERor - result);
-      purse.getTagCompound().setInteger("ml_Purse_rand", player.world.isRemote ? 0 : 1);
+      purse.getTag().putInt("ml_Purse_DENIERor", DENIERor - result);
+      purse.getTag().putInt("ml_Purse_rand", player.world.isRemote ? 0 : 1);
     } 
   }
   
@@ -78,12 +78,12 @@ public class ItemPurse extends ItemMill {
   }
   
   public void setDeniers(ItemStack purse, EntityPlayer player, int DENIER, int DENIERargent, int DENIERor) {
-    if (purse.getTagCompound() == null)
-      purse.setTagCompound(new NBTTagCompound()); 
-    purse.getTagCompound().setInteger("ml_Purse_DENIER", DENIER);
-    purse.getTagCompound().setInteger("ml_Purse_DENIERargent", DENIERargent);
-    purse.getTagCompound().setInteger("ml_Purse_DENIERor", DENIERor);
-    purse.getTagCompound().setInteger("ml_Purse_rand", player.world.isRemote ? 0 : 1);
+    if (purse.getTag() == null)
+      purse.setTag(new NBTTagCompound()); 
+    purse.getTag().putInt("ml_Purse_DENIER", DENIER);
+    purse.getTag().putInt("ml_Purse_DENIERargent", DENIERargent);
+    purse.getTag().putInt("ml_Purse_DENIERor", DENIERor);
+    purse.getTag().putInt("ml_Purse_rand", player.world.isRemote ? 0 : 1);
   }
   
   private void storeDeniersInPurse(ItemStack purse, EntityPlayer player) {
@@ -98,11 +98,11 @@ public class ItemPurse extends ItemMill {
   }
   
   public int totalDeniers(ItemStack purse) {
-    if (purse.getTagCompound() == null)
+    if (purse.getTag() == null)
       return 0; 
-    int deniers = purse.getTagCompound().getInteger("ml_Purse_DENIER");
-    int denier_argent = purse.getTagCompound().getInteger("ml_Purse_DENIERargent");
-    int denier_or = purse.getTagCompound().getInteger("ml_Purse_DENIERor");
+    int deniers = purse.getTag().getInt("ml_Purse_DENIER");
+    int denier_argent = purse.getTag().getInt("ml_Purse_DENIERargent");
+    int denier_or = purse.getTag().getInt("ml_Purse_DENIERor");
     return deniers + denier_argent * 64 + denier_or * 64 * 64;
   }
 }

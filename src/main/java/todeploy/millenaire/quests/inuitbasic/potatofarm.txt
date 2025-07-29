@@ -1,6 +1,6 @@
 minreputation:6464
-chanceperhour:0.67
-maxsimultaneous:3
+chanceperhour:0.1
+maxsimultaneous:1
 
 step:new
 definevillager:key=startvillager,type=inuits/inuit_wife

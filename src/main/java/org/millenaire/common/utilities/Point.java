@@ -448,8 +448,8 @@ public class Point {
   }
   
   public void write(NBTTagCompound nbttagcompound, String label) {
-    nbttagcompound.setDouble(label + "_xCoord", this.x);
-    nbttagcompound.setDouble(label + "_yCoord", this.y);
-    nbttagcompound.setDouble(label + "_zCoord", this.z);
+    nbttagcompound.putDouble(label + "_xCoord", this.x);
+    nbttagcompound.putDouble(label + "_yCoord", this.y);
+    nbttagcompound.putDouble(label + "_zCoord", this.z);
   }
 }

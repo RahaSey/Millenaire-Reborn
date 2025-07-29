@@ -11,7 +11,7 @@ building.version=2
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Auberge Isolée
+initial.nativename=Isolaïe Hotael
 initial.male=innkeepermale
 initial.female=innkeeperfemale
 initial.tag=leasure

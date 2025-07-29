@@ -15,12 +15,12 @@ public class ClientTickHandler {
   
   @SubscribeEvent
   public void tickStart(TickEvent.ClientTickEvent event) {
-    if (Mill.clientWorld == null || !Mill.clientWorld.millenaireEnabled || (Minecraft.getMinecraft()).player == null)
+    if (Mill.clientWorld == null || !Mill.clientWorld.millenaireEnabled || (Minecraft.getInstance()).player == null)
       return; 
-    boolean inOverworld = ((Minecraft.getMinecraft()).player.dimension == 0);
+    boolean inOverworld = ((Minecraft.getInstance()).player.dimension == 0);
     Mill.clientWorld.updateWorldClient(inOverworld);
     if (!this.startupMessageShow) {
-      DisplayActions.displayStartupOrError((EntityPlayer)(Minecraft.getMinecraft()).player, Mill.startupError);
+      DisplayActions.displayStartupOrError((EntityPlayer)(Minecraft.getInstance()).player, Mill.startupError);
       this.startupMessageShow = true;
     } 
     Mill.proxy.handleClientGameUpdate();

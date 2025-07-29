@@ -2,7 +2,7 @@
 building.length=9
 building.width=12
 building.areatoclear=3
-building.buildingorientation=3
+building.buildingorientation=2
 building.icon=boneblock
 
 
@@ -10,13 +10,13 @@ building.icon=boneblock
 initial.startlevel=-1
 initial.nativename=Angakok Tupiq
 initial.translatedname=name_en,shaman's house
-initial.priority=500
+initial.priority=300
 initial.male=inuit_shaman0
 initial.pathlevel=1
 
 //Parameters for specific upgrades
-upgrade1.priority=50
+upgrade1.priority=60
 
-upgrade2.priority=45
+upgrade2.priority=35
 upgrade2.pathlevel=2
 

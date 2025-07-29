@@ -10,7 +10,7 @@ building.icon=chiseledstonebrick
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Tour nord
+initial.nativename=Touor du nord
 initial.priority=650
 initial.tag=patrol
 initial.tag=scaffoldings

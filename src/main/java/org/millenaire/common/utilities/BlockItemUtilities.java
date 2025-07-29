@@ -84,8 +84,8 @@ public class BlockItemUtilities {
   private static Map<Material, String> createMaterialNameMap() {
     Map<Material, String> result = new HashMap<>(50);
     result.put(Material.AIR, "air");
-    result.put(Material.GRASS, "grass");
-    result.put(Material.GROUND, "ground");
+    result.put(Material.ORGANIC, "grass");
+    result.put(Material.EARTH, "ground");
     result.put(Material.WOOD, "wood");
     result.put(Material.ROCK, "rock");
     result.put(Material.IRON, "iron");
@@ -94,12 +94,12 @@ public class BlockItemUtilities {
     result.put(Material.LAVA, "lava");
     result.put(Material.LEAVES, "leaves");
     result.put(Material.PLANTS, "plants");
-    result.put(Material.VINE, "vine");
+    result.put(Material.TALL_PLANTS, "vine");
     result.put(Material.SPONGE, "sponge");
-    result.put(Material.CLOTH, "cloth");
+    result.put(Material.WOOL, "cloth");
     result.put(Material.FIRE, "fire");
     result.put(Material.SAND, "sand");
-    result.put(Material.CIRCUITS, "circuits");
+    result.put(Material.MISCELLANEOUS, "circuits");
     result.put(Material.CARPET, "carpet");
     result.put(Material.GLASS, "glass");
     result.put(Material.REDSTONE_LIGHT, "redstone_light");
@@ -108,7 +108,7 @@ public class BlockItemUtilities {
     result.put(Material.ICE, "ice");
     result.put(Material.PACKED_ICE, "packed_ice");
     result.put(Material.SNOW, "snow");
-    result.put(Material.CRAFTED_SNOW, "crafted_snow");
+    result.put(Material.SNOW_BLOCK, "crafted_snow");
     result.put(Material.CACTUS, "cactus");
     result.put(Material.CLAY, "clay");
     result.put(Material.GOURD, "gourd");
@@ -121,7 +121,7 @@ public class BlockItemUtilities {
   
   public static String getBlockCanonicalName(Block block) {
     if (block != null)
-      return ((ResourceLocation)Block.REGISTRY.getNameForObject(block)).toString(); 
+      return ((ResourceLocation)Block.REGISTRY.getKey(block)).toString(); 
     return null;
   }
   
@@ -279,7 +279,7 @@ public class BlockItemUtilities {
   public static boolean isBlockSolid(Block b) {
     if (b == null)
       return false; 
-    if (b.getDefaultState().isFullBlock() || b.getDefaultState().isTopSolid())
+    if (b.getDefaultState().isFullBlock() || b.getDefaultState().isFullyOpaque())
       return true; 
     if (b == Blocks.GLASS || b == Blocks.GLASS_PANE || b == Blocks.STONE_SLAB || b instanceof net.minecraft.block.BlockSlab || b instanceof net.minecraft.block.BlockStairs || isFence(b) || b == MillBlocks.PAPER_WALL || b instanceof org.millenaire.common.block.IBlockPath || b instanceof net.minecraft.block.BlockFarmland)
       return true; 
@@ -289,7 +289,7 @@ public class BlockItemUtilities {
   public static boolean isBlockWalkable(Block b) {
     if (b == null)
       return false; 
-    if (b.getDefaultState().isFullBlock() || b.getDefaultState().isTopSolid())
+    if (b.getDefaultState().isFullBlock() || b.getDefaultState().isFullyOpaque())
       return true; 
     if (b == Blocks.GLASS || b == Blocks.STONE_SLAB || b instanceof net.minecraft.block.BlockSlab || b instanceof net.minecraft.block.BlockStairs || b instanceof org.millenaire.common.block.IBlockPath || b instanceof net.minecraft.block.BlockFarmland)
       return true; 

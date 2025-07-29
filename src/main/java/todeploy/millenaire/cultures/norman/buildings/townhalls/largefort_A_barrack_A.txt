@@ -10,7 +10,7 @@ building.icon=normanbroadsword
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Salle des gardes
+initial.nativename=Endret d'Garde
 initial.priority=900
 initial.male=guard
 initial.male=guard

@@ -6,7 +6,7 @@ building.max=1
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Petit verger
+initial.nativename=Ptit Gardin
 initial.priority=1000
 initial.pathwidth=1
 initial.tag=lumbermanorchard

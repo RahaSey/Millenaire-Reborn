@@ -8,7 +8,7 @@ building.icon=normanbroadsword
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Maison du garde
+initial.nativename=Maisaon du Garde
 initial.priority=900
 initial.male=guard
 initial.female=wife

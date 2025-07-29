@@ -7,7 +7,7 @@ building.icon=normanbroadsword
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Château félon
+initial.nativename=Châté des Bandits
 initial.male=felonbaron
 initial.male=felonsoldier
 initial.male=felonsoldier

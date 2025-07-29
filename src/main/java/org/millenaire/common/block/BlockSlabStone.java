@@ -29,7 +29,7 @@ public class BlockSlabStone extends BlockSlab implements IMetaBlockName {
   
   public BlockSlabStone(String blockName) {
     super(Material.ROCK);
-    IBlockState iblockstate = this.blockState.getBaseState();
+    IBlockState iblockstate = this.stateContainer.getBaseState();
     if (isDouble()) {
       iblockstate = iblockstate.withProperty((IProperty)SEAMLESS, Boolean.valueOf(false));
     } else {
@@ -49,27 +49,27 @@ public class BlockSlabStone extends BlockSlab implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((BlockDecorativeStone.EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((BlockDecorativeStone.EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-    return ((BlockDecorativeStone.EnumType)state.getValue((IProperty)VARIANT)).getMapColor();
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    return ((BlockDecorativeStone.EnumType)state.get((IProperty)VARIANT)).getMapColor();
   }
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    i |= ((BlockDecorativeStone.EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    i |= ((BlockDecorativeStone.EnumType)state.get((IProperty)VARIANT)).getMetadata();
     if (isDouble()) {
-      if (((Boolean)state.getValue((IProperty)SEAMLESS)).booleanValue())
+      if (((Boolean)state.get((IProperty)SEAMLESS)).booleanValue())
         i |= 0x8; 
-    } else if (state.getValue((IProperty)HALF) == BlockSlab.EnumBlockHalf.TOP) {
+    } else if (state.get((IProperty)HALF) == BlockSlab.EnumBlockHalf.TOP) {
       i |= 0x8;
     } 
     return i;
   }
   
   public String getSpecialName(ItemStack stack) {
-    return getTranslationKey(stack.getMetadata());
+    return getUnlocalizedName(stack.getMetadata());
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -82,7 +82,7 @@ public class BlockSlabStone extends BlockSlab implements IMetaBlockName {
     return iblockstate;
   }
   
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (BlockDecorativeStone.EnumType enumtype : BlockDecorativeStone.EnumType.values()) {
       if (enumtype.hasSlab())
         items.add(new ItemStack((Block)this, 1, enumtype.getMetadata())); 
@@ -93,12 +93,8 @@ public class BlockSlabStone extends BlockSlab implements IMetaBlockName {
     return BlockDecorativeStone.EnumType.byMetadata(stack.getMetadata() & 0x7);
   }
   
-  public String getTranslationKey(int meta) {
-    return "tile.millenaire.slabs_" + ((BlockDecorativeStone.EnumType)getStateFromMeta(meta).getValue((IProperty)VARIANT)).getName();
-  }
-  
   public String getUnlocalizedName(int meta) {
-    return getUnlocalizedName();
+    return "tile.millenaire.slabs_" + ((BlockDecorativeStone.EnumType)getStateFromMeta(meta).get((IProperty)VARIANT)).getName();
   }
   
   public IProperty<?> getVariantProperty() {

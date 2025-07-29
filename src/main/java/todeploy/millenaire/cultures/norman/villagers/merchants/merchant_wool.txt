@@ -1,4 +1,4 @@
-native_name=Marchand de textiles
+native_name=Marchànd d'Textiles
 gender=male
 familyNameList=merchant_wool_family_names
 firstNameList=merchant_wool_first_names

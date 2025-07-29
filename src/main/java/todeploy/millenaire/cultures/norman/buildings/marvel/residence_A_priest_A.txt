@@ -10,7 +10,7 @@ building.icon=book
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Chambre du prêtre
+initial.nativename=Chàmbre du Prêtre
 initial.priority=100
 initial.male=marvelpriest
 initial.tag=autospawnvillagers

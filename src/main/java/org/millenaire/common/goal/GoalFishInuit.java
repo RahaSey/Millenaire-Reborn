@@ -10,7 +10,7 @@ import org.millenaire.common.utilities.MillCommonUtilities;
 public class GoalFishInuit extends GoalFish {
   protected void addFishResults(MillVillager villager) {
     villager.addToInv(Items.FISH, 1);
-    if (MillCommonUtilities.chanceOn(5))
+    if (MillCommonUtilities.chanceOn(4))
       villager.addToInv(Blocks.BONE_BLOCK, 1); 
   }
 }

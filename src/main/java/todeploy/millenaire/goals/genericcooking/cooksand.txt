@@ -20,3 +20,4 @@ minimumtocook=3
 helditems=sand
 
 townhalllimit=glass,1024
+buildinglimit=glass,128

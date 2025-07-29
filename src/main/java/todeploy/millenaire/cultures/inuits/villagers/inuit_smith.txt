@@ -43,10 +43,10 @@ goal=makefurplate
 goal=makefurhelmet
 goal=makefurlegs
 
-requiredGood=leatherboots,1
-requiredGood=leatherhelmet,1
-requiredGood=leatherlegs,1
-requiredGood=leatherchest,1
+requiredGood=leatherboots,2
+requiredGood=leatherhelmet,2
+requiredGood=leatherlegs,2
+requiredGood=leatherchest,2
 
 requiredGood=leather,16
 requiredGood=tannedhide,16

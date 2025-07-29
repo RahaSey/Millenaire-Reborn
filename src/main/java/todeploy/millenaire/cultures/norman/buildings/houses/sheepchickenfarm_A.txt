@@ -8,7 +8,7 @@ building.icon=wool_white
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Elevage ovin
+initial.nativename=Ferme à Berbis
 initial.priority=1000
 initial.male=shepherd
 initial.female=shepherdf

@@ -276,12 +276,12 @@ public class CultureLanguage {
           continue;
         } 
         if (key.equals(rel_parent)) {
-          if (!(v1.getRecord()).fathersName.equals(v2.getName()) && !(v1.getRecord()).mothersName.equals(v2.getName()))
+          if (!(v1.getRecord()).fathersName.equals(v2.func_70005_c_()) && !(v1.getRecord()).mothersName.equals(v2.func_70005_c_()))
             return false; 
           continue;
         } 
         if (key.equals(rel_child)) {
-          if (!(v2.getRecord()).fathersName.equals(v1.getName()) && !(v2.getRecord()).mothersName.equals(v1.getName()))
+          if (!(v2.getRecord()).fathersName.equals(v1.func_70005_c_()) && !(v2.getRecord()).mothersName.equals(v1.func_70005_c_()))
             return false; 
           continue;
         } 
@@ -297,12 +297,12 @@ public class CultureLanguage {
           continue;
         } 
         if (key.equals(rel_parent)) {
-          if ((v1.getRecord()).fathersName.equals(v2.getName()) || (v1.getRecord()).mothersName.equals(v2.getName()))
+          if ((v1.getRecord()).fathersName.equals(v2.func_70005_c_()) || (v1.getRecord()).mothersName.equals(v2.func_70005_c_()))
             return false; 
           continue;
         } 
         if (key.equals(rel_child)) {
-          if ((v2.getRecord()).fathersName.equals(v1.getName()) || (v2.getRecord()).mothersName.equals(v1.getName()))
+          if ((v2.getRecord()).fathersName.equals(v1.func_70005_c_()) || (v2.getRecord()).mothersName.equals(v1.func_70005_c_()))
             return false; 
           continue;
         } 

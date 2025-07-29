@@ -32,11 +32,11 @@ import org.millenaire.common.world.WorldGenSakura;
 
 public class BlockMillSapling extends BlockBush implements IGrowable {
   public enum EnumMillWoodType {
-    APPLETREE(MapColor.WOOD),
-    OLIVETREE(MapColor.WOOD),
-    PISTACHIO(MapColor.WOOD),
-    CHERRY(MapColor.WOOD),
-    SAKURA(MapColor.WOOD);
+    APPLETREE((String)MapColor.WOOD),
+    OLIVETREE((String)MapColor.WOOD),
+    PISTACHIO((String)MapColor.WOOD),
+    CHERRY((String)MapColor.WOOD),
+    SAKURA((String)MapColor.WOOD);
     
     private final MapColor mapColor;
     
@@ -56,7 +56,7 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   private final EnumMillWoodType type;
   
   protected BlockMillSapling(String blockName, EnumMillWoodType type) {
-    setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)STAGE, Integer.valueOf(0)));
     this.type = type;
     setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
@@ -75,7 +75,7 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   }
   
   protected BlockStateContainer createBlockState() {
-    return new BlockStateContainer((Block)this, new IProperty[] { STAGE });
+    return new BlockStateContainer((Block)this, new IProperty[] { (IProperty)STAGE });
   }
   
   public int damageDropped(IBlockState state) {
@@ -83,38 +83,38 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   }
   
   public void generateTree(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+    WorldGenAppleTree worldGenAppleTree;
+    WorldGenOliveTree worldGenOliveTree;
+    WorldGenPistachio worldGenPistachio;
+    WorldGenCherry worldGenCherry;
+    WorldGenSakura worldGenSakura;
     if (!TerrainGen.saplingGrowTree(worldIn, rand, pos))
       return; 
-    
-    WorldGenerator generator = null;
-    
+    WorldGenerator worldgenerator = (rand.nextInt(10) == 0) ? (WorldGenerator)new WorldGenBigTree(true) : (WorldGenerator)new WorldGenTrees(true);
+    int i = 0;
+    int j = 0;
+    boolean flag = false;
     switch (this.type) {
       case APPLETREE:
-        generator = new WorldGenAppleTree(true);
+        worldGenAppleTree = new WorldGenAppleTree(true);
         break;
       case OLIVETREE:
-        generator = new WorldGenOliveTree(true);
+        worldGenOliveTree = new WorldGenOliveTree(true);
         break;
       case PISTACHIO:
-        generator = new WorldGenPistachio(true);
+        worldGenPistachio = new WorldGenPistachio(true);
         break;
       case CHERRY:
-        generator = new WorldGenCherry(true);
+        worldGenCherry = new WorldGenCherry(true);
         break;
       case SAKURA:
-        generator = new WorldGenSakura(true);
+        worldGenSakura = new WorldGenSakura(true);
         break;
-      default:
-        generator = (rand.nextInt(10) == 0) ? new WorldGenBigTree(true) : new WorldGenTrees(true);
-        break;
-    }
-    
+    } 
     IBlockState iblockstate2 = Blocks.AIR.getDefaultState();
     worldIn.setBlockState(pos, iblockstate2, 4);
-    
-    if (!generator.generate(worldIn, rand, pos.add(0, 0, 0))) {
-      worldIn.setBlockState(pos, state, 4);
-    }
+    if (!worldGenSakura.generate(worldIn, rand, pos.add(0, 0, 0)))
+      worldIn.setBlockState(pos, state, 4); 
   }
   
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -123,17 +123,17 @@ public class BlockMillSapling extends BlockBush implements IGrowable {
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    i |= ((Integer)state.getValue(STAGE)).intValue();
+    i |= ((Integer)state.get((IProperty)STAGE)).intValue();
     return i;
   }
   
   public IBlockState getStateFromMeta(int meta) {
-    return getDefaultState().withProperty(STAGE, Integer.valueOf(meta & 0x8));
+    return getDefaultState().withProperty((IProperty)STAGE, Integer.valueOf(meta & 0x8));
   }
   
   public void grow(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    if (((Integer)state.getValue(STAGE)).intValue() == 0) {
-      worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
+    if (((Integer)state.get((IProperty)STAGE)).intValue() == 0) {
+      worldIn.setBlockState(pos, state.cycle((IProperty)STAGE), 4);
     } else {
       generateTree(worldIn, pos, state, rand);
     } 

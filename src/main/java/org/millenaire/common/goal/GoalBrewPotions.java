@@ -15,17 +15,17 @@ public class GoalBrewPotions extends Goal {
   public Goal.GoalInformation getDestination(MillVillager villager) throws Exception {
     int nbWarts = villager.getHouse().countGoods(Items.NETHER_WART);
     int nbBottles = villager.getHouse().countGoods(Items.GLASS_BOTTLE);
-    int nbPotions = villager.getHouse().countGoods((Item)Items.POTIONITEM, -1);
+    int nbPotions = villager.getHouse().countGoods((Item)Items.POTION, -1);
     for (Point p : (villager.getHouse().getResManager()).brewingStands) {
       TileEntityBrewingStand brewingStand = p.getBrewingStand(villager.world);
-      if (brewingStand != null && brewingStand.getField(0) == 0) {
+      if (brewingStand != null && brewingStand.func_174887_a_(0) == 0) {
         if (brewingStand.getStackInSlot(3) == ItemStack.EMPTY && nbWarts > 0 && nbPotions < 64)
           return packDest(p, villager.getHouse()); 
         if (nbBottles > 2 && (brewingStand
           .getStackInSlot(0) == ItemStack.EMPTY || brewingStand.getStackInSlot(1) == ItemStack.EMPTY || brewingStand.getStackInSlot(2) == ItemStack.EMPTY) && nbPotions < 64)
           return packDest(p, villager.getHouse()); 
         for (int i = 0; i < 3; i++) {
-          if (brewingStand.getStackInSlot(i) != null && brewingStand.getStackInSlot(i).getItem() == Items.POTIONITEM && brewingStand.getStackInSlot(i).getItemDamage() == 16)
+          if (brewingStand.getStackInSlot(i) != null && brewingStand.getStackInSlot(i).getItem() == Items.POTION && brewingStand.getStackInSlot(i).getDamage() == 16)
             return packDest(p, villager.getHouse()); 
         } 
       } 
@@ -40,11 +40,11 @@ public class GoalBrewPotions extends Goal {
   public boolean performAction(MillVillager villager) throws Exception {
     int nbWarts = villager.getHouse().countGoods(Items.NETHER_WART);
     int nbBottles = villager.getHouse().countGoods(Items.GLASS_BOTTLE);
-    int nbPotions = villager.getHouse().countGoods((Item)Items.POTIONITEM);
+    int nbPotions = villager.getHouse().countGoods((Item)Items.POTION);
     TileEntityBrewingStand brewingStand = villager.getGoalDestPoint().getBrewingStand(villager.world);
     if (brewingStand == null)
       return true; 
-    if (brewingStand.getField(0) == 0) {
+    if (brewingStand.func_174887_a_(0) == 0) {
       if (brewingStand.getStackInSlot(3) == ItemStack.EMPTY && nbWarts > 0 && nbPotions < 64) {
         brewingStand.setInventorySlotContents(3, new ItemStack(Items.NETHER_WART, 1));
         villager.getHouse().takeGoods(Items.NETHER_WART, 1);
@@ -52,16 +52,16 @@ public class GoalBrewPotions extends Goal {
       if (nbBottles > 2 && nbPotions < 64)
         for (int j = 0; j < 3; j++) {
           if (brewingStand.getStackInSlot(j) == ItemStack.EMPTY) {
-            ItemStack waterPotion = new ItemStack((Item)Items.POTIONITEM, 1, 0);
+            ItemStack waterPotion = new ItemStack((Item)Items.POTION, 1, 0);
             waterPotion.setTagInfo("Potion", (NBTBase)new NBTTagString("minecraft:water"));
             brewingStand.setInventorySlotContents(j, waterPotion);
             villager.getHouse().takeGoods(Items.GLASS_BOTTLE, 1);
           } 
         }  
       for (int i = 0; i < 3; i++) {
-        if (brewingStand.getStackInSlot(i) != ItemStack.EMPTY && brewingStand.getStackInSlot(i).getItem() == Items.POTIONITEM && brewingStand.getStackInSlot(i).getItemDamage() == 16) {
+        if (brewingStand.getStackInSlot(i) != ItemStack.EMPTY && brewingStand.getStackInSlot(i).getItem() == Items.POTION && brewingStand.getStackInSlot(i).getDamage() == 16) {
           brewingStand.setInventorySlotContents(i, ItemStack.EMPTY);
-          villager.getHouse().storeGoods((Item)Items.POTIONITEM, 16, 1);
+          villager.getHouse().storeGoods((Item)Items.POTION, 16, 1);
         } 
       } 
     } 

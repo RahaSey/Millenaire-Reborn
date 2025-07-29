@@ -8,7 +8,7 @@ building.icon=normanplate
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Armurerie
+initial.nativename=Arsénal
 initial.priority=800
 initial.male=smith
 initial.female=wife

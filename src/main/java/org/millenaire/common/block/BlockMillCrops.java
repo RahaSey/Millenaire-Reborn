@@ -58,8 +58,9 @@ public class BlockMillCrops extends BlockBush implements IGrowable {
     this.seed = seed;
     setUnlocalizedName("millenaire." + cropName);
     setRegistryName(cropName);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)AGE, Integer.valueOf(0)));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)AGE, Integer.valueOf(0)));
   }
+  
   public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
     IBlockState soil = worldIn.getBlockState(pos.down());
     return ((worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && soil.getBlock().canSustainPlant(soil, (IBlockAccess)worldIn, pos.down(), EnumFacing.UP, (IPlantable)this));
@@ -82,7 +83,7 @@ public class BlockMillCrops extends BlockBush implements IGrowable {
   }
   
   protected int getAge(IBlockState state) {
-    return ((Integer)state.getValue((IProperty)getAgeProperty())).intValue();
+    return ((Integer)state.get((IProperty)getAgeProperty())).intValue();
   }
   
   protected PropertyInteger getAgeProperty() {
@@ -90,11 +91,11 @@ public class BlockMillCrops extends BlockBush implements IGrowable {
   }
   
   protected int getBonemealAgeIncrease(World worldIn) {
-    return MathHelper.getInt(worldIn.rand, 2, 5);
+    return MathHelper.nextInt(worldIn.rand, 2, 5);
   }
   
   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-    return CROPS_AABB[((Integer)state.getValue((IProperty)getAgeProperty())).intValue()];
+    return CROPS_AABB[((Integer)state.get((IProperty)getAgeProperty())).intValue()];
   }
   
   public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -150,7 +151,7 @@ public class BlockMillCrops extends BlockBush implements IGrowable {
   }
   
   public boolean isMaxAge(IBlockState state) {
-    return (((Integer)state.getValue((IProperty)getAgeProperty())).intValue() >= getMaxAge());
+    return (((Integer)state.get((IProperty)getAgeProperty())).intValue() >= getMaxAge());
   }
   
   public int quantityDropped(Random par1Random) {

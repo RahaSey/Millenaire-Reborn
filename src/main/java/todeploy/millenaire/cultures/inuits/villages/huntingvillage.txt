@@ -65,6 +65,7 @@ never=farmp
 never=shamanistic
 never=council
 never=offering1
+never=offering2
 never=carver
 
 //Selling prices=

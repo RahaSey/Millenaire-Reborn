@@ -40,7 +40,7 @@ public class BlockRosette extends BlockPane {
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setSoundType(soundType);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false)).withProperty((IProperty)SOUTH, Boolean.valueOf(false)).withProperty((IProperty)WEST, Boolean.valueOf(false)).withProperty((IProperty)ROSETTE_NORTH, Boolean.valueOf(false))
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)NORTH, Boolean.valueOf(false)).withProperty((IProperty)EAST, Boolean.valueOf(false)).withProperty((IProperty)SOUTH, Boolean.valueOf(false)).withProperty((IProperty)WEST, Boolean.valueOf(false)).withProperty((IProperty)ROSETTE_NORTH, Boolean.valueOf(false))
         .withProperty((IProperty)ROSETTE_EAST, Boolean.valueOf(false)).withProperty((IProperty)ROSETTE_SOUTH, Boolean.valueOf(false)).withProperty((IProperty)ROSETTE_WEST, Boolean.valueOf(false)).withProperty((IProperty)ROSETTE_UP, Boolean.valueOf(false)).withProperty((IProperty)ROSETTE_DOWN, Boolean.valueOf(false)));
   }
   
@@ -70,11 +70,11 @@ public class BlockRosette extends BlockPane {
   }
   
   @SideOnly(Side.CLIENT)
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.TRANSLUCENT;
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
     return MapColor.GRAY;
   }
   

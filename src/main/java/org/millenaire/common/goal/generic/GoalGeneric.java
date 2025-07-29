@@ -190,7 +190,7 @@ public abstract class GoalGeneric extends Goal implements ParametersManager.Defa
   public abstract boolean isPossibleGenericGoal(MillVillager paramMillVillager) throws Exception;
   
   public final boolean isPossibleSpecific(MillVillager villager) throws Exception {
-    if (this.reoccurDelay > 0 && villager.lastGoalTime.containsKey(this) && ((Long)villager.lastGoalTime.get(this)).longValue() + this.reoccurDelay > villager.world.getWorldTime())
+    if (this.reoccurDelay > 0 && villager.lastGoalTime.containsKey(this) && ((Long)villager.lastGoalTime.get(this)).longValue() + this.reoccurDelay > villager.world.getDayTime())
       return false; 
     if (!isPossibleGenericGoal(villager))
       return false; 

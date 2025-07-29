@@ -8,7 +8,7 @@ building.icon=stonebrick
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Palais épiscopal
+initial.nativename=Palais d'l'Éveque
 initial.priority=1000
 initial.male=bishop
 initial.subbuilding=residence_A_orderoutpost

@@ -29,7 +29,7 @@ public class GoalBreedAnimals extends Goal {
   
   private static final Item[] CARROTS = new Item[] { Items.CARROT };
   
-  private Item[] getBreedingItems(Class<? extends EntityAnimal> animalClass) {
+  private Item[] getBreedingItems(Class<EntityCow> animalClass) {
     if (animalClass == EntityCow.class || animalClass == EntitySheep.class)
       return CEREALS; 
     if (animalClass == EntityPig.class)
@@ -40,8 +40,8 @@ public class GoalBreedAnimals extends Goal {
   }
   
   public Goal.GoalInformation getDestination(MillVillager villager) throws Exception {
-    List<Class<? extends EntityAnimal>> validAnimals = getValidAnimalClasses(villager);
-    for (Class<? extends EntityAnimal> animalClass : validAnimals) {
+    List<Class<?>> validAnimals = getValidAnimalClasses(villager);
+    for (Class<?> animalClass : validAnimals) {
       Item[] breedingItems = getBreedingItems(animalClass);
       boolean available = false;
       if (breedingItems == null) {
@@ -56,7 +56,7 @@ public class GoalBreedAnimals extends Goal {
         int targetAnimals = 0;
         for (int i = 0; i < (villager.getHouse().getResManager()).spawns.size(); i++) {
           if (animalClass.isAssignableFrom(EntityList.getClass((villager.getHouse().getResManager()).spawnTypes.get(i))))
-            targetAnimals = ((CopyOnWriteArrayList<?>)(villager.getHouse().getResManager()).spawns.get(i)).size(); 
+            targetAnimals = ((CopyOnWriteArrayList)(villager.getHouse().getResManager()).spawns.get(i)).size(); 
         } 
         List<Entity> animals = WorldUtilities.getEntitiesWithinAABB(villager.world, animalClass, villager.getHouse().getPos(), 15, 10);
         int nbAdultAnimal = 0, nbAnimal = 0;
@@ -96,8 +96,8 @@ public class GoalBreedAnimals extends Goal {
     return JPS_CONFIG_WIDE;
   }
   
-  private List<Class<? extends EntityAnimal>> getValidAnimalClasses(MillVillager villager) {
-    List<Class<? extends EntityAnimal>> validAnimals = new ArrayList<>();
+  private List<Class> getValidAnimalClasses(MillVillager villager) {
+    List<Class<?>> validAnimals = new ArrayList<>();
     if (villager.getHouse().containsTags("sheeps")) {
       validAnimals.add(EntitySheep.class);
       validAnimals.add(EntityChicken.class);
@@ -124,11 +124,11 @@ public class GoalBreedAnimals extends Goal {
   }
   
   public boolean performAction(MillVillager villager) throws Exception {
-    List<Class<? extends EntityAnimal>> validAnimals = getValidAnimalClasses(villager);
-    for (Class<? extends EntityAnimal> animalClass : validAnimals) {
+    List<Class<?>> validAnimals = getValidAnimalClasses(villager);
+    for (Class<?> animalClass : validAnimals) {
       List<Entity> animals = WorldUtilities.getEntitiesWithinAABB(villager.world, animalClass, villager.getPos(), 4, 2);
       for (Entity ent : animals) {
-        if (!ent.isDead) {
+        if (!ent.removed) {
           EntityAnimal animal = (EntityAnimal)ent;
           Item[] breedingItems = getBreedingItems(animal.getClass());
           boolean available = false;
@@ -144,7 +144,7 @@ public class GoalBreedAnimals extends Goal {
             } 
           } 
           if (available)
-            if (!animal.isChild() && !animal.isInLove() && animal.getGrowingAge() == 0) {
+            if (!animal.func_70631_g_() && !animal.isInLove() && animal.getGrowingAge() == 0) {
               animal.setInLove(null);
               animal.setAttackTarget(null);
               if (foundBreedingItem != null)

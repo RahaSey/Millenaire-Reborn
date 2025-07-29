@@ -99,7 +99,7 @@ public class GoalGenericHarvestCrop extends GoalGeneric {
   private boolean isValidHarvestSoil(World world, Point p) {
     if (this.harvestBlockState != null)
       return (p.getAbove().getBlockActualState(world) == this.harvestBlockState); 
-    return (p.getAbove().getBlock(world) == Block.REGISTRY.getObject(this.cropType) && p.getAbove().getMeta(world) == getCropBlockRipeMeta(this.cropType));
+    return (p.getAbove().getBlock(world) == Block.REGISTRY.getOrDefault(this.cropType) && p.getAbove().getMeta(world) == getCropBlockRipeMeta(this.cropType));
   }
   
   public boolean performAction(MillVillager villager) {

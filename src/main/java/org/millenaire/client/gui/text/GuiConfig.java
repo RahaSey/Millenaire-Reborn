@@ -110,7 +110,7 @@ public class GuiConfig extends GuiText {
         if (config.getDesc().length() > 0)
           text.add(new TextLine(config.getDesc(), false)); 
         if (config.hasTextField()) {
-          GuiText.MillGuiTextField textField = new GuiText.MillGuiTextField(buttonId++, this.fontRenderer, 0, 0, 0, 0, config.key);
+          GuiText.MillGuiTextField textField = new GuiText.MillGuiTextField(buttonId++, this.fontRendererObj, 0, 0, 0, 0, config.key);
           textField.setText(config.getStringValue());
           textField.setMaxStringLength(config.strLimit);
           textField.setTextColor(-1);

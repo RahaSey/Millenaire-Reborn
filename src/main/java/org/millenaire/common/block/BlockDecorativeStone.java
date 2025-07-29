@@ -29,7 +29,7 @@ import org.millenaire.common.item.IMetaBlockName;
 public class BlockDecorativeStone extends BlockSlab implements IMetaBlockName {
   public enum EnumType implements IStringSerializable {
     MUDBRICK(0, "mudbrick", MapColor.BROWN, true),
-    COOKEDBRICK(1, "cookedbrick", MapColor.WHITE_STAINED_HARDENED_CLAY, true),
+    COOKEDBRICK(1, "cookedbrick", MapColor.WHITE_TERRACOTTA, true),
     MAYANGOLDBLOCK(2, "mayangoldblock", MapColor.GOLD, false),
     BYZANTINEMOSAICRED(3, "byzantine_mosaic_red", MapColor.RED, false),
     BYZANTINEMOSAICBLUE(4, "byzantine_mosaic_blue", MapColor.BLUE, false),
@@ -101,7 +101,7 @@ public class BlockDecorativeStone extends BlockSlab implements IMetaBlockName {
     setHardness(1.5F);
     setResistance(10.0F);
     setSoundType(SoundType.STONE);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)VARIANT, EnumType.MUDBRICK));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)VARIANT, EnumType.MUDBRICK));
   }
   
   protected BlockStateContainer createBlockState() {
@@ -109,22 +109,22 @@ public class BlockDecorativeStone extends BlockSlab implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMapColor();
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    return ((EnumType)state.get((IProperty)VARIANT)).getMapColor();
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)VARIANT)).getName();
   }
   
-  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
     return getStateFromMeta(meta);
   }
   
@@ -133,7 +133,7 @@ public class BlockDecorativeStone extends BlockSlab implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (EnumType enumtype : EnumType.values()) {
       if (enumtype != EnumType.COOKEDBRICK)
         items.add(new ItemStack((Block)this, 1, enumtype.getMetadata())); 
@@ -144,12 +144,8 @@ public class BlockDecorativeStone extends BlockSlab implements IMetaBlockName {
     return EnumType.byMetadata(stack.getMetadata() & 0x7);
   }
   
-  public String getTranslationKey(int meta) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(meta).getValue((IProperty)VARIANT)).getName();
-  }
-  
   public String getUnlocalizedName(int meta) {
-    return getTranslationKey(meta);
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(meta).get((IProperty)VARIANT)).getName();
   }
   
   public IProperty<?> getVariantProperty() {

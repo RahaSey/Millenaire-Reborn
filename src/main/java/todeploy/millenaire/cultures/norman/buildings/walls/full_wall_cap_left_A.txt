@@ -10,7 +10,7 @@ building.areatoclearwidthafter=0
 building.iswallsegment=true
 
 initial.startlevel=-5
-initial.nativename=Fin de muraille
+initial.nativename=But d'la Muraile
 initial.nopathstobuilding=true
 initial.priority=500
 initial.tag=wall_level_1

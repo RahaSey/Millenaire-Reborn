@@ -61,17 +61,17 @@ public class GuiHelp extends GuiText {
     if (mouseX > 0 && mouseX < 32) {
       int pos = mouseY / 32;
       if (pos >= 0 && pos < 13) {
-        int stringlength = this.fontRenderer.getStringWidth(LanguageUtilities.string("help.tab_" + (pos + 1)));
+        int stringlength = this.fontRendererObj.getStringWidth(LanguageUtilities.string("help.tab_" + (pos + 1)));
         drawGradientRect(mouseX + 10 - 3, mouseY + 10 - 3, mouseX + 10 + stringlength + 3, mouseY + 10 + 14, -1073741824, -1073741824);
-        this.fontRenderer.drawString(LanguageUtilities.string("help.tab_" + (pos + 1)), mouseX + 10, mouseY + 10, 9474192);
+        this.fontRendererObj.drawString(LanguageUtilities.string("help.tab_" + (pos + 1)), mouseX + 10, mouseY + 10, 9474192);
       } 
     } 
     if (mouseX > 224 && mouseX < 256) {
       int pos = mouseY / 32;
       if (pos >= 0 && pos < 6) {
-        int stringlength = this.fontRenderer.getStringWidth(LanguageUtilities.string("help.tab_" + (pos + 8)));
+        int stringlength = this.fontRendererObj.getStringWidth(LanguageUtilities.string("help.tab_" + (pos + 8)));
         drawGradientRect(mouseX + 10 - 3, mouseY + 10 - 3, mouseX + 10 + stringlength + 3, mouseY + 10 + 14, -1073741824, -1073741824);
-        this.fontRenderer.drawString(LanguageUtilities.string("help.tab_" + (pos + 8)), mouseX + 10, mouseY + 10, 9474192);
+        this.fontRendererObj.drawString(LanguageUtilities.string("help.tab_" + (pos + 8)), mouseX + 10, mouseY + 10, 9474192);
       } 
     } 
     GL11.glEnable(2896);

@@ -1,4 +1,4 @@
-name=Village agricole
+name=Village d'Agritchultchure
 icon=wheat
 
 weight=10
@@ -98,7 +98,7 @@ sellingPrice=porkchops,18
 
 //Buying prices=
 buyingPrice=cobblestone,2
-buyingPrice=stone,4
+buyingPrice=stone,3
 buyingPrice=glass,4
 buyingPrice=bread,5
 buyingPrice=cider,50

@@ -38,7 +38,7 @@ public class GoalIndianGatherBrick extends Goal {
     } else if (!villager.lastGoalTime.containsKey(this)) {
       minimumBricksNotRequired = true;
     } else {
-      minimumBricksNotRequired = (villager.world.getWorldTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
+      minimumBricksNotRequired = (villager.world.getDayTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
     } 
     List<Point> vp = new ArrayList<>();
     List<Point> buildingp = new ArrayList<>();

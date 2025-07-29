@@ -33,14 +33,14 @@ public class BlockPath extends Block implements IBlockPath {
   private final String doubleSlabName;
   
   public BlockPath(String blockName, MapColor color, SoundType soundType) {
-    super(Material.GROUND, color);
+    super(Material.EARTH, color);
     setSoundType(soundType);
     this.singleSlabBlockName = blockName + "_slab";
     this.doubleSlabName = blockName;
     setUnlocalizedName("millenaire." + this.doubleSlabName);
     setRegistryName(this.doubleSlabName);
     this.useNeighborBrightness = true;
-    IBlockState iblockstate = this.blockState.getBaseState();
+    IBlockState iblockstate = this.stateContainer.getBaseState();
     iblockstate = iblockstate.withProperty((IProperty)STABLE, Boolean.valueOf(false));
     setDefaultState(iblockstate);
     setHarvestLevel("shovel", 0);
@@ -68,7 +68,7 @@ public class BlockPath extends Block implements IBlockPath {
     return (face == EnumFacing.DOWN) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
   }
   
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT;
   }
   
@@ -90,7 +90,7 @@ public class BlockPath extends Block implements IBlockPath {
   
   public int getMetaFromState(IBlockState state) {
     int i = 0;
-    if (((Boolean)state.getValue((IProperty)STABLE)).booleanValue())
+    if (((Boolean)state.get((IProperty)STABLE)).booleanValue())
       i |= 0x1; 
     return i;
   }
@@ -99,7 +99,7 @@ public class BlockPath extends Block implements IBlockPath {
     return (BlockPathSlab)Block.getBlockFromName("millenaire:" + this.singleSlabBlockName);
   }
   
-  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
     return getStateFromMeta(meta).withProperty((IProperty)STABLE, Boolean.valueOf(true));
   }
   

@@ -11,5 +11,5 @@ building.icon=bread
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Moulin abandonné
+initial.nativename=Moulin en pàncaïle
 

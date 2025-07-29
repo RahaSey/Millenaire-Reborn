@@ -12,4 +12,5 @@ building.icon=fence_birch
 initial.startlevel=-1
 initial.nativename=Napaaqtuq Nuna
 initial.translatedname=name_en,large grove
+initial.priority=3000
 

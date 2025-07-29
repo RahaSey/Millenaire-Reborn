@@ -1,4 +1,4 @@
-native_name=Forgeron
+native_name=Forgaeux
 gender=male
 familyNameList=family_names
 firstNameList=men_names

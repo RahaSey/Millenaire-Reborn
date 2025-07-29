@@ -71,13 +71,13 @@ public class BlockSnailSoil extends Block implements IMetaBlockName {
   public static final PropertyEnum<EnumType> PROGRESS = PropertyEnum.create("progress", EnumType.class);
   
   public BlockSnailSoil(String blockName) {
-    super(Material.GROUND);
+    super(Material.EARTH);
     setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setTickRandomly(true);
     setHarvestLevel("space", 0);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)PROGRESS, EnumType.SNAIL_SOIL_EMPTY));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)PROGRESS, EnumType.SNAIL_SOIL_EMPTY));
   }
   
   protected BlockStateContainer createBlockState() {
@@ -89,11 +89,11 @@ public class BlockSnailSoil extends Block implements IMetaBlockName {
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)PROGRESS)).getMetadata();
+    return ((EnumType)state.get((IProperty)PROGRESS)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)PROGRESS)).getName();
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)PROGRESS)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -101,7 +101,7 @@ public class BlockSnailSoil extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     items.add(new ItemStack(this, 1, 0));
     items.add(new ItemStack(this, 1, 3));
   }
@@ -113,7 +113,7 @@ public class BlockSnailSoil extends Block implements IMetaBlockName {
   }
   
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-    int currentValue = ((EnumType)state.getValue((IProperty)PROGRESS)).getMetadata();
+    int currentValue = ((EnumType)state.get((IProperty)PROGRESS)).getMetadata();
     if (currentValue < 3) {
       boolean waterAbove = (worldIn.getBlockState(pos.up()).getBlock() == Blocks.WATER);
       boolean airAboveWater = !worldIn.getBlockState(pos.up().up()).causesSuffocation();

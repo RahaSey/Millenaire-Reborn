@@ -45,7 +45,7 @@ public class ItemBrickMould extends ItemMill {
     if (world.getBlockState(pos).getBlock() != Blocks.AIR)
       return EnumActionResult.PASS; 
     ItemStack is = player.getHeldItem(hand);
-    if (is.getItemDamage() % 4 == 0) {
+    if (is.getDamage() % 4 == 0) {
       if (MillCommonUtilities.countChestItems((IInventory)player.inventory, Blocks.DIRT, 0) == 0 || MillCommonUtilities.countChestItems((IInventory)player.inventory, (Block)Blocks.SAND, 0) == 0) {
         if (!world.isRemote)
           ServerSender.sendTranslatedSentence(player, 'f', "ui.brickinstructions", new String[0]); 

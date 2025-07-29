@@ -113,7 +113,7 @@ public class GoalMinerMineResource extends Goal {
       if (MillConfigValues.LogMiner >= 3 && villager.extraLog)
         MillLog.debug(this, "Gathered sand at: " + villager.getGoalDestPoint()); 
     } else if (block == Blocks.STONE) {
-      if (blockState.getValue((IProperty)BlockStone.VARIANT) == BlockStone.EnumType.STONE) {
+      if (blockState.get((IProperty)BlockStone.VARIANT) == BlockStone.EnumType.STONE) {
         villager.addToInv(Blocks.COBBLESTONE, 1);
       } else {
         villager.addToInv(blockState, 1);

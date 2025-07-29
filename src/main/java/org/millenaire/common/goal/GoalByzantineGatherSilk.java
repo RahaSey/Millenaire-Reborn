@@ -72,7 +72,7 @@ public class GoalByzantineGatherSilk extends Goal {
     if (!villager.lastGoalTime.containsKey(this)) {
       delayOver = true;
     } else {
-      delayOver = (villager.world.getWorldTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
+      delayOver = (villager.world.getDayTime() > ((Long)villager.lastGoalTime.get(this)).longValue() + 2000L);
     } 
     for (Building kiln : villager.getTownHall().getBuildingsWithTag("silkwormfarm")) {
       int nb = kiln.getResManager().getNbSilkWormHarvestLocation();
@@ -90,7 +90,7 @@ public class GoalByzantineGatherSilk extends Goal {
   
   public boolean performAction(MillVillager villager) {
     if (WorldUtilities.getBlock(villager.world, villager.getGoalDestPoint()) == MillBlocks.SILK_WORM && 
-      WorldUtilities.getBlockState(villager.world, villager.getGoalDestPoint()).getValue((IProperty)BlockSilkWorm.PROGRESS) == BlockSilkWorm.EnumType.SILKWORMFULL) {
+      WorldUtilities.getBlockState(villager.world, villager.getGoalDestPoint()).get((IProperty)BlockSilkWorm.PROGRESS) == BlockSilkWorm.EnumType.SILKWORMFULL) {
       villager.addToInv((Item)MillItems.SILK, 0, 1);
       villager.setBlockAndMetadata(villager.getGoalDestPoint(), (Block)MillBlocks.SILK_WORM, 0);
       villager.swingArm(EnumHand.MAIN_HAND);

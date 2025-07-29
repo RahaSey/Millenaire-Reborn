@@ -10,7 +10,7 @@ building.icon=normanplate
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Armurerie
+initial.nativename=Grànd Arsénal du Fort
 initial.priority=800
 initial.male=smith
 initial.female=wife

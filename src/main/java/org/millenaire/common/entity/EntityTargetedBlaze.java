@@ -35,13 +35,13 @@ public class EntityTargetedBlaze extends EntityBlaze {
     return false;
   }
   
-  public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
-    super.readFromNBT(par1nbtTagCompound);
+  public void read(NBTTagCompound par1nbtTagCompound) {
+    super.read(par1nbtTagCompound);
     this.target = Point.read(par1nbtTagCompound, "targetPoint");
   }
   
-  public NBTTagCompound writeToNBT(NBTTagCompound par1nbtTagCompound) {
-    super.writeToNBT(par1nbtTagCompound);
+  public NBTTagCompound writeWithoutTypeId(NBTTagCompound par1nbtTagCompound) {
+    super.writeWithoutTypeId(par1nbtTagCompound);
     if (this.target != null)
       this.target.write(par1nbtTagCompound, "targetPoint"); 
     return par1nbtTagCompound;

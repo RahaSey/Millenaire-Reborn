@@ -55,24 +55,24 @@ public class ContainerFirePit extends Container {
     this.inputStart = this.inventorySlots.size();
     int i;
     for (i = 0; i < 3; i++)
-      addSlotToContainer((Slot)new SlotFirePitInput((IItemHandler)firePit.inputs, i, INPUT_POSITIONS[i][0], INPUT_POSITIONS[i][1])); 
+      addSlot((Slot)new SlotFirePitInput((IItemHandler)firePit.inputs, i, INPUT_POSITIONS[i][0], INPUT_POSITIONS[i][1])); 
     this.inputEnd = this.inventorySlots.size();
     this.fuelStart = this.inventorySlots.size();
-    addSlotToContainer((Slot)new SlotFirePitFuel((IItemHandler)firePit.fuel, 0, FUEL_POSITION[0], FUEL_POSITION[1]));
+    addSlot((Slot)new SlotFirePitFuel((IItemHandler)firePit.fuel, 0, FUEL_POSITION[0], FUEL_POSITION[1]));
     this.fuelEnd = this.inventorySlots.size();
     this.outputStart = this.inventorySlots.size();
     for (i = 0; i < 3; i++)
-      addSlotToContainer((Slot)new SlotFirePitOutput(player, (IItemHandler)firePit.outputs, i, OUTPUT_POSITIONS[i][0], OUTPUT_POSITIONS[i][1])); 
+      addSlot((Slot)new SlotFirePitOutput(player, (IItemHandler)firePit.outputs, i, OUTPUT_POSITIONS[i][0], OUTPUT_POSITIONS[i][1])); 
     this.outputEnd = this.inventorySlots.size();
     this.inventoryStart = this.inventorySlots.size();
     for (int row = 0; row < 3; row++) {
       for (int column = 0; column < 9; column++)
-        addSlotToContainer(new Slot((IInventory)playerInventory, column + row * 9 + 9, INV_POSITION[0] + column * 18, INV_POSITION[1] + row * 18)); 
+        addSlot(new Slot((IInventory)playerInventory, column + row * 9 + 9, INV_POSITION[0] + column * 18, INV_POSITION[1] + row * 18)); 
     } 
     this.inventoryEnd = this.inventorySlots.size();
     this.hotbarStart = this.inventorySlots.size();
     for (int hotbarIndex = 0; hotbarIndex < 9; hotbarIndex++)
-      addSlotToContainer(new Slot((IInventory)playerInventory, hotbarIndex, INV_POSITION[0] + hotbarIndex * 18, INV_POSITION[1] + 54 + 4)); 
+      addSlot(new Slot((IInventory)playerInventory, hotbarIndex, INV_POSITION[0] + hotbarIndex * 18, INV_POSITION[1] + 54 + 4)); 
     this.hotbarEnd = this.inventorySlots.size();
   }
   

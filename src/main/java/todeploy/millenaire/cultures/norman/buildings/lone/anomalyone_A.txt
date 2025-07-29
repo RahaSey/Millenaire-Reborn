@@ -6,6 +6,6 @@ building.travelbook_display=false
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Anomalie Une
+initial.nativename=Tchuriaeussitaïe Ieune
 initial.exploretag=explored_anomalyone
 

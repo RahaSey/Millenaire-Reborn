@@ -41,7 +41,7 @@ public class ItemPathSlab extends ItemBlock {
     BlockPos blockpos = pos;
     IBlockState iblockstate = worldIn.getBlockState(pos);
     if (iblockstate.getBlock() == this.singleSlab) {
-      boolean flag = (iblockstate.getValue((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP);
+      boolean flag = (iblockstate.get((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP);
       if ((side == EnumFacing.UP && !flag) || (side == EnumFacing.DOWN && flag))
         return true; 
     } 
@@ -50,7 +50,7 @@ public class ItemPathSlab extends ItemBlock {
     return (iblockstate1.getBlock() == this.singleSlab) ? true : super.canPlaceBlockOnSide(worldIn, blockpos, side, player, stack);
   }
   
-  protected <T extends Comparable<T>> IBlockState makeDoubleState(IProperty<T> p_185055_1_, T p_185055_2_) {
+  protected <T extends Comparable<T>> IBlockState makeDoubleState(IProperty<T> p_185055_1_, Comparable<?> p_185055_2_) {
     return this.doubleSlab.getDefaultState().withProperty(p_185055_1_, p_185055_2_);
   }
   
@@ -59,7 +59,7 @@ public class ItemPathSlab extends ItemBlock {
     if (!itemstack.isEmpty() && player.canPlayerEdit(pos.offset(facing), facing, itemstack)) {
       IBlockState iblockstate = worldIn.getBlockState(pos);
       if (iblockstate.getBlock() == this.singleSlab) {
-        BlockSlab.EnumBlockHalf blockslab$enumblockhalf = (BlockSlab.EnumBlockHalf)iblockstate.getValue((IProperty)BlockSlab.HALF);
+        BlockSlab.EnumBlockHalf blockslab$enumblockhalf = (BlockSlab.EnumBlockHalf)iblockstate.get((IProperty)BlockSlab.HALF);
         if ((facing == EnumFacing.UP && blockslab$enumblockhalf == BlockSlab.EnumBlockHalf.BOTTOM) || (facing == EnumFacing.DOWN && blockslab$enumblockhalf == BlockSlab.EnumBlockHalf.TOP)) {
           IBlockState doubleBlockState = this.doubleSlab.getDefaultState().withProperty((IProperty)IBlockPath.STABLE, Boolean.valueOf(true));
           AxisAlignedBB axisalignedbb = doubleBlockState.getCollisionBoundingBox((IBlockAccess)worldIn, pos);

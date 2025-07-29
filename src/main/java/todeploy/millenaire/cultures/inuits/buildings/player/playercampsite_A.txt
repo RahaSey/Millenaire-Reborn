@@ -12,4 +12,5 @@ building.icon=denierargent
 initial.startlevel=-1
 initial.nativename=Ikualavik
 initial.translatedname=name_en,campsite
+initial.priority=3000
 

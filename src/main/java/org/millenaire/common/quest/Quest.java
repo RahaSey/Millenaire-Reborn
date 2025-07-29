@@ -480,7 +480,7 @@ public class Quest {
     if (possibleVillagers.isEmpty())
       return null; 
     HashMap<String, QuestInstanceVillager> selectedOption = possibleVillagers.get(MillCommonUtilities.randomInt(possibleVillagers.size()));
-    QuestInstance qi = new QuestInstance(mw, this, profile, selectedOption, mw.world.getWorldTime());
+    QuestInstance qi = new QuestInstance(mw, this, profile, selectedOption, mw.world.getDayTime());
     profile.questInstances.add(qi);
     for (QuestInstanceVillager qiv : selectedOption.values())
       profile.villagersInQuests.put(Long.valueOf(qiv.id), qi); 

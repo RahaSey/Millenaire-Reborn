@@ -10,7 +10,7 @@ building.iswallsegment=true
 building.icon=banner_white
 
 initial.startlevel=-5
-initial.nativename=Porte
+initial.nativename=Grànd' Porte
 initial.tag=borderpostsign
 initial.tag=pathnode
 initial.tag=wall_level_0

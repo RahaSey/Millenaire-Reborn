@@ -4,6 +4,6 @@ building.max=0
 building.icon=sapling_pine
 
 initial.startlevel=-1
-initial.nativename=Bosquet Isolé
+initial.nativename=Isolaïe Bouaissrie
 initial.pathwidth=1
 initial.tag=grove

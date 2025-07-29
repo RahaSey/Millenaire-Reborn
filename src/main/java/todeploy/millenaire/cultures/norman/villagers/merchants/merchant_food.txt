@@ -1,4 +1,4 @@
-native_name=Marchand de nourriture
+native_name=Marchànd d'Mangerie
 gender=male
 familyNameList=merchant_food_family_names
 firstNameList=merchant_food_first_names

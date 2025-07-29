@@ -15,25 +15,34 @@ goal=gorest
 goal=gosocialise
 goal=chat
 goal=goDrink
+
 goal=bringBackResourcesHome
+goal=deliverResourcesShop
+
 goal=plantwheathome
 goal=harvestwheathome
-goal=plantpotatohome
-goal=harvestpotatohome
 goal=plantwheat
 goal=harvestwheat
-goal=makeleather
+
+goal=plantpotatohome
+goal=harvestpotatohome
+
 goal=plantpotato
 goal=harvestpotato
+
 goal=makepotatostew
+requiredGood=potato,64
+
+goal=makeleather
 goal=maketannedhide
 goal=makehidehanging
+goal=makebannerleather
+requiredGood=leather,8
 
 goal=tendfurnacetownhall
 
 goal=shoveldirt
-goal=makedirtwall
-goal=deliverResourcesShop
+goal=makedirtwallinuit
 
 collectGood=seeds
 collectGood=wheat
@@ -44,6 +53,7 @@ collectGood=bone
 bringBackHomeGood=wheat
 bringBackHomeGood=potato
 bringBackHomeGood=rottenflesh
+bringBackHomeGood=bone
 
 startingInv=seeds,8
 startingInv=potato,16

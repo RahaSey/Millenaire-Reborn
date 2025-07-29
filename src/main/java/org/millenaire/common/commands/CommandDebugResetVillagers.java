@@ -27,14 +27,14 @@ public class CommandDebugResetVillagers implements ICommand {
   }
   
   public int compareTo(ICommand o) {
-    return getName().compareTo(o.getName());
+    return getCommandName().compareTo(o.getCommandName());
   }
   
   public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-    World world = sender.getEntityWorld();
+    World world = sender.func_130014_f_();
     if (!world.isRemote) {
       if (!(sender instanceof EntityPlayer))
-        throw new WrongUsageException(getUsage(sender), new Object[0]); 
+        throw new WrongUsageException(getCommandUsage(sender), new Object[0]); 
       EntityPlayer senderPlayer = (EntityPlayer)sender;
       MillWorldData worldData = Mill.getMillWorld(world);
       Building village = worldData.getClosestVillage(new Point((Entity)senderPlayer));
@@ -49,7 +49,7 @@ public class CommandDebugResetVillagers implements ICommand {
             matchingVillagers.add(villager); 
         } 
         for (int i = matchingVillagers.size() - 1; i >= 0; i--) {
-          if (((MillVillager)matchingVillagers.get(i)).isDead) {
+          if (((MillVillager)matchingVillagers.get(i)).removed) {
             ((MillVillager)matchingVillagers.get(i)).despawnVillagerSilent();
             despawnedVillagers++;
             matchingVillagers.remove(i);
@@ -64,20 +64,20 @@ public class CommandDebugResetVillagers implements ICommand {
     } 
   }
   
-  public List<String> getAliases() {
+  public List<String> getCommandAliases() {
     return Collections.emptyList();
   }
   
-  public String getName() {
+  public String getCommandName() {
     return "millDebugResetVillagers";
   }
   
-  public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
+  public List<String> getTabCompletionOptions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos targetPos) {
     return Collections.emptyList();
   }
   
-  public String getUsage(ICommandSender sender) {
-    return "commands." + getName().toLowerCase() + ".usage";
+  public String getCommandUsage(ICommandSender sender) {
+    return "commands." + getCommandName().toLowerCase() + ".usage";
   }
   
   public boolean isUsernameIndex(String[] args, int index) {

@@ -1,4 +1,4 @@
-name=Hameau agricole
+name=Haumé d'Agritchultchure
 icon=cider
 type=hameau
 

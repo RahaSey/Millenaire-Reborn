@@ -10,7 +10,7 @@ building.icon=normanplate
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Direction de l'ordre
+initial.nativename=Piaeche d'l'Ordre
 initial.priority=10
 initial.male=ordervicar
 initial.tag=autospawnvillagers

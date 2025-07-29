@@ -31,7 +31,7 @@ public class ItemAmuletAlchemist extends ItemMill {
             if (entityIn == null)
               return 0.0F; 
             world = entityIn.world;
-            if (world.getTotalWorldTime() != this.lastUpdateTick) {
+            if (world.getGameTime() != this.lastUpdateTick) {
               float score = 0.0F;
               if (world != null && entityIn != null) {
                 Point p = new Point((Entity)entityIn);
@@ -65,7 +65,7 @@ public class ItemAmuletAlchemist extends ItemMill {
               if (score > 100.0F)
                 score = 100.0F; 
               this.savedScore = score * 15.0F / 100.0F;
-              this.lastUpdateTick = world.getTotalWorldTime();
+              this.lastUpdateTick = world.getGameTime();
               return this.savedScore;
             } 
             return this.savedScore;

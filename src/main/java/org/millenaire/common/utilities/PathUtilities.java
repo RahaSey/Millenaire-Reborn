@@ -60,7 +60,7 @@ public class PathUtilities {
     } 
     for (ip = 0; ip < path.size(); ip++) {
       if (pathShouldBuild[ip]) {
-        Block blockPathSlab;
+        BlockPathSlab blockPathSlab;
         AStarNode node = path.get(ip);
         AStarNode lastNode = null, nextNode = null;
         if (ip > 0)
@@ -90,12 +90,9 @@ public class PathUtilities {
         } 
         Point p = (new Point(node)).getBelow();
         Block nodePathBlock = pathBlock;
-        if (BlockItemUtilities.isPath(nodePathBlock) && halfSlab) {
-          blockPathSlab = ((IBlockPath)nodePathBlock).getSingleSlab();
-        } else {
-          blockPathSlab = nodePathBlock;
-        }
-        attemptPathBuild(th, th.world, pathPoints, p, blockPathSlab, pathMeta);
+        if (BlockItemUtilities.isPath(nodePathBlock) && halfSlab)
+          blockPathSlab = ((IBlockPath)nodePathBlock).getSingleSlab(); 
+        attemptPathBuild(th, th.world, pathPoints, p, (Block)blockPathSlab, pathMeta);
         if (lastNode != null) {
           int dx = p.getiX() - lastNode.x;
           int dz = p.getiZ() - lastNode.z;
@@ -121,12 +118,12 @@ public class PathUtilities {
               secondPointAlternate = p.getRelative(0.0D, 0.0D, (dz * direction));
             } 
             if (secondPoint != null) {
-              boolean success = attemptPathBuild(th, th.world, pathPoints, secondPoint, blockPathSlab, pathMeta);
+              boolean success = attemptPathBuild(th, th.world, pathPoints, secondPoint, (Block)blockPathSlab, pathMeta);
               if (!success && secondPointAlternate != null)
-                attemptPathBuild(th, th.world, pathPoints, secondPointAlternate, blockPathSlab, pathMeta); 
+                attemptPathBuild(th, th.world, pathPoints, secondPointAlternate, (Block)blockPathSlab, pathMeta); 
             } 
             if (thirdPoint != null)
-              attemptPathBuild(th, th.world, pathPoints, thirdPoint, blockPathSlab, pathMeta); 
+              attemptPathBuild(th, th.world, pathPoints, thirdPoint, (Block)blockPathSlab, pathMeta); 
           } 
         } 
         lastNodeHalfSlab = halfSlab;
@@ -140,7 +137,7 @@ public class PathUtilities {
   public static boolean canPathBeBuiltHere(IBlockState blockState) {
     Block block = blockState.getBlock();
     if (BlockItemUtilities.isPath(block))
-      return !((Boolean)blockState.getValue((IProperty)IBlockPath.STABLE)).booleanValue(); 
+      return !((Boolean)blockState.get((IProperty)IBlockPath.STABLE)).booleanValue(); 
     if (BlockItemUtilities.isBlockPathReplaceable(block) || BlockItemUtilities.isBlockDecorativePlant(block))
       return true; 
     return false;
@@ -148,10 +145,10 @@ public class PathUtilities {
   
   public static boolean canPathBeBuiltHereOld(IBlockState blockState) {
     Block block = blockState.getBlock();
-    if (block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND || block == Blocks.GRAVEL || block == Blocks.HARDENED_CLAY || 
+    if (block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND || block == Blocks.GRAVEL || block == Blocks.TERRACOTTA || 
       BlockItemUtilities.isBlockDecorativePlant(block))
       return true; 
-    if (BlockItemUtilities.isPath(block) && !((Boolean)blockState.getValue((IProperty)IBlockPath.STABLE)).booleanValue())
+    if (BlockItemUtilities.isPath(block) && !((Boolean)blockState.get((IProperty)IBlockPath.STABLE)).booleanValue())
       return true; 
     return false;
   }
@@ -189,7 +186,7 @@ public class PathUtilities {
   public static void clearPathBlock(Point p, World world) {
     IBlockState bs = p.getBlockActualState(world);
     if (bs.getBlock() instanceof IBlockPath && 
-      !((Boolean)bs.getValue((IProperty)IBlockPath.STABLE)).booleanValue()) {
+      !((Boolean)bs.get((IProperty)IBlockPath.STABLE)).booleanValue()) {
       IBlockState blockStateBelow = p.getBelow().getBlockActualState(world);
       if (WorldUtilities.getBlockStateValidGround(blockStateBelow, true) != null) {
         p.setBlockState(world, WorldUtilities.getBlockStateValidGround(blockStateBelow, true));
@@ -233,13 +230,13 @@ public class PathUtilities {
     Block block = p.getBlock(world);
     if (block instanceof IBlockPath) {
       IBlockState bs = p.getBlockActualState(world);
-      if (((Boolean)bs.getValue((IProperty)IBlockPath.STABLE)).booleanValue())
+      if (((Boolean)bs.get((IProperty)IBlockPath.STABLE)).booleanValue())
         return true; 
     } 
     block = p.getBelow().getBlock(world);
     if (block instanceof IBlockPath) {
       IBlockState bs = p.getBelow().getBlockActualState(world);
-      if (((Boolean)bs.getValue((IProperty)IBlockPath.STABLE)).booleanValue())
+      if (((Boolean)bs.get((IProperty)IBlockPath.STABLE)).booleanValue())
         return true; 
     } 
     return false;

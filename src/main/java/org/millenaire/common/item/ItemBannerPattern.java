@@ -16,14 +16,15 @@ public class ItemBannerPattern extends ItemMill {
     setMaxDamage(0);
   }
   
-  public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-    if (isInCreativeTab(tab))
+  public void fillItemGroup(CreativeTabs tab, NonNullList<ItemStack> items) {
+    if (isInGroup(tab))
       for (int i = 0; i < Mill.BANNER_SHORTNAMES.length; i++)
         items.add(new ItemStack(this, 1, i));  
   }
   
   public String getTranslationKey(ItemStack stack) {
-    return getUnlocalizedName();
+    int i = stack.getMetadata();
+    return getTranslationKey() + "." + Mill.BANNER_SHORTNAMES[i];
   }
   
   @SideOnly(Side.CLIENT)

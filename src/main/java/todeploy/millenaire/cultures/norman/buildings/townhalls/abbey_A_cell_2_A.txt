@@ -10,6 +10,6 @@ building.max=0
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Cellule de moine
+initial.nativename=Cachot d'Moigne
 initial.priority=5000
 initial.male=monk

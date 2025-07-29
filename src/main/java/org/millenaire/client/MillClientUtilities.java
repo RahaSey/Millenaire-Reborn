@@ -69,7 +69,7 @@ public class MillClientUtilities {
     page.add(LanguageUtilities.string("chunk.explanations"));
     pages.add(page);
     TextBook book = TextBook.convertStringsToBook(pages);
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiPanelParchment(player, book, null, 2, true));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiPanelParchment(player, book, null, 2, true));
   }
   
   public static void displayInfoPanel(World world, EntityPlayer player) {
@@ -111,7 +111,7 @@ public class MillClientUtilities {
       if (s != null) {
         questShown = true;
         page.addLine(s);
-        long timeLeft = qi.currentStepStart + ((qi.getCurrentStep()).duration * 1000) - world.getWorldTime();
+        long timeLeft = qi.currentStepStart + ((qi.getCurrentStep()).duration * 1000) - world.getDayTime();
         timeLeft = Math.round((float)(timeLeft / 1000L));
         if (timeLeft == 0L) {
           page.addLine(LanguageUtilities.string("quest.lessthananhourleft"), "§4");
@@ -123,7 +123,7 @@ public class MillClientUtilities {
     if (!questShown)
       page.addLine(LanguageUtilities.string("quest.noquestsvisible")); 
     book.addPage(page);
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiPanelParchment(player, book, null, 0, true));
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)new GuiPanelParchment(player, book, null, 0, true));
   }
   
   public static void displayPanel(World world, EntityPlayer player, Point p) {
@@ -140,16 +140,16 @@ public class MillClientUtilities {
   
   public static void displayStartupText(boolean error) {
     if (error) {
-      Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.loadproblem", new String[] { "Millénaire 8.1.1" }));
+      Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.loadproblem", new String[] { "Millénaire 8.1.2" }));
       Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.checkload"));
-      MillLog.error(null, "There was an error when trying to load Millénaire 8.1.1.");
+      MillLog.error(null, "There was an error when trying to load Millénaire 8.1.2.");
     } else {
       if (MillConfigValues.displayStart) {
         String bonus = "";
         if (MillConfigValues.bonusEnabled)
           bonus = " " + LanguageUtilities.string("startup.bonus"); 
-        Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.millenaireloaded", new String[] { "Millénaire 8.1.1", Keyboard.getKeyName(ClientProxy.KB_VILLAGES.getKeyCode()) }));
-        Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.bonus", new String[] { "Millénaire 8.1.1", bonus }), TextFormatting.BLUE);
+        Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.millenaireloaded", new String[] { "Millénaire 8.1.2", Keyboard.getKeyName(ClientProxy.KB_VILLAGES.getKeyCode()) }));
+        Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.bonus", new String[] { "Millénaire 8.1.2", bonus }), TextFormatting.BLUE);
       } 
       if (MillConfigValues.DEV) {
         Mill.proxy.sendChatAdmin(LanguageUtilities.string("startup.devmode1"), TextFormatting.RED);
@@ -248,7 +248,7 @@ public class MillClientUtilities {
     TextBook book = TextBook.convertLinesToBook(pages);
     GuiPanelParchment guiPanelParchment = new GuiPanelParchment(player, null, book, 0, true);
     guiPanelParchment.setCallingScreen(callingGui);
-    Minecraft.getMinecraft().displayGuiScreen((GuiScreen)guiPanelParchment);
+    Minecraft.getInstance().displayGuiScreen((GuiScreen)guiPanelParchment);
   }
   
   public static void displayVillageBook(World world, EntityPlayer player, Point p) {
@@ -345,14 +345,14 @@ public class MillClientUtilities {
     EntityPlayer player = Mill.proxy.getTheSinglePlayer();
     if (v.getPos().distanceTo((Entity)player) > radius)
       return; 
-    String gameSpeech = VillageUtilities.getVillagerSentence(v, player.getName(), false);
-    String nativeSpeech = VillageUtilities.getVillagerSentence(v, player.getName(), true);
+    String gameSpeech = VillageUtilities.getVillagerSentence(v, player.func_70005_c_(), false);
+    String nativeSpeech = VillageUtilities.getVillagerSentence(v, player.func_70005_c_(), true);
     if (nativeSpeech != null || gameSpeech != null) {
       String s;
       if (v.dialogueTargetFirstName != null) {
-        s = LanguageUtilities.string("other.chattosomeone", new String[] { v.getName(), v.dialogueTargetFirstName + " " + v.dialogueTargetLastName }) + ": ";
+        s = LanguageUtilities.string("other.chattosomeone", new String[] { v.func_70005_c_(), v.dialogueTargetFirstName + " " + v.dialogueTargetLastName }) + ": ";
       } else {
-        s = v.getName() + ": ";
+        s = v.func_70005_c_() + ": ";
       } 
       if (nativeSpeech != null)
         s = s + "§9" + nativeSpeech; 

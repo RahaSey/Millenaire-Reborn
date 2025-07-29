@@ -7,7 +7,7 @@ building.version=2
 
 //Parameters for initial construction
 initial.startlevel=-5
-initial.nativename=Mine
+initial.nativename=Isolaïe Maene
 initial.priority=3000
 initial.male=loneminer
 initial.female=lonewife

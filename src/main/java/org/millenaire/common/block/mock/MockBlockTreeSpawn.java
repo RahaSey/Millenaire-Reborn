@@ -93,15 +93,15 @@ public class MockBlockTreeSpawn extends Block implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((TreeType)state.getValue((IProperty)TREETYPE)).getMetadata();
+    return ((TreeType)state.get((IProperty)TREETYPE)).getMetadata();
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((TreeType)state.getValue((IProperty)TREETYPE)).meta;
+    return ((TreeType)state.get((IProperty)TREETYPE)).meta;
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((TreeType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)TREETYPE)).getName();
+    return "tile.millenaire." + getRegistryName().getPath() + "." + ((TreeType)getStateFromMeta(stack.getMetadata()).get((IProperty)TREETYPE)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -109,7 +109,7 @@ public class MockBlockTreeSpawn extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (TreeType enumtype : TreeType.values())
       items.add(new ItemStack(this, 1, enumtype.getMetadata())); 
   }

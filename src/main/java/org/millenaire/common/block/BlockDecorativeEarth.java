@@ -65,14 +65,14 @@ public class BlockDecorativeEarth extends Block implements IMetaBlockName {
   static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
   
   public BlockDecorativeEarth(String blockName) {
-    super(Material.GROUND);
+    super(Material.EARTH);
     setUnlocalizedName("millenaire." + blockName);
     setRegistryName(blockName);
     setCreativeTab(MillBlocks.tabMillenaire);
     setHarvestLevel("shovel", 0);
     setHardness(0.8F);
     setSoundType(SoundType.GROUND);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)VARIANT, EnumType.DIRTWALL));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)VARIANT, EnumType.DIRTWALL));
   }
   
   protected BlockStateContainer createBlockState() {
@@ -80,15 +80,15 @@ public class BlockDecorativeEarth extends Block implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)VARIANT)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -96,7 +96,7 @@ public class BlockDecorativeEarth extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (EnumType enumtype : EnumType.values())
       items.add(new ItemStack(this, 1, enumtype.getMetadata())); 
   }

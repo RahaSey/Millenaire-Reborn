@@ -11,9 +11,13 @@ building.icon=bed_straw
 initial.startlevel=-1
 initial.nativename=Tuyubmiaq Tupiq
 initial.translatedname=name_en,guest house
-initial.priority=600
+initial.priority=300
 initial.male=inuit_localmerchant
 initial.tag=inn
 initial.signs=1,0
 
 //Parameters for specific upgrades
+upgrade1.priority=80
+
+upgrade2.priority=30
+upgrade2.pathlevel=1

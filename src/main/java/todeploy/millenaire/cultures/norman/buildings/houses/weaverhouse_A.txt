@@ -7,7 +7,7 @@ building.icon=carpet_red
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Atelier du tisseur
+initial.nativename=Cordrie
 initial.priority=800
 initial.male=weaver
 initial.female=herbalist

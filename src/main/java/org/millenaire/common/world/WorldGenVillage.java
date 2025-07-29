@@ -102,7 +102,7 @@ public class WorldGenVillage implements IWorldGenerator {
     townHallEntity.initialiseVillage();
     String playerName = null;
     if (player != null)
-      playerName = player.getName(); 
+      playerName = player.func_70005_c_(); 
     Mill.getMillWorld(world).registerLoneBuildingsLocation(world, townHallEntity.getPos(), townHallEntity.getVillageQualifiedName(), townHallEntity.villageType, townHallEntity.culture, true, playerName);
     MillLog.major(null, "Finished bedrock building " + village + " at " + townHallEntity.getPos());
     return true;
@@ -127,7 +127,7 @@ public class WorldGenVillage implements IWorldGenerator {
   }
   
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-    if (world.provider.getDimension() != 0)
+    if (world.dimension.getDimension() != 0)
       return; 
     StackTraceElement[] trace = Thread.currentThread().getStackTrace();
     for (int i = 2; i < trace.length; i++) {
@@ -149,7 +149,7 @@ public class WorldGenVillage implements IWorldGenerator {
     try {
       generateVillageAtPoint(world, random, chunkX * 16, 0, chunkZ * 16, null, true, false, true, 2147483647, null, null, null, completionRatio);
     } catch (Exception e) {
-      MillLog.printException("Exception when attempting to generate village in " + world + " (dimension: " + world.provider.getDimension() + ")", e);
+      MillLog.printException("Exception when attempting to generate village in " + world + " (dimension: " + world.dimension.getDimension() + ")", e);
     } 
   }
   
@@ -165,7 +165,7 @@ public class WorldGenVillage implements IWorldGenerator {
       townHall.buildingProjects.put(BuildingProject.EnumProjects.CUSTOMBUILDINGS, new CopyOnWriteArrayList()); 
     ((CopyOnWriteArrayList<BuildingProject>)townHall.buildingProjects.get(BuildingProject.EnumProjects.CUSTOMBUILDINGS)).add(project);
     townHall.initialiseVillage();
-    mw.registerVillageLocation(world, townHall.getPos(), townHall.getVillageQualifiedName(), townHall.villageType, townHall.culture, true, player.getName());
+    mw.registerVillageLocation(world, townHall.getPos(), townHall.getVillageQualifiedName(), townHall.villageType, townHall.culture, true, player.func_70005_c_());
     townHall.initialiseRelations(null);
     townHall.updateWorldInfo();
     townHall.storeItemStack(ItemParchment.createParchmentForVillage(townHall.getTownHall()));
@@ -389,7 +389,7 @@ public class WorldGenVillage implements IWorldGenerator {
     } 
     String playerName = null;
     if (closestPlayer != null)
-      playerName = closestPlayer.getName(); 
+      playerName = closestPlayer.func_70005_c_(); 
     if (villageType.lonebuilding) {
       mw.registerLoneBuildingsLocation(world, townHallEntity.getPos(), townHallEntity.getVillageQualifiedName(), townHallEntity.villageType, townHallEntity.culture, true, playerName);
     } else {
@@ -611,7 +611,7 @@ public class WorldGenVillage implements IWorldGenerator {
   }
   
   private String getBiomeNameAtPos(World world, int x, int z) throws IllegalAccessException {
-    String biomeName = ((String)FIELD_BIOME_NAME.get(world.getBiome(new BlockPos(x, 0, z)))).toLowerCase();
+    String biomeName = ((String)FIELD_BIOME_NAME.get(world.getBiomeGenForCoords(new BlockPos(x, 0, z)))).toLowerCase();
     return biomeName;
   }
   

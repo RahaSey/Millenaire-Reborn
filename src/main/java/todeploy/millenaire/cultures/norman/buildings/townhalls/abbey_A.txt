@@ -34,6 +34,7 @@ upgrade3.subbuilding=abbey_A_cell_1
 upgrade3.extrasimultaneouswallconstructions=2
 
 upgrade4.priority=520
+upgrade4.tag=nopaths
 
 upgrade5.priority=500
 upgrade5.pathlevel=2

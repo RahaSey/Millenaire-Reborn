@@ -1,4 +1,4 @@
-native_name=Eleveur ovin
+native_name=Berger
 gender=male
 familyNameList=family_names
 firstNameList=men_names
@@ -28,6 +28,7 @@ goal=gopray
 goal=goDrinkCider
 goal=gatherGoods
 goal=bringBackResourcesHome
+
 goal=shearsheep
 goal=breed
 goal=slaughterchicken

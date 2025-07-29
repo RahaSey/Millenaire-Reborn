@@ -1,4 +1,4 @@
-native_name=Pélerine
+native_name=Péléraenne
 gender=female
 familyNameList=family_names
 firstNameList=women_names

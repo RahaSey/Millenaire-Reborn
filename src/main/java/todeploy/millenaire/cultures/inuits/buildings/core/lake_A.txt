@@ -13,4 +13,6 @@ initial.nativename=Sikuliaq
 initial.priority=1000
 initial.subbuilding=lake_A_fisherman
 initial.tag=cattle
+initial.tag=lake
 initial.tag=inuitmining
+initial.tag=nopaths

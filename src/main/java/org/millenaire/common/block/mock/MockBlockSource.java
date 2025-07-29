@@ -87,19 +87,19 @@ public class MockBlockSource extends Block implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((Resource)state.getValue((IProperty)RESOURCE)).getMetadata();
+    return ((Resource)state.get((IProperty)RESOURCE)).getMetadata();
   }
   
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT_MIPPED;
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((Resource)state.getValue((IProperty)RESOURCE)).meta;
+    return ((Resource)state.get((IProperty)RESOURCE)).meta;
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + getRegistryName().getResourcePath() + "." + ((Resource)getStateFromMeta(stack.getMetadata()).getValue((IProperty)RESOURCE)).getName();
+    return "tile.millenaire." + getRegistryName().getPath() + "." + ((Resource)getStateFromMeta(stack.getMetadata()).get((IProperty)RESOURCE)).getName();
   }
   
   public IBlockState getStateFromMeta(int meta) {
@@ -107,7 +107,7 @@ public class MockBlockSource extends Block implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (Resource enumtype : Resource.values())
       items.add(new ItemStack(this, 1, enumtype.getMetadata())); 
   }

@@ -10,7 +10,7 @@ public class ItemSlabMeta extends ItemSlab {
     super((Block)halfBlock, halfBlock, fullBlock);
     if (!(this.block instanceof IMetaBlockName))
       throw new IllegalArgumentException(String.format("The given Block %s is not an instance of IMetaBlockName!", new Object[] { this.block
-              .getUnlocalizedName() })); 
+              .getTranslationKey() })); 
     setMaxDamage(0);
     setHasSubtypes(true);
   }

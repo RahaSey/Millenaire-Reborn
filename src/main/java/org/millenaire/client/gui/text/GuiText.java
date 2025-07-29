@@ -1,4 +1,3 @@
-
 package org.millenaire.client.gui.text;
 
 import java.io.IOException;
@@ -39,11 +38,11 @@ public abstract class GuiText extends GuiScreen {
     }
     
     public int getStringWidth(String text) {
-      return this.gui.fontRenderer.getStringWidth(text);
+      return this.gui.fontRendererObj.getStringWidth(text);
     }
     
     public boolean isAvailable() {
-      return (this.gui.fontRenderer != null);
+      return (this.gui.fontRendererObj != null);
     }
   }
   
@@ -309,16 +308,16 @@ public abstract class GuiText extends GuiScreen {
   protected final RenderItem itemRenderer;
   
   public GuiText() {
-    this.itemRenderer = Minecraft.getMinecraft().getRenderItem();
+    this.itemRenderer = Minecraft.getInstance().getItemRenderer();
   }
   
   protected void actionPerformed(GuiButton button) throws IOException {
     if (button instanceof GuiButtonReference) {
       GuiButtonReference refButton = (GuiButtonReference)button;
-      GuiTravelBook guiTravelBook = new GuiTravelBook((EntityPlayer)(Minecraft.getMinecraft()).player);
+      GuiTravelBook guiTravelBook = new GuiTravelBook((EntityPlayer)(Minecraft.getInstance()).player);
       guiTravelBook.setCallingScreen(this);
       guiTravelBook.jumpToDetails(refButton.culture, refButton.type, refButton.key, false);
-      Minecraft.getMinecraft().displayGuiScreen(guiTravelBook);
+      Minecraft.getInstance().displayGuiScreen(guiTravelBook);
     } 
   }
   
@@ -339,37 +338,37 @@ public abstract class GuiText extends GuiScreen {
           if (line.buttons != null) {
             if (line.buttons.length == 1) {
               if (line.buttons[0] != null) {
-                (line.buttons[0]).x = xStart + getXSize() / 2 - totalButtonWidth / 2;
+                (line.buttons[0]).xPosition = xStart + getXSize() / 2 - totalButtonWidth / 2;
                 line.buttons[0].setWidth(totalButtonWidth);
               } 
             } else if (line.buttons.length == 2) {
               int buttonWidth = totalButtonWidth / 2 - 5;
               if (line.buttons[0] != null) {
-                (line.buttons[0]).x = xStart + getXSize() / 2 - totalButtonWidth / 2;
+                (line.buttons[0]).xPosition = xStart + getXSize() / 2 - totalButtonWidth / 2;
                 line.buttons[0].setWidth(buttonWidth);
               } 
               if (line.buttons[1] != null) {
-                (line.buttons[1]).x = xStart + getXSize() / 2 + 5;
+                (line.buttons[1]).xPosition = xStart + getXSize() / 2 + 5;
                 line.buttons[1].setWidth(buttonWidth);
               } 
             } else if (line.buttons.length == 3) {
               int buttonWidth = totalButtonWidth / 3 - 10;
               if (line.buttons[0] != null) {
-                (line.buttons[0]).x = xStart + getXSize() / 2 - totalButtonWidth / 2;
+                (line.buttons[0]).xPosition = xStart + getXSize() / 2 - totalButtonWidth / 2;
                 line.buttons[0].setWidth(buttonWidth);
               } 
               if (line.buttons[1] != null) {
-                (line.buttons[1]).x = xStart + getXSize() / 2 - totalButtonWidth / 2 + buttonWidth + 10;
+                (line.buttons[1]).xPosition = xStart + getXSize() / 2 - totalButtonWidth / 2 + buttonWidth + 10;
                 line.buttons[1].setWidth(buttonWidth);
               } 
               if (line.buttons[2] != null) {
-                (line.buttons[2]).x = xStart + getXSize() / 2 - totalButtonWidth / 2 + buttonWidth * 2 + 20;
+                (line.buttons[2]).xPosition = xStart + getXSize() / 2 - totalButtonWidth / 2 + buttonWidth * 2 + 20;
                 line.buttons[2].setWidth(buttonWidth);
               } 
             } 
             for (int i = 0; i < line.buttons.length; i++) {
               if (line.buttons[i] != null) {
-                (line.buttons[i]).y = yStart + vpos;
+                (line.buttons[i]).yPosition = yStart + vpos;
                 line.buttons[i].setHeight(20);
                 this.buttonList.add(line.buttons[i]);
               } 
@@ -377,11 +376,11 @@ public abstract class GuiText extends GuiScreen {
           } else if (line.referenceButton != null) {
             line.referenceButton.setWidth(20);
             line.referenceButton.setHeight(20);
-            line.referenceButton.y = yStart + vpos;
-            line.referenceButton.x = xStart + 6 + line.getLineMarginLeft();
+            line.referenceButton.yPosition = yStart + vpos;
+            line.referenceButton.xPosition = xStart + 6 + line.getLineMarginLeft();
             this.buttonList.add(line.referenceButton);
           } else if (line.textField != null) {
-            MillGuiTextField textField = new MillGuiTextField(elementsId++, this.fontRenderer, xStart + getXSize() / 2 + 40, yStart + vpos, 95, 20, line.textField.fieldKey);
+            MillGuiTextField textField = new MillGuiTextField(elementsId++, this.fontRendererObj, xStart + getXSize() / 2 + 40, yStart + vpos, 95, 20, line.textField.fieldKey);
             textField.setText(line.textField.getText());
             textField.setMaxStringLength(line.textField.getMaxStringLength());
             textField.setTextColor(-1);
@@ -399,8 +398,8 @@ public abstract class GuiText extends GuiScreen {
               if (column.referenceButton != null) {
                 column.referenceButton.setWidth(20);
                 column.referenceButton.setHeight(20);
-                column.referenceButton.y = yStart + vpos;
-                column.referenceButton.x = xStart + colXStart + 6 + column.getLineMarginLeft();
+                column.referenceButton.yPosition = yStart + vpos;
+                column.referenceButton.xPosition = xStart + colXStart + 6 + column.getLineMarginLeft();
                 this.buttonList.add(column.referenceButton);
               } 
             } 
@@ -414,7 +413,7 @@ public abstract class GuiText extends GuiScreen {
   
   protected void closeGui() {
     if (this.callingScreen != null) {
-      Minecraft.getMinecraft().displayGuiScreen(this.callingScreen);
+      Minecraft.getInstance().displayGuiScreen(this.callingScreen);
     } else {
       this.mc.displayGuiScreen(null);
       this.mc.setIngameFocus();
@@ -495,7 +494,7 @@ public abstract class GuiText extends GuiScreen {
       list = par1ItemStack.getTooltip((EntityPlayer)this.mc.player, this.mc.gameSettings.advancedItemTooltips ? (ITooltipFlag)ITooltipFlag.TooltipFlags.ADVANCED : (ITooltipFlag)ITooltipFlag.TooltipFlags.NORMAL);
       for (int k = 0; k < list.size(); k++) {
         if (k == 0) {
-          list.set(k, (par1ItemStack.getRarity()).rarityColor + (String)list.get(k));
+          list.set(k, (par1ItemStack.getRarity()).color + (String)list.get(k));
         } else {
           list.set(k, TextFormatting.GRAY + (String)list.get(k));
         } 
@@ -504,10 +503,10 @@ public abstract class GuiText extends GuiScreen {
       list = new ArrayList<>();
     } 
     if (extraLegend != null)
-      list.addAll(BookManager.splitStringByLength(new FontRendererWrapped(this.fontRenderer), extraLegend, 150)); 
+      list.addAll(BookManager.splitStringByLength(new FontRendererWrapped(this.fontRendererObj), extraLegend, 150)); 
     if (!list.isEmpty()) {
       FontRenderer font = par1ItemStack.getItem().getFontRenderer(par1ItemStack);
-      drawHoveringText(list, xPos, yPos, (font == null) ? this.fontRenderer : font);
+      drawHoveringText(list, xPos, yPos, (font == null) ? this.fontRendererObj : font);
     } 
   }
   
@@ -520,7 +519,7 @@ public abstract class GuiText extends GuiScreen {
       String extraLegend = null;
       boolean displayItemLegend = true;
       GuiButtonReference hoverReferenceButton = null;
-      drawDefaultBackground();
+      func_146276_q_();
       GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
       this.mc.getTextureManager().bindTexture(getPNGPath());
       int xStart = (this.width - getXSize()) / 2;
@@ -546,9 +545,9 @@ public abstract class GuiText extends GuiScreen {
             TextLine line = this.textBook.getPage(this.pageNum).getLine(linePos);
             int textXstart = getTextXStart() + line.getTextMarginLeft() + line.getLineMarginLeft();
             if (line.shadow) {
-              this.fontRenderer.drawStringWithShadow(line.style + line.text, textXstart, (vpos + line.getTextMarginTop()), 1052688);
+              this.fontRendererObj.drawStringWithShadow(line.style + line.text, textXstart, (vpos + line.getTextMarginTop()), 1052688);
             } else {
-              this.fontRenderer.drawString(line.style + line.text, textXstart, vpos + line.getTextMarginTop(), 1052688);
+              this.fontRendererObj.drawString(line.style + line.text, textXstart, vpos + line.getTextMarginTop(), 1052688);
             } 
             if (line.columns != null) {
               int lineSize = getLineSizeInPx() - line.getTextMarginLeft() - line.getLineMarginLeft() - line.getLineMarginRight();
@@ -558,16 +557,16 @@ public abstract class GuiText extends GuiScreen {
                 int colXStart = getTextXStart() + col * (colSize + 10) + line.getLineMarginLeft();
                 textXstart = colXStart + column.getTextMarginLeft();
                 if (column.shadow) {
-                  this.fontRenderer.drawStringWithShadow(column.style + column.text, textXstart, (vpos + column.getTextMarginTop()), 1052688);
+                  this.fontRendererObj.drawStringWithShadow(column.style + column.text, textXstart, (vpos + column.getTextMarginTop()), 1052688);
                 } else {
-                  this.fontRenderer.drawString(column.style + column.text, textXstart, vpos + column.getTextMarginTop(), 1052688);
+                  this.fontRendererObj.drawString(column.style + column.text, textXstart, vpos + column.getTextMarginTop(), 1052688);
                 } 
               } 
             } 
             vpos += line.getLineHeight();
           } 
         } 
-        this.fontRenderer.drawString((this.pageNum + 1) + "/" + getNbPage(), getXSize() / 2 - 10, getYSize() - 10, 1052688);
+        this.fontRendererObj.drawString((this.pageNum + 1) + "/" + getNbPage(), getXSize() / 2 - 10, getYSize() - 10, 1052688);
         vpos = 6;
         this.zLevel = 100.0F;
         this.itemRenderer.zLevel = 100.0F;
@@ -629,11 +628,11 @@ public abstract class GuiText extends GuiScreen {
             MillGuiButton millButton = (MillGuiButton)button;
             if (millButton.itemStackIconLeft != null) {
               GL11.glEnable(2929);
-              this.itemRenderer.renderItemAndEffectIntoGUI(millButton.itemStackIconLeft, millButton.x + 4 - xStart, millButton.y + 2 - yStart);
+              this.itemRenderer.renderItemAndEffectIntoGUI(millButton.itemStackIconLeft, millButton.xPosition + 4 - xStart, millButton.yPosition + 2 - yStart);
             } 
             if (millButton.itemStackIconRight != null) {
               GL11.glEnable(2929);
-              this.itemRenderer.renderItemAndEffectIntoGUI(millButton.itemStackIconRight, millButton.x + millButton.width - 4 - 16 - xStart, millButton.y + 2 - yStart);
+              this.itemRenderer.renderItemAndEffectIntoGUI(millButton.itemStackIconRight, millButton.xPosition + millButton.width - 4 - 16 - xStart, millButton.yPosition + 2 - yStart);
             } 
             if (millButton.specialIconLeft != null || millButton.specialIconRight != null)
               hasSpecialIcon = true; 
@@ -643,12 +642,12 @@ public abstract class GuiText extends GuiScreen {
             GuiButtonReference refButton = (GuiButtonReference)button;
             if (refButton.getIcon() != null) {
               GL11.glEnable(2929);
-              this.itemRenderer.renderItemAndEffectIntoGUI(refButton.getIcon(), refButton.x + 2 - xStart, refButton.y + 2 - yStart);
+              this.itemRenderer.renderItemAndEffectIntoGUI(refButton.getIcon(), refButton.xPosition + 2 - xStart, refButton.yPosition + 2 - yStart);
             } 
-            if (refButton.x < mouseX && refButton.y < mouseY && refButton.x + refButton.width > mouseX && refButton.y + refButton.height > mouseY)
+            if (refButton.xPosition < mouseX && refButton.yPosition < mouseY && refButton.xPosition + refButton.width > mouseX && refButton.yPosition + refButton.height > mouseY)
               hoverReferenceButton = refButton; 
           } 
-        }
+        } 
         GlStateManager.disableLighting();
         customDrawScreen(mouseX, mouseY, f);
       } 
@@ -660,7 +659,7 @@ public abstract class GuiText extends GuiScreen {
           if (button instanceof MillGuiButton) {
             MillGuiButton millButton = (MillGuiButton)button;
             if (millButton.specialIconLeft != null)
-              drawTexturedModalRect(millButton.x + 4, millButton.y + 2, millButton.specialIconLeft.xpos, millButton.specialIconLeft.ypos, 16, 16); 
+              drawTexturedModalRect(millButton.xPosition + 4, millButton.yPosition + 2, millButton.specialIconLeft.xpos, millButton.specialIconLeft.ypos, 16, 16); 
           } 
         } 
       } 
@@ -673,9 +672,9 @@ public abstract class GuiText extends GuiScreen {
         drawItemStackTooltip(hoverIcon, mouseX, mouseY, displayItemLegend, extraLegend); 
       if (hoverReferenceButton != null)
         if (this instanceof GuiTravelBook) {
-          drawHoveringText(BookManager.splitStringByLength(new FontRendererWrapped(this.fontRenderer), hoverReferenceButton.getIconName(), 150), hoverReferenceButton.x + 15, hoverReferenceButton.y, this.fontRenderer);
+          drawHoveringText(BookManager.splitStringByLength(new FontRendererWrapped(this.fontRendererObj), hoverReferenceButton.getIconName(), 150), hoverReferenceButton.xPosition + 15, hoverReferenceButton.yPosition, this.fontRendererObj);
         } else {
-          drawHoveringText(BookManager.splitStringByLength(new FontRendererWrapped(this.fontRenderer), hoverReferenceButton.getIconFullLegend(), 150), hoverReferenceButton.x + 15, hoverReferenceButton.y, this.fontRenderer);
+          drawHoveringText(BookManager.splitStringByLength(new FontRendererWrapped(this.fontRendererObj), hoverReferenceButton.getIconFullLegend(), 150), hoverReferenceButton.xPosition + 15, hoverReferenceButton.yPosition, this.fontRendererObj);
         }  
       this.itemRenderer.zLevel = 0.0F;
       this.zLevel = 0.0F;
@@ -722,8 +721,8 @@ public abstract class GuiText extends GuiScreen {
     buttonPagination();
   }
   
-  public void initGui() {
-    super.initGui();
+  public void func_73866_w_() {
+    super.func_73866_w_();
     initData();
     buttonPagination();
   }

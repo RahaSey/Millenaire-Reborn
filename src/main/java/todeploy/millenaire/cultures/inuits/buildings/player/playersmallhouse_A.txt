@@ -12,4 +12,5 @@ building.icon=denier
 initial.startlevel=-1
 initial.nativename=Mikiruq Tupiq
 initial.translatedname=name_en,small house
+initial.priority=3000
 

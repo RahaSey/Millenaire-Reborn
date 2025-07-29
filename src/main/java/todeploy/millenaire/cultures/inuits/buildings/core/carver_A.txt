@@ -12,7 +12,7 @@ building.icon=inuitcarving
 initial.startlevel=-1
 initial.nativename=Mitlik Tupiq
 initial.translatedname=name_en,carver's house
-initial.priority=800
+initial.priority=300
 initial.male=inuit_husband
 initial.female=inuit_carver
 initial.prioritymovein=20
@@ -20,5 +20,5 @@ initial.prioritymovein=20
 //Parameters for specific upgrades
 upgrade1.priority=80
 
-upgrade2.priority=75
-
+upgrade2.priority=35
+upgrade2.pathlevel=1

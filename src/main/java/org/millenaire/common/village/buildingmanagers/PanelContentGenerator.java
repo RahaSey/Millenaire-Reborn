@@ -94,7 +94,7 @@ public class PanelContentGenerator {
         page.addLine(LanguageUtilities.string("panels.awayraiding"));
       } else if (vr.awayhired) {
         page.addLine(LanguageUtilities.string("panels.awayhired"));
-      } else if (vr.raidingVillage && townHall.world.getWorldTime() < vr.raiderSpawn + 500L) {
+      } else if (vr.raidingVillage && townHall.world.getDayTime() < vr.raiderSpawn + 500L) {
         page.addLine(LanguageUtilities.string("panels.invaderincoming"));
       } else {
         page.addLine(LanguageUtilities.string("panels.missing"), "§4");
@@ -210,7 +210,7 @@ public class PanelContentGenerator {
           error = " (" + LanguageUtilities.string("panels.awayraiding").toLowerCase() + ")";
         } else if (vr.awayhired) {
           error = " (" + LanguageUtilities.string("panels.awayhired").toLowerCase() + ")";
-        } else if (vr.raidingVillage && townHall.world.getWorldTime() < vr.raiderSpawn + 500L) {
+        } else if (vr.raidingVillage && townHall.world.getDayTime() < vr.raiderSpawn + 500L) {
           error = " (" + LanguageUtilities.string("panels.invaderincoming").toLowerCase() + ")";
         } else if (vr.raidingVillage) {
           error = " (" + LanguageUtilities.string("panels.raider").toLowerCase() + ")";
@@ -233,7 +233,7 @@ public class PanelContentGenerator {
       } 
       String debugLine = "Is seller: " + (vr.getType()).canSell;
       if (foundVillager != null)
-        debugLine = debugLine + ", isDead client: " + foundVillager.isDead + ", isDead server: " + foundVillager.isDeadOnServer; 
+        debugLine = debugLine + ", isDead client: " + foundVillager.removed + ", isDead server: " + foundVillager.isDeadOnServer; 
       if (belongsToVillage) {
         page.addLine(vr.getName() + ", " + vr.getGameOccupation().toLowerCase() + error, new GuiText.GuiButtonReference(vr.getType()));
         if (MillConfigValues.LogVillagerSpawn >= 1)
@@ -407,10 +407,10 @@ public class PanelContentGenerator {
       Building target = Mill.clientWorld.getBuilding(townHall.raidTarget);
       if (target != null) {
         if (townHall.raidStart > 0L) {
-          page.addLine(LanguageUtilities.string("panels.raidinprogresslong", new String[] { target.getVillageQualifiedName(), "" + Math.round((float)((townHall.world.getWorldTime() - townHall.raidStart) / 1000L)) }));
+          page.addLine(LanguageUtilities.string("panels.raidinprogresslong", new String[] { target.getVillageQualifiedName(), "" + Math.round((float)((townHall.world.getDayTime() - townHall.raidStart) / 1000L)) }));
         } else {
           page.addLine(LanguageUtilities.string("panels.planningraidlong", new String[] { target.getVillageQualifiedName(), "" + 
-                  Math.round((float)((townHall.world.getWorldTime() - townHall.raidPlanningStart) / 1000L)) }));
+                  Math.round((float)((townHall.world.getDayTime() - townHall.raidPlanningStart) / 1000L)) }));
         } 
         page.addLine("");
       } 
@@ -453,7 +453,7 @@ public class PanelContentGenerator {
           status = status + ", " + LanguageUtilities.string("panels.awayraiding");
         } else if (vr.awayhired) {
           status = status + ", " + LanguageUtilities.string("panels.awayhired");
-        } else if (vr.raidingVillage && townHall.world.getWorldTime() < vr.raiderSpawn + 500L) {
+        } else if (vr.raidingVillage && townHall.world.getDayTime() < vr.raiderSpawn + 500L) {
           status = status + ", " + LanguageUtilities.string("panels.invaderincoming");
         } else if (vr.killed) {
           status = status + ", " + LanguageUtilities.string("panels.dead");
@@ -824,7 +824,7 @@ public class PanelContentGenerator {
         } 
         String builderStr = "";
         if (builder != null)
-          builderStr = " - " + builder.getName(); 
+          builderStr = " - " + builder.func_70005_c_(); 
         page.addLine(planName + ": " + status + " - " + loc + builderStr);
         page.addLine("");
       } 

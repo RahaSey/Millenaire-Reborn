@@ -8,7 +8,7 @@ building.icon=chest
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Entrepôt
+initial.nativename=Dépot
 initial.priority=1000
 initial.male=architect
 initial.shop=notredame

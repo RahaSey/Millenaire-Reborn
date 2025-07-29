@@ -521,6 +521,6 @@ advancements.villageleader.desc=Werde Anführer in einer Kultur und erschaffe ei
 advancements.forbiddenknwoledge.name=Verbotenes Wissen
 advancements.forbiddenknwoledge.desc=Beende beide Kapitel der Schöpfungsreise
 # mayan refresh, mc ++
-tile.honey_block.name=Honey Block
+tile.beehive.name=Beehive
 tile.lightbluebrick_block.name=Light Blue Brick
 tile.lightbluechiseled_block.name=Light Blue Chiseled

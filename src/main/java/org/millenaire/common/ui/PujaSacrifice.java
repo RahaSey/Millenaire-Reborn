@@ -94,9 +94,9 @@ public class PujaSacrifice implements IInventory {
     if (type == 2)
       return item instanceof ItemArmor; 
     if (type == 3)
-      return (item instanceof ItemArmor && ((ItemArmor)item).armorType == EntityEquipmentSlot.HEAD); 
+      return (item instanceof ItemArmor && ((ItemArmor)item).slot == EntityEquipmentSlot.HEAD); 
     if (type == 4)
-      return (item instanceof ItemArmor && ((ItemArmor)item).armorType == EntityEquipmentSlot.FEET); 
+      return (item instanceof ItemArmor && ((ItemArmor)item).slot == EntityEquipmentSlot.FEET); 
     if (type == 5)
       return (item instanceof net.minecraft.item.ItemSword || item instanceof net.minecraft.item.ItemAxe); 
     if (type == 6)
@@ -131,7 +131,7 @@ public class PujaSacrifice implements IInventory {
   
   public PujaSacrifice(Building temple, short type) {
     this.temple = temple;
-    this.items = new ItemStack[getSizeInventory()];
+    this.items = new ItemStack[func_70302_i_()];
     for (int i = 0; i < this.items.length; i++)
       this.items[i] = ItemStack.EMPTY; 
     this.type = type;
@@ -148,7 +148,7 @@ public class PujaSacrifice implements IInventory {
     if (!this.currentTarget.enchantment.canApply(tool))
       return; 
     int nbother = 0;
-    if (tool.isItemEnchanted()) {
+    if (tool.isEnchanted()) {
       NBTTagList nbttaglist = tool.getEnchantmentTagList();
       nbother = nbttaglist.tagCount();
       Map<Enchantment, Integer> existingEnchantments = EnchantmentHelper.getEnchantments(tool);
@@ -194,9 +194,9 @@ public class PujaSacrifice implements IInventory {
     } else {
       NBTTagList enchList = this.items[4].getEnchantmentTagList();
       for (int i = 0; i < enchList.tagCount(); i++) {
-        Enchantment e = Enchantment.getEnchantmentByID(enchList.getCompoundTagAt(i).getShort("id"));
+        Enchantment e = Enchantment.getEnchantmentByID(enchList.getCompound(i).getShort("id"));
         if (e == this.currentTarget.enchantment)
-          enchList.getCompoundTagAt(i).setShort("lvl", (short)(currentlevel + 1)); 
+          enchList.getCompound(i).putShort("lvl", (short)(currentlevel + 1)); 
       } 
     } 
     this.offeringProgress = 0;
@@ -211,7 +211,7 @@ public class PujaSacrifice implements IInventory {
         this.items[slot] = ItemStack.EMPTY;
         return itemstack;
       } 
-      ItemStack itemstack1 = this.items[slot].splitStack(nb);
+      ItemStack itemstack1 = this.items[slot].split(nb);
       if (this.items[slot].getCount() == 0)
         this.items[slot] = ItemStack.EMPTY; 
       return itemstack1;
@@ -232,11 +232,11 @@ public class PujaSacrifice implements IInventory {
       completeOffering(); 
   }
   
-  public ITextComponent getDisplayName() {
+  public ITextComponent func_145748_c_() {
     return null;
   }
   
-  public int getField(int id) {
+  public int func_174887_a_(int id) {
     return 0;
   }
   
@@ -244,11 +244,11 @@ public class PujaSacrifice implements IInventory {
     return 0;
   }
   
-  public int getInventoryStackLimit() {
+  public int func_70297_j_() {
     return 64;
   }
   
-  public String getName() {
+  public String func_70005_c_() {
     return LanguageUtilities.string("pujas.invanme");
   }
   
@@ -285,7 +285,7 @@ public class PujaSacrifice implements IInventory {
       return 1; 
     if (is.getItem() == Items.LEATHER)
       return 1; 
-    if (is.getItem() == Items.DYE && is.getItemDamage() == 0)
+    if (is.getItem() == Items.DYE && is.getDamage() == 0)
       return 1; 
     if (is.getItem() == Items.SLIME_BALL)
       return 1; 
@@ -322,9 +322,9 @@ public class PujaSacrifice implements IInventory {
       return 16; 
     if (is.getItem() == Item.getItemFromBlock((Block)Blocks.TALLGRASS) || is.getItem() == Items.APPLE)
       return 8; 
-    if (is.getItem() == Item.getItemFromBlock(Blocks.WOOL) && is.getItemDamage() == 0)
+    if (is.getItem() == Item.getItemFromBlock(Blocks.WOOL) && is.getDamage() == 0)
       return 8; 
-    if (is.getItem() == Items.MELON)
+    if (is.getItem() == Items.MELON_SLICE)
       return 4; 
     return 0;
   }
@@ -333,7 +333,7 @@ public class PujaSacrifice implements IInventory {
     return this.pujaProgress * scale / PUJA_DURATION;
   }
   
-  public int getSizeInventory() {
+  public int func_70302_i_() {
     return 5;
   }
   
@@ -363,7 +363,7 @@ public class PujaSacrifice implements IInventory {
     return new ArrayList<>();
   }
   
-  public boolean hasCustomName() {
+  public boolean func_145818_k_() {
     return false;
   }
   
@@ -405,10 +405,10 @@ public class PujaSacrifice implements IInventory {
   }
   
   public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
-    NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
-    this.items = new ItemStack[getSizeInventory()];
+    NBTTagList nbttaglist = par1NBTTagCompound.getList("Items", 10);
+    this.items = new ItemStack[func_70302_i_()];
     for (int i = 0; i < nbttaglist.tagCount(); i++) {
-      NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
+      NBTTagCompound nbttagcompound = nbttaglist.getCompound(i);
       byte byte0 = nbttagcompound.getByte("Slot");
       if (byte0 >= 0 && byte0 < this.items.length)
         this.items[byte0] = new ItemStack(nbttagcompound); 
@@ -440,8 +440,8 @@ public class PujaSacrifice implements IInventory {
   
   public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
     this.items[par1] = par2ItemStack;
-    if (par2ItemStack != ItemStack.EMPTY && par2ItemStack.getCount() > getInventoryStackLimit())
-      par2ItemStack.setCount(getInventoryStackLimit()); 
+    if (par2ItemStack != ItemStack.EMPTY && par2ItemStack.getCount() > func_70297_j_())
+      par2ItemStack.setCount(func_70297_j_()); 
     markDirty();
   }
   
@@ -477,19 +477,19 @@ public class PujaSacrifice implements IInventory {
   
   public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
     if (this.currentTarget != null) {
-      par1NBTTagCompound.setShort("enchantmentTarget", 
+      par1NBTTagCompound.putShort("enchantmentTarget", 
           (short)Enchantment.getEnchantmentID(this.currentTarget.enchantment));
       if (MillConfigValues.LogPujas >= 2)
         MillLog.minor(this, "Writing enchantmentTarget: " + this.currentTarget.enchantment + ", " + this.currentTarget); 
     } 
-    par1NBTTagCompound.setShort("offeringProgress", (short)this.offeringProgress);
-    par1NBTTagCompound.setShort("pujaProgress", this.pujaProgress);
+    par1NBTTagCompound.putShort("offeringProgress", (short)this.offeringProgress);
+    par1NBTTagCompound.putShort("pujaProgress", this.pujaProgress);
     NBTTagList nbttaglist = new NBTTagList();
     for (int i = 0; i < this.items.length; i++) {
       if (this.items[i] != null) {
         NBTTagCompound nbttagcompound = new NBTTagCompound();
-        nbttagcompound.setByte("Slot", (byte)i);
-        this.items[i].writeToNBT(nbttagcompound);
+        nbttagcompound.putByte("Slot", (byte)i);
+        this.items[i].write(nbttagcompound);
         nbttaglist.appendTag((NBTBase)nbttagcompound);
       } 
     } 

@@ -15,7 +15,7 @@ building.icon=normanbroadsword
 
 //Parameters for initial construction
 initial.startlevel=-10
-initial.nativename=Tour Des Bandits
+initial.nativename=Touor des Bandits
 initial.priority=5
 initial.male=armoredbandit
 initial.male=armoredbandit

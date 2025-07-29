@@ -148,12 +148,12 @@ public class UserProfile {
   
   public UserProfile(MillWorldData world, EntityPlayer player) {
     this.uuid = player.getUniqueID();
-    this.playerName = player.getName();
+    this.playerName = player.func_70005_c_();
     this.mw = world;
   }
   
   private UserProfile(MillWorldData world, String playerName) {
-    UUID uuid = world.world.getMinecraftServer().getPlayerProfileCache().getGameProfileForUsername(playerName).getId();
+    UUID uuid = world.world.getServer().getPlayerProfileCache().getGameProfileForUsername(playerName).getId();
     MillLog.major(null, "Loading profile using name '" + playerName + "', convnerting to uuid: " + uuid);
     this.uuid = uuid;
     this.playerName = playerName;
@@ -672,10 +672,10 @@ public class UserProfile {
   }
   
   public void migrateToPlayer(EntityPlayer player) {
-    MillLog.major(null, "Migrating profile of UUID " + this.uuid + " to UUID " + player.getUniqueID() + " (" + player.getName() + ").");
+    MillLog.major(null, "Migrating profile of UUID " + this.uuid + " to UUID " + player.getUniqueID() + " (" + player.func_70005_c_() + ").");
     UUID oldUUID = this.uuid;
     this.uuid = player.getUniqueID();
-    this.playerName = player.getName();
+    this.playerName = player.func_70005_c_();
     this.mw.profiles.put(this.uuid, this);
     this.mw.profiles.remove(oldUUID);
     saveProfile();
@@ -1006,11 +1006,11 @@ public class UserProfile {
       } 
       for (Quest q : Quest.quests.values()) {
         QuestInstance qi = q.testQuest(this.mw, this);
-        change = change || (qi != null);
+        j = change | ((qi != null) ? 1 : 0);
         if (qi != null)
           sendQuestInstancePacket(qi); 
       } 
-      if (change)
+      if (j != 0)
         saveQuestInstances(); 
     } 
   }
@@ -1119,9 +1119,9 @@ public class UserProfile {
           sendInitialPackets();
           this.connectionActionDone = true;
         } 
-        if (player != null && this.mw.world.getWorldTime() % 1000L == 0L && this.mw.world.isDaytime())
+        if (player != null && this.mw.world.getDayTime() % 1000L == 0L && this.mw.world.isDaytime())
           testQuests(); 
-        if (MillConfigValues.DEV && player != null && this.mw.world.getWorldTime() % 20L == 0L && this.mw.world.isDaytime())
+        if (MillConfigValues.DEV && player != null && this.mw.world.getDayTime() % 20L == 0L && this.mw.world.isDaytime())
           testQuests(); 
       } else {
         this.connectionActionDone = false;

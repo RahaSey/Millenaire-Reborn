@@ -1,7 +1,7 @@
 //Parameters for the building as a whole
 building.length=16
 building.width=11
-building.areatoclear=3
+building.areatoclear=4
 building.buildingorientation=3
 building.max=0
 building.icon=leather
@@ -20,13 +20,13 @@ initial.signs=1,2,3,0,4,5,7,6,8
 //Parameters for specific upgrades
 upgrade1.priority=700
 
-upgrade2.priority=600
+upgrade2.priority=500
 upgrade2.rebuildpath=true
 
-upgrade3.priority=500
+upgrade3.priority=300
 upgrade3.rebuildpath=false
 
-upgrade4.priority=400
+upgrade4.priority=100
 
-upgrade5.priority=300
+upgrade5.priority=40
 

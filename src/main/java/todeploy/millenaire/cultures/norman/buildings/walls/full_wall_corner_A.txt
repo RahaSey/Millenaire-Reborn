@@ -11,7 +11,7 @@ building.areatoclearwidthbefore=0
 building.areatoclearwidthafter=0
 
 initial.startlevel=-5
-initial.nativename=Tour d'angle
+initial.nativename=Touor à la Carre
 initial.nopathstobuilding=true
 initial.tag=wall_level_0
 initial.tag=patrol

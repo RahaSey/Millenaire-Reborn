@@ -51,12 +51,12 @@ public class GuiFirePit extends GuiContainer {
   }
   
   protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-    this.fontRenderer.drawString(MillBlocks.FIRE_PIT.getName(), 8, 6, 4210752);
-    this.fontRenderer.drawString(this.player.inventory.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+    this.fontRendererObj.drawString(MillBlocks.FIRE_PIT.getName(), 8, 6, 4210752);
+    this.fontRendererObj.drawString(this.player.inventory.func_145748_c_().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
   }
   
   public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-    drawDefaultBackground();
+    func_146276_q_();
     super.drawScreen(mouseX, mouseY, partialTicks);
     renderHoveredToolTip(mouseX, mouseY);
   }

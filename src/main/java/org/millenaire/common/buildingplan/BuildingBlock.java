@@ -215,32 +215,32 @@ public class BuildingBlock {
       } else if (this.special == OAKSPAWN || this.special == PINESPAWN || this.special == BIRCHSPAWN || this.special == JUNGLESPAWN || this.special == ACACIASPAWN || this.special == DARKOAKSPAWN || this.special == APPLETREESPAWN || this.special == OLIVETREESPAWN || this.special == PISTACHIOTREESPAWN || this.special == CHERRYTREESPAWN || this.special == SAKURATREESPAWN) {
         blockSet = buildTreeSpawn(world, worldGeneration);
       } else if (this.special == SPAWNERSKELETON) {
-        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.MOB_SPAWNER, 0);
+        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.SPAWNER, 0);
         TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)this.p.getTileEntity(world);
         tileentitymobspawner.getSpawnerBaseLogic().setEntityId(Mill.ENTITY_SKELETON);
         blockSet = true;
       } else if (this.special == SPAWNERZOMBIE) {
-        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.MOB_SPAWNER, 0);
+        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.SPAWNER, 0);
         TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)this.p.getTileEntity(world);
         tileentitymobspawner.getSpawnerBaseLogic().setEntityId(Mill.ENTITY_ZOMBIE);
         blockSet = true;
       } else if (this.special == SPAWNERSPIDER) {
-        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.MOB_SPAWNER, 0);
+        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.SPAWNER, 0);
         TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)this.p.getTileEntity(world);
         tileentitymobspawner.getSpawnerBaseLogic().setEntityId(Mill.ENTITY_SPIDER);
         blockSet = true;
       } else if (this.special == SPAWNERCAVESPIDER) {
-        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.MOB_SPAWNER, 0);
+        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.SPAWNER, 0);
         TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)this.p.getTileEntity(world);
         tileentitymobspawner.getSpawnerBaseLogic().setEntityId(Mill.ENTITY_CAVESPIDER);
         blockSet = true;
       } else if (this.special == SPAWNERCREEPER) {
-        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.MOB_SPAWNER, 0);
+        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.SPAWNER, 0);
         TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)this.p.getTileEntity(world);
         tileentitymobspawner.getSpawnerBaseLogic().setEntityId(new ResourceLocation("creeper"));
         blockSet = true;
       } else if (this.special == SPAWNERBLAZE) {
-        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.MOB_SPAWNER, 0);
+        WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.SPAWNER, 0);
         TileEntityMobSpawner tileentitymobspawner = (TileEntityMobSpawner)this.p.getTileEntity(world);
         tileentitymobspawner.getSpawnerBaseLogic().setEntityId(new ResourceLocation("blaze"));
         blockSet = true;
@@ -261,12 +261,12 @@ public class BuildingBlock {
         blockSet = true;
       } else if (this.special == TORCHGUESS) {
         BlockTorch blockTorch = (BlockTorch)Blocks.TORCH;
-        IBlockState bs = blockTorch.getStateForPlacement(world, this.p.getBlockPos(), EnumFacing.UP, 0.0F, 0.0F, 0.0F, 0, null);
+        IBlockState bs = blockTorch.onBlockPlaced(world, this.p.getBlockPos(), EnumFacing.UP, 0.0F, 0.0F, 0.0F, 0, null);
         world.setBlockState(this.p.getBlockPos(), bs);
         blockSet = true;
       } else if (this.special == INVERTED_DOOR) {
         world.setBlockState(this.p.getBlockPos(), this.blockState);
-        if (this.blockState.getValue((IProperty)BlockDoor.HALF) == BlockDoor.EnumDoorHalf.LOWER) {
+        if (this.blockState.get((IProperty)BlockDoor.HALF) == BlockDoor.EnumDoorHalf.LOWER) {
           IBlockState bs = this.p.getBlockActualState(world).withProperty((IProperty)BlockDoor.HALF, (Comparable)BlockDoor.EnumDoorHalf.UPPER);
           bs = bs.withProperty((IProperty)BlockDoor.HINGE, (Comparable)BlockDoor.EnumHingePosition.RIGHT);
           WorldUtilities.setBlockstate(world, this.p.getAbove(), bs, true, playSound);
@@ -340,10 +340,10 @@ public class BuildingBlock {
   private boolean buildNormalBlock(World world, Building townHall, boolean wandimport, boolean notifyBlocks, boolean playSound) {
     boolean blockSet = false;
     if (this.block instanceof BlockDoor) {
-      if (this.blockState.getValue((IProperty)BlockDoor.HALF) == BlockDoor.EnumDoorHalf.LOWER)
+      if (this.blockState.get((IProperty)BlockDoor.HALF) == BlockDoor.EnumDoorHalf.LOWER)
         WorldUtilities.setBlockAndMetadata(world, this.p.getAbove(), Blocks.AIR, 0, notifyBlocks, playSound); 
     } else if (this.block instanceof net.minecraft.block.BlockBed) {
-      EnumFacing facing = (EnumFacing)this.blockState.getValue((IProperty)BlockHorizontal.FACING);
+      EnumFacing facing = (EnumFacing)this.blockState.get((IProperty)BlockHorizontal.HORIZONTAL_FACING);
       if (facing == EnumFacing.EAST) {
         WorldUtilities.setBlockAndMetadata(world, this.p.getWest(), Blocks.AIR, 0, notifyBlocks, playSound);
       } else if (facing == EnumFacing.SOUTH) {
@@ -370,7 +370,7 @@ public class BuildingBlock {
           existingBlock.breakBlock(world, this.p.getBlockPos(), world.getBlockState(this.p.getBlockPos())); 
         if (this.block instanceof net.minecraft.block.BlockBed) {
           WorldUtilities.setBlockAndMetadata(world, this.p, Blocks.AIR, 0, notifyBlocks, playSound);
-          EnumFacing facing = (EnumFacing)this.blockState.getValue((IProperty)BlockHorizontal.FACING);
+          EnumFacing facing = (EnumFacing)this.blockState.get((IProperty)BlockHorizontal.HORIZONTAL_FACING);
           if (facing == EnumFacing.EAST) {
             WorldUtilities.setBlockAndMetadata(world, this.p.getWest(), Blocks.AIR, 0, notifyBlocks, playSound);
           } else if (facing == EnumFacing.SOUTH) {
@@ -388,14 +388,14 @@ public class BuildingBlock {
       } 
     } 
     if (this.block instanceof BlockDoor) {
-      if (this.blockState.getValue((IProperty)BlockDoor.HALF) == BlockDoor.EnumDoorHalf.LOWER) {
+      if (this.blockState.get((IProperty)BlockDoor.HALF) == BlockDoor.EnumDoorHalf.LOWER) {
         IBlockState bs = this.blockState.withProperty((IProperty)BlockDoor.HALF, (Comparable)BlockDoor.EnumDoorHalf.UPPER);
         if (this.special == INVERTED_DOOR)
           bs = bs.withProperty((IProperty)BlockDoor.HINGE, (Comparable)BlockDoor.EnumHingePosition.RIGHT); 
         WorldUtilities.setBlockstate(world, this.p.getAbove(), bs, notifyBlocks, playSound);
       } 
     } else if (this.block instanceof net.minecraft.block.BlockBed) {
-      EnumFacing facing = (EnumFacing)this.blockState.getValue((IProperty)BlockHorizontal.FACING);
+      EnumFacing facing = (EnumFacing)this.blockState.get((IProperty)BlockHorizontal.HORIZONTAL_FACING);
       if (facing == EnumFacing.EAST) {
         WorldUtilities.setBlockAndMetadata(world, this.p.getWest(), this.block, this.meta - 8, notifyBlocks, playSound);
       } else if (facing == EnumFacing.SOUTH) {
@@ -407,8 +407,8 @@ public class BuildingBlock {
       } 
     } else if (this.block == Blocks.WATER) {
       world.setBlockState(this.p.getBlockPos(), Blocks.FLOWING_WATER.getDefaultState(), 11);
-    } else if (this.block == Blocks.PORTAL) {
-      Blocks.PORTAL.trySpawnPortal(world, this.p.getBlockPos());
+    } else if (this.block == Blocks.NETHER_PORTAL) {
+      Blocks.NETHER_PORTAL.trySpawnPortal(world, this.p.getBlockPos());
     } else if (this.block instanceof BlockDoublePlant) {
       IBlockState bs = this.blockState.withProperty((IProperty)BlockDoublePlant.HALF, (Comparable)BlockDoublePlant.EnumBlockHalf.UPPER);
       WorldUtilities.setBlockstate(world, this.p.getAbove(), bs, notifyBlocks, playSound);
@@ -428,7 +428,7 @@ public class BuildingBlock {
           if (townHall == null) {
             ItemStack bannerStack = ItemMockBanner.makeBanner(Item.getItemFromBlock((Block)bannerBlock), ItemMockBanner.BANNER_COLOURS[bannerBlock.bannerType], 
                 JsonToNBT.getTagFromJson(ItemMockBanner.BANNER_DESIGNS[bannerBlock.bannerType]));
-            bannerStack.getOrCreateSubCompound("BlockEntityTag").setTag("Base", (NBTBase)new NBTTagInt(ItemMockBanner.BANNER_COLOURS[bannerBlock.bannerType].getDyeDamage()));
+            bannerStack.getOrCreateChildTag("BlockEntityTag").setTag("Base", (NBTBase)new NBTTagInt(ItemMockBanner.BANNER_COLOURS[bannerBlock.bannerType].getDyeDamage()));
             ((TileEntityMockBanner)bannerEntity).setItemValues(bannerStack, true);
           } else if (bannerBlock.bannerType == ItemMockBanner.BANNER_VILLAGE) {
             ((TileEntityMockBanner)bannerEntity).setItemValues(townHall.getBannerStack(), true);
@@ -446,7 +446,7 @@ public class BuildingBlock {
           if (townHall == null) {
             ItemStack bannerStack = ItemMockBanner.makeBanner(Item.getItemFromBlock((Block)bannerBlock), ItemMockBanner.BANNER_COLOURS[bannerBlock.bannerType], 
                 JsonToNBT.getTagFromJson(ItemMockBanner.BANNER_DESIGNS[bannerBlock.bannerType]));
-            bannerStack.getOrCreateSubCompound("BlockEntityTag").setTag("Base", (NBTBase)new NBTTagInt(ItemMockBanner.BANNER_COLOURS[bannerBlock.bannerType].getDyeDamage()));
+            bannerStack.getOrCreateChildTag("BlockEntityTag").setTag("Base", (NBTBase)new NBTTagInt(ItemMockBanner.BANNER_COLOURS[bannerBlock.bannerType].getDyeDamage()));
             ((TileEntityMockBanner)bannerEntity).setItemValues(bannerStack, true);
           } else if (bannerBlock.bannerType == ItemMockBanner.BANNER_VILLAGE) {
             ((TileEntityMockBanner)bannerEntity).setItemValues(townHall.getBannerStack(), true);
@@ -485,7 +485,7 @@ public class BuildingBlock {
     } 
     if (art.onValidSurface() && 
       !world.isRemote) {
-      world.spawnEntity((Entity)art);
+      world.addEntity0((Entity)art);
       return true;
     } 
     return false;
@@ -496,7 +496,7 @@ public class BuildingBlock {
     boolean surface = (this.special == PRESERVEGROUNDSURFACE);
     if (!surface && existingBlockState.isFullBlock() && existingBlockState.isFullCube()) {
       Material material = existingBlockState.getMaterial();
-      if (material == Material.GROUND || material == Material.ROCK || material == Material.SAND || material == Material.CLAY)
+      if (material == Material.EARTH || material == Material.ROCK || material == Material.SAND || material == Material.CLAY)
         return false; 
     } 
     IBlockState targetGroundBlockState = WorldUtilities.getBlockStateValidGround(existingBlockState, surface);
@@ -531,38 +531,36 @@ public class BuildingBlock {
   
   private boolean buildTreeSpawn(World world, boolean worldGeneration) {
     if (worldGeneration) {
+      WorldGenSakura worldGenSakura;
       WorldGenerator wg = null;
       if (this.special == OAKSPAWN) {
-        wg = new WorldGenTrees(false);
+        WorldGenTrees worldGenTrees = new WorldGenTrees(false);
       } else if (this.special == PINESPAWN) {
-        wg = new WorldGenTaiga2(false);
+        WorldGenTaiga2 worldGenTaiga2 = new WorldGenTaiga2(false);
       } else if (this.special == BIRCHSPAWN) {
-        wg = new WorldGenBirchTree(false, true);
+        WorldGenBirchTree worldGenBirchTree = new WorldGenBirchTree(false, true);
       } else if (this.special == JUNGLESPAWN) {
         IBlockState iblockstate = Blocks.LOG.getDefaultState().withProperty((IProperty)BlockOldLog.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE);
         IBlockState iblockstate1 = Blocks.LEAVES.getDefaultState().withProperty((IProperty)BlockOldLeaf.VARIANT, (Comparable)BlockPlanks.EnumType.JUNGLE).withProperty((IProperty)BlockLeaves.CHECK_DECAY, 
             Boolean.valueOf(false));
-        wg = new WorldGenTrees(true, 4 + MillCommonUtilities.random.nextInt(7), iblockstate, iblockstate1, false);
+        WorldGenTrees worldGenTrees = new WorldGenTrees(true, 4 + MillCommonUtilities.random.nextInt(7), iblockstate, iblockstate1, false);
       } else if (this.special == ACACIASPAWN) {
-        wg = new WorldGenSavannaTree(false);
+        WorldGenSavannaTree worldGenSavannaTree = new WorldGenSavannaTree(false);
       } else if (this.special == DARKOAKSPAWN) {
-        wg = new WorldGenCanopyTree(true);
+        WorldGenCanopyTree worldGenCanopyTree = new WorldGenCanopyTree(true);
       } else if (this.special == APPLETREESPAWN) {
-        wg = new WorldGenAppleTree(true);
+        WorldGenAppleTree worldGenAppleTree = new WorldGenAppleTree(true);
       } else if (this.special == OLIVETREESPAWN) {
-        wg = new WorldGenOliveTree(true);
+        WorldGenOliveTree worldGenOliveTree = new WorldGenOliveTree(true);
       } else if (this.special == PISTACHIOTREESPAWN) {
-        wg = new WorldGenPistachio(true);
+        WorldGenPistachio worldGenPistachio = new WorldGenPistachio(true);
       } else if (this.special == CHERRYTREESPAWN) {
-        wg = new WorldGenCherry(true);
+        WorldGenCherry worldGenCherry = new WorldGenCherry(true);
       } else if (this.special == SAKURATREESPAWN) {
-        wg = new WorldGenSakura(true);
+        worldGenSakura = new WorldGenSakura(true);
       } 
-      
-      if (wg != null) {
-        wg.generate(world, MillCommonUtilities.random, this.p.getBlockPos());
-        return true;
-      }
+      worldGenSakura.generate(world, MillCommonUtilities.random, this.p.getBlockPos());
+      return true;
     } 
     return false;
   }

@@ -10,7 +10,7 @@ building.icon=bookshelves
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Bibliothèque
+initial.nativename=Bibliotheque
 initial.priority=100
 initial.tag=library
 initial.parenttag=204

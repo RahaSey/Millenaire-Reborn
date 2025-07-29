@@ -16,7 +16,7 @@ building.icon=normanbroadsword
 
 //Parameters for initial construction
 initial.startlevel=-6
-initial.nativename=Repère de bandits
+initial.nativename=Carniche des Bandits
 initial.priority=5
 initial.male=bandit
 initial.male=bandit

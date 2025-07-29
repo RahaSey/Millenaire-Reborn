@@ -177,7 +177,7 @@ public class MillWorldData {
       s = s + tag + " "; 
     ServerSender.sendChat(player, TextFormatting.GREEN, "Tags: " + s);
     ServerSender.sendChat(player, TextFormatting.GREEN, "ActionData: " + s);
-    ServerSender.sendChat(player, TextFormatting.GREEN, "Time: " + (this.world.getWorldTime() % 24000L) + " / " + this.world.getWorldTime());
+    ServerSender.sendChat(player, TextFormatting.GREEN, "Time: " + (this.world.getDayTime() % 24000L) + " / " + this.world.getDayTime());
   }
   
   public void displayVillageList(EntityPlayer player, boolean loneBuildings) {
@@ -231,7 +231,7 @@ public class MillWorldData {
       for (i = 0; i < this.loneBuildingsList.names.size(); i++) {
         VillageType village = Culture.getCultureByName(this.loneBuildingsList.cultures.get(i)).getLoneBuildingType(this.loneBuildingsList.types.get(i));
         if (village.keyLonebuilding || village.keyLoneBuildingGenerateTag != null)
-          if (!village.generatedForPlayer || player.getName().equalsIgnoreCase(this.loneBuildingsList.generatedFor.get(i))) {
+          if (!village.generatedForPlayer || player.func_70005_c_().equalsIgnoreCase(this.loneBuildingsList.generatedFor.get(i))) {
             Point p = this.loneBuildingsList.pos.get(i);
             int distance = MathHelper.floor(p.horizontalDistanceTo((Entity)player));
             if (distance <= 2000) {
@@ -347,7 +347,7 @@ public class MillWorldData {
   public UserProfile getProfile(UUID uuid) {
     if (this.profiles.containsKey(uuid))
       return this.profiles.get(uuid); 
-    String name = this.world.getMinecraftServer().getPlayerProfileCache().getProfileByUUID(uuid).getName();
+    String name = this.world.getServer().getPlayerProfileCache().getProfileByUUID(uuid).getName();
     UserProfile profile = new UserProfile(this, uuid, name);
     this.profiles.put(profile.uuid, profile);
     return profile;
@@ -374,9 +374,9 @@ public class MillWorldData {
       try {
         FileInputStream fileinputstream = new FileInputStream(file);
         NBTTagCompound nbttagcompound = CompressedStreamTools.readCompressed(fileinputstream);
-        NBTTagList nbttaglist = nbttagcompound.getTagList("buildings", 10);
+        NBTTagList nbttaglist = nbttagcompound.getList("buildings", 10);
         for (int i = 0; i < nbttaglist.tagCount(); i++) {
-          NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+          NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
           new Building(this, nbttagcompound1);
         } 
       } catch (Exception e) {
@@ -443,11 +443,11 @@ public class MillWorldData {
       try {
         FileInputStream fileinputstream = new FileInputStream(file1);
         NBTTagCompound nbttagcompound = CompressedStreamTools.readCompressed(fileinputstream);
-        NBTTagList nbttaglist = nbttagcompound.getTagList("villagersrecords", 10);
+        NBTTagList nbttaglist = nbttagcompound.getList("villagersrecords", 10);
         if (MillConfigValues.LogHybernation >= 1)
           MillLog.major(this, "Loading " + nbttaglist.tagCount() + " villagers from main list. Count at start: " + this.villagerRecords.size()); 
         for (int i = 0; i < nbttaglist.tagCount(); i++) {
-          NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+          NBTTagCompound nbttagcompound1 = nbttaglist.getCompound(i);
           VillagerRecord vr = VillagerRecord.read(this, nbttagcompound1, "vr");
           if (vr == null) {
             MillLog.error(this, "Couldn't load VR record.");
@@ -977,9 +977,9 @@ public class MillWorldData {
   }
   
   private void testTimeReset() {
-    if (this.world.getWorldTime() < this.lastWorldTime)
-      ServerSender.sendTranslatedSentenceInRange(this.world, new Point(0.0D, 0.0D, 0.0D), 2147483647, '4', "error.backwardtime", new String[] { "" + this.lastWorldTime, "" + this.world.getWorldTime() }); 
-    this.lastWorldTime = this.world.getWorldTime();
+    if (this.world.getDayTime() < this.lastWorldTime)
+      ServerSender.sendTranslatedSentenceInRange(this.world, new Point(0.0D, 0.0D, 0.0D), 2147483647, '4', "error.backwardtime", new String[] { "" + this.lastWorldTime, "" + this.world.getDayTime() }); 
+    this.lastWorldTime = this.world.getDayTime();
   }
   
   public String toString() {

@@ -30,6 +30,7 @@ goal=gosocialise
 goal=chat
 goal=gopray
 goal=goDrink
+
 goal=deliverResourcesShop
 goal=GetHouseTHResources
 goal=getGoodsHousehold

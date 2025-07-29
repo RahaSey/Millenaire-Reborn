@@ -40,7 +40,7 @@ public class ItemHalfSlab extends ItemBlock {
     BlockPos blockpos = pos;
     IBlockState iblockstate = worldIn.getBlockState(pos);
     if (iblockstate.getBlock() == this.singleSlab) {
-      boolean flag = (iblockstate.getValue((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP);
+      boolean flag = (iblockstate.get((IProperty)BlockSlab.HALF) == BlockSlab.EnumBlockHalf.TOP);
       if ((side == EnumFacing.UP && !flag) || (side == EnumFacing.DOWN && flag))
         return true; 
     } 
@@ -54,7 +54,7 @@ public class ItemHalfSlab extends ItemBlock {
   }
   
   public String getTranslationKey(ItemStack stack) {
-    return this.singleSlab.getUnlocalizedName();
+    return this.singleSlab.getTranslationKey();
   }
   
   public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -62,7 +62,7 @@ public class ItemHalfSlab extends ItemBlock {
     if (!itemstack.isEmpty() && player.canPlayerEdit(pos.offset(facing), facing, itemstack)) {
       IBlockState iblockstate = worldIn.getBlockState(pos);
       if (iblockstate.getBlock() == this.singleSlab) {
-        BlockSlab.EnumBlockHalf blockslab$enumblockhalf = (BlockSlab.EnumBlockHalf)iblockstate.getValue((IProperty)BlockSlab.HALF);
+        BlockSlab.EnumBlockHalf blockslab$enumblockhalf = (BlockSlab.EnumBlockHalf)iblockstate.get((IProperty)BlockSlab.HALF);
         if ((facing == EnumFacing.UP && blockslab$enumblockhalf == BlockSlab.EnumBlockHalf.BOTTOM) || (facing == EnumFacing.DOWN && blockslab$enumblockhalf == BlockSlab.EnumBlockHalf.TOP)) {
           AxisAlignedBB axisalignedbb = this.fullBlock.getDefaultState().getCollisionBoundingBox((IBlockAccess)worldIn, pos);
           if (axisalignedbb != Block.NULL_AABB && worldIn.checkNoEntityCollision(axisalignedbb.offset(pos)) && worldIn.setBlockState(pos, this.fullBlock.getDefaultState(), 11)) {

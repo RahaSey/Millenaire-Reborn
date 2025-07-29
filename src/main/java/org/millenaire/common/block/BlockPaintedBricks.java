@@ -47,7 +47,7 @@ public class BlockPaintedBricks extends Block implements IPaintedBlock {
   }
   
   public static String getColorName(EnumDyeColor colour) {
-    String colourName = colour.getName();
+    String colourName = colour.getTranslationKey();
     if (colourName.equalsIgnoreCase("lightBlue"))
       colourName = "light_blue"; 
     return colourName;
@@ -102,7 +102,7 @@ public class BlockPaintedBricks extends Block implements IPaintedBlock {
     return state.withProperty((IProperty)BOTTOM_FRIEZE, Boolean.valueOf(false)).withProperty((IProperty)TOP_FRIEZE, Boolean.valueOf(false));
   }
   
-  public BlockRenderLayer getRenderLayer() {
+  public BlockRenderLayer getBlockLayer() {
     return BlockRenderLayer.CUTOUT_MIPPED;
   }
   
@@ -118,7 +118,7 @@ public class BlockPaintedBricks extends Block implements IPaintedBlock {
     return 0;
   }
   
-  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
     return getStateFromMeta(meta);
   }
   
@@ -155,7 +155,7 @@ public class BlockPaintedBricks extends Block implements IPaintedBlock {
             } 
             pointsToTest.remove(p);
           } 
-          if (blockColoured < bucket.getMaxDamage() - bucket.getItemDamage()) {
+          if (blockColoured < bucket.getMaxDamage() - bucket.getDamage()) {
             bucket.damageItem(blockColoured, (EntityLivingBase)player);
           } else {
             player.inventory.removeStackFromSlot(player.inventory.currentItem);

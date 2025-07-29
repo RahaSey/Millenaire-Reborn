@@ -80,17 +80,17 @@ public class ContainerPuja extends Container {
     try {
       this.shrine = temple.pujas;
       this.slotTool = new ToolSlot(temple.pujas, 4, 86, 37);
-      addSlotToContainer(new OfferingSlot(temple.pujas, 0, 26, 19));
-      addSlotToContainer(new MoneySlot(temple.pujas, 1, 8, 55));
-      addSlotToContainer(new MoneySlot(temple.pujas, 2, 26, 55));
-      addSlotToContainer(new MoneySlot(temple.pujas, 3, 44, 55));
-      addSlotToContainer(this.slotTool);
+      addSlot(new OfferingSlot(temple.pujas, 0, 26, 19));
+      addSlot(new MoneySlot(temple.pujas, 1, 8, 55));
+      addSlot(new MoneySlot(temple.pujas, 2, 26, 55));
+      addSlot(new MoneySlot(temple.pujas, 3, 44, 55));
+      addSlot(this.slotTool);
       for (int i = 0; i < 3; i++) {
         for (int k = 0; k < 9; k++)
-          addSlotToContainer(new Slot((IInventory)player.inventory, k + i * 9 + 9, 8 + k * 18, 106 + i * 18)); 
+          addSlot(new Slot((IInventory)player.inventory, k + i * 9 + 9, 8 + k * 18, 106 + i * 18)); 
       } 
       for (int j = 0; j < 9; j++)
-        addSlotToContainer(new Slot((IInventory)player.inventory, j, 8 + j * 18, 164)); 
+        addSlot(new Slot((IInventory)player.inventory, j, 8 + j * 18, 164)); 
     } catch (Exception e) {
       MillLog.printException("Exception in ContainerPuja(): ", e);
     } 

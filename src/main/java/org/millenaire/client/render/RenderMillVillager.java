@@ -72,13 +72,13 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
   public static final FactoryFemaleSym FACTORY_FEMALE_SYM = new FactoryFemaleSym();
   
   private static void drawItem2D(FontRenderer fontRendererIn, ItemStack itemStack, float x, float y, float z, float iconPos, float viewerYaw, float viewerPitch, boolean isThirdPersonFrontal, boolean isSneaking) {
-    RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+    RenderItem renderItem = Minecraft.getInstance().getItemRenderer();
     if (!itemStack.isEmpty()) {
       GlStateManager.pushMatrix();
       GlStateManager.translate(x, y, z);
       GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
       GlStateManager.rotate(-viewerYaw, 0.0F, 1.0F, 0.0F);
-      GlStateManager.rotate((isThirdPersonFrontal ? -1 : 1) * viewerPitch, 1.0F, 0.0F, 0.0F);
+      GlStateManager.rotate((isThirdPersonFrontal ? -1 : true) * viewerPitch, 1.0F, 0.0F, 0.0F);
       GlStateManager.translate(0.25F - iconPos * 0.5F, 0.0F, -7.5F);
       GlStateManager.scale(-0.025F, -0.025F, 0.05F);
       GlStateManager.disableLighting();
@@ -101,7 +101,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
     GlStateManager.translate(x, y, z);
     GlStateManager.glNormal3f(0.0F, 1.0F, 0.0F);
     GlStateManager.rotate(-viewerYaw, 0.0F, 1.0F, 0.0F);
-    GlStateManager.rotate((isThirdPersonFrontal ? -1 : 1) * viewerPitch, 1.0F, 0.0F, 0.0F);
+    GlStateManager.rotate((isThirdPersonFrontal ? -1 : true) * viewerPitch, 1.0F, 0.0F, 0.0F);
     GlStateManager.scale(-0.025F, -0.025F, 0.025F);
     GlStateManager.disableLighting();
     GlStateManager.depthMask(false);
@@ -142,7 +142,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
   }
   
   protected void applyRotations(MillVillager v, float par2, float rotationYaw, float partialTicks) {
-    if (v.isEntityAlive() && v.isVillagerSleeping()) {
+    if (v.isAlive() && v.isVillagerSleeping()) {
       float orientation = -v.getBedOrientationInDegrees() + 90.0F;
       if (orientation == 0.0F) {
         GL11.glTranslatef(0.5F, 0.0F, -0.5F);
@@ -154,7 +154,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
         GL11.glTranslatef(0.5F, 0.0F, 0.5F);
       } 
       GL11.glRotatef(orientation, 0.0F, 1.0F, 0.0F);
-      GL11.glRotatef(getDeathMaxRotation(v), 0.0F, 0.0F, 1.0F);
+      GL11.glRotatef(getDeathMaxRotation((EntityLivingBase)v), 0.0F, 0.0F, 1.0F);
       GL11.glRotatef(270.0F, 0.0F, 1.0F, 0.0F);
       Block block = v.getPos().getBlock(v.world);
       if (block instanceof BlockMillBed) {
@@ -164,7 +164,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
         GL11.glTranslatef(0.0F, 0.0F, 0.1F);
       } 
     } else {
-      super.applyRotations(v, par2, rotationYaw, partialTicks);
+      super.rotateCorpse((EntityLivingBase)v, par2, rotationYaw, partialTicks);
     } 
   }
   
@@ -191,7 +191,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
   
   public void doRender(MillVillager entity, double x, double y, double z, float entityYaw, float partialTicks) {
     MillVillager villager = entity;
-    super.doRender(entity, x, y, z, entityYaw, partialTicks);
+    super.doRender((EntityLiving)entity, x, y, z, entityYaw, partialTicks);
     doRenderVillagerName(villager, x, y, z);
   }
   
@@ -217,8 +217,8 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
     UserProfile profile = Mill.clientWorld.getProfile((EntityPlayer)entityPlayerSP);
     float f4 = villager.getDistance((Entity)entityPlayerSP);
     if (f4 < MillConfigValues.VillagersNamesDistance) {
-      String gameSpeech = villager.getGameSpeech(Mill.proxy.getTheSinglePlayer().getName());
-      String nativeSpeech = villager.getNativeSpeech(Mill.proxy.getTheSinglePlayer().getName());
+      String gameSpeech = villager.getGameSpeech(Mill.proxy.getTheSinglePlayer().func_70005_c_());
+      String nativeSpeech = villager.getNativeSpeech(Mill.proxy.getTheSinglePlayer().func_70005_c_());
       float height = 0.0F;
       if (MillConfigValues.DEV && Mill.serverWorlds.size() > 0 && ((MillWorldData)Mill.serverWorlds.get(0)).getVillagerById(villager.getVillagerId()) != null && !MillConfigValues.DEV) {
         MillVillager dv = ((MillWorldData)Mill.serverWorlds.get(0)).getVillagerById(villager.getVillagerId());
@@ -298,7 +298,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
           height += 0.25F;
         } 
         if (villager.getAttackTarget() != null) {
-          displayText(villager, LanguageUtilities.string("other.villagerattackinglabel", new String[] { villager.getAttackTarget().getName() }), -1593901056, (float)x, ((float)y + height), (float)z);
+          displayText(villager, LanguageUtilities.string("other.villagerattackinglabel", new String[] { villager.getAttackTarget().func_70005_c_() }), -1593901056, (float)x, ((float)y + height), (float)z);
           height += 0.25F;
         } 
         if (profile.villagersInQuests.containsKey(Long.valueOf(villager.getVillagerId()))) {
@@ -325,7 +325,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
         } 
         displayText(villager, s, -1596142994, (float)x, ((float)y + height), (float)z);
         height += 0.25F;
-        s = LanguageUtilities.string("hire.timeleft", new String[] { "" + Math.round((float)((villager.hiredUntil - villager.world.getWorldTime()) / 1000L)) });
+        s = LanguageUtilities.string("hire.timeleft", new String[] { "" + Math.round((float)((villager.hiredUntil - villager.world.getDayTime()) / 1000L)) });
         displayText(villager, s, -1596072483, (float)x, ((float)y + height), (float)z);
         height += 0.25F;
       } else {
@@ -333,12 +333,12 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
         displayText(villager, s, -1596072483, (float)x, ((float)y + height), (float)z);
         height += 0.25F;
       } 
-      if (villager.isDead)
+      if (villager.removed)
         displayText(villager, "Dead on client!", -1593901056, (float)x, ((float)y + height), (float)z); 
       if (villager.isDeadOnServer)
         displayText(villager, "Dead on server!", -1593901056, (float)x, ((float)y + height), (float)z); 
       if (MillConfigValues.displayNames && !villager.vtype.hideName) {
-        displayText(villager, villager.getName() + ", " + villager.getNativeOccupationName(), -1593835521, (float)x, ((float)y + height), (float)z);
+        displayText(villager, villager.func_70005_c_() + ", " + villager.getNativeOccupationName(), -1593835521, (float)x, ((float)y + height), (float)z);
         height += 0.25F;
       } 
       List<ItemStack> specialIcons = defineSpecialIcons(villager);
@@ -366,7 +366,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
   }
   
   private void renderIcons(MillVillager entityIn, List<ItemStack> icons, double x, double y, double z, int maxDistance) {
-    double d0 = entityIn.getDistanceSq(this.renderManager.renderViewEntity);
+    double d0 = entityIn.getDistanceSq(this.renderManager.livingPlayer);
     if (d0 <= (maxDistance * maxDistance)) {
       boolean isSneaking = entityIn.isSneaking();
       float viewerYaw = this.renderManager.playerViewY;
@@ -382,7 +382,7 @@ public class RenderMillVillager extends RenderBiped<MillVillager> {
   }
   
   private void renderLivingLabelColour(MillVillager entityIn, String str, double x, double y, double z, int maxDistance, int colour) {
-    double d0 = entityIn.getDistanceSq(this.renderManager.renderViewEntity);
+    double d0 = entityIn.getDistanceSq(this.renderManager.livingPlayer);
     if (d0 <= (maxDistance * maxDistance)) {
       boolean isSneaking = entityIn.isSneaking();
       float viewerYaw = this.renderManager.playerViewY;

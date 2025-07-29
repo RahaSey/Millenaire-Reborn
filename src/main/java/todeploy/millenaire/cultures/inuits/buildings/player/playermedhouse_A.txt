@@ -12,4 +12,4 @@ building.icon=denierargent
 initial.startlevel=-5
 initial.nativename=Tupiq
 initial.translatedname=name_en,house
-
+initial.priority=3000

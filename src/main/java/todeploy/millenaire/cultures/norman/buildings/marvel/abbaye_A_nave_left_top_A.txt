@@ -10,7 +10,7 @@ building.icon=chiseledstonebrick
 
 //Parameters for initial construction
 initial.startlevel=-1
-initial.nativename=Nef (sud-est)
+initial.nativename=Allaïe (sud-est)
 initial.priority=675
 initial.tag=scaffoldings
 

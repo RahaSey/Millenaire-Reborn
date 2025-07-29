@@ -22,4 +22,4 @@ harvestitem=dye_yellow,0
 
 helditemsoffhand=dye_yellow
 
-buildinglimit=dye_yellow,16
+buildinglimit=dye_yellow,64

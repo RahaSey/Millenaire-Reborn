@@ -26,4 +26,5 @@ output=inuitcarving,3
 //s'il y a plus d'objets dans le batiment que �a, arr�ter le but
 //if more than that number of item is present in building, stop goal
 buildinglimit=inuitcarving,16
+townhalllimit=inuitcarving,16
  

@@ -95,7 +95,7 @@ public class BlockExtendedMudBrick extends BlockSlab implements IMetaBlockName {
     setHarvestLevel("pickaxe", 0);
     setHardness(1.5F);
     setResistance(10.0F);
-    setDefaultState(this.blockState.getBaseState().withProperty((IProperty)VARIANT, EnumType.MUDBRICK_SMOOTH));
+    setDefaultState(this.stateContainer.getBaseState().withProperty((IProperty)VARIANT, EnumType.MUDBRICK_SMOOTH));
   }
   
   protected BlockStateContainer createBlockState() {
@@ -103,22 +103,22 @@ public class BlockExtendedMudBrick extends BlockSlab implements IMetaBlockName {
   }
   
   public int damageDropped(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
-  public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMapColor();
+  public MapColor getMaterialColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+    return ((EnumType)state.get((IProperty)VARIANT)).getMapColor();
   }
   
   public int getMetaFromState(IBlockState state) {
-    return ((EnumType)state.getValue((IProperty)VARIANT)).getMetadata();
+    return ((EnumType)state.get((IProperty)VARIANT)).getMetadata();
   }
   
   public String getSpecialName(ItemStack stack) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).getValue((IProperty)VARIANT)).getName();
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(stack.getMetadata()).get((IProperty)VARIANT)).getName();
   }
   
-  public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+  public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
     return getStateFromMeta(meta);
   }
   
@@ -127,7 +127,7 @@ public class BlockExtendedMudBrick extends BlockSlab implements IMetaBlockName {
   }
   
   @SideOnly(Side.CLIENT)
-  public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+  public void fillItemGroup(CreativeTabs itemIn, NonNullList<ItemStack> items) {
     for (EnumType enumtype : EnumType.values())
       items.add(new ItemStack((Block)this, 1, enumtype.getMetadata())); 
   }
@@ -136,12 +136,8 @@ public class BlockExtendedMudBrick extends BlockSlab implements IMetaBlockName {
     return EnumType.byMetadata(stack.getMetadata() & 0x7);
   }
   
-  public String getTranslationKey(int meta) {
-    return "tile.millenaire." + ((EnumType)getStateFromMeta(meta).getValue((IProperty)VARIANT)).getName();
-  }
-  
   public String getUnlocalizedName(int meta) {
-    return getTranslationKey(meta);
+    return "tile.millenaire." + ((EnumType)getStateFromMeta(meta).get((IProperty)VARIANT)).getName();
   }
   
   public IProperty<?> getVariantProperty() {

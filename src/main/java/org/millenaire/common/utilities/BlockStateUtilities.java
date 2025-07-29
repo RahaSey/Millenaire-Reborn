@@ -20,7 +20,7 @@ public class BlockStateUtilities {
     Map<IProperty<?>, Comparable<?>> map = Maps.newHashMap();
     if ("default".equals(values))
       return (Map<IProperty<?>, Comparable<?>>)block.getDefaultState().getProperties(); 
-    BlockStateContainer blockstatecontainer = block.getBlockState();
+    BlockStateContainer blockstatecontainer = block.getStateContainer();
     Iterator<String> iterator = COMMA_SPLITTER.split(values).iterator();
     while (true) {
       if (!iterator.hasNext())
@@ -40,8 +40,7 @@ public class BlockStateUtilities {
     return null;
   }
   
-  @SuppressWarnings({"unchecked", "rawtypes"})
-  private static IBlockState getBlockStateWithProperty(IBlockState blockState, IProperty property, Comparable value) {
+  private static <T extends Comparable<T>> IBlockState getBlockStateWithProperty(IBlockState blockState, IProperty<T> property, Comparable<?> value) {
     return blockState.withProperty(property, value);
   }
   
@@ -50,11 +49,8 @@ public class BlockStateUtilities {
     if (properties == null) {
       MillLog.error(null, "Could not parse values line of " + values + " for block " + blockState.getBlock());
     } else {
-      for (Map.Entry<IProperty<?>, Comparable<?>> entry : properties.entrySet()) {
-        IProperty property = entry.getKey();
-        Comparable value = entry.getValue();
-        blockState = getBlockStateWithProperty(blockState, property, value);
-      }
+      for (Map.Entry<IProperty<?>, Comparable<?>> entry : properties.entrySet())
+        blockState = getBlockStateWithProperty(blockState, (IProperty<Comparable>)entry.getKey(), entry.getValue()); 
     } 
     return blockState;
   }
@@ -67,10 +63,10 @@ public class BlockStateUtilities {
   }
   
   public static Comparable getPropertyValueByName(IBlockState blockState, String propertyName) {
-    BlockStateContainer blockStateContainer = blockState.getBlock().getBlockState();
+    BlockStateContainer blockStateContainer = blockState.getBlock().getStateContainer();
     if (blockStateContainer.getProperty(propertyName) != null) {
       IProperty property = blockStateContainer.getProperty(propertyName);
-      Comparable value = blockState.getValue(property);
+      Comparable value = blockState.get(property);
       return value;
     } 
     return null;
@@ -78,7 +74,7 @@ public class BlockStateUtilities {
   
   public static String getStringFromBlockState(IBlockState blockState) {
     String properties = "";
-    for (IProperty<?> property : (Iterable<IProperty<?>>)blockState.getPropertyKeys()) {
+    for (IProperty<?> property : (Iterable<IProperty<?>>)blockState.getPropertyNames()) {
       if (properties.length() > 0)
         properties = properties + ","; 
       properties = properties + property.getName() + "=" + ((Comparable)blockState.getProperties().get(property)).toString();
@@ -92,12 +88,12 @@ public class BlockStateUtilities {
   }
   
   public static boolean hasPropertyByName(IBlockState blockState, String propertyName) {
-    BlockStateContainer blockStateContainer = blockState.getBlock().getBlockState();
+    BlockStateContainer blockStateContainer = blockState.getBlock().getStateContainer();
     return (blockStateContainer.getProperty(propertyName) != null);
   }
   
   public static IBlockState setPropertyValueByName(IBlockState blockState, String propertyName, Comparable value) {
-    BlockStateContainer blockStateContainer = blockState.getBlock().getBlockState();
+    BlockStateContainer blockStateContainer = blockState.getBlock().getStateContainer();
     if (blockStateContainer.getProperty(propertyName) != null) {
       IProperty property = blockStateContainer.getProperty(propertyName);
       blockState = blockState.withProperty(property, value);

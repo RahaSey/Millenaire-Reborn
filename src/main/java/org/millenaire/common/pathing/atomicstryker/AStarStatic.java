@@ -89,10 +89,10 @@ public class AStarStatic {
       if (config.canClearLeaves && 
         block instanceof BlockLeaves)
         if (block == Blocks.LEAVES || block == Blocks.LEAVES2) {
-          if (((Boolean)blockState.getValue((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
+          if (((Boolean)blockState.get((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
             return true; 
         } else if (BlockStateUtilities.hasPropertyByName(blockState, "decayable")) {
-          if (((Boolean)blockState.getValue((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
+          if (((Boolean)blockState.get((IProperty)BlockLeaves.DECAYABLE)).booleanValue() == true)
             return true; 
         } else {
           return true;

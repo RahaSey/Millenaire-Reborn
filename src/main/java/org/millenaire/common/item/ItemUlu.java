@@ -66,9 +66,9 @@ public class ItemUlu extends ItemMill {
       } 
       return EnumActionResult.PASS;
     } 
-    if (!is.hasTagCompound())
-      is.setTagCompound(new NBTTagCompound()); 
-    int resUseCount = is.getTagCompound().getInteger("resUseCount");
+    if (!is.hasTag())
+      is.setTag(new NBTTagCompound()); 
+    int resUseCount = is.getTag().getInt("resUseCount");
     if (resUseCount == 0) {
       if (MillCommonUtilities.countChestItems((IInventory)player.inventory, COARSE_DIRT) == 0) {
         if (!world.isRemote)
@@ -81,7 +81,7 @@ public class ItemUlu extends ItemMill {
     } else {
       resUseCount--;
     } 
-    is.getTagCompound().setInteger("resUseCount", resUseCount);
+    is.getTag().putInt("resUseCount", resUseCount);
     WorldUtilities.setBlockstate(world, new Point(pos), MillBlocks.SOD.getDefaultState().withProperty((IProperty)BlockSod.VARIANT, (Comparable)chosenPlankType), true, true);
     is.damageItem(1, (EntityLivingBase)player);
     return EnumActionResult.SUCCESS;
@@ -89,8 +89,8 @@ public class ItemUlu extends ItemMill {
   
   @SideOnly(Side.CLIENT)
   public String getItemStackDisplayName(ItemStack stack) {
-    if (stack.getTagCompound() != null) {
-      int resUseCount = stack.getTagCompound().getInteger("resUseCount");
+    if (stack.getTag() != null) {
+      int resUseCount = stack.getTag().getInt("resUseCount");
       return super.getItemStackDisplayName(stack) + " - " + LanguageUtilities.string("ui.ulusodplanksleft", new String[] { "" + resUseCount });
     } 
     return super.getItemStackDisplayName(stack);
@@ -105,7 +105,7 @@ public class ItemUlu extends ItemMill {
       return EnumActionResult.SUCCESS;
     } 
     if (world.getBlockState(pos).getBlock() == Blocks.SNOW_LAYER) {
-      int snowDepth = ((Integer)world.getBlockState(pos).getValue((IProperty)BlockSnow.LAYERS)).intValue();
+      int snowDepth = ((Integer)world.getBlockState(pos).get((IProperty)BlockSnow.LAYERS)).intValue();
       world.setBlockState(pos, Blocks.AIR.getDefaultState());
       MillCommonUtilities.putItemsInChest((IInventory)player.inventory, (Block)MillBlocks.SNOW_BRICK, 0, (snowDepth + 1) / 2);
       uluIS.damageItem(1, (EntityLivingBase)player);

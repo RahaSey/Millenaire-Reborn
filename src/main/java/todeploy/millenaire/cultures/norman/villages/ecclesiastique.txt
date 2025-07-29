@@ -1,4 +1,4 @@
-name=Village ecclésiastique
+name=Réligiaeux Village
 icon=stained_glass_green_blue
 weight=10
 carriesraid=false
@@ -51,6 +51,7 @@ start=farm
 start=cattlefarm
 start=grove
 start=inn
+start=carpenterhouse
 
 player=playersmallfield
 player=playersmallhouse
@@ -63,15 +64,14 @@ player=gifthouse
 //to be built in priority
 core=church
 core=market
-core=archives
 core=bakery
-core=carpenterhouse
 core=glassblower
 core=presbytery
+core=quarry
 
 //to be built after the core ones
-secondary=glassblower
-secondary=cattlefarm
+secondary=archives
+//secondary=cattlefarm
 secondary=quarry
 secondary=lumbermanhut
 secondary=grove

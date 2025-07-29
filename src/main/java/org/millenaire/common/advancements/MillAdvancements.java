@@ -127,7 +127,7 @@ public class MillAdvancements {
   }
   
   public static void addToStats(EntityPlayer player, String key) {
-    if (player.isCreative() || MillConfigValues.DEV) {
+    if (player.func_184812_l_() || MillConfigValues.DEV) {
       MillConfigValues.advancementsCreative.add(key);
     } else {
       MillConfigValues.advancementsSurvival.add(key);
