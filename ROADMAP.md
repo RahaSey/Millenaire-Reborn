@@ -8,8 +8,8 @@ Porting Millénaire from Minecraft 1.12.2 Forge to 1.21.8 Fabric.
 |-------|--------|-----------|
 | 1. Basic Infrastructure | Complete | 2-3 days |
 | 2. Basic Items & Localization | Complete | 3-4 days |
-| 3. Advanced Item Functionality | In Progress | ~1 week |
-| 4. Blocks & World Generation | Planned | ~2 weeks |
+| 3. Advanced Item Functionality | Planned | ~1 week |
+| 4. Blocks & World Generation | In Progress | ~2 weeks |
 | 5. Entities & Villagers | Planned | ~2 weeks |
 | 6. World Generation & Structures | Planned | ~3 weeks |
 | 7. Gameplay Systems | Planned | ~2 weeks |
