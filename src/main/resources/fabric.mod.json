@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "millenaire-reborn",
+  "version": "${version}",
+  "name": "Millenaire-Reborn",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/millenaire-reborn/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "me.devupdates.millenaireReborn.client.MillenaireRebornDataGenerator"
+    ],
+    "client": [
+      "me.devupdates.millenaireReborn.client.MillenaireRebornClient"
+    ],
+    "main": [
+      "me.devupdates.millenaireReborn.MillenaireReborn"
+    ]
+  },
+  "mixins": [
+    "millenaire-reborn.mixins.json",
+    {
+      "config": "millenaire-reborn.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

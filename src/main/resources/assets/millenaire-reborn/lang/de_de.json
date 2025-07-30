@@ -1,0 +1,191 @@
+{
+  "_comment": "Millénaire Reborn - Deutsche Lokalisierung",
+  
+  "block.millenaire-reborn.norman_bricks": "Normannische Ziegel",
+  "block.millenaire-reborn.norman_cobblestone": "Normannisches Kopfsteinpflaster", 
+  "block.millenaire-reborn.byzantine_tiles": "Byzantinische Kacheln",
+  "block.millenaire-reborn.byzantine_sandstone_ornament": "Byzantinisches Sandstein-Ornament",
+  "block.millenaire-reborn.indian_stone_ornament": "Indisches Stein-Ornament",
+  
+  "item.millenaire-reborn.denier": "Denier",
+  "item.millenaire-reborn.denier_pouch": "Denier-Beutel",
+  "item.millenaire-reborn.millenaire_book": "Millénaire-Buch",
+  "item.millenaire-reborn.negation_wand": "Negations-Zauberstab",
+  
+  "item.millenaire-reborn.normanpickaxe": "Normannische Spitzhacke",
+  "item.millenaire-reborn.normanaxe": "Normannische Axt",
+  "item.millenaire-reborn.normanshovel": "Normannische Schaufel", 
+  "item.millenaire-reborn.normanhoe": "Normannische Hacke",
+  "item.millenaire-reborn.normanbroadsword": "Normannisches Breitschwert",
+  
+  "item.millenaire-reborn.normanhelmet": "Normannischer Helm",
+  "item.millenaire-reborn.normanplate": "Normannischer Brustpanzer",
+  "item.millenaire-reborn.normanlegs": "Normannische Beinschienen",
+  "item.millenaire-reborn.normanboots": "Normannische Stiefel",
+  
+  "item.millenaire-reborn.parchment_normanvillagers": "Normannischer Dorfbewohner-Leitfaden",
+  "item.millenaire-reborn.parchment_normanitems": "Normannischer Gegenstände-Leitfaden",
+  "item.millenaire-reborn.parchment_normanbuildings": "Normannischer Gebäude-Leitfaden", 
+    "item.millenaire-reborn.parchment_normanfull": "Vollständiger Normannischer Leitfaden",
+
+  "item.millenaire-reborn.byzantinepickaxe": "Byzantinische Spitzhacke",
+  "item.millenaire-reborn.byzantineaxe": "Byzantinische Axt",
+  "item.millenaire-reborn.byzantineshovel": "Byzantinische Schaufel",
+  "item.millenaire-reborn.byzantinehoe": "Byzantinische Hacke",
+  "item.millenaire-reborn.byzantinemace": "Byzantinischer Streitkolben",
+
+  "item.millenaire-reborn.byzantinehelmet": "Byzantinischer Helm",
+  "item.millenaire-reborn.byzantineplate": "Byzantinischer Brustpanzer",
+  "item.millenaire-reborn.byzantinelegs": "Byzantinische Beinschienen",
+  "item.millenaire-reborn.byzantineboots": "Byzantinische Stiefel",
+
+  "item.millenaire-reborn.byzantineiconsmall": "Kleine Byzantinische Ikone",
+  "item.millenaire-reborn.byzantineiconmedium": "Mittlere Byzantinische Ikone",
+  "item.millenaire-reborn.byzantineiconlarge": "Große Byzantinische Ikone",
+
+  "item.millenaire-reborn.clothes_byz_wool": "Byzantinisches Wolltuch",
+  "item.millenaire-reborn.clothes_byz_silk": "Byzantinisches Seidentuch",
+
+  "item.millenaire-reborn.tachisword": "Tachi-Schwert",
+  "item.millenaire-reborn.yumibow": "Yumi-Bogen",
+
+  "item.millenaire-reborn.japaneseredhelmet": "Japanischer Roter Samurai-Helm",
+  "item.millenaire-reborn.japaneseredplate": "Japanischer Roter Samurai-Brustpanzer",
+  "item.millenaire-reborn.japaneseredlegs": "Japanische Rote Samurai-Beinschienen",
+  "item.millenaire-reborn.japaneseredboots": "Japanische Rote Samurai-Stiefel",
+
+  "item.millenaire-reborn.japanesebluehelmet": "Japanischer Blauer Samurai-Helm",
+  "item.millenaire-reborn.japaneseblueplate": "Japanischer Blauer Samurai-Brustpanzer",
+  "item.millenaire-reborn.japanesebluelegs": "Japanische Blaue Samurai-Beinschienen",
+  "item.millenaire-reborn.japaneseblueboots": "Japanische Blaue Samurai-Stiefel",
+
+  "item.millenaire-reborn.japaneseguardhelmet": "Japanischer Wächter-Helm",
+  "item.millenaire-reborn.japaneseguardplate": "Japanischer Wächter-Brustpanzer",
+  "item.millenaire-reborn.japaneseguardlegs": "Japanische Wächter-Beinschienen",
+  "item.millenaire-reborn.japaneseguardboots": "Japanische Wächter-Stiefel",
+
+  "item.millenaire-reborn.parchment_japanesevillagers": "Japanischer Dorfbewohner-Leitfaden",
+  "item.millenaire-reborn.parchment_japaneseitems": "Japanischer Gegenstände-Leitfaden",
+  "item.millenaire-reborn.parchment_japanesebuildings": "Japanischer Gebäude-Leitfaden",
+  "item.millenaire-reborn.parchment_japanesefull": "Vollständiger Japanischer Leitfaden",
+
+  "item.millenaire-reborn.mayanpickaxe": "Maya-Spitzhacke",
+  "item.millenaire-reborn.mayanaxe": "Maya-Axt",
+  "item.millenaire-reborn.mayanshovel": "Maya-Schaufel",
+  "item.millenaire-reborn.mayanhoe": "Maya-Hacke",
+  "item.millenaire-reborn.mayanmace": "Maya-Streitkolben",
+  "item.millenaire-reborn.mayanquestcrown": "Maya-Quest-Krone",
+
+  "item.millenaire-reborn.parchment_mayanvillagers": "Maya-Dorfbewohner-Leitfaden",
+  "item.millenaire-reborn.parchment_mayanitems": "Maya-Gegenstände-Leitfaden",
+  "item.millenaire-reborn.parchment_mayanbuildings": "Maya-Gebäude-Leitfaden",
+  "item.millenaire-reborn.parchment_mayanfull": "Vollständiger Maya-Leitfaden",
+
+  "item.millenaire-reborn.rice": "Reis",
+  "item.millenaire-reborn.turmeric": "Kurkuma",
+  "item.millenaire-reborn.vegcurry": "Gemüse-Curry",
+  "item.millenaire-reborn.chickencurry": "Hähnchen-Curry",
+  "item.millenaire-reborn.rasgulla": "Rasgulla",
+
+  "item.millenaire-reborn.indianstatue": "Indische Statue",
+  "item.millenaire-reborn.brickmould": "Ziegelform",
+
+  "item.millenaire-reborn.parchment_indianvillagers": "Indischer Dorfbewohner-Leitfaden",
+  "item.millenaire-reborn.parchment_indianitems": "Indischer Gegenstände-Leitfaden",
+  "item.millenaire-reborn.parchment_indianbuildings": "Indischer Gebäude-Leitfaden",
+  "item.millenaire-reborn.parchment_indianfull": "Vollständiger Indischer Leitfaden",
+  "item.millenaire-reborn.parchment_sadhu": "Sadhu-Leitfaden",
+
+  "item.millenaire-reborn.seljukscimitar": "Seldschukischer Säbel",
+  "item.millenaire-reborn.seljukbow": "Seldschukischer Bogen",
+
+  "item.millenaire-reborn.seljukhelmet": "Seldschukischer Helm",
+  "item.millenaire-reborn.seljukturban": "Seldschukischer Turban",
+  "item.millenaire-reborn.seljukplate": "Seldschukischer Brustpanzer",
+  "item.millenaire-reborn.seljuklegs": "Seldschukische Beinschienen",
+  "item.millenaire-reborn.seljukboots": "Seldschukische Stiefel",
+
+  "item.millenaire-reborn.yogurt": "Joghurt",
+  "item.millenaire-reborn.ayran": "Ayran",
+  "item.millenaire-reborn.pide": "Pide",
+  "item.millenaire-reborn.lokum": "Lokum",
+  "item.millenaire-reborn.helva": "Helva",
+  "item.millenaire-reborn.pistachios": "Pistazien",
+
+  "item.millenaire-reborn.wallcarpetsmall": "Kleiner Wandteppich",
+  "item.millenaire-reborn.wallcarpetmedium": "Mittlerer Wandteppich",
+  "item.millenaire-reborn.wallcarpetlarge": "Großer Wandteppich",
+
+  "item.millenaire-reborn.clothes_seljuk_wool": "Seldschukisches Wolltuch",
+  "item.millenaire-reborn.clothes_seljuk_cotton": "Seldschukisches Baumwolltuch",
+
+  "item.millenaire-reborn.inuittrident": "Inuit-Dreizack",
+  "item.millenaire-reborn.inuitbow": "Inuit-Bogen",
+  "item.millenaire-reborn.ulu": "Ulu",
+
+  "item.millenaire-reborn.furhelmet": "Pelz-Helm",
+  "item.millenaire-reborn.furplate": "Pelz-Brustpanzer",
+  "item.millenaire-reborn.furlegs": "Pelz-Beinschienen",
+  "item.millenaire-reborn.furboots": "Pelz-Stiefel",
+
+  "item.millenaire-reborn.bearmeat_raw": "Rohes Bärenfleisch",
+  "item.millenaire-reborn.bearmeat_cooked": "Gekochtes Bärenfleisch",
+  "item.millenaire-reborn.wolfmeat_raw": "Rohes Wolfsfleisch",
+  "item.millenaire-reborn.wolfmeat_cooked": "Gekochtes Wolfsfleisch",
+  "item.millenaire-reborn.seafood_raw": "Rohe Meeresfrüchte",
+  "item.millenaire-reborn.seafood_cooked": "Gekochte Meeresfrüchte",
+  "item.millenaire-reborn.inuitbearstew": "Inuit-Bären-Eintopf",
+  "item.millenaire-reborn.inuitmeatystew": "Inuit-Fleisch-Eintopf",
+  "item.millenaire-reborn.inuitpotatostew": "Inuit-Kartoffel-Eintopf",
+
+  "item.millenaire-reborn.tannedhide": "Gegerbtes Fell",
+  "item.millenaire-reborn.hidehanging": "Hängendes Fell",
+
+  "item.millenaire-reborn.paint_bucket_white": "Weißer Farbtopf",
+  "item.millenaire-reborn.paint_bucket_orange": "Oranger Farbtopf",
+  "item.millenaire-reborn.paint_bucket_magenta": "Magenta Farbtopf",
+  "item.millenaire-reborn.paint_bucket_light_blue": "Hellblauer Farbtopf",
+  "item.millenaire-reborn.paint_bucket_yellow": "Gelber Farbtopf",
+  "item.millenaire-reborn.paint_bucket_lime": "Limettengrüner Farbtopf",
+  "item.millenaire-reborn.paint_bucket_pink": "Rosa Farbtopf",
+  "item.millenaire-reborn.paint_bucket_gray": "Grauer Farbtopf",
+  "item.millenaire-reborn.paint_bucket_cyan": "Türkiser Farbtopf",
+  "item.millenaire-reborn.paint_bucket_purple": "Violetter Farbtopf",
+  "item.millenaire-reborn.paint_bucket_blue": "Blauer Farbtopf",
+  "item.millenaire-reborn.paint_bucket_brown": "Brauner Farbtopf",
+  "item.millenaire-reborn.paint_bucket_green": "Grüner Farbtopf",
+  "item.millenaire-reborn.paint_bucket_red": "Roter Farbtopf",
+  "item.millenaire-reborn.paint_bucket_black": "Schwarzer Farbtopf",
+
+  "item.millenaire-reborn.vishnu_amulet": "Vishnu-Amulett",
+  "item.millenaire-reborn.yggdrasil_amulet": "Yggdrasil-Amulett",
+  "item.millenaire-reborn.alchemist_amulet": "Alchemisten-Amulett",
+  "item.millenaire-reborn.skoll_hati_amulet": "Skoll & Hati-Amulett",
+
+  "item.millenaire-reborn.tapestry": "Wandteppich",
+
+  "item.millenaire-reborn.sake": "Sake",
+  "item.millenaire-reborn.udon": "Udon",
+  "item.millenaire-reborn.ikayaki": "Ikayaki",
+  "item.millenaire-reborn.winebasic": "Einfacher Wein",
+  "item.millenaire-reborn.winefancy": "Edler Wein",
+  "item.millenaire-reborn.souvlaki": "Souvlaki",
+  "item.millenaire-reborn.feta": "Feta-Käse",
+
+  "item.millenaire-reborn.villagebanner": "Dorf-Banner",
+  "item.millenaire-reborn.culturebanner": "Kultur-Banner",
+  "item.millenaire-reborn.silk": "Seide",
+  "item.millenaire-reborn.obsidianflake": "Obsidian-Splitter",
+  "item.millenaire-reborn.unknownpowder": "Unbekanntes Pulver",
+
+  "itemgroup.millenaire-reborn.blocks": "Millénaire Blöcke",
+  "itemgroup.millenaire-reborn.norman": "Normannische Kultur",
+  "itemgroup.millenaire-reborn.byzantine": "Byzantinische Kultur",
+  "itemgroup.millenaire-reborn.japanese": "Japanische Kultur",
+  "itemgroup.millenaire-reborn.mayan": "Maya-Kultur",
+  "itemgroup.millenaire-reborn.indian": "Indische Kultur",
+  "itemgroup.millenaire-reborn.seljuk": "Seldschukische Kultur",
+  "itemgroup.millenaire-reborn.inuit": "Inuit-Kultur",
+  "itemgroup.millenaire-reborn.food": "Millénaire Essen", 
+  "itemgroup.millenaire-reborn.misc": "Millénaire Sonstiges"
+}

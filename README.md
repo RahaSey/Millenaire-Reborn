@@ -1,19 +1,41 @@
 # 🌾 Millénaire Reborn
 
-**Millénaire Reborn** is the actively maintained, community-driven revival of the beloved Minecraft mod [**Millénaire**](https://www.curseforge.com/minecraft/mc-mods/millenaire).
+**Millénaire Reborn** is a complete port of the beloved Minecraft mod [**Millénaire**](https://www.curseforge.com/minecraft/mc-mods/millenaire) to modern Minecraft using Fabric.
 
-Based on the final official release (1.12.2 – 8.1.1), this version is now open source, cleaned up, and ready for a new generation of development and players.
+Originally based on the final Forge release (1.12.2), this project brings the immersive village experience to **Minecraft 1.21.8** with a clean, modern codebase.
 
 > *"Populate your Minecraft world with thriving NPC villages from real 1000 AD cultures — and shape their evolution through your actions."*
 
 ---
 
-## ✨ What's New?
+## ✨ What's New in Millénaire Reborn?
 
-- ✅ **Fully Open Source** — Clean, transparent code that’s easy to read and contribute to  
-- 🔧 **Community-Driven** — Open to pull requests, ideas, and collaborative improvements  
-- 🔄 **Actively Maintained** — Ongoing fixes, optimizations, and feature expansions  
-- 🛠️ **Faithful to the Original** — All content from the last official release is included  
+- 🎮 **Minecraft 1.21.8 Support** — Fully ported to the latest Minecraft version using Fabric
+- ✅ **163 Cultural Items** — All items from 7 cultures (Norman, Byzantine, Japanese, Mayan, Indian, Seljuk, Inuit)
+- 🌍 **Complete Localization** — Full English and German translations
+- 🛠️ **Modern Codebase** — Clean architecture with proper registry system and asset pipeline
+- 📦 **Creative Tabs** — Organized items by culture for easy access
+
+---
+
+## 🚀 Current Development Status
+
+### ✅ Completed Features:
+- **Mod Infrastructure** — Entry points, registries, config, networking
+- **All Cultural Items** — Tools, armor, food, decorations (163 items total)
+- **Asset Pipeline** — Models, textures, blockstates, localization
+- **Creative Mode Integration** — All items accessible in creative tabs
+
+### 🔨 In Progress:
+- **Advanced Item Functionality** — Tool materials, armor values, food effects
+- **Block System** — Porting 200+ cultural blocks
+- **Entity System** — Villagers and AI
+
+### 📅 Planned:
+- Village generation and structures
+- Trading and reputation systems
+- Quests and progression
+- Full gameplay restoration
 
 ---
 
@@ -24,18 +46,35 @@ We welcome all contributors — whether you're fixing bugs, adding features, or 
 **Getting started:**
 
 1. Fork the repository  
-2. Create a feature branch  
-3. Submit a pull request  
-4. Discuss changes via Issues  
+2. Check the [ROADMAP.md](ROADMAP.md) for current tasks
+3. Create a feature branch  
+4. Submit a pull request  
+5. Join discussions via Issues
 
 ---
 
-## 🗺️ Roadmap
+## 🗺️ Development Roadmap
 
-- [x] Open source the original codebase  
-- [ ] Refactor for maintainability and modernization  
-- [ ] Add support for newer Minecraft versions (1.12+ → 1.16 → 1.20+)  
-- [ ] Expand content and features with community input  
+- [x] Port to Fabric 1.21.8
+- [x] Implement basic mod infrastructure  
+- [x] Port all cultural items (163 items)
+- [x] Add full localization support
+- [ ] Implement item functionality (tools, armor, food)
+- [ ] Port all blocks (~200 blocks)
+- [ ] Implement villager entities and AI
+- [ ] Add village generation
+- [ ] Restore trading and quest systems
+
+For detailed development phases, see [ROADMAP.md](ROADMAP.md)
+
+---
+
+## 🛠️ Technical Details
+
+- **Minecraft Version:** 1.21.8
+- **Mod Loader:** Fabric
+- **Language:** Java 21
+- **Dependencies:** Fabric API
 
 ---
 
@@ -51,7 +90,7 @@ This project is maintained under fair use for modding, educational, and preserva
 
 ## ❤️ Support the Revival
 
-If you're a fan of Millénaire and want to see it thrive again, here’s how you can help:
+If you're a fan of Millénaire and want to see it thrive again, here's how you can help:
 
 - ⭐ Star the repository  
 - 📢 Share the project  

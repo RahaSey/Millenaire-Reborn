@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    	"down": "millenaire-reborn:block/painted_brick_cyan",
+        "up": "millenaire-reborn:block/painted_brick_cyan",
+        "north": "millenaire-reborn:block/painted_brick_decorated_cyan",
+        "east": "millenaire-reborn:block/painted_brick_decorated_cyan",
+        "south": "millenaire-reborn:block/painted_brick_decorated_cyan",
+        "west": "millenaire-reborn:block/painted_brick_decorated_cyan",
+    	"particle" : "millenaire-reborn:block/painted_brick_cyan"
+  }
+}
