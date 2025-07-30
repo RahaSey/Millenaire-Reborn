@@ -4,6 +4,8 @@
 ![Mod Loader](https://img.shields.io/badge/Mod%20Loader-Fabric-blue)
 ![Development Status](https://img.shields.io/badge/Status-In%20Development-orange)
 
+*Coding goes faster with coffee* ☕ — **Support:** https://coff.ee/leviaria
+
 **Millénaire Reborn** is a complete port of the beloved Minecraft mod [**Millénaire**](https://www.curseforge.com/minecraft/mc-mods/millenaire) to modern Minecraft using Fabric.
 
 Originally based on the final Forge release (1.12.2), this project brings the immersive village experience to **Minecraft 1.21.8** with a clean, modern codebase.
@@ -33,6 +35,14 @@ Originally based on the final Forge release (1.12.2), this project brings the im
 | Village Generation | 🚧 In Progress |
 | Trading & Reputation | 📅 Planned |
 | Quest System | 📅 Planned |
+
+## Installation
+
+1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for Minecraft 1.21.8
+2. Download [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
+3. Download the latest Millénaire Reborn release
+4. Place both mods in your `mods` folder
+5. Launch Minecraft with the Fabric profile
 
 ## Contributing
 
