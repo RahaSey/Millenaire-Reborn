@@ -30,17 +30,9 @@ Originally based on the final Forge release (1.12.2), this project brings the im
 | Advanced Item Functionality | 📅 Planned |
 | Block System (200+ blocks) | 🚧 In Progress |
 | Entity System & AI | 📅 Planned |
-| Village Generation | 📅 Planned |
+| Village Generation | 🚧 In Progress |
 | Trading & Reputation | 📅 Planned |
 | Quest System | 📅 Planned |
-
-## Installation
-
-1. Install [Fabric Loader](https://fabricmc.net/use/installer/) for Minecraft 1.21.8
-2. Download [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
-3. Download the latest Millénaire Reborn release
-4. Place both mods in your `mods` folder
-5. Launch Minecraft with the Fabric profile
 
 ## Contributing
 
