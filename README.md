@@ -57,7 +57,7 @@ We welcome all contributors! Whether you're fixing bugs, adding features, or imp
 
 ### Development Setup
 ```bash
-git clone https://github.com/[username]/Millenaire-Reborn.git
+git clone https://github.com/Leviaria/Millenaire-Reborn.git
 cd Millenaire-Reborn
 ./gradlew build
 ```
