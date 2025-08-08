@@ -1,106 +1,133 @@
 {
   "_comment": "Millénaire Reborn - RU-RU Localization",
+
   "block.millenaire-reborn.norman_bricks": "Norman Bricks (TODO: Translate)",
   "block.millenaire-reborn.norman_cobblestone": "Norman Cobblestone (TODO: Translate)",
   "block.millenaire-reborn.byzantine_tiles": "Греческая плитка",
   "block.millenaire-reborn.byzantine_sandstone_ornament": "Византийский орнамент из песчаника",
   "block.millenaire-reborn.indian_stone_ornament": "Indian Stone Ornament (TODO: Translate)",
+
   "item.millenaire-reborn.denier": "Бронзовый денье",
   "item.millenaire-reborn.denier_pouch": "Denier Pouch (TODO: Translate)",
   "item.millenaire-reborn.millenaire_book": "Millénaire Book (TODO: Translate)",
   "item.millenaire-reborn.negation_wand": "Negation Wand (TODO: Translate)",
+
   "item.millenaire-reborn.normanpickaxe": "Нормандская кирка",
   "item.millenaire-reborn.normanaxe": "Нормандский топор",
   "item.millenaire-reborn.normanshovel": "Нормандская лопата",
   "item.millenaire-reborn.normanhoe": "Нормандская мотыга",
   "item.millenaire-reborn.normanbroadsword": "Нормандский палаш",
+
   "item.millenaire-reborn.normanhelmet": "Нормандский шлем",
   "item.millenaire-reborn.normanplate": "Нормандская кираса",
   "item.millenaire-reborn.normanlegs": "Нормандские поножи",
   "item.millenaire-reborn.normanboots": "Нормандские ботинки",
+
   "item.millenaire-reborn.parchment_normanvillagers": "Нормандские поселенцы",
   "item.millenaire-reborn.parchment_normanitems": "Нормандские предметы",
   "item.millenaire-reborn.parchment_normanbuildings": "Нормандские здания",
   "item.millenaire-reborn.parchment_normanfull": "Полный свиток Нормандии",
+
   "item.millenaire-reborn.byzantinepickaxe": "Byzantine Pickaxe (TODO: Translate)",
   "item.millenaire-reborn.byzantineaxe": "Byzantine Axe (TODO: Translate)",
   "item.millenaire-reborn.byzantineshovel": "Byzantine Shovel (TODO: Translate)",
   "item.millenaire-reborn.byzantinehoe": "Byzantine Hoe (TODO: Translate)",
   "item.millenaire-reborn.byzantinemace": "Греческая булава",
+
   "item.millenaire-reborn.byzantinehelmet": "Греческий шлем",
   "item.millenaire-reborn.byzantineplate": "Греческая кираса",
   "item.millenaire-reborn.byzantinelegs": "Греческие поножи",
   "item.millenaire-reborn.byzantineboots": "Греческие ботинки",
+
   "item.millenaire-reborn.byzantineiconsmall": "Маленькая Греческая икона",
   "item.millenaire-reborn.byzantineiconmedium": "Средняя Греческая икона",
   "item.millenaire-reborn.byzantineiconlarge": "Большая Греческая икона",
+
   "item.millenaire-reborn.clothes_byz_wool": "Шерстяная Греческая одежда",
   "item.millenaire-reborn.clothes_byz_silk": "Шелковая Греческая одежда",
+
   "item.millenaire-reborn.tachisword": "Меч Тачи",
   "item.millenaire-reborn.yumibow": "Лук Юми",
+
   "item.millenaire-reborn.japaneseredhelmet": "Красный о-ёрой шлем",
   "item.millenaire-reborn.japaneseredplate": "Красная о-ёрой кираса",
   "item.millenaire-reborn.japaneseredlegs": "Красные о-ёрой поножи",
   "item.millenaire-reborn.japaneseredboots": "Красные о-ёрой ботинки",
+
   "item.millenaire-reborn.japanesebluehelmet": "Синий о-ёрой шлем",
   "item.millenaire-reborn.japaneseblueplate": "Синяя о-ёрой кираса",
   "item.millenaire-reborn.japanesebluelegs": "Синие о-ёрой поножи",
   "item.millenaire-reborn.japaneseblueboots": "Синие о-ёрой ботинки",
+
   "item.millenaire-reborn.japaneseguardhelmet": "Шлем кейко",
   "item.millenaire-reborn.japaneseguardplate": "Кираса кейко",
   "item.millenaire-reborn.japaneseguardlegs": "Поножи кейко",
   "item.millenaire-reborn.japaneseguardboots": "Ботинки кейко",
+
   "item.millenaire-reborn.parchment_japanesevillagers": "Поселенцы Японии",
   "item.millenaire-reborn.parchment_japaneseitems": "Предметы Японии",
   "item.millenaire-reborn.parchment_japanesebuildings": "Здания Японии",
   "item.millenaire-reborn.parchment_japanesefull": "Полный свиток Японии",
+
   "item.millenaire-reborn.mayanpickaxe": "Обсидиановая кирка",
   "item.millenaire-reborn.mayanaxe": "Обсидиановый топор",
   "item.millenaire-reborn.mayanshovel": "Обсидиановая лопата",
   "item.millenaire-reborn.mayanhoe": "Обсидиановая мотыга",
   "item.millenaire-reborn.mayanmace": "Обсидиановая булава",
   "item.millenaire-reborn.mayanquestcrown": "Корона Майя",
+
   "item.millenaire-reborn.parchment_mayanvillagers": "Поселенцы майя",
   "item.millenaire-reborn.parchment_mayanitems": "Предметы майя",
   "item.millenaire-reborn.parchment_mayanbuildings": "Здания майя",
   "item.millenaire-reborn.parchment_mayanfull": "Полный свиток майя",
+
   "item.millenaire-reborn.rice": "Рис",
   "item.millenaire-reborn.turmeric": "Куркума",
   "item.millenaire-reborn.vegcurry": "Вегетарианский карри",
   "item.millenaire-reborn.chickencurry": "Мургх карри",
   "item.millenaire-reborn.rasgulla": "Расгулла",
+
   "item.millenaire-reborn.indianstatue": "Статуя хинди",
   "item.millenaire-reborn.brickmould": "Кирпичная форма",
+
   "item.millenaire-reborn.parchment_indianvillagers": "Поселенцы хинди",
   "item.millenaire-reborn.parchment_indianitems": "Предметы хинди",
   "item.millenaire-reborn.parchment_indianbuildings": "Здания хинди",
   "item.millenaire-reborn.parchment_indianfull": "Полный свиток хинди",
   "item.millenaire-reborn.parchment_sadhu": "Свиток Садху",
+
   "item.millenaire-reborn.seljukscimitar": "Seljuk Scimitar (TODO: Translate)",
   "item.millenaire-reborn.seljukbow": "Seljuk Bow (TODO: Translate)",
+
   "item.millenaire-reborn.seljukhelmet": "Seljuk Helmet (TODO: Translate)",
   "item.millenaire-reborn.seljukturban": "Seljuk Turban (TODO: Translate)",
   "item.millenaire-reborn.seljukplate": "Seljuk Chestplate (TODO: Translate)",
   "item.millenaire-reborn.seljuklegs": "Seljuk Leggings (TODO: Translate)",
   "item.millenaire-reborn.seljukboots": "Seljuk Boots (TODO: Translate)",
+
   "item.millenaire-reborn.yogurt": "Yogurt (TODO: Translate)",
   "item.millenaire-reborn.ayran": "Ayran (TODO: Translate)",
   "item.millenaire-reborn.pide": "Pide (TODO: Translate)",
   "item.millenaire-reborn.lokum": "Lokum (TODO: Translate)",
   "item.millenaire-reborn.helva": "Helva (TODO: Translate)",
   "item.millenaire-reborn.pistachios": "Pistachios (TODO: Translate)",
+
   "item.millenaire-reborn.wallcarpetsmall": "Small Wall Carpet (TODO: Translate)",
   "item.millenaire-reborn.wallcarpetmedium": "Medium Wall Carpet (TODO: Translate)",
   "item.millenaire-reborn.wallcarpetlarge": "Large Wall Carpet (TODO: Translate)",
+
   "item.millenaire-reborn.clothes_seljuk_wool": "Seljuk Wool Cloth (TODO: Translate)",
   "item.millenaire-reborn.clothes_seljuk_cotton": "Seljuk Cotton Cloth (TODO: Translate)",
+
   "item.millenaire-reborn.inuittrident": "Гарпун",
   "item.millenaire-reborn.inuitbow": "Лук Питикси",
   "item.millenaire-reborn.ulu": "Нож Улу",
+
   "item.millenaire-reborn.furhelmet": "Меховой капюшон",
   "item.millenaire-reborn.furplate": "Меховое пальто",
   "item.millenaire-reborn.furlegs": "Меховые поножи",
   "item.millenaire-reborn.furboots": "Меховые сапоги",
+
   "item.millenaire-reborn.bearmeat_raw": "Сырое медвежье мясо",
   "item.millenaire-reborn.bearmeat_cooked": "Стейк из медвежьего мяса",
   "item.millenaire-reborn.wolfmeat_raw": "Сырое волчье мясо",
@@ -110,8 +137,10 @@
   "item.millenaire-reborn.inuitbearstew": "Тушённое мясо медведя по-Инуитски",
   "item.millenaire-reborn.inuitmeatystew": "Тушённое мясо по-Инуитски",
   "item.millenaire-reborn.inuitpotatostew": "Тушённый картофель по-Инуитски",
+
   "item.millenaire-reborn.tannedhide": "Обработанная шкура",
   "item.millenaire-reborn.hidehanging": "Настенная шкура",
+
   "item.millenaire-reborn.paint_bucket_white": "Ведро белого красителя",
   "item.millenaire-reborn.paint_bucket_orange": "Ведро оранжевого красителя",
   "item.millenaire-reborn.paint_bucket_magenta": "Ведро пурпурного красителя",
@@ -127,11 +156,14 @@
   "item.millenaire-reborn.paint_bucket_green": "Ведро зелёного красителя",
   "item.millenaire-reborn.paint_bucket_red": "Ведро красного красителя",
   "item.millenaire-reborn.paint_bucket_black": "Ведро чёрного красителя",
+
   "item.millenaire-reborn.vishnu_amulet": "Амулет Вишну",
   "item.millenaire-reborn.yggdrasil_amulet": "Амулет Иггдрасиль",
   "item.millenaire-reborn.alchemist_amulet": "Амулет алхимика",
   "item.millenaire-reborn.skoll_hati_amulet": "Амулет Сколль и Хати",
+
   "item.millenaire-reborn.tapestry": "Нормандский гобелен",
+
   "item.millenaire-reborn.sake": "Сакэ",
   "item.millenaire-reborn.udon": "Удон",
   "item.millenaire-reborn.ikayaki": "Икаяки",
@@ -139,11 +171,13 @@
   "item.millenaire-reborn.winefancy": "Вино сорта Malvasia",
   "item.millenaire-reborn.souvlaki": "Шашлычок на шпажке (Souvlaki)",
   "item.millenaire-reborn.feta": "Сыр Feta",
+
   "item.millenaire-reborn.villagebanner": "Village Banner (TODO: Translate)",
   "item.millenaire-reborn.culturebanner": "Culture Banner (TODO: Translate)",
   "item.millenaire-reborn.silk": "Шелк",
   "item.millenaire-reborn.obsidianflake": "Обсидиановый осколок",
   "item.millenaire-reborn.unknownpowder": "Неизвестный порошок",
+
   "itemgroup.millenaire-reborn.blocks": "Millénaire Blocks (TODO: Translate)",
   "itemgroup.millenaire-reborn.norman": "Norman Culture (TODO: Translate)",
   "itemgroup.millenaire-reborn.byzantine": "Byzantine Culture (TODO: Translate)",

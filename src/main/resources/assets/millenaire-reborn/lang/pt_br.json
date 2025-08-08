@@ -1,106 +1,133 @@
 {
   "_comment": "Millénaire Reborn - PT-BR Localization",
+
   "block.millenaire-reborn.norman_bricks": "Norman Bricks (TODO: Translate)",
   "block.millenaire-reborn.norman_cobblestone": "Norman Cobblestone (TODO: Translate)",
   "block.millenaire-reborn.byzantine_tiles": "Ladrilho Bizantino",
   "block.millenaire-reborn.byzantine_sandstone_ornament": "Ornamento bizantino da telha do arenito",
   "block.millenaire-reborn.indian_stone_ornament": "Indian Stone Ornament (TODO: Translate)",
+
   "item.millenaire-reborn.denier": "Denier",
   "item.millenaire-reborn.denier_pouch": "Denier Pouch (TODO: Translate)",
   "item.millenaire-reborn.millenaire_book": "Millénaire Book (TODO: Translate)",
   "item.millenaire-reborn.negation_wand": "Negation Wand (TODO: Translate)",
+
   "item.millenaire-reborn.normanpickaxe": "Picareta Normanda",
   "item.millenaire-reborn.normanaxe": "Machado Normando",
   "item.millenaire-reborn.normanshovel": "Pá Normanda",
   "item.millenaire-reborn.normanhoe": "Enxada Normanda",
   "item.millenaire-reborn.normanbroadsword": "Espada Normanda",
+
   "item.millenaire-reborn.normanhelmet": "Elmo Normando",
   "item.millenaire-reborn.normanplate": "Peito Normando",
   "item.millenaire-reborn.normanlegs": "Perneiras Normandas",
   "item.millenaire-reborn.normanboots": "Botas Normandas",
+
   "item.millenaire-reborn.parchment_normanvillagers": "Aldeões Normandos",
   "item.millenaire-reborn.parchment_normanitems": "Objectos Normandos",
   "item.millenaire-reborn.parchment_normanbuildings": "Construções Normandas",
   "item.millenaire-reborn.parchment_normanfull": "Pergaminho Normando Completo",
+
   "item.millenaire-reborn.byzantinepickaxe": "Byzantine Pickaxe (TODO: Translate)",
   "item.millenaire-reborn.byzantineaxe": "Byzantine Axe (TODO: Translate)",
   "item.millenaire-reborn.byzantineshovel": "Byzantine Shovel (TODO: Translate)",
   "item.millenaire-reborn.byzantinehoe": "Byzantine Hoe (TODO: Translate)",
   "item.millenaire-reborn.byzantinemace": "Maça Bizantina",
+
   "item.millenaire-reborn.byzantinehelmet": "Elmo Bizantino",
   "item.millenaire-reborn.byzantineplate": "Peito Bizantino",
   "item.millenaire-reborn.byzantinelegs": "Perneiras Bizantinas",
   "item.millenaire-reborn.byzantineboots": "Botas Bizantinas",
+
   "item.millenaire-reborn.byzantineiconsmall": "Ícone Bizantino Pequeno",
   "item.millenaire-reborn.byzantineiconmedium": "Ícone Bizantino Médio",
   "item.millenaire-reborn.byzantineiconlarge": "Ícone Bizantino Grande",
+
   "item.millenaire-reborn.clothes_byz_wool": "Roupas Bizantinas de Lã",
   "item.millenaire-reborn.clothes_byz_silk": "Roupas Bizantinas de Seda",
+
   "item.millenaire-reborn.tachisword": "Espada Tachi",
   "item.millenaire-reborn.yumibow": "Arco Yumi",
+
   "item.millenaire-reborn.japaneseredhelmet": "Elmo Ō-yoroi Vermelho",
   "item.millenaire-reborn.japaneseredplate": "Peito Ō-yoroi Vermelho",
   "item.millenaire-reborn.japaneseredlegs": "Perneiras Ō-yoroi Vermelhas",
   "item.millenaire-reborn.japaneseredboots": "Botas Ō-yoroi Vermelhas",
+
   "item.millenaire-reborn.japanesebluehelmet": "Elmo Ō-yoroi Azul",
   "item.millenaire-reborn.japaneseblueplate": "Peito Ō-yoroi Azul",
   "item.millenaire-reborn.japanesebluelegs": "Perneiras Ō-yoroi Azuis",
   "item.millenaire-reborn.japaneseblueboots": "Botas Ō-yoroi Azuis",
+
   "item.millenaire-reborn.japaneseguardhelmet": "Elmo Keikō",
   "item.millenaire-reborn.japaneseguardplate": "Peito Keikō",
   "item.millenaire-reborn.japaneseguardlegs": "Perneiras Keikō",
   "item.millenaire-reborn.japaneseguardboots": "Botas Keikō",
+
   "item.millenaire-reborn.parchment_japanesevillagers": "Aldeões Japoneses",
   "item.millenaire-reborn.parchment_japaneseitems": "Objectos Japoneses",
   "item.millenaire-reborn.parchment_japanesebuildings": "Construções Japonesas",
   "item.millenaire-reborn.parchment_japanesefull": "Pergaminho Japonês Completo",
+
   "item.millenaire-reborn.mayanpickaxe": "Picareta de Obsidiana",
   "item.millenaire-reborn.mayanaxe": "Machado de Obsidiana",
   "item.millenaire-reborn.mayanshovel": "Pá de Obsidiana",
   "item.millenaire-reborn.mayanhoe": "Enxada de Obsidiana",
   "item.millenaire-reborn.mayanmace": "Maça de Obsidiana",
   "item.millenaire-reborn.mayanquestcrown": "Coroa Maya",
+
   "item.millenaire-reborn.parchment_mayanvillagers": "Aldeões Maias",
   "item.millenaire-reborn.parchment_mayanitems": "Objectos Maias",
   "item.millenaire-reborn.parchment_mayanbuildings": "Construções Maias",
   "item.millenaire-reborn.parchment_mayanfull": "Pergaminho Maia Completo",
+
   "item.millenaire-reborn.rice": "Arroz",
   "item.millenaire-reborn.turmeric": "Açafrão-da-Índia",
   "item.millenaire-reborn.vegcurry": "Caril Vegetariano",
   "item.millenaire-reborn.chickencurry": "Caril de Frango",
   "item.millenaire-reborn.rasgulla": "Rasgullā",
+
   "item.millenaire-reborn.indianstatue": "Estatueta Hindu",
   "item.millenaire-reborn.brickmould": "Molde de Tijolo",
+
   "item.millenaire-reborn.parchment_indianvillagers": "Aldeões Hindus",
   "item.millenaire-reborn.parchment_indianitems": "Objectos Hindus",
   "item.millenaire-reborn.parchment_indianbuildings": "Construções Hindus",
   "item.millenaire-reborn.parchment_indianfull": "Pergaminho Hindu Completo",
   "item.millenaire-reborn.parchment_sadhu": "Livro do Sadhu",
+
   "item.millenaire-reborn.seljukscimitar": "Seljuk Scimitar (TODO: Translate)",
   "item.millenaire-reborn.seljukbow": "Seljuk Bow (TODO: Translate)",
+
   "item.millenaire-reborn.seljukhelmet": "Seljuk Helmet (TODO: Translate)",
   "item.millenaire-reborn.seljukturban": "Seljuk Turban (TODO: Translate)",
   "item.millenaire-reborn.seljukplate": "Seljuk Chestplate (TODO: Translate)",
   "item.millenaire-reborn.seljuklegs": "Seljuk Leggings (TODO: Translate)",
   "item.millenaire-reborn.seljukboots": "Seljuk Boots (TODO: Translate)",
+
   "item.millenaire-reborn.yogurt": "Yogurt (TODO: Translate)",
   "item.millenaire-reborn.ayran": "Ayran (TODO: Translate)",
   "item.millenaire-reborn.pide": "Pide (TODO: Translate)",
   "item.millenaire-reborn.lokum": "Lokum (TODO: Translate)",
   "item.millenaire-reborn.helva": "Helva (TODO: Translate)",
   "item.millenaire-reborn.pistachios": "Pistachios (TODO: Translate)",
+
   "item.millenaire-reborn.wallcarpetsmall": "Small Wall Carpet (TODO: Translate)",
   "item.millenaire-reborn.wallcarpetmedium": "Medium Wall Carpet (TODO: Translate)",
   "item.millenaire-reborn.wallcarpetlarge": "Large Wall Carpet (TODO: Translate)",
+
   "item.millenaire-reborn.clothes_seljuk_wool": "Seljuk Wool Cloth (TODO: Translate)",
   "item.millenaire-reborn.clothes_seljuk_cotton": "Seljuk Cotton Cloth (TODO: Translate)",
+
   "item.millenaire-reborn.inuittrident": "Kakivak",
   "item.millenaire-reborn.inuitbow": "Arco Pitiksi",
   "item.millenaire-reborn.ulu": "Ulu",
+
   "item.millenaire-reborn.furhelmet": "Capuz de Pele",
   "item.millenaire-reborn.furplate": "Casaco de pele",
   "item.millenaire-reborn.furlegs": "Calças de Pele",
   "item.millenaire-reborn.furboots": "Botas de pele",
+
   "item.millenaire-reborn.bearmeat_raw": "Carne de urso cru",
   "item.millenaire-reborn.bearmeat_cooked": "Bife de urso",
   "item.millenaire-reborn.wolfmeat_raw": "Carne de lobo crua",
@@ -110,8 +137,10 @@
   "item.millenaire-reborn.inuitbearstew": "Ensopado de Urso Inuit",
   "item.millenaire-reborn.inuitmeatystew": "Ensopado de Carne Inuit",
   "item.millenaire-reborn.inuitpotatostew": "Ensopado de Batata Inuit",
+
   "item.millenaire-reborn.tannedhide": "Pele tratada",
   "item.millenaire-reborn.hidehanging": "Ocultar suspensão",
+
   "item.millenaire-reborn.paint_bucket_white": "Balde de Cal",
   "item.millenaire-reborn.paint_bucket_orange": "Balde de Lavagem laranja",
   "item.millenaire-reborn.paint_bucket_magenta": "Balde de Lavagem magenta",
@@ -127,11 +156,14 @@
   "item.millenaire-reborn.paint_bucket_green": "Balde de lavagem verde",
   "item.millenaire-reborn.paint_bucket_red": "Balde de tinta vermelha",
   "item.millenaire-reborn.paint_bucket_black": "Balde de Lavagem Preta",
+
   "item.millenaire-reborn.vishnu_amulet": "Amuleto de Vishnu",
   "item.millenaire-reborn.yggdrasil_amulet": "Amuleto de Yggdrasil",
   "item.millenaire-reborn.alchemist_amulet": "Amuleto do Alquimista",
   "item.millenaire-reborn.skoll_hati_amulet": "Amuleto de Sköll e Hati",
+
   "item.millenaire-reborn.tapestry": "Tapeçaria Normanda",
+
   "item.millenaire-reborn.sake": "Saqué",
   "item.millenaire-reborn.udon": "Udon",
   "item.millenaire-reborn.ikayaki": "Ikayaki",
@@ -139,11 +171,13 @@
   "item.millenaire-reborn.winefancy": "Vinho Malvasia",
   "item.millenaire-reborn.souvlaki": "Souvlaki",
   "item.millenaire-reborn.feta": "Feta",
+
   "item.millenaire-reborn.villagebanner": "Village Banner (TODO: Translate)",
   "item.millenaire-reborn.culturebanner": "Culture Banner (TODO: Translate)",
   "item.millenaire-reborn.silk": "Seda",
   "item.millenaire-reborn.obsidianflake": "Floco de Obsidiana",
   "item.millenaire-reborn.unknownpowder": "Pó Desconhecido",
+
   "itemgroup.millenaire-reborn.blocks": "Millénaire Blocks (TODO: Translate)",
   "itemgroup.millenaire-reborn.norman": "Norman Culture (TODO: Translate)",
   "itemgroup.millenaire-reborn.byzantine": "Byzantine Culture (TODO: Translate)",
