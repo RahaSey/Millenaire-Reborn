@@ -1,0 +1,191 @@
+{
+  "_comment": "Millénaire Reborn - NL-NL Localization",
+
+  "block.millenaire-reborn.norman_bricks": "Norman Bricks (TODO: Translate)",
+  "block.millenaire-reborn.norman_cobblestone": "Norman Cobblestone (TODO: Translate)",
+  "block.millenaire-reborn.byzantine_tiles": "byzantijnse tegels",
+  "block.millenaire-reborn.byzantine_sandstone_ornament": "Byzantine Sandstone Ornament (TODO: Translate)",
+  "block.millenaire-reborn.indian_stone_ornament": "Indian Stone Ornament (TODO: Translate)",
+
+  "item.millenaire-reborn.denier": "Denier",
+  "item.millenaire-reborn.denier_pouch": "Denier Pouch (TODO: Translate)",
+  "item.millenaire-reborn.millenaire_book": "Millénaire Book (TODO: Translate)",
+  "item.millenaire-reborn.negation_wand": "Negation Wand (TODO: Translate)",
+
+  "item.millenaire-reborn.normanpickaxe": "Normandische Pikhouweel",
+  "item.millenaire-reborn.normanaxe": "Normandische Bijl",
+  "item.millenaire-reborn.normanshovel": "Normandische Schep",
+  "item.millenaire-reborn.normanhoe": "Normandische Schoffel",
+  "item.millenaire-reborn.normanbroadsword": "Normandisch Breedzwaard",
+
+  "item.millenaire-reborn.normanhelmet": "Normandische Helm",
+  "item.millenaire-reborn.normanplate": "Normandische Borstplaat",
+  "item.millenaire-reborn.normanlegs": "Normandische Leggings",
+  "item.millenaire-reborn.normanboots": "Normandische Laarzen",
+
+  "item.millenaire-reborn.parchment_normanvillagers": "Normandische Dorpelingen",
+  "item.millenaire-reborn.parchment_normanitems": "Normandische Objecten",
+  "item.millenaire-reborn.parchment_normanbuildings": "Normandische Gebouwen",
+  "item.millenaire-reborn.parchment_normanfull": "Complete Normandische Rol",
+
+  "item.millenaire-reborn.byzantinepickaxe": "Byzantine Pickaxe (TODO: Translate)",
+  "item.millenaire-reborn.byzantineaxe": "Byzantine Axe (TODO: Translate)",
+  "item.millenaire-reborn.byzantineshovel": "Byzantine Shovel (TODO: Translate)",
+  "item.millenaire-reborn.byzantinehoe": "Byzantine Hoe (TODO: Translate)",
+  "item.millenaire-reborn.byzantinemace": "byzantijnse Morgenster",
+
+  "item.millenaire-reborn.byzantinehelmet": "byzantijnse Helm",
+  "item.millenaire-reborn.byzantineplate": "byzantijnse Borstplaat",
+  "item.millenaire-reborn.byzantinelegs": "byzantijnse Legging",
+  "item.millenaire-reborn.byzantineboots": "byzantijnse laarzen",
+
+  "item.millenaire-reborn.byzantineiconsmall": "Klein byzantijns Icoon",
+  "item.millenaire-reborn.byzantineiconmedium": "Middel byzantijns Icoon",
+  "item.millenaire-reborn.byzantineiconlarge": "Groot byzantijns Icoon",
+
+  "item.millenaire-reborn.clothes_byz_wool": "Wollen Byzantijnse kleding",
+  "item.millenaire-reborn.clothes_byz_silk": "Zijden Byzantijnse kleding",
+
+  "item.millenaire-reborn.tachisword": "Tachi",
+  "item.millenaire-reborn.yumibow": "Yumi Boog",
+
+  "item.millenaire-reborn.japaneseredhelmet": "Rode ō-yoroi Helm",
+  "item.millenaire-reborn.japaneseredplate": "Rode ō-yoroi Borstplaat",
+  "item.millenaire-reborn.japaneseredlegs": "Rode ō-yoroi Leggings",
+  "item.millenaire-reborn.japaneseredboots": "Rode ō-yoroi Laarzen",
+
+  "item.millenaire-reborn.japanesebluehelmet": "Blauwe ō-yoroi Helm",
+  "item.millenaire-reborn.japaneseblueplate": "Blauwe ō-yoroi Borstplaat",
+  "item.millenaire-reborn.japanesebluelegs": "Blauwe ō-yoroi Leggings",
+  "item.millenaire-reborn.japaneseblueboots": "Blauwe ō-yoroi Laarzen",
+
+  "item.millenaire-reborn.japaneseguardhelmet": "Keiko helmet",
+  "item.millenaire-reborn.japaneseguardplate": "Keiko Borstplaat",
+  "item.millenaire-reborn.japaneseguardlegs": "Keiko leggings",
+  "item.millenaire-reborn.japaneseguardboots": "Keiko Laarzen",
+
+  "item.millenaire-reborn.parchment_japanesevillagers": "Japanse Dorpelingen",
+  "item.millenaire-reborn.parchment_japaneseitems": "Japanse Objecten",
+  "item.millenaire-reborn.parchment_japanesebuildings": "Japanse Gebouwen",
+  "item.millenaire-reborn.parchment_japanesefull": "Complete Japanse Rol",
+
+  "item.millenaire-reborn.mayanpickaxe": "Obsidiaans Pikhouweel",
+  "item.millenaire-reborn.mayanaxe": "Obsidiaanse bijl",
+  "item.millenaire-reborn.mayanshovel": "Obsidiaanse Schep",
+  "item.millenaire-reborn.mayanhoe": "Obsidiaanse Schoffel",
+  "item.millenaire-reborn.mayanmace": "Obsidiaanse Goedendag",
+  "item.millenaire-reborn.mayanquestcrown": "Mayan Quest Crown (TODO: Translate)",
+
+  "item.millenaire-reborn.parchment_mayanvillagers": "Mayaanse Dorpelignen",
+  "item.millenaire-reborn.parchment_mayanitems": "Mayaanse Objecten",
+  "item.millenaire-reborn.parchment_mayanbuildings": "Mayaanse Gebouwen",
+  "item.millenaire-reborn.parchment_mayanfull": "Complete Mayaanse Rol",
+
+  "item.millenaire-reborn.rice": "Rijst",
+  "item.millenaire-reborn.turmeric": "Turmeric",
+  "item.millenaire-reborn.vegcurry": "Vegetarische Curry",
+  "item.millenaire-reborn.chickencurry": "Murgh Curry",
+  "item.millenaire-reborn.rasgulla": "Rasgulla",
+
+  "item.millenaire-reborn.indianstatue": "HindoeStandbeeld",
+  "item.millenaire-reborn.brickmould": "Baksteenman",
+
+  "item.millenaire-reborn.parchment_indianvillagers": "Indiaanse Dorpelignen",
+  "item.millenaire-reborn.parchment_indianitems": "Indiaanse Objecten",
+  "item.millenaire-reborn.parchment_indianbuildings": "Indiaanse Gebouwen",
+  "item.millenaire-reborn.parchment_indianfull": "Complete Indiaanse Rol",
+  "item.millenaire-reborn.parchment_sadhu": "Boek van de Sadhu",
+
+  "item.millenaire-reborn.seljukscimitar": "Seljuk Scimitar (TODO: Translate)",
+  "item.millenaire-reborn.seljukbow": "Seljuk Bow (TODO: Translate)",
+
+  "item.millenaire-reborn.seljukhelmet": "Seljuk Helmet (TODO: Translate)",
+  "item.millenaire-reborn.seljukturban": "Seljuk Turban (TODO: Translate)",
+  "item.millenaire-reborn.seljukplate": "Seljuk Chestplate (TODO: Translate)",
+  "item.millenaire-reborn.seljuklegs": "Seljuk Leggings (TODO: Translate)",
+  "item.millenaire-reborn.seljukboots": "Seljuk Boots (TODO: Translate)",
+
+  "item.millenaire-reborn.yogurt": "Yogurt (TODO: Translate)",
+  "item.millenaire-reborn.ayran": "Ayran (TODO: Translate)",
+  "item.millenaire-reborn.pide": "Pide (TODO: Translate)",
+  "item.millenaire-reborn.lokum": "Lokum (TODO: Translate)",
+  "item.millenaire-reborn.helva": "Helva (TODO: Translate)",
+  "item.millenaire-reborn.pistachios": "Pistachios (TODO: Translate)",
+
+  "item.millenaire-reborn.wallcarpetsmall": "Small Wall Carpet (TODO: Translate)",
+  "item.millenaire-reborn.wallcarpetmedium": "Medium Wall Carpet (TODO: Translate)",
+  "item.millenaire-reborn.wallcarpetlarge": "Large Wall Carpet (TODO: Translate)",
+
+  "item.millenaire-reborn.clothes_seljuk_wool": "Seljuk Wool Cloth (TODO: Translate)",
+  "item.millenaire-reborn.clothes_seljuk_cotton": "Seljuk Cotton Cloth (TODO: Translate)",
+
+  "item.millenaire-reborn.inuittrident": "Inuit Trident (TODO: Translate)",
+  "item.millenaire-reborn.inuitbow": "Inuit Bow (TODO: Translate)",
+  "item.millenaire-reborn.ulu": "Ulu (TODO: Translate)",
+
+  "item.millenaire-reborn.furhelmet": "Fur Helmet (TODO: Translate)",
+  "item.millenaire-reborn.furplate": "Fur Chestplate (TODO: Translate)",
+  "item.millenaire-reborn.furlegs": "Fur Leggings (TODO: Translate)",
+  "item.millenaire-reborn.furboots": "Fur Boots (TODO: Translate)",
+
+  "item.millenaire-reborn.bearmeat_raw": "Raw Bear Meat (TODO: Translate)",
+  "item.millenaire-reborn.bearmeat_cooked": "Cooked Bear Meat (TODO: Translate)",
+  "item.millenaire-reborn.wolfmeat_raw": "Raw Wolf Meat (TODO: Translate)",
+  "item.millenaire-reborn.wolfmeat_cooked": "Cooked Wolf Meat (TODO: Translate)",
+  "item.millenaire-reborn.seafood_raw": "Raw Seafood (TODO: Translate)",
+  "item.millenaire-reborn.seafood_cooked": "Cooked Seafood (TODO: Translate)",
+  "item.millenaire-reborn.inuitbearstew": "Inuit Bear Stew (TODO: Translate)",
+  "item.millenaire-reborn.inuitmeatystew": "Inuit Meaty Stew (TODO: Translate)",
+  "item.millenaire-reborn.inuitpotatostew": "Inuit Potato Stew (TODO: Translate)",
+
+  "item.millenaire-reborn.tannedhide": "Tanned Hide (TODO: Translate)",
+  "item.millenaire-reborn.hidehanging": "Hanging Hide (TODO: Translate)",
+
+  "item.millenaire-reborn.paint_bucket_white": "White Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_orange": "Orange Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_magenta": "Magenta Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_light_blue": "Light Blue Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_yellow": "Yellow Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_lime": "Lime Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_pink": "Pink Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_gray": "Gray Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_cyan": "Cyan Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_purple": "Purple Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_blue": "Blue Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_brown": "Brown Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_green": "Green Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_red": "Red Paint Bucket (TODO: Translate)",
+  "item.millenaire-reborn.paint_bucket_black": "Black Paint Bucket (TODO: Translate)",
+
+  "item.millenaire-reborn.vishnu_amulet": "Amulet van Vishnu",
+  "item.millenaire-reborn.yggdrasil_amulet": "Amulet van Yddrasil",
+  "item.millenaire-reborn.alchemist_amulet": "Amulet van de Alchemist",
+  "item.millenaire-reborn.skoll_hati_amulet": "Amulet van Sköll and Hati",
+
+  "item.millenaire-reborn.tapestry": "Normandisch Tapijs",
+
+  "item.millenaire-reborn.sake": "Sake",
+  "item.millenaire-reborn.udon": "Udon",
+  "item.millenaire-reborn.ikayaki": "Ikayaki",
+  "item.millenaire-reborn.winebasic": "Wijn",
+  "item.millenaire-reborn.winefancy": "Malvasia Wijn",
+  "item.millenaire-reborn.souvlaki": "Souvlaki",
+  "item.millenaire-reborn.feta": "Feta",
+
+  "item.millenaire-reborn.villagebanner": "Village Banner (TODO: Translate)",
+  "item.millenaire-reborn.culturebanner": "Culture Banner (TODO: Translate)",
+  "item.millenaire-reborn.silk": "Silk",
+  "item.millenaire-reborn.obsidianflake": "Obsidiaanse Flake",
+  "item.millenaire-reborn.unknownpowder": "Onbekend Poeder",
+
+  "itemgroup.millenaire-reborn.blocks": "Millénaire Blocks (TODO: Translate)",
+  "itemgroup.millenaire-reborn.norman": "Norman Culture (TODO: Translate)",
+  "itemgroup.millenaire-reborn.byzantine": "Byzantine Culture (TODO: Translate)",
+  "itemgroup.millenaire-reborn.japanese": "Japanese Culture (TODO: Translate)",
+  "itemgroup.millenaire-reborn.mayan": "Mayan Culture (TODO: Translate)",
+  "itemgroup.millenaire-reborn.indian": "Indian Culture (TODO: Translate)",
+  "itemgroup.millenaire-reborn.seljuk": "Seljuk Culture (TODO: Translate)",
+  "itemgroup.millenaire-reborn.inuit": "Inuit Culture (TODO: Translate)",
+  "itemgroup.millenaire-reborn.food": "Millénaire Food (TODO: Translate)",
+  "itemgroup.millenaire-reborn.misc": "Millénaire Miscellaneous (TODO: Translate)"
+}
