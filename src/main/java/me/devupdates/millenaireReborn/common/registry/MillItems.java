@@ -1,8 +1,11 @@
 package me.devupdates.millenaireReborn.common.registry;
 
+import javax.tools.Tool;
+
 import me.devupdates.millenaireReborn.MillenaireReborn;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -290,11 +293,11 @@ public class MillItems {
             new BlockItem(MillBlocks.INDIAN_STONE_ORNAMENT, createSettings("indian_stone_ornament")));
 
         // Norman Tools (erstmal als basic Items - später zu richtigen Tools upgraden)
-        NORMAN_PICKAXE = register("normanpickaxe", new Item(createSettings("normanpickaxe")));
-        NORMAN_AXE = register("normanaxe", new Item(createSettings("normanaxe")));
-        NORMAN_SHOVEL = register("normanshovel", new Item(createSettings("normanshovel")));
-        NORMAN_HOE = register("normanhoe", new Item(createSettings("normanhoe")));
-        NORMAN_BROADSWORD = register("normanbroadsword", new Item(createSettings("normanbroadsword")));
+        NORMAN_PICKAXE = register("normanpickaxe", new Item(createSettings("normanpickaxe").pickaxe(ToolMaterial.DIAMOND, 2, -2.8f)));
+        NORMAN_AXE = register("normanaxe", new Item(createSettings("normanaxe").axe(ToolMaterial.DIAMOND, 5, -3f)));
+        NORMAN_SHOVEL = register("normanshovel", new Item(createSettings("normanshovel").shovel(ToolMaterial.DIAMOND, 2.5f, -3f)));
+        NORMAN_HOE = register("normanhoe", new Item(createSettings("normanhoe").hoe(ToolMaterial.DIAMOND, -3, 1)));
+        NORMAN_BROADSWORD = register("normanbroadsword", new Item(createSettings("normanbroadsword").sword(ToolMaterial.DIAMOND, 4, -2.4f)));
 
         // Norman Armor (erstmal als basic Items - später zu richtiger Armor upgraden)
         NORMAN_HELMET = register("normanhelmet", new Item(createSettings("normanhelmet")));
