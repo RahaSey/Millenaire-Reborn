@@ -1,5 +1,7 @@
 package me.devupdates.millenaireReborn.common.registry;
 
+import java.util.Map;
+
 import javax.tools.Tool;
 
 import me.devupdates.millenaireReborn.MillenaireReborn;
@@ -9,12 +11,17 @@ import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.equipment.ArmorMaterial;
+import net.minecraft.item.equipment.EquipmentAsset;
+import net.minecraft.item.equipment.EquipmentAssetKeys;
+import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
 /**
@@ -240,11 +247,29 @@ public class MillItems {
     public static Item OBSIDIAN_FLAKE;
     public static Item UNKNOWN_POWDER;
 
+    // Armor Asset Ids
+    public static final RegistryKey<EquipmentAsset> NORMAN_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "norman"));
+
     // TODO: Tool und Armor Materials später implementieren wenn wir die korrekte 1.21.8 API gefunden haben
     public static final ToolMaterial NORMAN_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 10.0F, 4.0F, 10, ItemTags.DIAMOND_TOOL_MATERIALS);
     public static final ToolMaterial BYZANTINE_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 12.0F, 3.0F, 15, ItemTags.DIAMOND_TOOL_MATERIALS);
     public static final ToolMaterial OBSIDIAN_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 6.0F, 2.0F, 25, ItemTags.DIAMOND_TOOL_MATERIALS);
     public static final ToolMaterial BETTER_STEEL_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 5.0F, 3.0F, 10, ItemTags.DIAMOND_TOOL_MATERIALS);
+
+    public static final ArmorMaterial NORMAN_ARMOR_MATERIAL = new ArmorMaterial(
+        66, 
+        Map.of(
+				EquipmentType.HELMET, 3,
+				EquipmentType.CHESTPLATE, 8,
+				EquipmentType.LEGGINGS, 6,
+				EquipmentType.BOOTS, 3
+		),
+        10, 
+        SoundEvents.ITEM_ARMOR_EQUIP_IRON, 
+        2f, 
+        0f, 
+        ItemTags.DIAMOND_TOOL_MATERIALS,
+        NORMAN_ARMOR_MATERIAL_KEY);
     
     /**
      * Erstellt Item-Settings mit korrekter Registry-Key
@@ -309,10 +334,10 @@ public class MillItems {
         NORMAN_BROADSWORD = register("normanbroadsword", new Item(createSettings("normanbroadsword").sword(NORMAN_TOOL_MATERIAL, 3, -2.4f)));
 
         // Norman Armor (erstmal als basic Items - später zu richtiger Armor upgraden)
-        NORMAN_HELMET = register("normanhelmet", new Item(createSettings("normanhelmet")));
-        NORMAN_PLATE = register("normanplate", new Item(createSettings("normanplate")));
-        NORMAN_LEGS = register("normanlegs", new Item(createSettings("normanlegs")));
-        NORMAN_BOOTS = register("normanboots", new Item(createSettings("normanboots")));
+        NORMAN_HELMET = register("normanhelmet", new Item(createSettings("normanhelmet").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        NORMAN_PLATE = register("normanplate", new Item(createSettings("normanplate").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        NORMAN_LEGS = register("normanlegs", new Item(createSettings("normanlegs").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        NORMAN_BOOTS = register("normanboots", new Item(createSettings("normanboots").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Norman Parchments
         PARCHMENT_NORMAN_VILLAGERS = register("parchment_normanvillagers", new Item(createSettings("parchment_normanvillagers")));
