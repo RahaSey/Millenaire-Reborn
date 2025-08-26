@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "humanoid": [
+      { "texture": "millenaire-reborn:japanese_guard" }
+    ],
+    "humanoid_leggings": [
+      { "texture": "millenaire-reborn:japanese_guard" }
+    ]
+  }
+}

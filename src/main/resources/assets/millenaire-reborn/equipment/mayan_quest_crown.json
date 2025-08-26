@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "humanoid": [
+      { "texture": "millenaire-reborn:mayan_quest_crown" }
+    ],
+    "humanoid_leggings": [
+      { "texture": "millenaire-reborn:mayan_quest_crown" }
+    ]
+  }
+}

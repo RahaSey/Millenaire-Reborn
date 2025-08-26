@@ -1,0 +1,10 @@
+{
+  "layers": {
+    "humanoid": [
+      { "texture": "millenaire-reborn:seljuk" }
+    ],
+    "humanoid_leggings": [
+      { "texture": "millenaire-reborn:seljuk" }
+    ]
+  }
+}
