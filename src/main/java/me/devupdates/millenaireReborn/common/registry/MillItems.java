@@ -246,59 +246,6 @@ public class MillItems {
     public static Item SILK;
     public static Item OBSIDIAN_FLAKE;
     public static Item UNKNOWN_POWDER;
-
-    // Armor Asset Ids
-    public static final RegistryKey<EquipmentAsset> NORMAN_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "norman"));
-    public static final RegistryKey<EquipmentAsset> BYZANTINE_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "byzantine"));
-    public static final RegistryKey<EquipmentAsset> JAPANESE_RED_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "japanese_red"));
-    public static final RegistryKey<EquipmentAsset> JAPANESE_BLUE_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "japanese_blue"));
-    public static final RegistryKey<EquipmentAsset> JAPANESE_GUARD_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "japanese_guard"));
-    public static final RegistryKey<EquipmentAsset> SELJUK_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "seljuk"));
-    public static final RegistryKey<EquipmentAsset> SELJUK_WOOL_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "seljuk_wool"));
-    public static final RegistryKey<EquipmentAsset> FUR_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "furcoat"));
-    public static final RegistryKey<EquipmentAsset> MAYAN_CROWN_ARMOR_MATERIAL_KEY = RegistryKey.of(EquipmentAssetKeys.REGISTRY_KEY, Identifier.of(MillenaireReborn.MOD_ID, "mayan_quest_crown"));
-
-    // TODO: Tool und Armor Materials später implementieren wenn wir die korrekte 1.21.8 API gefunden haben
-    public static final ToolMaterial NORMAN_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 10.0F, 4.0F, 10, ItemTags.DIAMOND_TOOL_MATERIALS);
-    public static final ToolMaterial BYZANTINE_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 12.0F, 3.0F, 15, ItemTags.DIAMOND_TOOL_MATERIALS);
-    public static final ToolMaterial OBSIDIAN_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 6.0F, 2.0F, 25, ItemTags.DIAMOND_TOOL_MATERIALS);
-    public static final ToolMaterial BETTER_STEEL_TOOL_MATERIAL = new ToolMaterial(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1561, 5.0F, 3.0F, 10, ItemTags.DIAMOND_TOOL_MATERIALS);
-
-    public static final ArmorMaterial NORMAN_ARMOR_MATERIAL = new ArmorMaterial(66, 
-        Map.of(EquipmentType.HELMET, 3, EquipmentType.CHESTPLATE, 8, EquipmentType.LEGGINGS, 6, EquipmentType.BOOTS, 3),
-        10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2, 0, ItemTags.DIAMOND_TOOL_MATERIALS, NORMAN_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial BYZANTINE_ARMOR_MATERIAL = new ArmorMaterial(33, 
-        Map.of(EquipmentType.HELMET, 3, EquipmentType.CHESTPLATE, 8, EquipmentType.LEGGINGS, 6, EquipmentType.BOOTS, 3),
-        20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 1, 0, ItemTags.DIAMOND_TOOL_MATERIALS, BYZANTINE_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial JAPANESE_RED_ARMOR_MATERIAL = new ArmorMaterial(33, 
-        Map.of(EquipmentType.HELMET, 2, EquipmentType.CHESTPLATE, 6, EquipmentType.LEGGINGS, 5, EquipmentType.BOOTS, 2),
-        25, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0, ItemTags.DIAMOND_TOOL_MATERIALS, JAPANESE_RED_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial JAPANESE_BLUE_ARMOR_MATERIAL = new ArmorMaterial(33, 
-        Map.of(EquipmentType.HELMET, 2, EquipmentType.CHESTPLATE, 6, EquipmentType.LEGGINGS, 5, EquipmentType.BOOTS, 2),
-        25, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0, ItemTags.DIAMOND_TOOL_MATERIALS, JAPANESE_BLUE_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial JAPANESE_GUARD_ARMOR_MATERIAL = new ArmorMaterial(25, 
-        Map.of(EquipmentType.HELMET, 2, EquipmentType.CHESTPLATE, 5, EquipmentType.LEGGINGS, 4, EquipmentType.BOOTS, 1),
-        25, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0, ItemTags.DIAMOND_TOOL_MATERIALS, JAPANESE_GUARD_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial SELJUK_ARMOR_MATERIAL = new ArmorMaterial(66, 
-        Map.of(EquipmentType.HELMET, 3, EquipmentType.CHESTPLATE, 8, EquipmentType.LEGGINGS, 6, EquipmentType.BOOTS, 3),
-        10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2, 0, ItemTags.DIAMOND_TOOL_MATERIALS, SELJUK_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial SELJUK_WOOL_ARMOR_MATERIAL = new ArmorMaterial(7, 
-        Map.of(EquipmentType.HELMET, 2, EquipmentType.CHESTPLATE, 5, EquipmentType.LEGGINGS, 3, EquipmentType.BOOTS, 1),
-        10, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 1, 0, ItemTags.WOOL, SELJUK_WOOL_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial FUR_ARMOR_MATERIAL = new ArmorMaterial(7, 
-        Map.of(EquipmentType.HELMET, 2, EquipmentType.CHESTPLATE, 5, EquipmentType.LEGGINGS, 3, EquipmentType.BOOTS, 1),
-        25, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, 2, 0, ItemTags.DIAMOND_TOOL_MATERIALS, FUR_ARMOR_MATERIAL_KEY);
-
-    public static final ArmorMaterial MAYAN_CROWN_ARMOR_MATERIAL = new ArmorMaterial(33, 
-        Map.of(EquipmentType.HELMET, 3, EquipmentType.CHESTPLATE, 6, EquipmentType.LEGGINGS, 8, EquipmentType.BOOTS, 3),
-        10, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, 3, 0, ItemTags.GOLD_TOOL_MATERIALS, MAYAN_CROWN_ARMOR_MATERIAL_KEY);
     
     /**
      * Erstellt Item-Settings mit korrekter Registry-Key
@@ -356,17 +303,17 @@ public class MillItems {
             new BlockItem(MillBlocks.INDIAN_STONE_ORNAMENT, createSettings("indian_stone_ornament")));
 
         // Norman Tools (erstmal als basic Items - später zu richtigen Tools upgraden)
-        NORMAN_PICKAXE = register("normanpickaxe", new Item(createSettings("normanpickaxe").pickaxe(NORMAN_TOOL_MATERIAL, 1, -2.8f)));
-        NORMAN_AXE = register("normanaxe", new AxeItem(NORMAN_TOOL_MATERIAL, 4, -3, createSettings("normanaxe")));
-        NORMAN_SHOVEL = register("normanshovel", new ShovelItem(NORMAN_TOOL_MATERIAL, 1.5f, -3, createSettings("normanshovel")));
-        NORMAN_HOE = register("normanhoe", new HoeItem(NORMAN_TOOL_MATERIAL, -4, 1, createSettings("normanhoe")));
-        NORMAN_BROADSWORD = register("normanbroadsword", new Item(createSettings("normanbroadsword").sword(NORMAN_TOOL_MATERIAL, 3, -2.4f)));
+        NORMAN_PICKAXE = register("normanpickaxe", new Item(createSettings("normanpickaxe").pickaxe(MillCustomMaterials.NORMAN_TOOL_MATERIAL, 1, -2.8f)));
+        NORMAN_AXE = register("normanaxe", new AxeItem(MillCustomMaterials.NORMAN_TOOL_MATERIAL, 4, -3, createSettings("normanaxe")));
+        NORMAN_SHOVEL = register("normanshovel", new ShovelItem(MillCustomMaterials.NORMAN_TOOL_MATERIAL, 1.5f, -3, createSettings("normanshovel")));
+        NORMAN_HOE = register("normanhoe", new HoeItem(MillCustomMaterials.NORMAN_TOOL_MATERIAL, -4, 1, createSettings("normanhoe")));
+        NORMAN_BROADSWORD = register("normanbroadsword", new Item(createSettings("normanbroadsword").sword(MillCustomMaterials.NORMAN_TOOL_MATERIAL, 3, -2.4f)));
 
         // Norman Armor (erstmal als basic Items - später zu richtiger Armor upgraden)
-        NORMAN_HELMET = register("normanhelmet", new Item(createSettings("normanhelmet").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        NORMAN_PLATE = register("normanplate", new Item(createSettings("normanplate").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
-        NORMAN_LEGS = register("normanlegs", new Item(createSettings("normanlegs").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
-        NORMAN_BOOTS = register("normanboots", new Item(createSettings("normanboots").armor(NORMAN_ARMOR_MATERIAL, EquipmentType.BOOTS)));
+        NORMAN_HELMET = register("normanhelmet", new Item(createSettings("normanhelmet").armor(MillCustomMaterials.NORMAN_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        NORMAN_PLATE = register("normanplate", new Item(createSettings("normanplate").armor(MillCustomMaterials.NORMAN_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        NORMAN_LEGS = register("normanlegs", new Item(createSettings("normanlegs").armor(MillCustomMaterials.NORMAN_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        NORMAN_BOOTS = register("normanboots", new Item(createSettings("normanboots").armor(MillCustomMaterials.NORMAN_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Norman Parchments
         PARCHMENT_NORMAN_VILLAGERS = register("parchment_normanvillagers", new Item(createSettings("parchment_normanvillagers")));
@@ -376,17 +323,17 @@ public class MillItems {
 
         // BYZANTINE ITEMS
         // Byzantine Tools (als Items - später zu Tools upgraden)
-        BYZANTINE_PICKAXE = register("byzantinepickaxe", new Item(createSettings("byzantinepickaxe").pickaxe(BYZANTINE_TOOL_MATERIAL, 1, -2.8f)));
-        BYZANTINE_AXE = register("byzantineaxe", new AxeItem(BYZANTINE_TOOL_MATERIAL, 5, -3, createSettings("byzantineaxe")));
-        BYZANTINE_SHOVEL = register("byzantineshovel", new ShovelItem(BYZANTINE_TOOL_MATERIAL, 1.5f, -3, createSettings("byzantineshovel")));
-        BYZANTINE_HOE = register("byzantinehoe", new HoeItem(BYZANTINE_TOOL_MATERIAL, -3, 0, createSettings("byzantinehoe")));
-        BYZANTINE_MACE = register("byzantinemace", new Item(createSettings("byzantinemace").sword(BYZANTINE_TOOL_MATERIAL, 2, -2.4f)));
+        BYZANTINE_PICKAXE = register("byzantinepickaxe", new Item(createSettings("byzantinepickaxe").pickaxe(MillCustomMaterials.BYZANTINE_TOOL_MATERIAL, 1, -2.8f)));
+        BYZANTINE_AXE = register("byzantineaxe", new AxeItem(MillCustomMaterials.BYZANTINE_TOOL_MATERIAL, 5, -3, createSettings("byzantineaxe")));
+        BYZANTINE_SHOVEL = register("byzantineshovel", new ShovelItem(MillCustomMaterials.BYZANTINE_TOOL_MATERIAL, 1.5f, -3, createSettings("byzantineshovel")));
+        BYZANTINE_HOE = register("byzantinehoe", new HoeItem(MillCustomMaterials.BYZANTINE_TOOL_MATERIAL, -3, 0, createSettings("byzantinehoe")));
+        BYZANTINE_MACE = register("byzantinemace", new Item(createSettings("byzantinemace").sword(MillCustomMaterials.BYZANTINE_TOOL_MATERIAL, 2, -2.4f)));
 
         // Byzantine Armor (als Items - später zu Armor upgraden)
-        BYZANTINE_HELMET = register("byzantinehelmet", new Item(createSettings("byzantinehelmet").armor(BYZANTINE_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        BYZANTINE_PLATE = register("byzantineplate", new Item(createSettings("byzantineplate").armor(BYZANTINE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
-        BYZANTINE_LEGS = register("byzantinelegs", new Item(createSettings("byzantinelegs").armor(BYZANTINE_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
-        BYZANTINE_BOOTS = register("byzantineboots", new Item(createSettings("byzantineboots").armor(BYZANTINE_ARMOR_MATERIAL, EquipmentType.BOOTS)));
+        BYZANTINE_HELMET = register("byzantinehelmet", new Item(createSettings("byzantinehelmet").armor(MillCustomMaterials.BYZANTINE_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        BYZANTINE_PLATE = register("byzantineplate", new Item(createSettings("byzantineplate").armor(MillCustomMaterials.BYZANTINE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        BYZANTINE_LEGS = register("byzantinelegs", new Item(createSettings("byzantinelegs").armor(MillCustomMaterials.BYZANTINE_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        BYZANTINE_BOOTS = register("byzantineboots", new Item(createSettings("byzantineboots").armor(MillCustomMaterials.BYZANTINE_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Byzantine Icons & Decorations
         BYZANTINE_ICON_SMALL = register("byzantineiconsmall", new Item(createSettings("byzantineiconsmall")));
@@ -399,26 +346,26 @@ public class MillItems {
 
         // JAPANESE ITEMS
         // Japanese Weapons (als Items - später zu richtigen Weapons upgraden)
-        TACHI_SWORD = register("tachisword", new Item(createSettings("tachisword").sword(BETTER_STEEL_TOOL_MATERIAL, 2, -2.4f)));
+        TACHI_SWORD = register("tachisword", new Item(createSettings("tachisword").sword(MillCustomMaterials.BETTER_STEEL_TOOL_MATERIAL, 2, -2.4f)));
         YUMI_BOW = register("yumibow", new Item(createSettings("yumibow").maxCount(1)));
 
         // Japanese Red Samurai Armor
-        JAPANESE_RED_HELMET = register("japaneseredhelmet", new Item(createSettings("japaneseredhelmet").armor(JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        JAPANESE_RED_PLATE = register("japaneseredplate", new Item(createSettings("japaneseredplate").armor(JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
-        JAPANESE_RED_LEGS = register("japaneseredlegs", new Item(createSettings("japaneseredlegs").armor(JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
-        JAPANESE_RED_BOOTS = register("japaneseredboots", new Item(createSettings("japaneseredboots").armor(JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.BOOTS)));
+        JAPANESE_RED_HELMET = register("japaneseredhelmet", new Item(createSettings("japaneseredhelmet").armor(MillCustomMaterials.JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        JAPANESE_RED_PLATE = register("japaneseredplate", new Item(createSettings("japaneseredplate").armor(MillCustomMaterials.JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        JAPANESE_RED_LEGS = register("japaneseredlegs", new Item(createSettings("japaneseredlegs").armor(MillCustomMaterials.JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        JAPANESE_RED_BOOTS = register("japaneseredboots", new Item(createSettings("japaneseredboots").armor(MillCustomMaterials.JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Japanese Blue Samurai Armor
-        JAPANESE_BLUE_HELMET = register("japanesebluehelmet", new Item(createSettings("japanesebluehelmet").armor(JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        JAPANESE_BLUE_PLATE = register("japaneseblueplate", new Item(createSettings("japaneseblueplate").armor(JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
-        JAPANESE_BLUE_LEGS = register("japanesebluelegs", new Item(createSettings("japanesebluelegs").armor(JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
-        JAPANESE_BLUE_BOOTS = register("japaneseblueboots", new Item(createSettings("japaneseblueboots").armor(JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.BOOTS)));
+        JAPANESE_BLUE_HELMET = register("japanesebluehelmet", new Item(createSettings("japanesebluehelmet").armor(MillCustomMaterials.JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        JAPANESE_BLUE_PLATE = register("japaneseblueplate", new Item(createSettings("japaneseblueplate").armor(MillCustomMaterials.JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        JAPANESE_BLUE_LEGS = register("japanesebluelegs", new Item(createSettings("japanesebluelegs").armor(MillCustomMaterials.JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        JAPANESE_BLUE_BOOTS = register("japaneseblueboots", new Item(createSettings("japaneseblueboots").armor(MillCustomMaterials.JAPANESE_BLUE_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Japanese Guard Armor
-        JAPANESE_GUARD_HELMET = register("japaneseguardhelmet", new Item(createSettings("japaneseguardhelmet").armor(JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        JAPANESE_GUARD_PLATE = register("japaneseguardplate", new Item(createSettings("japaneseguardplate").armor(JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
-        JAPANESE_GUARD_LEGS = register("japaneseguardlegs", new Item(createSettings("japaneseguardlegs").armor(JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
-        JAPANESE_GUARD_BOOTS = register("japaneseguardboots", new Item(createSettings("japaneseguardboots").armor(JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.BOOTS)));
+        JAPANESE_GUARD_HELMET = register("japaneseguardhelmet", new Item(createSettings("japaneseguardhelmet").armor(MillCustomMaterials.JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        JAPANESE_GUARD_PLATE = register("japaneseguardplate", new Item(createSettings("japaneseguardplate").armor(MillCustomMaterials.JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        JAPANESE_GUARD_LEGS = register("japaneseguardlegs", new Item(createSettings("japaneseguardlegs").armor(MillCustomMaterials.JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        JAPANESE_GUARD_BOOTS = register("japaneseguardboots", new Item(createSettings("japaneseguardboots").armor(MillCustomMaterials.JAPANESE_GUARD_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Japanese Parchments
         PARCHMENT_JAPANESE_VILLAGERS = register("parchment_japanesevillagers", new Item(createSettings("parchment_japanesevillagers")));
@@ -428,12 +375,12 @@ public class MillItems {
 
         // MAYAN ITEMS  
         // Mayan Tools (als Items - später zu Tools upgraden)
-        MAYAN_PICKAXE = register("mayanpickaxe", new Item(createSettings("mayanpickaxe").pickaxe(OBSIDIAN_TOOL_MATERIAL, 1, -2.8f)));
-        MAYAN_AXE = register("mayanaxe", new AxeItem(OBSIDIAN_TOOL_MATERIAL, 6, -3, createSettings("mayanaxe")));
-        MAYAN_SHOVEL = register("mayanshovel", new ShovelItem(OBSIDIAN_TOOL_MATERIAL, 1.5f, -3, createSettings("mayanshovel")));
-        MAYAN_HOE = register("mayanhoe", new HoeItem(OBSIDIAN_TOOL_MATERIAL, -2, -1, createSettings("mayanhoe")));
-        MAYAN_MACE = register("mayanmace", new Item(createSettings("mayanmace").sword(OBSIDIAN_TOOL_MATERIAL, 3, -2.4f)));
-        MAYAN_QUEST_CROWN = register("mayanquestcrown", new Item(createSettings("mayanquestcrown").armor(MAYAN_CROWN_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        MAYAN_PICKAXE = register("mayanpickaxe", new Item(createSettings("mayanpickaxe").pickaxe(MillCustomMaterials.OBSIDIAN_TOOL_MATERIAL, 1, -2.8f)));
+        MAYAN_AXE = register("mayanaxe", new AxeItem(MillCustomMaterials.OBSIDIAN_TOOL_MATERIAL, 6, -3, createSettings("mayanaxe")));
+        MAYAN_SHOVEL = register("mayanshovel", new ShovelItem(MillCustomMaterials.OBSIDIAN_TOOL_MATERIAL, 1.5f, -3, createSettings("mayanshovel")));
+        MAYAN_HOE = register("mayanhoe", new HoeItem(MillCustomMaterials.OBSIDIAN_TOOL_MATERIAL, -2, -1, createSettings("mayanhoe")));
+        MAYAN_MACE = register("mayanmace", new Item(createSettings("mayanmace").sword(MillCustomMaterials.OBSIDIAN_TOOL_MATERIAL, 3, -2.4f)));
+        MAYAN_QUEST_CROWN = register("mayanquestcrown", new Item(createSettings("mayanquestcrown").armor(MillCustomMaterials.MAYAN_CROWN_ARMOR_MATERIAL, EquipmentType.HELMET)));
 
         // Mayan Parchments
         PARCHMENT_MAYAN_VILLAGERS = register("parchment_mayanvillagers", new Item(createSettings("parchment_mayanvillagers")));
@@ -462,15 +409,15 @@ public class MillItems {
 
         // SELJUK ITEMS
         // Seljuk Weapons (als Items - später zu richtigen Weapons upgraden)
-        SELJUK_SCIMITAR = register("seljukscimitar", new Item(createSettings("seljukscimitar").sword(BETTER_STEEL_TOOL_MATERIAL, 3, -2.4f)));
+        SELJUK_SCIMITAR = register("seljukscimitar", new Item(createSettings("seljukscimitar").sword(MillCustomMaterials.BETTER_STEEL_TOOL_MATERIAL, 3, -2.4f)));
         SELJUK_BOW = register("seljukbow", new Item(createSettings("seljukbow").maxCount(1)));
 
         // Seljuk Armor (als Items - später zu Armor upgraden)
-        SELJUK_HELMET = register("seljukhelmet", new Item(createSettings("seljukhelmet").armor(SELJUK_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        SELJUK_TURBAN = register("seljukturban", new Item(createSettings("seljukturban").armor(SELJUK_WOOL_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        SELJUK_PLATE = register("seljukplate", new Item(createSettings("seljukplate").armor(SELJUK_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
-        SELJUK_LEGS = register("seljuklegs", new Item(createSettings("seljuklegs").armor(SELJUK_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
-        SELJUK_BOOTS = register("seljukboots", new Item(createSettings("seljukboots").armor(SELJUK_ARMOR_MATERIAL, EquipmentType.BOOTS)));
+        SELJUK_HELMET = register("seljukhelmet", new Item(createSettings("seljukhelmet").armor(MillCustomMaterials.SELJUK_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        SELJUK_TURBAN = register("seljukturban", new Item(createSettings("seljukturban").armor(MillCustomMaterials.SELJUK_WOOL_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        SELJUK_PLATE = register("seljukplate", new Item(createSettings("seljukplate").armor(MillCustomMaterials.SELJUK_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        SELJUK_LEGS = register("seljuklegs", new Item(createSettings("seljuklegs").armor(MillCustomMaterials.SELJUK_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        SELJUK_BOOTS = register("seljukboots", new Item(createSettings("seljukboots").armor(MillCustomMaterials.SELJUK_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Seljuk Foods  
         YOGURT = register("yogurt", new Item(createSettings("yogurt")));
@@ -496,10 +443,10 @@ public class MillItems {
         ULU = register("ulu", new Item(createSettings("ulu").maxCount(1)));
 
         // Inuit Fur Armor (als Items - später zu Armor upgraden)
-        FUR_HELMET = register("furhelmet", new Item(createSettings("furhelmet").armor(FUR_ARMOR_MATERIAL, EquipmentType.HELMET)));
-        FUR_PLATE = register("furplate", new Item(createSettings("furplate").armor(FUR_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
-        FUR_LEGS = register("furlegs", new Item(createSettings("furlegs").armor(FUR_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
-        FUR_BOOTS = register("furboots", new Item(createSettings("furboots").armor(FUR_ARMOR_MATERIAL, EquipmentType.BOOTS)));
+        FUR_HELMET = register("furhelmet", new Item(createSettings("furhelmet").armor(MillCustomMaterials.FUR_ARMOR_MATERIAL, EquipmentType.HELMET)));
+        FUR_PLATE = register("furplate", new Item(createSettings("furplate").armor(MillCustomMaterials.FUR_ARMOR_MATERIAL, EquipmentType.CHESTPLATE)));
+        FUR_LEGS = register("furlegs", new Item(createSettings("furlegs").armor(MillCustomMaterials.FUR_ARMOR_MATERIAL, EquipmentType.LEGGINGS)));
+        FUR_BOOTS = register("furboots", new Item(createSettings("furboots").armor(MillCustomMaterials.FUR_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Inuit Foods
         BEAR_MEAT_RAW = register("bearmeat_raw", new Item(createSettings("bearmeat_raw")));
