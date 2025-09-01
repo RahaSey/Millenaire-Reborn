@@ -5,12 +5,18 @@ import java.util.Map;
 import javax.tools.Tool;
 
 import me.devupdates.millenaireReborn.MillenaireReborn;
+import me.devupdates.millenaireReborn.common.registry.MillFoodItemBuilder.MillFoodType;
+import net.minecraft.component.type.ConsumableComponents;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
 import net.minecraft.item.equipment.ArmorMaterial;
 import net.minecraft.item.equipment.EquipmentAsset;
 import net.minecraft.item.equipment.EquipmentAssetKeys;
@@ -55,7 +61,7 @@ public class MillItems {
     public static Item NORMAN_LEGS;
     public static Item NORMAN_BOOTS;
 
-        // Norman Parchments
+    // Norman Parchments
     public static Item PARCHMENT_NORMAN_VILLAGERS;
     public static Item PARCHMENT_NORMAN_ITEMS;
     public static Item PARCHMENT_NORMAN_BUILDINGS;
@@ -392,7 +398,7 @@ public class MillItems {
         // Indian Seeds & Food
         RICE = register("rice", new Item(createSettings("rice")));
         TURMERIC = register("turmeric", new Item(createSettings("turmeric")));
-        VEG_CURRY = register("vegcurry", new Item(createSettings("vegcurry")));
+        VEG_CURRY = register("vegcurry", MillFoodItemBuilder.CreateItem(createSettings("vegcurry"), MillFoodType.VEG_CURRY));
         CHICKEN_CURRY = register("chickencurry", new Item(createSettings("chickencurry")));
         RASGULLA = register("rasgulla", new Item(createSettings("rasgulla")));
 
