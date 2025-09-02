@@ -399,8 +399,8 @@ public class MillItems {
         RICE = register("rice", new Item(createSettings("rice")));
         TURMERIC = register("turmeric", new Item(createSettings("turmeric")));
         VEG_CURRY = register("vegcurry", MillFoodItemBuilder.CreateItem(createSettings("vegcurry"), MillFoodType.VEG_CURRY));
-        CHICKEN_CURRY = register("chickencurry", new Item(createSettings("chickencurry")));
-        RASGULLA = register("rasgulla", new Item(createSettings("rasgulla")));
+        CHICKEN_CURRY = register("chickencurry", MillFoodItemBuilder.CreateItem(createSettings("chickencurry"), MillFoodType.CHICKEN_CURRY));
+        RASGULLA = register("rasgulla", MillFoodItemBuilder.CreateItem(createSettings("rasgulla"), MillFoodType.RASGULLA));
 
         // Indian Decorations
         INDIAN_STATUE = register("indianstatue", new Item(createSettings("indianstatue")));
@@ -426,8 +426,8 @@ public class MillItems {
         SELJUK_BOOTS = register("seljukboots", new Item(createSettings("seljukboots").armor(MillCustomMaterials.SELJUK_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Seljuk Foods  
-        YOGURT = register("yogurt", new Item(createSettings("yogurt")));
-        AYRAN = register("ayran", new Item(createSettings("ayran")));
+        YOGURT = register("yogurt", MillFoodItemBuilder.CreateItem(createSettings("yogurt"), MillFoodType.YOGURT));
+        AYRAN = register("ayran",  MillFoodItemBuilder.CreateItem(createSettings("ayran"), MillFoodType.AYRAN));
         PIDE = register("pide", new Item(createSettings("pide")));
         LOKUM = register("lokum", new Item(createSettings("lokum")));
         HELVA = register("helva", new Item(createSettings("helva")));
