@@ -396,8 +396,8 @@ public class MillItems {
 
         // INDIAN ITEMS
         // Indian Seeds & Food
-        RICE = register("rice", new Item(createSettings("rice")));
-        TURMERIC = register("turmeric", new Item(createSettings("turmeric")));
+        RICE = register("rice", new Item(createSettings("rice"))); //TODO
+        TURMERIC = register("turmeric", new Item(createSettings("turmeric"))); //TODO
         VEG_CURRY = register("vegcurry", MillFoodItemBuilder.CreateItem(createSettings("vegcurry"), MillFoodType.VEG_CURRY));
         CHICKEN_CURRY = register("chickencurry", MillFoodItemBuilder.CreateItem(createSettings("chickencurry"), MillFoodType.CHICKEN_CURRY));
         RASGULLA = register("rasgulla", MillFoodItemBuilder.CreateItem(createSettings("rasgulla"), MillFoodType.RASGULLA));
@@ -428,10 +428,10 @@ public class MillItems {
         // Seljuk Foods  
         YOGURT = register("yogurt", MillFoodItemBuilder.CreateItem(createSettings("yogurt"), MillFoodType.YOGURT));
         AYRAN = register("ayran",  MillFoodItemBuilder.CreateItem(createSettings("ayran"), MillFoodType.AYRAN));
-        PIDE = register("pide", new Item(createSettings("pide")));
-        LOKUM = register("lokum", new Item(createSettings("lokum")));
-        HELVA = register("helva", new Item(createSettings("helva")));
-        PISTACHIOS = register("pistachios", new Item(createSettings("pistachios")));
+        PIDE = register("pide", MillFoodItemBuilder.CreateItem(createSettings("pide"), MillFoodType.PIDE));
+        LOKUM = register("lokum", MillFoodItemBuilder.CreateItem(createSettings("lokum"), MillFoodType.LOKUM));
+        HELVA = register("helva", MillFoodItemBuilder.CreateItem(createSettings("helva"), MillFoodType.HELVA));
+        PISTACHIOS = register("pistachios", MillFoodItemBuilder.CreateItem(createSettings("pistachios"), MillFoodType.PISTACHIOS));
 
         // Seljuk Decorations
         WALL_CARPET_SMALL = register("wallcarpetsmall", new Item(createSettings("wallcarpetsmall")));
@@ -455,15 +455,15 @@ public class MillItems {
         FUR_BOOTS = register("furboots", new Item(createSettings("furboots").armor(MillCustomMaterials.FUR_ARMOR_MATERIAL, EquipmentType.BOOTS)));
 
         // Inuit Foods
-        BEAR_MEAT_RAW = register("bearmeat_raw", new Item(createSettings("bearmeat_raw")));
-        BEAR_MEAT_COOKED = register("bearmeat_cooked", new Item(createSettings("bearmeat_cooked")));
-        WOLF_MEAT_RAW = register("wolfmeat_raw", new Item(createSettings("wolfmeat_raw")));
-        WOLF_MEAT_COOKED = register("wolfmeat_cooked", new Item(createSettings("wolfmeat_cooked")));
-        SEAFOOD_RAW = register("seafood_raw", new Item(createSettings("seafood_raw")));
-        SEAFOOD_COOKED = register("seafood_cooked", new Item(createSettings("seafood_cooked")));
-        INUIT_BEAR_STEW = register("inuitbearstew", new Item(createSettings("inuitbearstew")));
-        INUIT_MEATY_STEW = register("inuitmeatystew", new Item(createSettings("inuitmeatystew")));
-        INUIT_POTATO_STEW = register("inuitpotatostew", new Item(createSettings("inuitpotatostew")));
+        BEAR_MEAT_RAW = register("bearmeat_raw", MillFoodItemBuilder.CreateItem(createSettings("bearmeat_raw"), MillFoodType.BEAR_MEAT_RAW));
+        BEAR_MEAT_COOKED = register("bearmeat_cooked", MillFoodItemBuilder.CreateItem(createSettings("bearmeat_cooked"), MillFoodType.BEAR_MEAT_COOKED));
+        WOLF_MEAT_RAW = register("wolfmeat_raw", MillFoodItemBuilder.CreateItem(createSettings("wolfmeat_raw"), MillFoodType.WOLF_MEAT_RAW));
+        WOLF_MEAT_COOKED = register("wolfmeat_cooked", MillFoodItemBuilder.CreateItem(createSettings("wolfmeat_cooked"), MillFoodType.WOLF_MEAT_COOKED));
+        SEAFOOD_RAW = register("seafood_raw", MillFoodItemBuilder.CreateItem(createSettings("seafood_raw"), MillFoodType.SEAFOOD_RAW));
+        SEAFOOD_COOKED = register("seafood_cooked", MillFoodItemBuilder.CreateItem(createSettings("seafood_cooked"), MillFoodType.SEAFOOD_COOKED));
+        INUIT_BEAR_STEW = register("inuitbearstew", MillFoodItemBuilder.CreateItem(createSettings("inuitbearstew"), MillFoodType.INUIT_BEAR_STEW));
+        INUIT_MEATY_STEW = register("inuitmeatystew", MillFoodItemBuilder.CreateItem(createSettings("inuitmeatystew"), MillFoodType.INUIT_MEATY_STEW));
+        INUIT_POTATO_STEW = register("inuitpotatostew", MillFoodItemBuilder.CreateItem(createSettings("inuitpotatostew"), MillFoodType.INUIT_POTATO_STEW));
 
         // Inuit Materials
         TANNED_HIDE = register("tannedhide", new Item(createSettings("tannedhide")));
