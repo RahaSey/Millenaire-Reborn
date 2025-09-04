@@ -498,13 +498,13 @@ public class MillItems {
         TAPESTRY = register("tapestry", new Item(createSettings("tapestry")));
 
         // Special Foods
-        SAKE = register("sake", new Item(createSettings("sake")));
-        UDON = register("udon", new Item(createSettings("udon")));
-        IKAYAKI = register("ikayaki", new Item(createSettings("ikayaki")));
-        WINE_BASIC = register("winebasic", new Item(createSettings("winebasic")));
-        WINE_FANCY = register("winefancy", new Item(createSettings("winefancy")));
-        SOUVLAKI = register("souvlaki", new Item(createSettings("souvlaki")));
-        FETA = register("feta", new Item(createSettings("feta")));
+        SAKE = register("sake", MillFoodItemBuilder.CreateItem(createSettings("sake"), MillFoodType.SAKE));
+        UDON = register("udon", MillFoodItemBuilder.CreateItem(createSettings("udon"), MillFoodType.UDON));
+        IKAYAKI = register("ikayaki", MillFoodItemBuilder.CreateItem(createSettings("ikayaki"), MillFoodType.IKAYAKI));
+        WINE_BASIC = register("winebasic", MillFoodItemBuilder.CreateItem(createSettings("winebasic"), MillFoodType.WINE_BASIC));
+        WINE_FANCY = register("winefancy", MillFoodItemBuilder.CreateItem(createSettings("winefancy"), MillFoodType.WINE_FANCY));
+        SOUVLAKI = register("souvlaki", MillFoodItemBuilder.CreateItem(createSettings("souvlaki"), MillFoodType.SOUVLAKI));
+        FETA = register("feta", MillFoodItemBuilder.CreateItem(createSettings("feta"), MillFoodType.FETA));
 
         // Special Items
         VILLAGE_BANNER = register("villagebanner", new Item(createSettings("villagebanner")));
