@@ -10,6 +10,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.component.type.ConsumableComponents;
 
@@ -17,13 +18,14 @@ public class MillFoodItemBuilder {
 
     //#region Inner Classes
     private static class MillCustomFoodItem extends Item {
-
-        public MillCustomFoodItem(Settings settings, FoodComponent foodComponent, List<StatusEffectInstance> statusEffects, Float statusEffectChance, Integer maxDamage) {
-            super(settings.food(foodComponent, ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(statusEffects, statusEffectChance)).build()).maxDamage(maxDamage));
+        public MillCustomFoodItem(Settings settings, FoodComponent foodComponent, List<StatusEffectInstance> statusEffects, Float statusEffectChance, Integer maxDamage, Boolean isDrink) {
+            super(settings.food(foodComponent, ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(statusEffects, statusEffectChance))
+                                .sound(isDrink ? SoundEvents.ENTITY_GENERIC_DRINK : SoundEvents.ENTITY_GENERIC_EAT).build()).maxDamage(maxDamage));
         }
 
-        public MillCustomFoodItem(Settings settings, FoodComponent foodComponent, Integer maxDamage) {
-            super(settings.food(foodComponent).maxDamage(maxDamage));
+        public MillCustomFoodItem(Settings settings, FoodComponent foodComponent, Integer maxDamage, Boolean isDrink) {
+            super(settings.food(foodComponent, ConsumableComponents.food()
+                                .sound(isDrink ? SoundEvents.ENTITY_GENERIC_DRINK : SoundEvents.ENTITY_GENERIC_EAT).build()).maxDamage(maxDamage));
         }
 
         @Override
@@ -67,26 +69,14 @@ public class MillFoodItemBuilder {
     {
         MillFoodItem foodItem = AllFood.get(foodType);
 
-        if (!foodItem.IsDrink){
-            // Create food item here
-            MillCustomFoodItem item = null;
-
-            if (foodItem.StatusEffects == null || foodItem.StatusEffects.isEmpty()){
-                item = new MillCustomFoodItem(settings, 
-                    new FoodComponent(foodItem.Nutrition, foodItem.Saturation, foodItem.IsAlwaysEdible), foodItem.MaxDamage);
-            }
-            else{
-                item = new MillCustomFoodItem(settings, 
-                    new FoodComponent(foodItem.Nutrition, foodItem.Saturation, foodItem.IsAlwaysEdible), foodItem.StatusEffects, foodItem.StatusEffectChance, foodItem.MaxDamage);
-            }
-
-            return item;
+        if (foodItem.StatusEffects == null || foodItem.StatusEffects.isEmpty()){
+            return new MillCustomFoodItem(settings, 
+                new FoodComponent(foodItem.Nutrition, foodItem.Saturation, foodItem.IsAlwaysEdible), foodItem.MaxDamage, foodItem.IsDrink);
         }
-        else {
-            // Create Drink item here
-            return null;            
+        else{
+            return new MillCustomFoodItem(settings, 
+                new FoodComponent(foodItem.Nutrition, foodItem.Saturation, foodItem.IsAlwaysEdible), foodItem.StatusEffects, foodItem.StatusEffectChance, foodItem.MaxDamage, foodItem.IsDrink);
         }
-
     }
 
 
@@ -130,7 +120,7 @@ public class MillFoodItemBuilder {
              List.of(
                 new StatusEffectInstance(StatusEffects.REGENERATION, 15 * 20, 0)), 1f)),
             //AYRAN
-            Map.entry(MillFoodType.AYRAN, new MillFoodItem(0, 0f, 0, true, false,
+            Map.entry(MillFoodType.AYRAN, new MillFoodItem(0, 0f, 0, true, true,
              List.of(
                 new StatusEffectInstance(StatusEffects.REGENERATION, 15 * 20, 0),
                 new StatusEffectInstance(StatusEffects.NAUSEA, 5 * 20, 0)), 1f)),
