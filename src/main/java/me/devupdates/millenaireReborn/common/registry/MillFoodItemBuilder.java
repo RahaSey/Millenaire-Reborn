@@ -10,6 +10,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
+import net.minecraft.item.consume.ClearAllEffectsConsumeEffect;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.component.type.ConsumableComponents;
@@ -36,6 +37,14 @@ public class MillFoodItemBuilder {
         public MillCustomFoodItem(Settings settings, FoodComponent foodComponent, Boolean isDrink) {
             super(settings.food(foodComponent, ConsumableComponents.food()
                                 .sound(isDrink ? SoundEvents.ENTITY_GENERIC_DRINK : SoundEvents.ENTITY_GENERIC_EAT).build()));
+        }
+        
+        // For OLIVE_OIL
+        public MillCustomFoodItem(Settings settings, Boolean isDrink) {
+            super(settings.food(new FoodComponent(0, 0, true), ConsumableComponents.food()
+                                .consumeEffect(new ClearAllEffectsConsumeEffect())
+                                .sound(isDrink ? SoundEvents.ENTITY_GENERIC_DRINK : SoundEvents.ENTITY_GENERIC_EAT).build())
+                            .maxCount(16));
         }
 
         @Override
@@ -78,6 +87,10 @@ public class MillFoodItemBuilder {
     public static Item CreateItem(Item.Settings settings, MillFoodType foodType)
     {
         MillFoodItem foodItem = AllFood.get(foodType);
+
+        if (foodType == MillFoodType.OLIVE_OIL){
+            return new MillCustomFoodItem(settings, true);
+        }
 
         if (foodItem.StatusEffects == null || foodItem.StatusEffects.isEmpty()){
             if (foodItem.MaxDamage > 0)
@@ -125,6 +138,20 @@ public class MillFoodItemBuilder {
         WINE_FANCY,
         SOUVLAKI,
         FETA,
+        CIDER_APPLE, // vv Not in game vv
+        CIDER,
+        BOUDIN,
+        CALVA,
+        TRIPES,
+        OLIVES,
+        OLIVE_OIL,
+        CHERRIES,
+        CHERRY_BLOSSOM,
+        MASA,
+        WAH,
+        BALCHE,
+        SIKIL_PAH,
+        CACAUHAA
     }
     //#endregion All Food Types
 
@@ -155,7 +182,7 @@ public class MillFoodItemBuilder {
                 new StatusEffectInstance(StatusEffects.NAUSEA, 5 * 20, 0)), 1f)),
 
             //PIDE
-            Map.entry(MillFoodType.PIDE, new MillFoodItem(8, 16f, 0, false, false, null, null)),
+            Map.entry(MillFoodType.PIDE, new MillFoodItem(8, 16f, 8, false, false, null, null)),
             
             //LOKUM
             Map.entry(MillFoodType.LOKUM, new MillFoodItem(3, 0.6f, 0, true, false,
@@ -238,7 +265,61 @@ public class MillFoodItemBuilder {
             //FETA
             Map.entry(MillFoodType.FETA, new MillFoodItem(1, 1f, 0, true, false,
              List.of(
-                new StatusEffectInstance(StatusEffects.REGENERATION, 50, 0)), 1f))
+                new StatusEffectInstance(StatusEffects.REGENERATION, 50, 0)), 1f)),
+
+            //CIDER_APPLE
+            Map.entry(MillFoodType.CIDER_APPLE, new MillFoodItem(1, 0.1f, 0, false, false, null, null)),
+
+            //CIDER
+            Map.entry(MillFoodType.CIDER, new MillFoodItem(0, 0f, 6, true, true,
+             List.of(
+                new StatusEffectInstance(StatusEffects.NAUSEA, 5 * 20, 0),
+                new StatusEffectInstance(StatusEffects.REGENERATION, 5 * 20, 0)), 1f)),
+
+            //BOUDIN
+            Map.entry(MillFoodType.BOUDIN, new MillFoodItem(8, 16f, 6, false, false, null, null)),
+
+            //CALVA
+            Map.entry(MillFoodType.CALVA, new MillFoodItem(0, 0f, 16, true, true,
+             List.of(
+                new StatusEffectInstance(StatusEffects.NAUSEA, 10 * 20, 0),
+                new StatusEffectInstance(StatusEffects.REGENERATION, 10 * 20, 0)), 1f)),
+
+            //TRIPES
+            Map.entry(MillFoodType.TRIPES, new MillFoodItem(10, 20f, 8, false, false, null, null)),
+
+            //OLIVES
+            Map.entry(MillFoodType.OLIVES, new MillFoodItem(1, 0.1f, 0, false, false, null, null)),
+
+            //OLIVE_OIL
+            Map.entry(MillFoodType.OLIVE_OIL, new MillFoodItem(0, 0f, 0, true, true, null, 1f)),
+
+            //CHERRIES
+            Map.entry(MillFoodType.CHERRIES, new MillFoodItem(1, 0.1f, 0, false, false, null, null)),
+
+            //CHERRY_BLOSSOM
+            Map.entry(MillFoodType.CHERRY_BLOSSOM, new MillFoodItem(1, 0.1f, 0, false, false, null, null)),
+
+            //MASA
+            Map.entry(MillFoodType.MASA, new MillFoodItem(6, 7.2f, 4, false, false, null, null)),
+
+            //WAH
+            Map.entry(MillFoodType.WAH, new MillFoodItem(10, 20f, 6, false, false, null, null)),
+
+            //BALCHE
+            Map.entry(MillFoodType.BALCHE, new MillFoodItem(0, 0f, 8, true, true,
+             List.of(
+                new StatusEffectInstance(StatusEffects.JUMP_BOOST, 480 * 20, 0),
+                new StatusEffectInstance(StatusEffects.REGENERATION, 8 * 20, 0)), 1f)),
+
+            //SIKIL_PAH
+            Map.entry(MillFoodType.SIKIL_PAH, new MillFoodItem(7, 9.8f, 7, false, false, null, null)),
+
+            //CACAUHAA
+            Map.entry(MillFoodType.CACAUHAA, new MillFoodItem(0, 0f, 6, true, true,
+             List.of(
+                new StatusEffectInstance(StatusEffects.NIGHT_VISION, 480 * 20, 0),
+                new StatusEffectInstance(StatusEffects.REGENERATION, 10 * 20, 0)), 1f))
         );
     //#endregion All Food Items
 }

@@ -67,6 +67,13 @@ public class MillItems {
     public static Item PARCHMENT_NORMAN_BUILDINGS;
     public static Item PARCHMENT_NORMAN_FULL;
 
+    // Norman Foods
+    public static Item CIDER_APPLE;
+    public static Item CIDER;
+    public static Item BOUDIN;
+    public static Item CALVA;
+    public static Item TRIPES;
+
     // BYZANTINE ITEMS
     // Byzantine Tools & Weapons
     public static Item BYZANTINE_PICKAXE;
@@ -89,6 +96,15 @@ public class MillItems {
     // Byzantine Clothes
     public static Item BYZANTINE_CLOTH_WOOL;
     public static Item BYZANTINE_CLOTH_SILK;
+
+    // Byzantine Foods & Seeds
+    public static Item GRAPES;
+    public static Item WINE_BASIC;
+    public static Item WINE_FANCY;
+    public static Item FETA;
+    public static Item SOUVLAKI;
+    public static Item OLIVES;
+    public static Item OLIVE_OIL;
 
     // JAPANESE ITEMS
     // Japanese Weapons
@@ -119,6 +135,13 @@ public class MillItems {
     public static Item PARCHMENT_JAPANESE_BUILDINGS;
     public static Item PARCHMENT_JAPANESE_FULL;
 
+    // Japanese Foods
+    public static Item SAKE;
+    public static Item UDON;
+    public static Item IKAYAKI;
+    public static Item CHERRIES;
+    public static Item CHERRY_BLOSSOM;
+
     // MAYAN ITEMS
     // Mayan Tools & Weapons
     public static Item MAYAN_PICKAXE;
@@ -133,6 +156,14 @@ public class MillItems {
     public static Item PARCHMENT_MAYAN_ITEMS;
     public static Item PARCHMENT_MAYAN_BUILDINGS;
     public static Item PARCHMENT_MAYAN_FULL;
+
+    // Mayan Foods & Seeds
+    public static Item MAIZE;
+    public static Item MASA;
+    public static Item WAH;
+    public static Item BALCHE;
+    public static Item SIKIL_PAH;
+    public static Item CACAUHAA;
 
     // INDIAN ITEMS
     // Indian Seeds & Food
@@ -237,15 +268,6 @@ public class MillItems {
     // Wall Decorations
     public static Item TAPESTRY;
 
-    // Special Foods
-    public static Item SAKE;
-    public static Item UDON;
-    public static Item IKAYAKI;
-    public static Item WINE_BASIC;
-    public static Item WINE_FANCY;
-    public static Item SOUVLAKI;
-    public static Item FETA;
-
     // Special Items
     public static Item VILLAGE_BANNER;
     public static Item CULTURE_BANNER;
@@ -327,6 +349,13 @@ public class MillItems {
         PARCHMENT_NORMAN_BUILDINGS = register("parchment_normanbuildings", new Item(createSettings("parchment_normanbuildings")));
         PARCHMENT_NORMAN_FULL = register("parchment_normanfull", new Item(createSettings("parchment_normanfull")));
 
+        // Norman Foods
+        CIDER_APPLE = register("ciderapple", MillFoodItemBuilder.CreateItem(createSettings("ciderapple"), MillFoodType.CIDER_APPLE));
+        CIDER = register("cider", MillFoodItemBuilder.CreateItem(createSettings("cider"), MillFoodType.CIDER));
+        BOUDIN = register("boudin", MillFoodItemBuilder.CreateItem(createSettings("boudin"), MillFoodType.BOUDIN));
+        CALVA = register("calva", MillFoodItemBuilder.CreateItem(createSettings("calva"), MillFoodType.CALVA)); 
+        TRIPES = register("tripes", MillFoodItemBuilder.CreateItem(createSettings("tripes"), MillFoodType.TRIPES));    
+
         // BYZANTINE ITEMS
         // Byzantine Tools (als Items - später zu Tools upgraden)
         BYZANTINE_PICKAXE = register("byzantinepickaxe", new Item(createSettings("byzantinepickaxe").pickaxe(MillCustomMaterials.BYZANTINE_TOOL_MATERIAL, 1, -2.8f)));
@@ -349,6 +378,15 @@ public class MillItems {
         // Byzantine Clothes
         BYZANTINE_CLOTH_WOOL = register("clothes_byz_wool", new Item(createSettings("clothes_byz_wool")));
         BYZANTINE_CLOTH_SILK = register("clothes_byz_silk", new Item(createSettings("clothes_byz_silk")));
+
+        // Byzantine Foods & Seeds
+        GRAPES = register("grapes", new Item(createSettings("grapes"))); //TODO SEED
+        WINE_BASIC = register("winebasic", MillFoodItemBuilder.CreateItem(createSettings("winebasic"), MillFoodType.WINE_BASIC));
+        WINE_FANCY = register("winefancy", MillFoodItemBuilder.CreateItem(createSettings("winefancy"), MillFoodType.WINE_FANCY));
+        SOUVLAKI = register("souvlaki", MillFoodItemBuilder.CreateItem(createSettings("souvlaki"), MillFoodType.SOUVLAKI));
+        FETA = register("feta", MillFoodItemBuilder.CreateItem(createSettings("feta"), MillFoodType.FETA));
+        OLIVES = register("olives", MillFoodItemBuilder.CreateItem(createSettings("olives"), MillFoodType.OLIVES));
+        OLIVE_OIL = register("oliveoil", MillFoodItemBuilder.CreateItem(createSettings("oliveoil"), MillFoodType.OLIVE_OIL));
 
         // JAPANESE ITEMS
         // Japanese Weapons (als Items - später zu richtigen Weapons upgraden)
@@ -379,6 +417,13 @@ public class MillItems {
         PARCHMENT_JAPANESE_BUILDINGS = register("parchment_japanesebuildings", new Item(createSettings("parchment_japanesebuildings")));
         PARCHMENT_JAPANESE_FULL = register("parchment_japanesefull", new Item(createSettings("parchment_japanesefull")));
 
+        // Japanese Foods
+        SAKE = register("sake", MillFoodItemBuilder.CreateItem(createSettings("sake"), MillFoodType.SAKE));
+        UDON = register("udon", MillFoodItemBuilder.CreateItem(createSettings("udon"), MillFoodType.UDON));
+        IKAYAKI = register("ikayaki", MillFoodItemBuilder.CreateItem(createSettings("ikayaki"), MillFoodType.IKAYAKI));
+        CHERRIES = register("cherries", MillFoodItemBuilder.CreateItem(createSettings("cherries"), MillFoodType.CHERRIES));
+        CHERRY_BLOSSOM = register("cherry_blossom", MillFoodItemBuilder.CreateItem(createSettings("cherry_blossom"), MillFoodType.CHERRY_BLOSSOM));
+
         // MAYAN ITEMS  
         // Mayan Tools (als Items - später zu Tools upgraden)
         MAYAN_PICKAXE = register("mayanpickaxe", new Item(createSettings("mayanpickaxe").pickaxe(MillCustomMaterials.OBSIDIAN_TOOL_MATERIAL, 1, -2.8f)));
@@ -394,10 +439,18 @@ public class MillItems {
         PARCHMENT_MAYAN_BUILDINGS = register("parchment_mayanbuildings", new Item(createSettings("parchment_mayanbuildings")));
         PARCHMENT_MAYAN_FULL = register("parchment_mayanfull", new Item(createSettings("parchment_mayanfull")));
 
+        // Mayan Foods & Seeds
+        MAIZE = register("maize", new Item(createSettings("maize"))); //TODO SEED
+        MASA = register("masa", MillFoodItemBuilder.CreateItem(createSettings("masa"), MillFoodType.MASA));
+        WAH = register("wah", MillFoodItemBuilder.CreateItem(createSettings("wah"), MillFoodType.WAH));
+        BALCHE = register("balche", MillFoodItemBuilder.CreateItem(createSettings("balche"), MillFoodType.BALCHE));
+        SIKIL_PAH = register("sikilpah", MillFoodItemBuilder.CreateItem(createSettings("sikilpah"), MillFoodType.SIKIL_PAH));
+        CACAUHAA = register("cacauhaa", MillFoodItemBuilder.CreateItem(createSettings("cacauhaa"), MillFoodType.CACAUHAA));
+
         // INDIAN ITEMS
         // Indian Seeds & Food
-        RICE = register("rice", new Item(createSettings("rice"))); //TODO
-        TURMERIC = register("turmeric", new Item(createSettings("turmeric"))); //TODO
+        RICE = register("rice", new Item(createSettings("rice"))); //TODO SEED
+        TURMERIC = register("turmeric", new Item(createSettings("turmeric"))); //TODO SEED
         VEG_CURRY = register("vegcurry", MillFoodItemBuilder.CreateItem(createSettings("vegcurry"), MillFoodType.VEG_CURRY));
         CHICKEN_CURRY = register("chickencurry", MillFoodItemBuilder.CreateItem(createSettings("chickencurry"), MillFoodType.CHICKEN_CURRY));
         RASGULLA = register("rasgulla", MillFoodItemBuilder.CreateItem(createSettings("rasgulla"), MillFoodType.RASGULLA));
@@ -496,15 +549,6 @@ public class MillItems {
 
         // Wall Decorations
         TAPESTRY = register("tapestry", new Item(createSettings("tapestry")));
-
-        // Special Foods
-        SAKE = register("sake", MillFoodItemBuilder.CreateItem(createSettings("sake"), MillFoodType.SAKE));
-        UDON = register("udon", MillFoodItemBuilder.CreateItem(createSettings("udon"), MillFoodType.UDON));
-        IKAYAKI = register("ikayaki", MillFoodItemBuilder.CreateItem(createSettings("ikayaki"), MillFoodType.IKAYAKI));
-        WINE_BASIC = register("winebasic", MillFoodItemBuilder.CreateItem(createSettings("winebasic"), MillFoodType.WINE_BASIC));
-        WINE_FANCY = register("winefancy", MillFoodItemBuilder.CreateItem(createSettings("winefancy"), MillFoodType.WINE_FANCY));
-        SOUVLAKI = register("souvlaki", MillFoodItemBuilder.CreateItem(createSettings("souvlaki"), MillFoodType.SOUVLAKI));
-        FETA = register("feta", MillFoodItemBuilder.CreateItem(createSettings("feta"), MillFoodType.FETA));
 
         // Special Items
         VILLAGE_BANNER = register("villagebanner", new Item(createSettings("villagebanner")));
