@@ -59,9 +59,9 @@ Result: All basic items work, are localized and organized in Creative Tabs.
   - [x] Mining Speed, Durability, Attack Damage
   - [x] Special Effects (e.g. Mayan Quest Crown)
 - [x] Armor Functionality
-  - [ ] Define Armor Materials
-  - [ ] Protection Values, Durability
-  - [ ] Armor Rendering for all cultures
+  - [x] Define Armor Materials
+  - [x] Protection Values, Durability
+  - [x] Armor Rendering for all cultures
 - [ ] Bow Functionality
   - [ ] Yumi Bow, Seljuk Bow, Inuit Bow
   - [ ] Pull Animations
