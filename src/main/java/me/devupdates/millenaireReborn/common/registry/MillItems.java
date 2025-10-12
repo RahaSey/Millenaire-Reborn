@@ -12,6 +12,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.BowItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ShovelItem;
@@ -391,7 +392,7 @@ public class MillItems {
         // JAPANESE ITEMS
         // Japanese Weapons (als Items - später zu richtigen Weapons upgraden)
         TACHI_SWORD = register("tachisword", new Item(createSettings("tachisword").sword(MillCustomMaterials.BETTER_STEEL_TOOL_MATERIAL, 2, -2.4f)));
-        YUMI_BOW = register("yumibow", new Item(createSettings("yumibow").maxCount(1)));
+        YUMI_BOW = register("yumibow", new MillCustomBowItem(createSettings("yumibow"), 1.3F, 1.2F, 1.0F));
 
         // Japanese Red Samurai Armor
         JAPANESE_RED_HELMET = register("japaneseredhelmet", new Item(createSettings("japaneseredhelmet").armor(MillCustomMaterials.JAPANESE_RED_ARMOR_MATERIAL, EquipmentType.HELMET)));
@@ -469,7 +470,7 @@ public class MillItems {
         // SELJUK ITEMS
         // Seljuk Weapons (als Items - später zu richtigen Weapons upgraden)
         SELJUK_SCIMITAR = register("seljukscimitar", new Item(createSettings("seljukscimitar").sword(MillCustomMaterials.BETTER_STEEL_TOOL_MATERIAL, 3, -2.4f)));
-        SELJUK_BOW = register("seljukbow", new Item(createSettings("seljukbow").maxCount(1)));
+        SELJUK_BOW = register("seljukbow", new MillCustomBowItem(createSettings("seljukbow"), 1.15F, 1.2F, 1.2F));
 
         // Seljuk Armor (als Items - später zu Armor upgraden)
         SELJUK_HELMET = register("seljukhelmet", new Item(createSettings("seljukhelmet").armor(MillCustomMaterials.SELJUK_ARMOR_MATERIAL, EquipmentType.HELMET)));
@@ -498,7 +499,7 @@ public class MillItems {
         // INUIT ITEMS
         // Inuit Weapons & Tools (als Items - später zu richtigen Tools upgraden)
         INUIT_TRIDENT = register("inuittrident", new Item(createSettings("inuittrident").sword(ToolMaterial.IRON, 3, -2.4f)));
-        INUIT_BOW = register("inuitbow", new Item(createSettings("inuitbow").maxCount(1)));
+        INUIT_BOW = register("inuitbow", new MillCustomBowItem(createSettings("inuitbow"), 1.0F, 1.0F, 1.0F));
         ULU = register("ulu", new Item(createSettings("ulu").maxCount(1)));
 
         // Inuit Fur Armor (als Items - später zu Armor upgraden)
